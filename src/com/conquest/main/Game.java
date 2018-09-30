@@ -6,6 +6,7 @@ package com.conquest.main;
 import java.awt.Canvas;
 
 import com.conquest.window.GameWindow;
+import com.conquest.window.InitialScreen;
 
 /**
  * @author Rohit Gupta
@@ -14,8 +15,6 @@ import com.conquest.window.GameWindow;
 public class Game extends Canvas implements Runnable {
 		/// Testcode.
 	private static final long serialVersionUID = -4669025547633011027L;
-	public static final int WIDTH =640;
-	public static final int HEIGHT = WIDTH/12 * 9;
 	private Thread thread;
 	private boolean isRunning = false;
 	public Game() {
@@ -25,7 +24,9 @@ public class Game extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 
-	new Game();
+//	new Game();
+		InitialScreen initialScreen = new InitialScreen();
+		initialScreen.setVisible(true);
 
 	}
 
