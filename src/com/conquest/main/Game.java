@@ -5,6 +5,8 @@ package com.conquest.main;
 
 import java.awt.Canvas;
 
+import com.conquest.window.GameWindow;
+
 /**
  * @author Rohit Gupta
  *

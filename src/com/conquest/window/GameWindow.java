@@ -1,9 +1,11 @@
-package com.conquest.main;
+package com.conquest.window;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+
+import com.conquest.main.Game;
 
 /**
  * @author Rohit Gupta
