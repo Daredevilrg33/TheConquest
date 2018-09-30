@@ -3,10 +3,13 @@
  */
 package com.conquest.window;
 
-import java.awt.Button;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import com.conquest.mapeditor.MapDashboard;
 import com.conquest.utilities.Constants;
@@ -15,30 +18,30 @@ import com.conquest.utilities.Constants;
  * @author Rohit Gupta
  *
  */
-public class InitialScreen extends Frame implements ActionListener{
+public class InitialScreen extends JFrame implements ActionListener{
 
-	private Button btnNewGame;
-	private Button btnMapEditor;
-	private Button btnAboutUs;
-	private Button btnExit;
+	private JButton btnNewGame;
+	private JButton btnMapEditor;
+	private JButton btnAboutUs;
+	private JButton btnExit;
 	
 	public InitialScreen() {
-		btnNewGame  = new Button("New Game");
+		btnNewGame  = new JButton("New Game");
 		btnNewGame.setBounds(Constants.WIDTH/2-50, 50, 100, 30);
 		btnNewGame.addActionListener(this);
 		add(btnNewGame);
 		
-		btnMapEditor  = new Button("Map Editor");
+		btnMapEditor  = new JButton("Map Editor");
 		btnMapEditor.setBounds(Constants.WIDTH/2-50, 120, 100, 30);
 		btnMapEditor.addActionListener(this);
 		add(btnMapEditor);
 		
-		btnAboutUs  = new Button("About Us");
+		btnAboutUs  = new JButton("About Us");
 		btnAboutUs.setBounds(Constants.WIDTH/2-50, 190, 100, 30);
 		btnAboutUs.addActionListener(this);
 		add(btnAboutUs);
 		
-		btnExit  = new Button("Exit");
+		btnExit  = new JButton("Exit");
 		btnExit.setBounds(Constants.WIDTH/2-50,260, 100, 30);
 		btnExit.addActionListener(this);
 		add(btnExit);
@@ -48,6 +51,16 @@ public class InitialScreen extends Frame implements ActionListener{
 		setLayout(null);
 		setLocationRelativeTo(null);
 		
+		addWindowListener(new WindowAdapter() {
+		/* (non-Javadoc)
+		 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
+		 */
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			System.exit(0);
+		}
+		});
 		
 	}
 
