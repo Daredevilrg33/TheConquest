@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import com.conquest.mapeditor.MapDashboard;
+import com.conquest.mapeditor.view.MapDashboard;
 import com.conquest.utilities.Constants;
 
 /**
