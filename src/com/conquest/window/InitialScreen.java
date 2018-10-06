@@ -45,7 +45,7 @@ public class InitialScreen extends JFrame implements ActionListener{
 		btnExit.setBounds(Constants.WIDTH/2-50,260, 100, 30);
 		btnExit.addActionListener(this);
 		add(btnExit);
-		
+		setTitle("Main Menu");
 		setResizable(false);
 		setSize(Constants.WIDTH,Constants.HEIGHT);
 		setLayout(null);
