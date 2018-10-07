@@ -15,7 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+import com.conquest.mapeditor.controller.MapEditorController;
 import com.conquest.utilities.Constants;
+import com.conquest.window.InitialScreen;
 
 /**
  * @author Nancy Goyal
@@ -50,7 +52,9 @@ public class MapDashboard extends JFrame implements ActionListener{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
-				System.exit(0);
+				dispose();
+				InitialScreen initialScreen = new InitialScreen();
+				initialScreen.setVisible(true);
 			}
 			});
 		

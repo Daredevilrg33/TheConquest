@@ -4,18 +4,57 @@
 package com.conquest.mapeditor.model;
 
 /**
- * @author Rohit Gupta
+ * @author Nancy Goyal
  *
  */
 public class CountryModel {
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	private String countryName;
+	private ContinentModel belongsTo;
+	
+	/**
+	 * Constructor of Country class.
+	 * @param countryName name of the new country
+	 * @param continent	continent object which contains this country
 	 */
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public CountryModel(String countryName, ContinentModel continent){
+		this.setCountryName(countryName);
+		this.setBelongsTo(continent);
 	}
+
+
+	/**
+	 * @return the countryName
+	 */
+	public String getCountryName() {
+		return countryName;
+	}
+
+	/**
+	 * @param countryName the countryName to set
+	 */
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+	
+	
+	
+	/**
+	 * @return the belongsTo
+	 */
+	public ContinentModel getBelongsTo() {
+		return belongsTo;
+	}
+
+
+	/**
+	 * @param belongsTo the belongsTo to set
+	 */
+	public void setBelongsTo(ContinentModel belongsTo) {
+		this.belongsTo = belongsTo;
+	}
+
+
+	
 
 }
