@@ -22,7 +22,7 @@ public class GameWindow extends JFrame{
 	private static final long serialVersionUID = 705136013521611381L;
 
 
-	public GameWindow() {
+	public GameWindow(String filePath, String noOfPlayers ) {
 		
 		setTitle("Game Window");
 		setResizable(false);

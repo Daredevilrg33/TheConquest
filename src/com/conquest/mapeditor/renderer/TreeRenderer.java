@@ -1,14 +1,13 @@
 package com.conquest.mapeditor.renderer;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 public class TreeRenderer extends JTree 
 {
-    private JTree tree;
+	private static final long serialVersionUID = 1977697232621553087L;
+	private JTree tree;
     
     
     public TreeRenderer(DefaultMutableTreeNode continentRoot) {

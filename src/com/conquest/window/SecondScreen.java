@@ -144,7 +144,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 			}else
 			{
 				dispose();
-				GameWindow gameWindow = new GameWindow();
+				GameWindow gameWindow = new GameWindow(filePath,noOfPlayers);
 				gameWindow.setVisible(true);
 			}
 		}

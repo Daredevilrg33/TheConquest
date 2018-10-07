@@ -6,8 +6,6 @@ package com.conquest.mapeditor.view;
  */
 import java.awt.AWTEvent;
 import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.tree.DefaultMutableTreeNode;
+
 import com.conquest.mapeditor.controller.MapEditorController;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
@@ -26,6 +25,7 @@ import com.conquest.utilities.Constants;
 
 public class NewMapEditorView extends JFrame {
 	
+	private static final long serialVersionUID = 4139667352960868764L;
 	private JScrollPane treeScrollPane;
 	private JScrollPane mappingScrollPane;
 	private TreeRenderer treeView;
@@ -60,29 +60,29 @@ public class NewMapEditorView extends JFrame {
 		mapEditorController.addModel(this.mapHierarchyModel);
 		
 		labelConnectivity = new javax.swing.JLabel("Connectivity Between Countries");
-		add(labelConnectivity);  
 		Dimension size = labelConnectivity.getPreferredSize();
 		labelConnectivity.setFont(new java.awt.Font("dialog",1,15));
 		labelConnectivity.setBounds(15,8,size.width+200,size.height);   
+		add(labelConnectivity);  
 		
 		mappingScrollPane= new JScrollPane(null);
-		add(mappingScrollPane);
 		mappingScrollPane.setBounds(15,55,800,600);
-        
+		add(mappingScrollPane);
+		
 		treeScrollPane= new JScrollPane(treeView,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		add(treeScrollPane);
 		treeScrollPane.setBounds(mappingScrollPane.getBounds().x+(int)(mappingScrollPane.getBounds().getWidth()),55,300,600);
+		add(treeScrollPane);
 		
 		addContinent = new javax.swing.JButton("Add Continent");
 		addContinent.addActionListener(mapEditorController);
+		addContinent.setBounds(treeScrollPane.getBounds().x,20,size.width-50,size.height+10);
 		add(addContinent);  
 		
-		addContinent.setBounds(treeScrollPane.getBounds().x,20,size.width-50,size.height+10);
-
+		
 		addCountry = new javax.swing.JButton("Add Country");
 		addCountry.addActionListener(mapEditorController);
-		add(addCountry);  
 		addCountry.setBounds(addContinent.getBounds().x+(int)addContinent.getBounds().getWidth()+10,20,size.width-50,size.height+10);
+		add(addCountry);  
 		
 		addWindowListener(new WindowAdapter() {
 			/*
