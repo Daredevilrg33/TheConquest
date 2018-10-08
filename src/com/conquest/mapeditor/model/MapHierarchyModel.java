@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class MapHierarchyModel {
 
 	private String conquestMapName = "Default";
+	private int totalCountries;
 	private ArrayList<ContinentModel> continentsList;
 
 	public MapHierarchyModel() {
@@ -43,6 +44,22 @@ public class MapHierarchyModel {
 	 */
 	public void setContinentsList(ArrayList<ContinentModel> continentsList) {
 		this.continentsList = continentsList;
+	}
+	
+	
+
+	/**
+	 * @return the totalCountries
+	 */
+	public int getTotalCountries() {
+		return totalCountries;
+	}
+
+	/**
+	 * @param totalCountries the totalCountries to set
+	 */
+	public void setTotalCountries(int totalCountries) {
+		this.totalCountries = totalCountries;
 	}
 
 	/**
@@ -116,6 +133,7 @@ public class MapHierarchyModel {
 			return "Country <" + countryName + "> already exists";
 		}
 
+		totalCountries++;
 		CountryModel newCountry = new CountryModel(countryName, targetContinent);
 		targetContinent.addCountry(newCountry);
 

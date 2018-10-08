@@ -14,12 +14,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.conquest.mapeditor.controller.MapEditorController;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
+import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
 
@@ -29,6 +31,7 @@ public class NewMapEditorView extends JFrame {
 	private JScrollPane treeScrollPane;
 	private JScrollPane mappingScrollPane;
 	private TreeRenderer treeView;
+	private TableRenderer adjacencyTable;
 	
 	private JLabel  labelConnectivity;
 	
@@ -142,6 +145,33 @@ public class NewMapEditorView extends JFrame {
 		treeView.setShowsRootHandles(true);
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
+	}
+	
+	
+	/**
+	 * Method to refresh and paint the adjacency table matrix of connections 
+	 * between the countries
+	 */
+	
+	public void updatePaintMatrix() {
+		
+		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(), mapHierarchyModel.getTotalCountries());
+		String [][] vectorData = new String[mapHierarchyModel.getTotalCountries()][mapHierarchyModel.getTotalCountries()];
+		String [] countriesColumn = new String[mapHierarchyModel.getTotalCountries()];
+		
+		int i =0;
+		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) { 
+			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
+			for (CountryModel loopCountry:loopCountriesList){
+				countriesColumn[i++] = loopCountry.getCountryName();
+			}
+		}
+		
+			tableMatrix.setDataVector(vectorData, countriesColumn);
+			adjacencyTable = new TableRenderer(tableMatrix);
+			adjacencyTable.setSize(300, 200);
+			mappingScrollPane.getViewport().removeAll();
+			mappingScrollPane.getViewport().add(adjacencyTable);
 	}
 
 }

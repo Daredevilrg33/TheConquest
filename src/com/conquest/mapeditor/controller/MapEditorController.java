@@ -72,6 +72,7 @@ public class MapEditorController implements ActionListener {
 				} else {
 					mapEditorView.getMapHierarchyModel().addContinent(inputContinent);
 					mapEditorView.updateHierarchyTree();
+					//mapEditorView.updatePaintMatrix();
 					retry = false;
 				}
 
@@ -121,6 +122,7 @@ public class MapEditorController implements ActionListener {
 						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent);
 						if (errorMsg == ""){
 							mapEditorView.updateHierarchyTree();
+							mapEditorView.updatePaintMatrix();
 							retry = false;
 						}
 						else JOptionPane.showMessageDialog(null, errorMsg);
