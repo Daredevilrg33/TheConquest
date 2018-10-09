@@ -1,14 +1,15 @@
 package com.conquest.window;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
-import com.conquest.main.Game;
+import com.conquest.mapeditor.model.ContinentModel;
+import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.mapeditor.model.MapModel;
 import com.conquest.utilities.Constants;
+import com.conquest.utilities.Utility;
 
 /**
  * @author Rohit Gupta
@@ -29,8 +30,18 @@ public class GameWindow extends JFrame{
 		setSize(Constants.WIDTH,Constants.HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
+		Utility utility = new Utility();
+		MapModel mapModel = utility.parseMapFile(filePath);
 		
-		
+		System.out.println("List of Continents size: " + mapModel.getContinentModels().size());
+		for(ContinentModel continentModel : mapModel.getContinentModels())
+		{
+			System.out.println("Continent is: " + continentModel);
+		}
+		for(CountryModel countryModel: mapModel.getCountryModels())
+		{
+			System.out.println("Country is: " + countryModel);
+		}
 		addWindowListener(new WindowListener() {
 
 			@Override
