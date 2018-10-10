@@ -9,12 +9,20 @@ import java.util.ArrayList;
 public class MapHierarchyModel {
 
 	private String conquestMapName = "Default";
-	private int totalCountries;
+	public int totalCountries;
 	private ArrayList<ContinentModel> continentsList;
 
 	public MapHierarchyModel() {
 		this.continentsList = new ArrayList<ContinentModel>();
 	}
+	
+	public MapHierarchyModel(String conquestMapName,int totalCountries) {
+		this.conquestMapName =conquestMapName;
+		this.totalCountries = totalCountries;
+		this.continentsList = new ArrayList<ContinentModel>();
+		
+	}
+	
 
 	/**
 	 * @return the conquestMapName
@@ -60,6 +68,7 @@ public class MapHierarchyModel {
 	 */
 	public void setTotalCountries(int totalCountries) {
 		this.totalCountries = totalCountries;
+		
 	}
 
 	/**
@@ -70,9 +79,8 @@ public class MapHierarchyModel {
 	 * @return continent that found or null if not exits
 	 */
 	public ContinentModel searchContinent(String continentName) {
-		continentName = continentName.toLowerCase();
 		for (ContinentModel loopContinent : getContinentsList()) {
-			if (loopContinent.getContinentName().equals(continentName)) {
+			if (loopContinent.getContinentName().equalsIgnoreCase(continentName)) {
 				return loopContinent;
 			}
 		}
