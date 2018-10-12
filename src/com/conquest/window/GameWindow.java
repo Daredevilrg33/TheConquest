@@ -1,18 +1,20 @@
 package com.conquest.window;
 
 
-import java.util.Random; 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-import com.conquest.window.SecondScreen;
-
-import com.conquest.mapeditor.model.ContinentModel;
+import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
@@ -21,83 +23,37 @@ import com.conquest.utilities.Utility;
  * @author Rohit Gupta
  *
  */
-public class GameWindow extends JFrame{
+public class GameWindow extends JFrame implements ActionListener{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 705136013521611381L;
-	
+	private GameWindowController gameWindowController;
+	private JLabel jPlayerLabel;
+	private JComboBox<String> jComboBoxCountries;
+	private JButton jButtonPlace;
 	public GameWindow(String filePath, String noOfPlayers ) {
 		
 		setTitle("Game Window");
 		setResizable(false);
-		setSize(Constants.WIDTH,Constants.HEIGHT);
+		setSize(Constants.MAP_EDITOR_WIDTH,Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		Utility utility = new Utility();
-		MapModel mapModel = utility.parseMapFile(filePath);
-		
-		System.out.println("List of Continents size: " + mapModel.getContinentModels().size());
-		for(ContinentModel continentModel : mapModel.getContinentModels())
-		{
-			System.out.println("Continent is: " + continentModel);
-		}
-		for(CountryModel countryModel: mapModel.getCountryModels())
-		{
-			System.out.println("Country is: " + countryModel);	
-		}
-				
-		System.out.println("Size of Continent List: " + mapModel.getContinentModels().size());
-		
-		System.out.println("Size of Country List: " + mapModel.getCountryModels().size());
-		
-		/* randomly placing army of each player 
-		 * in different country by round robin
-		 * */
-		
-		int players = 0;
-		players=Integer.parseInt(SecondScreen.noOfPlayers);
-		PlayerModel[] player= new PlayerModel[players];
-		
-		for(int j = 0; j<players;j++) {
-			player[j] = new PlayerModel();
-		}
-		
-		// player[0].AddCountry(countryModelTest);
+		MapModel mapModel = utility.parseMapFile(filePath);	
+		jPlayerLabel = new JLabel();
+		jPlayerLabel.setBounds(50, 50, 100, 30);
+		add(jPlayerLabel);
 
-		//System.out.println(player[0].getPlayerCountryList().get(0).getCountryName());
-		
-		int count1 = 0;
-		Random rand = new Random();
-		int pickedNumber = 0;
-		//player[count1].AddCountry();
-		//pickedNumber = rand.Random(mapModel.getCountryModels().size());
-
-		//int h =0;
-		
-		while(!(mapModel.getCountryModels().isEmpty())) {
-			for (count1 = 0;count1 < players;count1++) {
-				if(!(mapModel.getCountryModels().isEmpty())) {
-					pickedNumber = rand.nextInt(mapModel.getCountryModels().size());
-					CountryModel countryModelTest = mapModel.getCountryModels().get(pickedNumber);
-					player[count1].AddCountry(countryModelTest);
-					//System.out.println(mapModel.getCountryModels().get(pickedNumber));
-					mapModel.getCountryModels().remove(pickedNumber);
-					//h++;
-					//System.out.println("size "+mapModel.getCountryModels().size());
-					//System.out.println("Picked Number "+pickedNumber);
-					//System.out.println(h);
-			
-				}
-			}
-		}
-		
-		
-		/*countries can be accessed by 
-		player[index].getPlayerCountryList().get(index);
-		*/
-		
+		jComboBoxCountries = new JComboBox<>();
+		jComboBoxCountries.setBounds(170, 50, 100, 30);
+		add(jComboBoxCountries);
+		jButtonPlace = new JButton("Place");
+		jButtonPlace.setBounds(290,50,100,30);
+		jButtonPlace.addActionListener(this);
+		add(jButtonPlace);
+		gameWindowController = new GameWindowController(this,Integer.parseInt(noOfPlayers),mapModel);
 		
 		addWindowListener(new WindowListener() {
 
@@ -145,5 +101,40 @@ public class GameWindow extends JFrame{
 
 			}
 		});
+	}
+	
+	public void updatePlayerLabel (String playerName)
+	{
+//		System.out.println("updatePlayerLabel Value: "+  playerName);
+		jPlayerLabel.setText(playerName);
+	}
+	
+	public void updateComboBoxCountries(List<CountryModel> countryModels)
+	{
+		
+		
+		jComboBoxCountries.removeAllItems();
+		for(CountryModel countryModel: countryModels)
+		{
+//			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
+
+			jComboBoxCountries.addItem(countryModel.getCountryName());
+		}
+		
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		switch (e.getActionCommand()) {
+		case "Place":
+			System.out.println("Selected Player Name: " +jPlayerLabel.getText().toString());
+			System.out.println("Selected Country Name: " + jComboBoxCountries.getSelectedItem().toString());
+			gameWindowController.updateUIInfo();
+			break;
+		default:
+			break;
+		}
 	}
 }

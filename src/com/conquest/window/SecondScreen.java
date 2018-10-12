@@ -32,7 +32,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 	private String[] playersList = new String[] { "3", "4", "5" };
 	private JButton buttonStartGame;
 	private JComboBox<String> comboBoxSelectPlayer;
-	static String noOfPlayers;
+	private String noOfPlayers;
 
 	public SecondScreen() {
 

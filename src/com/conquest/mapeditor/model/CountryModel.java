@@ -13,6 +13,7 @@ public class CountryModel {
 
 	private String countryName;
 	private ContinentModel belongsTo;
+	private int noOfArmiesCountry;
 	private ArrayList<CountryModel> listOfNeighbours;
 
 	public CountryModel() {
@@ -82,6 +83,19 @@ public class CountryModel {
 		return listOfNeighbours;
 	}
 
+	/**
+	 * @return the noOfArmiesCountry
+	 */
+	public int getNoOfArmiesCountry() {
+		return noOfArmiesCountry;
+	}
+	
+	/**
+	 * @param noOfArmiesCountry the noOfArmiesCountry to set
+	 */
+	public void setNoOfArmiesCountry(int noOfArmiesCountry) {
+		this.noOfArmiesCountry = noOfArmiesCountry;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
