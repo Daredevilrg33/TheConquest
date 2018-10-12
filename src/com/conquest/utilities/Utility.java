@@ -78,6 +78,7 @@ public class Utility {
 						continentModels.add(continentModel);
 					}
 				}
+				
 				if (isCountry) {
 					String[] countryValues = currentLine.split(",");
 					CountryModel countryModel = new CountryModel();
@@ -116,5 +117,4 @@ public class Utility {
 		}
 		return mapModel;
 	}
-
 }

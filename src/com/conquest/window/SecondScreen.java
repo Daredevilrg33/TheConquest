@@ -32,6 +32,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 	private String[] playersList = new String[] { "3", "4", "5" };
 	private JButton buttonStartGame;
 	private JComboBox<String> comboBoxSelectPlayer;
+	static String noOfPlayers;
 
 	public SecondScreen() {
 
@@ -135,7 +136,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 			System.out.println("File Name: " + fileName);
 			textFieldMap.setText(fileName);
 		} else if (event.getSource() == buttonStartGame) {
-			String noOfPlayers = (String) comboBoxSelectPlayer.getSelectedItem();
+			noOfPlayers = (String) comboBoxSelectPlayer.getSelectedItem();
 			if(fileName == null || filePath==null || fileName.isEmpty() || filePath.isEmpty()) {
 				JOptionPane.showMessageDialog(this,
 					    "Select Map to continue.",
