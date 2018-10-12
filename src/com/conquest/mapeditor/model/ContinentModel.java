@@ -60,12 +60,12 @@ public class ContinentModel {
 	}
 
 	/**
-	 * Method to find a country in this continent.
+	 * Method to search a country in this continent.
 	 * 
 	 * @param countryName the name of the country
 	 * @return the country object found in this continent or null if can't find
 	 */
-	public CountryModel findCountry(String countryName) {
+	public CountryModel searchCountry(String countryName) {
 		countryName = countryName.toLowerCase();
 		for (CountryModel loopCountry : countriesList) {
 			if (loopCountry.getCountryName().equals(countryName)) {

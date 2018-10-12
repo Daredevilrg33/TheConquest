@@ -113,7 +113,7 @@ public class MapHierarchyModel {
 	public CountryModel searchCountry(String countryName) {
 		CountryModel country = null;
 		for (ContinentModel loopContinent : getContinentsList()) {
-			country = loopContinent.findCountry(countryName);
+			country = loopContinent.searchCountry(countryName);
 			if (country!=null) return country; 
 		}
 		return null;
