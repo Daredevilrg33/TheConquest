@@ -11,9 +11,11 @@ public class MapHierarchyModel {
 	private String conquestMapName = "Default";
 	public int totalCountries;
 	private ArrayList<ContinentModel> continentsList;
+	private ArrayList<CountryModel> countryList;
 
 	public MapHierarchyModel() {
-		this.continentsList = new ArrayList<ContinentModel>();
+		this.continentsList = new ArrayList<>();
+		this.countryList = new ArrayList<>();
 	}
 	
 	public MapHierarchyModel(String conquestMapName,int totalCountries) {
@@ -69,6 +71,21 @@ public class MapHierarchyModel {
 	public void setTotalCountries(int totalCountries) {
 		this.totalCountries = totalCountries;
 		
+	}
+
+	
+	/**
+	 * @return the countryList
+	 */
+	public ArrayList<CountryModel> getCountryList() {
+		return countryList;
+	}
+
+	/**
+	 * @param countryModels the countryList to set
+	 */
+	public void setCountryList(ArrayList<CountryModel> countryModels) {
+		this.countryList = countryModels;
 	}
 
 	/**
@@ -144,6 +161,7 @@ public class MapHierarchyModel {
 		totalCountries++;
 		CountryModel newCountry = new CountryModel(countryName, targetContinent);
 		targetContinent.addCountry(newCountry);
+		countryList.add(newCountry);
 
 		return "";
 	}

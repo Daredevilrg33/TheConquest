@@ -101,10 +101,10 @@ public class CountryModel {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
-	public String toString() {
-		return "CountryModel [countryName=" + countryName + ", belongsTo=" + belongsTo + ", listOfNeighbours="
-				+ listOfNeighbours + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "CountryModel [countryName=" + countryName + ", belongsTo=" + belongsTo + ", listOfNeighbours="
+//				+ listOfNeighbours + "]";
+//	}
 
 }

@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileSystemView;
 
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapModel;
+import com.conquest.mapeditor.model.MapHierarchyModel;
 
 /**
  * @author Rohit Gupta
@@ -47,10 +47,10 @@ public class Utility {
 			return "";
 	}
 
-	public MapModel parseMapFile(String filePath) {
-		MapModel mapModel = new MapModel();
-		List<ContinentModel> continentModels = new ArrayList<>();
-		List<CountryModel> countryModels = new ArrayList<>();
+	public MapHierarchyModel parseMapFile(String filePath) {
+		MapHierarchyModel mapModel = new MapHierarchyModel();
+		ArrayList<ContinentModel> continentModels = new ArrayList<>();
+		ArrayList<CountryModel> countryModels = new ArrayList<>();
 		boolean isContinent = false;
 		boolean isCountry = false;
 
@@ -75,7 +75,7 @@ public class Utility {
 						ContinentModel continentModel = new ContinentModel(continentValues[0]);
 						if (continentValues.length > 1)
 							continentModel.setNoOfArmies(Integer.valueOf(continentValues[1]));
-						continentModels.add(continentModel);
+						//continentModels.add(continentModel);
 					}
 				}
 				
@@ -86,10 +86,12 @@ public class Utility {
 						if (i == 0) {
 							countryModel.setCountryName(countryValues[i]);
 						} else if (i == 1 || i == 2) {
-
+							// do nothing as we have skipped the coordinates
 						} else if (i == 3) {
 							ContinentModel continentModel = new ContinentModel(countryValues[i]);
 							countryModel.setBelongsTo(continentModel);
+							continentModel.addCountry(countryModel);
+							continentModels.add(continentModel);
 
 						} else {
 							countryModel.addNeighbour(new CountryModel(countryValues[i]));
@@ -97,7 +99,7 @@ public class Utility {
 
 					}
 					countryModels.add(countryModel);
-					if (countryValues.length > 0) {
+					/*if (countryValues.length > 0) {
 						for (ContinentModel continentModelValue : continentModels) {
 							if (continentModelValue.getContinentName().trim()
 									.equalsIgnoreCase(countryModel.getBelongsTo().getContinentName().trim())) {
@@ -105,13 +107,13 @@ public class Utility {
 							}
 						}
 
-					}
+					}*/
 				}
-//				System.out.println(currentLine);
+				System.out.println(currentLine);
 			}
 
-			mapModel.setContinentModels(continentModels);
-			mapModel.setCountryModels(countryModels);
+			mapModel.setContinentsList(continentModels);
+			mapModel.setCountryList(countryModels);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapModel;
+import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
@@ -41,7 +41,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		setLayout(null);
 		setLocationRelativeTo(null);
 		Utility utility = new Utility();
-		MapModel mapModel = utility.parseMapFile(filePath);	
+		MapHierarchyModel mapModel = utility.parseMapFile(filePath);	
 		jPlayerLabel = new JLabel();
 		jPlayerLabel.setBounds(50, 50, 100, 30);
 		add(jPlayerLabel);

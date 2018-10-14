@@ -94,10 +94,10 @@ public class ContinentModel {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
-	public String toString() {
-		return "ContinentModel [continentName=" + continentName + ", countriesList=" + countriesList + ", noOfArmies="
-				+ noOfArmies + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "ContinentModel [continentName=" + continentName + ", countriesList=" + countriesList + ", noOfArmies="
+//				+ noOfArmies + "]";
+//	}
 
 }

@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapModel;
+import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.GameWindow;
 
@@ -20,18 +20,18 @@ public class GameWindowController  {
 
 	private GameWindow gameWindow;
 	private int noOfPlayers = 0;
-	private MapModel mapModel;
+	private MapHierarchyModel mapModel;
 	private int counter = 0;
 	private PlayerModel[] players;
 
-	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapModel mapModel) {
+	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapHierarchyModel mapModel) {
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapModel = mapModel;
 		initializingPlayerModels(this.noOfPlayers, this.mapModel);
 	}
 
-	private void initializingPlayerModels(int noOfPlayers, MapModel mapModel) {
+	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
 
 		players = new PlayerModel[noOfPlayers];
 		int pickedNumber = 0;
@@ -48,15 +48,15 @@ public class GameWindowController  {
 		 * randomly placing army of each player in different country by round robin
 		 */
 
-		while (!(mapModel.getCountryModels().isEmpty())) {
+		while (!(mapModel.getCountryList().isEmpty())) {
 			for (int count1 = 0; count1 < noOfPlayers; count1++) {
-				if (!(mapModel.getCountryModels().isEmpty())) {
-					pickedNumber = rand.nextInt(mapModel.getCountryModels().size());
-					CountryModel countryModelTest = mapModel.getCountryModels().get(pickedNumber);
+				if (!(mapModel.getCountryList().isEmpty())) {
+					pickedNumber = rand.nextInt(mapModel.getCountryList().size());
+					CountryModel countryModelTest = mapModel.getCountryList().get(pickedNumber);
 					if (countryModelTest != null)
 						players[count1].AddCountry(countryModelTest);
-					System.out.println(mapModel.getCountryModels().get(pickedNumber));
-					mapModel.getCountryModels().remove(pickedNumber);
+					System.out.println(mapModel.getCountryList().get(pickedNumber));
+					mapModel.getCountryList().remove(pickedNumber);
 					// h++;
 					// System.out.println("size "+mapModel.getCountryModels().size());
 					// System.out.println("Picked Number "+pickedNumber);
