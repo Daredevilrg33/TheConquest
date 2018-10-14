@@ -156,16 +156,20 @@ public class NewMapEditorView extends JFrame {
 	public void updatePaintMatrix() {
 		
 		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(), mapHierarchyModel.getTotalCountries());
-		String [][] vectorData = new String[mapHierarchyModel.getTotalCountries()][mapHierarchyModel.getTotalCountries()];
-		String [] countriesColumn = new String[mapHierarchyModel.getTotalCountries()];
+		String [][] vectorData = new String[mapHierarchyModel.getTotalCountries() +1 ][mapHierarchyModel.getTotalCountries() + 1];
+		String [] countriesColumn = new String[mapHierarchyModel.getTotalCountries()+ 1];
 		
 		int i =0;
+		int j=0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) { 
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry:loopCountriesList){
-				countriesColumn[i++] = loopCountry.getCountryName();
+				countriesColumn[0] ="C/C";
+				countriesColumn[++i] = loopCountry.getCountryName();
+				vectorData[j++][0] = loopCountry.getCountryName();
 			}
 		}
+	
 		
 			tableMatrix.setDataVector(vectorData, countriesColumn);
 			adjacencyTable = new TableRenderer(tableMatrix);
