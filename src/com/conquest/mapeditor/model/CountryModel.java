@@ -38,7 +38,7 @@ public class CountryModel {
 		this.listOfNeighbours = new ArrayList<>();
 	}
 
-	private CountryModel(String countryName, ContinentModel continentModel, ArrayList<CountryModel> listOfNeighbours) {
+	public CountryModel(String countryName, ContinentModel continentModel, ArrayList<CountryModel> listOfNeighbours) {
 		this.countryName = countryName;
 		this.belongsTo = continentModel;
 		this.listOfNeighbours = listOfNeighbours;

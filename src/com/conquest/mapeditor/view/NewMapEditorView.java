@@ -209,9 +209,6 @@ public class NewMapEditorView extends JFrame {
 		
 	}
 
-	private void SetData(String string, int i, int j) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }
