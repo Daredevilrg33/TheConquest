@@ -33,6 +33,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JLabel jPlayerLabel;
 	private JComboBox<String> jComboBoxCountries;
 	private JButton jButtonPlace;
+	private String selectedCountry;
 	public GameWindow(String filePath, String noOfPlayers ) {
 		
 		setTitle("Game Window");
@@ -123,7 +124,6 @@ public class GameWindow extends JFrame implements ActionListener{
 		
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -131,10 +131,19 @@ public class GameWindow extends JFrame implements ActionListener{
 		case "Place":
 			System.out.println("Selected Player Name: " +jPlayerLabel.getText().toString());
 			System.out.println("Selected Country Name: " + jComboBoxCountries.getSelectedItem().toString());
+			
+			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
+			gameWindowController.checking(selectedCountry);
+			
 			gameWindowController.updateUIInfo();
+			
 			break;
 		default:
 			break;
 		}
 	}
+//	
+//	public String transferCountry() {
+//		return selectedCountry;
+//	}
 }

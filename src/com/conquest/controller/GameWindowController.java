@@ -16,15 +16,18 @@ import com.conquest.window.GameWindow;
  * @author Rohit Gupta
  *
  */
-public class GameWindowController  {
+public class GameWindowController {
 
 	private GameWindow gameWindow;
 	private int noOfPlayers = 0;
 	private MapHierarchyModel mapModel;
 	private int counter = 0;
 	private PlayerModel[] players;
+	private int i = 0;
+	private int prevCounter = 0;
 
 	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapHierarchyModel mapModel) {
+
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapModel = mapModel;
@@ -38,11 +41,10 @@ public class GameWindowController  {
 		Random rand = new Random();
 
 		for (int j = 0; j < noOfPlayers; j++) {
-		
-			int value = j+1;
+
+			int value = j + 1;
 			players[j] = new PlayerModel("Player" + String.valueOf(value));
 		}
-		
 
 		/*
 		 * randomly placing army of each player in different country by round robin
@@ -55,6 +57,7 @@ public class GameWindowController  {
 					CountryModel countryModelTest = mapModel.getCountryList().get(pickedNumber);
 					if (countryModelTest != null)
 						players[count1].AddCountry(countryModelTest);
+
 					System.out.println(mapModel.getCountryList().get(pickedNumber));
 					mapModel.getCountryList().remove(pickedNumber);
 					// h++;
@@ -66,24 +69,41 @@ public class GameWindowController  {
 			}
 		}
 
-//		player[index].getPlayerCountryList().get(index);
-
-		/*
-		 * countries can be accessed by
-		 */
-
 		updateUIInfo();
+
+	}
+
+	public void checking(String selectedC) {
+
+		i = 0;
+		System.out.println("Previous Counter  Value : " + prevCounter);
+
+		while (true) {
+			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
+					.equalsIgnoreCase(selectedC.trim())) {
+				System.out.println("Previous Counter  Value : " + prevCounter);
+
+				players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
+				System.out.println(
+						"No. of armies" + players[counter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
+				break;
+			}
+			i++;
+		}
 	}
 
 	public void updateUIInfo() {
-		 
+		prevCounter = counter;
+		System.out.println(players[counter].getPlayerCountryList().get(i).getCountryName());
 		gameWindow.updatePlayerLabel(players[counter].getPlayerName());
 		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());
 		gameWindow.invalidate();
 		gameWindow.revalidate();
-		counter++;	
-		if(counter == noOfPlayers)
-			counter=0;
+
+		counter++;
+		if (counter == noOfPlayers)
+			counter = 0;
+
 	}
 
 	/*
@@ -92,6 +112,5 @@ public class GameWindowController  {
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	
 
 }

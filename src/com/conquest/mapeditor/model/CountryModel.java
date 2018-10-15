@@ -13,12 +13,13 @@ public class CountryModel {
 
 	private String countryName;
 	private ContinentModel belongsTo;
-	private int noOfArmiesCountry;
+	private int noOfArmiesCountry = 1;
 	private ArrayList<CountryModel> listOfNeighbours;
 
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
 	}
+	
 
 	public CountryModel(String countryName) {
 		//this.countryName = countryName;
@@ -100,6 +101,15 @@ public class CountryModel {
 	public void setNoOfArmiesCountry(int noOfArmiesCountry) {
 		this.noOfArmiesCountry = noOfArmiesCountry;
 	}
+	
+	public void addNoOfArmiesCountry() {
+		noOfArmiesCountry++;
+	}
+	
+	public void removeNoOfArmiesCountry() {
+		noOfArmiesCountry--;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
