@@ -166,4 +166,32 @@ public class MapHierarchyModel {
 		return "";
 	}
 
+	/**
+	 * Method to add a new country to an existing continent with neighbours.
+	 * @param countryName
+	 * 			name of the new country
+	 * @param continentName
+	 * 			name of the existing continent that the new country adding in
+	 * @param listOfNeighbours
+	 * 			list of neighbouring countries.
+	 * @return Error message
+	 */
+	public String addCountry(String countryName, String continentName,ArrayList<CountryModel> listOfNeighbours) {
+		ContinentModel targetContinent = searchContinent(continentName);
+		if (targetContinent == null) {
+			return "Continent <" + continentName + "> does not exists";
+		}
+
+		if (searchCountry(countryName) != null) {
+			return "Country <" + countryName + "> already exists";
+		}
+
+		totalCountries++;
+		CountryModel newCountry = new CountryModel(countryName, targetContinent,listOfNeighbours);
+		targetContinent.addCountry(newCountry);
+		countryList.add(newCountry);
+
+		return "";
+	}
+
 }

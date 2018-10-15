@@ -6,18 +6,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.conquest.mapeditor.model.ContinentModel;
+import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.mapeditor.renderer.TreeRenderer;
-import com.conquest.mapeditor.view.MapDashboard;
 import com.conquest.mapeditor.view.NewMapEditorView;
-import com.conquest.window.SecondScreen;
+import com.conquest.utilities.Utility;
 
 public class MapEditorController implements ActionListener {
 	private NewMapEditorView mapEditorView;
-	MapHierarchyModel mapHierarchyModel;
+	private MapHierarchyModel mapHierarchyModel;
 
 	public MapEditorController( NewMapEditorView mapEditorView) {
 	
@@ -51,8 +49,14 @@ public class MapEditorController implements ActionListener {
 		case "Add Country":
 			addCountry();
 			break;
+		case "Save":
+			String fileName= "ROHIT";
+			MapHierarchyModel mapHierarchyModel = mapEditorView.getMapHierarchyModel();
+			Utility utility = new Utility();
+			utility.saveMapFile(mapHierarchyModel,fileName);
+			break;
 		default:
-			System.exit(0);
+			break;
 
 		}
 
@@ -119,7 +123,7 @@ public class MapEditorController implements ActionListener {
 					else {
 						String errorMsg;
 						lastOperatedContinent = (String)continentInput.getItemAt(continentInput.getSelectedIndex());
-						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent);
+						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent,mapHierarchyModel.getCountryList());
 						if (errorMsg == ""){
 							mapEditorView.updateHierarchyTree();
 							mapEditorView.updatePaintMatrix();

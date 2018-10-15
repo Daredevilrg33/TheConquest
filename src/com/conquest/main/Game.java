@@ -6,7 +6,7 @@ package com.conquest.main;
 import java.awt.Canvas;
 
 import com.conquest.window.GameWindow;
-import com.conquest.window.InitialScreen;
+import com.conquest.window.MainMenuScreen;
 
 /**
  * @author Rohit Gupta
@@ -21,7 +21,7 @@ public class Game  {
 	
 	public static void main(String[] args) {
 
-		InitialScreen initialScreen = new InitialScreen();
+		MainMenuScreen initialScreen = new MainMenuScreen();
 		initialScreen.setVisible(true);
 
 	}

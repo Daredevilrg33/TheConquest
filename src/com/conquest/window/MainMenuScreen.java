@@ -18,14 +18,14 @@ import com.conquest.utilities.Constants;
  * @author Rohit Gupta
  *
  */
-public class InitialScreen extends JFrame implements ActionListener{
+public class MainMenuScreen extends JFrame implements ActionListener{
 
 	private JButton btnNewGame;
 	private JButton btnMapEditor;
 	private JButton btnAboutUs;
 	private JButton btnExit;
 	
-	public InitialScreen() {
+	public MainMenuScreen() {
 		btnNewGame  = new JButton("New Game");
 		btnNewGame.setBounds(Constants.WIDTH/2-50, 50, 100, 30);
 		btnNewGame.addActionListener(this);
@@ -72,7 +72,7 @@ public class InitialScreen extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(event.getSource() == btnNewGame)
 		{
-			SecondScreen secondScreen = new SecondScreen();
+			NewGameMenuScreen secondScreen = new NewGameMenuScreen();
 			secondScreen.setVisible(true);
 			dispose();
 		}else if(event.getSource() == btnMapEditor)

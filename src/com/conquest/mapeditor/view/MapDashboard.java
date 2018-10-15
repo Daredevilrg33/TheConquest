@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileFilter;
 import com.conquest.mapeditor.controller.MapEditorController;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
-import com.conquest.window.InitialScreen;
+import com.conquest.window.MainMenuScreen;
 
 /**
  * @author Nancy Goyal
@@ -61,7 +61,7 @@ public class MapDashboard extends JFrame implements ActionListener {
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				dispose();
-				InitialScreen initialScreen = new InitialScreen();
+				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);
 			}
 		});
@@ -77,14 +77,12 @@ public class MapDashboard extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getSource() == btnNewMap) {
-			NewMapEditorView newMap = new NewMapEditorView();
+			NewMapEditorView newMap = new NewMapEditorView("");
 			newMap.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnLoadMap) {
 			loadFromFile();
-		} else {
-			System.exit(0);
-		}
+		} 
 
 	}
 
@@ -100,9 +98,9 @@ public class MapDashboard extends JFrame implements ActionListener {
 		fileName = splitFilePath[splitFilePath.length - 1];
 		System.out.println("File Name : " + fileName);
 		System.out.println("File Path : " + filePath);
-//		NewMapEditorView newMap = new NewMapEditorView();
-//		newMap.setVisible(true);
-//		dispose();
+		NewMapEditorView newMap = new NewMapEditorView(filePath);
+		newMap.setVisible(true);
+		dispose();
 
 	}
 }

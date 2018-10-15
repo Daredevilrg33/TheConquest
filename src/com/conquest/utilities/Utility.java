@@ -4,10 +4,11 @@
 package com.conquest.utilities;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -75,10 +76,10 @@ public class Utility {
 						ContinentModel continentModel = new ContinentModel(continentValues[0]);
 						if (continentValues.length > 1)
 							continentModel.setNoOfArmies(Integer.valueOf(continentValues[1]));
-						//continentModels.add(continentModel);
+						continentModels.add(continentModel);
 					}
 				}
-				
+
 				if (isCountry) {
 					String[] countryValues = currentLine.split(",");
 					CountryModel countryModel = new CountryModel();
@@ -90,16 +91,12 @@ public class Utility {
 						} else if (i == 3) {
 							ContinentModel continentModel = new ContinentModel(countryValues[i]);
 							countryModel.setBelongsTo(continentModel);
-							continentModel.addCountry(countryModel);
-							continentModels.add(continentModel);
-
 						} else {
 							countryModel.addNeighbour(new CountryModel(countryValues[i]));
 						}
-
 					}
 					countryModels.add(countryModel);
-					/*if (countryValues.length > 0) {
+					if (countryValues.length > 0) {
 						for (ContinentModel continentModelValue : continentModels) {
 							if (continentModelValue.getContinentName().trim()
 									.equalsIgnoreCase(countryModel.getBelongsTo().getContinentName().trim())) {
@@ -107,7 +104,7 @@ public class Utility {
 							}
 						}
 
-					}*/
+					}
 				}
 				System.out.println(currentLine);
 			}
@@ -119,67 +116,57 @@ public class Utility {
 		}
 		return mapModel;
 	}
-	
-	public boolean writeMapFile() {
+
+	private String convertMapDataToString(MapHierarchyModel mapHierarchyModel) {
+		String data = "";
+
+		if (mapHierarchyModel.getContinentsList() != null && mapHierarchyModel.getContinentsList().size() > 0) {
+			data = data.concat("[Continents]" + System.lineSeparator());
+			data = data.concat(System.lineSeparator());
+			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+				String continentData = continentModel.getContinentName() + "="
+						+ continentModel.getCountriesList().size();
+				data = data.concat(continentData + System.lineSeparator());
+			}
+			data = data.concat(System.lineSeparator());
+			data = data.concat("[Territories]" + System.lineSeparator());
+			data = data.concat(System.lineSeparator());
+			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+				for (CountryModel countryModel : continentModel.getCountriesList()) {
+					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
+					for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
+						countryData = countryData.concat("," + countryModel1.getCountryName());
+
+					}
+					countryData = countryData.concat(System.lineSeparator());
+					data = data.concat(countryData);
+				}
+			}
+		}
+
+		return data;
+	}
+
+	public boolean saveMapFile(MapHierarchyModel mapHierarchyModel, String fileName) {
 		boolean isFileSaved = false;
-		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Demo.map",4);
-		
-		List<CountryModel> countriesModels = new ArrayList<>();
-		List<ContinentModel> continentModels = new ArrayList<>();
-		ContinentModel continentModelA = new ContinentModel("Continent A ");
-		continentModelA.setNoOfArmies(5);
-		ContinentModel continentModelB = new ContinentModel("Continent B ");
-		continentModelB.setNoOfArmies(2);
-		ContinentModel continentModelC = new ContinentModel("Continent C ");
-		continentModelC.setNoOfArmies(6);
-		ContinentModel continentModelD = new ContinentModel("Continent D ");
-		continentModelD.setNoOfArmies(4);
-		
-		CountryModel countryModelA1 = new CountryModel("countryModelA1");
-		CountryModel countryModelA2 = new CountryModel("countryModelA2");
-		CountryModel countryModelA3 = new CountryModel("countryModelA3");
-		CountryModel countryModelA4 = new CountryModel("countryModelA4");
-		CountryModel countryModelB1 = new CountryModel("countryModelB1");
-		CountryModel countryModelB2 = new CountryModel("countryModelB2");
-		CountryModel countryModelB3 = new CountryModel("countryModelB3");
-		CountryModel countryModelB4 = new CountryModel("countryModelB4");
-		CountryModel countryModelC1 = new CountryModel("countryModelC1");
-		CountryModel countryModelC2 = new CountryModel("countryModelC2");
-		CountryModel countryModelC3 = new CountryModel("countryModelC3");
-		CountryModel countryModelC4 = new CountryModel("countryModelC4");
-		CountryModel countryModelD1 = new CountryModel("countryModelD1");
-		CountryModel countryModelD2 = new CountryModel("countryModelD2");
-		CountryModel countryModelD3 = new CountryModel("countryModelD3");
-		CountryModel countryModelD4 = new CountryModel("countryModelD4");
-		
-		ArrayList<CountryModel> countryNeighboursA = new ArrayList<>();
-		countryNeighboursA.add(countryModelA1); 
-		countryNeighboursA.add(countryModelA2); 
-		countryNeighboursA.add(countryModelA3); 
-		countryNeighboursA.add(countryModelA4); 
-		ArrayList<CountryModel> countryNeighboursB = new ArrayList<>();
-		countryNeighboursB.add(countryModelB1); 
-		countryNeighboursB.add(countryModelB2); 
-		countryNeighboursB.add(countryModelB3); 
-		countryNeighboursB.add(countryModelB4); 
-		ArrayList<CountryModel> countryNeighboursC = new ArrayList<>();
-		countryNeighboursC.add(countryModelC1); 
-		countryNeighboursC.add(countryModelC2); 
-		countryNeighboursC.add(countryModelC3); 
-		countryNeighboursC.add(countryModelC4); 
-		ArrayList<CountryModel> countryNeighboursD = new ArrayList<>();
-		countryNeighboursD.add(countryModelD1); 
-		countryNeighboursD.add(countryModelD2); 
-		countryNeighboursD.add(countryModelD3); 
-		countryNeighboursD.add(countryModelD4); 
-		
-		
-		countriesModels.add(new CountryModel("ABC" ,continentModelA, countryNeighboursA));
-		countriesModels.add(new CountryModel("DEF" ,continentModelB, countryNeighboursB));
-		countriesModels.add(new CountryModel("GHI" ,continentModelC, countryNeighboursC));
-		countriesModels.add(new CountryModel("JKL" ,continentModelD, countryNeighboursD));
-//		mapHierarchyModel.addCountry(countryName, continentName)
+		String data = convertMapDataToString(mapHierarchyModel);
+
+		if (!(data == null || data.isEmpty() || data.trim().equalsIgnoreCase(""))) {
+			PrintWriter out = null;
+			try {
+				out = new PrintWriter(fileName + ".map");
+				out.println(data);
+
+				isFileSaved = true;
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				isFileSaved = false;
+			} finally {
+				out.close();
+			}
+		}
 		return isFileSaved;
-	} 
-	
+	}
+
 }

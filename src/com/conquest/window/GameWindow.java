@@ -86,7 +86,7 @@ public class GameWindow extends JFrame implements ActionListener{
 			public void windowClosing(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 				dispose();
-				InitialScreen initialScreen = new InitialScreen();
+				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);
 			}
 

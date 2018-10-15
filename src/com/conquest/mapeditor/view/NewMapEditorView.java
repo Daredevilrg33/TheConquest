@@ -6,18 +6,15 @@ package com.conquest.mapeditor.view;
  */
 import java.awt.AWTEvent;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -28,6 +25,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
+import com.conquest.utilities.Utility;
 
 public class NewMapEditorView extends JFrame {
 
@@ -41,10 +39,11 @@ public class NewMapEditorView extends JFrame {
 
 	private JButton addCountry;
 	private JButton addContinent;
+	private JButton jButtonSave;
 
-	MapHierarchyModel mapHierarchyModel;
+	private MapHierarchyModel mapHierarchyModel;
 
-	public NewMapEditorView() {
+	public NewMapEditorView(String filePath) {
 
 		setLocationRelativeTo(null);
 
@@ -56,17 +55,23 @@ public class NewMapEditorView extends JFrame {
 		setResizable(false);
 		setLayout(null);
 		this.enableEvents(AWTEvent.WINDOW_EVENT_MASK); // handle windows events
-		setDefaultCloseOperation(3); // set exit program when close the window
+//		setDefaultCloseOperation(3); // set exit program when close the window
 
 		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
 		treeView = new TreeRenderer(continentRoot);
 
 		MapEditorController mapEditorController = new MapEditorController(this);
-		mapHierarchyModel = new MapHierarchyModel();
-		setMapHierarchyModel(mapHierarchyModel);
-		mapEditorController.addModel(this.mapHierarchyModel);
+		if (filePath.trim().isEmpty() || filePath == null) {
+			mapHierarchyModel = new MapHierarchyModel();
 
-		labelConnectivity = new javax.swing.JLabel("Connectivity Between Countries");
+		} else {
+			Utility utility = new Utility();
+
+			mapHierarchyModel = utility.parseMapFile(filePath);
+		}
+		mapEditorController.addModel(mapHierarchyModel);
+
+		labelConnectivity = new JLabel("Connectivity Between Countries");
 		Dimension size = labelConnectivity.getPreferredSize();
 		labelConnectivity.setFont(new java.awt.Font("dialog", 1, 15));
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
@@ -83,17 +88,22 @@ public class NewMapEditorView extends JFrame {
 				300, 600);
 		add(treeScrollPane);
 
-		addContinent = new javax.swing.JButton("Add Continent");
+		addContinent = new JButton("Add Continent");
 		addContinent.addActionListener(mapEditorController);
 		addContinent.setBounds(treeScrollPane.getBounds().x, 20, size.width - 50, size.height + 10);
 		add(addContinent);
 
-		addCountry = new javax.swing.JButton("Add Country");
+		addCountry = new JButton("Add Country");
 		addCountry.addActionListener(mapEditorController);
 		addCountry.setBounds(addContinent.getBounds().x + (int) addContinent.getBounds().getWidth() + 10, 20,
 				size.width - 50, size.height + 10);
 		add(addCountry);
 
+		jButtonSave = new JButton("Save");
+		jButtonSave.addActionListener(mapEditorController);
+		jButtonSave.setBounds(addCountry.getBounds().x + (int) addCountry.getBounds().getWidth() + 10, 20,
+				size.width - 100, size.height + 10);
+		add(jButtonSave);
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -108,7 +118,10 @@ public class NewMapEditorView extends JFrame {
 				mapDashboard.setVisible(true);
 			}
 		});
-
+		if (mapHierarchyModel.getContinentsList().size() > 0) {
+			updateHierarchyTree();
+			updatePaintMatrix();
+		}
 	}
 
 	/**
@@ -138,7 +151,7 @@ public class NewMapEditorView extends JFrame {
 			ArrayList<CountryModel> loopCountriesList = continentObj.getCountriesList();
 			DefaultMutableTreeNode continentNode = new DefaultMutableTreeNode(continentObj.getContinentName());
 			for (CountryModel loopCountry : loopCountriesList) {
-				continentNode.add(new DefaultMutableTreeNode(loopCountry.getCountryName() + " "));
+				continentNode.add(new DefaultMutableTreeNode(loopCountry.getCountryName()));
 			}
 			tRoot.add(continentNode);
 		}
@@ -158,57 +171,96 @@ public class NewMapEditorView extends JFrame {
 		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(),
 				mapHierarchyModel.getTotalCountries()) {
 
-
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
 				return false;
 			}
 		};
-		
-		
-		String[][] vectorData = new String[mapHierarchyModel.getTotalCountries()][mapHierarchyModel.getTotalCountries() + 1];
-		String[] countriesColumn = new String[mapHierarchyModel.getTotalCountries() + 1];
 
-		int i = 0;
-		int j = 0;
+		String[][] vectorData = new String[mapHierarchyModel.getCountryList()
+				.size()][mapHierarchyModel.getTotalCountries() + 1];
+		String[] countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
+
+		int columnCounter = 0;
+		int rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry : loopCountriesList) {
 				countriesColumn[0] = "C/C";
-				countriesColumn[++i] = loopCountry.getCountryName();
-				vectorData[j++][0] = loopCountry.getCountryName();
+				countriesColumn[++columnCounter] = loopCountry.getCountryName();
+				vectorData[rowCounter++][0] = loopCountry.getCountryName();
 			}
 		}
-		
+
 		tableMatrix.setDataVector(vectorData, countriesColumn);
 		adjacencyTable = new TableRenderer(tableMatrix);
-
 		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
-		for(i = 0; i < vectorData.length; i++) {
-		    for(j = 1; j < vectorData[i].length; j++) {
-		        adjacencyTable.setValueAt("1",i, j);
-		    }
+		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
+
+		for (int i = 0; i < vectorData.length; i++) {
+			for (int j = 1; j < vectorData[i].length; j++) {
+				String neighbourCountryName = countriesColumn[j];
+				String sourceCountryName = vectorData[i][0];
+				for (CountryModel countryModel : countryModels) {
+					System.out.println("Source Country: " + sourceCountryName);
+					System.out.println("Neighbour Country: " + neighbourCountryName);
+					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+						for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
+							if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+								adjacencyTable.setValueAt("1", i, j);
+
+							}
+						}
+					}
+				}
+
+			}
 		}
 		adjacencyTable.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				int row = adjacencyTable.rowAtPoint(e.getPoint());
 				int col = adjacencyTable.columnAtPoint(e.getPoint());
-		        if(adjacencyTable.getValueAt(row, col) == "1"){
-		        	adjacencyTable.setValueAt("0",row, col); 	
-		        }
-		        else {
-					adjacencyTable.setValueAt("1",row, col); 	
-
-		        }
-		        	
+				String neighbourCountryName = countriesColumn[col];
+				String sourceCountryName = vectorData[row][0];
 				System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString());
+
+				if (adjacencyTable.getValueAt(row, col) == "1") {
+					for (CountryModel countryModel : countryModels) {
+						System.out.println("Source Country: " + sourceCountryName);
+						System.out.println("Neighbour Country: " + neighbourCountryName);
+						if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+							for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
+								if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+									countryModel.getListOfNeighbours().remove(countryModel1);
+									adjacencyTable.setValueAt("0", row, col);
+									return;
+								}
+							}
+						}
+					}
+
+				} else {
+					for (CountryModel countryModel : countryModels) {
+						System.out.println("Source Country: " + sourceCountryName);
+						System.out.println("Neighbour Country: " + neighbourCountryName);
+						if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+							for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
+								if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+									countryModel.addNeighbour(countryModel1);
+									adjacencyTable.setValueAt("1", row, col);
+									return;
+								}
+							}
+						}
+					}
+
+				}
+
 			}
 		});
-		
+
 	}
-
-
 
 }

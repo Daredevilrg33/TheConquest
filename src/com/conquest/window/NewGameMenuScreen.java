@@ -23,7 +23,7 @@ import com.conquest.utilities.Utility;
  * @author Rohit Gupta
  *
  */
-public class SecondScreen extends JFrame implements ActionListener {
+public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 	private JButton buttonSelectFile;
 	private String filePath;
@@ -34,7 +34,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 	private JComboBox<String> comboBoxSelectPlayer;
 	private String noOfPlayers;
 
-	public SecondScreen() {
+	public NewGameMenuScreen() {
 
 		JLabel labelSelectMap = new JLabel();
 		labelSelectMap.setText("Select Map");
@@ -100,7 +100,7 @@ public class SecondScreen extends JFrame implements ActionListener {
 			public void windowClosing(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 				dispose();
-				InitialScreen initialScreen = new InitialScreen();
+				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);
 			}
 
