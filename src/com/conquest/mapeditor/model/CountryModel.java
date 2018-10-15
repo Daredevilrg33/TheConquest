@@ -21,7 +21,8 @@ public class CountryModel {
 	}
 
 	public CountryModel(String countryName) {
-		this.countryName = countryName;
+		//this.countryName = countryName;
+		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
 	}
 
@@ -44,6 +45,9 @@ public class CountryModel {
 		this.listOfNeighbours = listOfNeighbours;
 	}
 
+	
+	
+	
 	/**
 	 * @return the countryName
 	 */

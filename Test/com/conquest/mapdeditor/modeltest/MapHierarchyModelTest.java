@@ -17,7 +17,7 @@ public class MapHierarchyModelTest {
 	private int noOfCountries = 10;
 	MapHierarchyModel c=new MapHierarchyModel(mapName,noOfCountries);
 	MapHierarchyModel b=new MapHierarchyModel();
-	//private String continentName  = "Europe";
+	private String continentName  = "Europe";
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	
@@ -37,14 +37,14 @@ public class MapHierarchyModelTest {
 	}
 
 	@Test
-	public void test() {
+	public void getTotalCountriestest1() {
 		//fail("Not yet implemented");
 		//c.setTotalCountries(-1);
 		assertEquals(noOfCountries,c.getTotalCountries());
 		
 	}
 	@Test
-	public void test4() {
+	public void getTotalCountriestest() {
 		//fail("Not yet implemented");
 		//c.setTotalCountries(-1);
 		b.addContinent("ASIA");
@@ -55,28 +55,30 @@ public class MapHierarchyModelTest {
 		b.addCountry("SAINT","RUSSIA");
 		b.addCountry("KREM","RUSSIA");
 		b.addCountry("JOHN","RUSSIA");
-		String continentName=null;
-		for(ContinentModel loopContinent : b.getContinentsList() )
-		{
-			 continentName= loopContinent.getContinentName();
-		}
-		System.out.println(b.getTotalCountries());
-		System.out.println(continentName);
+//		String continentName=null;
+//		for(ContinentModel loopContinent : b.getContinentsList() )
+//		{
+//			 continentName= loopContinent.getContinentName();
+//		}
+//		System.out.println(b.getTotalCountries());
+//		System.out.println(continentName);
 		//assertEquals("ASIA",continentName);
 		assertEquals(6,b.getTotalCountries());
 	}
 	
 	@Test
-	public void test2() {
+	public void getConquestMapNametest() {
 		//fail("Not yet implemented");
 		assertEquals(mapName,c.getConquestMapName());
 		
 	}
-	//@Test
-	//public void test3() {
-		//fail("Not yet implemented");
-		//c.addContinent(continentName);
-		//assertEquals(continentName,c.searchContinent(continentName).getContinentName());
-		
-	//}
+//	@Test
+//	public void test3() {
+//		//fail("Not yet implemented");
+//		b.addContinent("ASIA");
+//		System.out.println(b.searchContinent(continentName).getContinentName());
+//		
+//		assertEquals("RUSSIA",b.searchContinent(continentName).getContinentName());
+//		
+//	}
 }
