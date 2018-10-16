@@ -45,7 +45,10 @@ public class ContinentModelTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+/**
+ * Test to search the countries whether it retrieved from search country method.
+ */
+	
 	@Test
 	public void searchCountryTest() {
 		CountryModel c=new CountryModel("INDIA",cm,countryNeighbourModels);
