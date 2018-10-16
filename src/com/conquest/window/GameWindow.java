@@ -34,15 +34,13 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JComboBox<String> jComboBoxCountries;
 	private JButton jButtonPlace;
 	private String selectedCountry;
-	public GameWindow(String filePath, String noOfPlayers ) {
+	public GameWindow(MapHierarchyModel mapModel, String noOfPlayers ) {
 		
 		setTitle("Game Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH,Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		Utility utility = new Utility();
-		MapHierarchyModel mapModel = utility.parseMapFile(filePath);	
 		jPlayerLabel = new JLabel();
 		jPlayerLabel.setBounds(50, 50, 100, 30);
 		add(jPlayerLabel);

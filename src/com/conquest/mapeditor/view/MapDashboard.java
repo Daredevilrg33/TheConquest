@@ -17,8 +17,10 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 import com.conquest.mapeditor.controller.MapEditorController;
+import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
+import com.conquest.window.GameWindow;
 import com.conquest.window.MainMenuScreen;
 
 /**
@@ -77,7 +79,8 @@ public class MapDashboard extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getSource() == btnNewMap) {
-			NewMapEditorView newMap = new NewMapEditorView("");
+			MapHierarchyModel mapHierarchyModel = new MapHierarchyModel();
+			NewMapEditorView newMap = new NewMapEditorView(mapHierarchyModel);
 			newMap.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnLoadMap) {
@@ -98,9 +101,24 @@ public class MapDashboard extends JFrame implements ActionListener {
 		fileName = splitFilePath[splitFilePath.length - 1];
 		System.out.println("File Name : " + fileName);
 		System.out.println("File Path : " + filePath);
-		NewMapEditorView newMap = new NewMapEditorView(filePath);
-		newMap.setVisible(true);
-		dispose();
+		Utility utility = new Utility();
+		MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);	
+		
+		if(!mapModel.isValErrorFlag())
+		{
+			dispose();
+			NewMapEditorView newMap = new NewMapEditorView(mapModel);
+			newMap.setVisible(true);
+		}
+		else
+		{
+			String valErrorMsg = mapModel.getErrorMsg();
+			JOptionPane.showMessageDialog(this,
+					valErrorMsg,
+				    "Error Message",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		
 
 	}
 }

@@ -43,7 +43,7 @@ public class NewMapEditorView extends JFrame {
 
 	private MapHierarchyModel mapHierarchyModel;
 
-	public NewMapEditorView(String filePath) {
+	public NewMapEditorView(MapHierarchyModel mapHierarchyModel) {
 
 		setLocationRelativeTo(null);
 
@@ -61,14 +61,7 @@ public class NewMapEditorView extends JFrame {
 		treeView = new TreeRenderer(continentRoot);
 
 		MapEditorController mapEditorController = new MapEditorController(this);
-		if (filePath.trim().isEmpty() || filePath == null) {
-			mapHierarchyModel = new MapHierarchyModel();
-
-		} else {
-			Utility utility = new Utility();
-
-			mapHierarchyModel = utility.parseMapFile(filePath);
-		}
+		
 		mapEditorController.addModel(mapHierarchyModel);
 
 		labelConnectivity = new JLabel("Connectivity Between Countries");

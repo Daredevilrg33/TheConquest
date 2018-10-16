@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
@@ -144,9 +145,23 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 					    JOptionPane.ERROR_MESSAGE);
 			}else
 			{
-				dispose();
-				GameWindow gameWindow = new GameWindow(filePath,noOfPlayers);
-				gameWindow.setVisible(true);
+				
+				Utility utility = new Utility();
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);	
+				if(!mapModel.isValErrorFlag())
+				{	
+					dispose();
+					GameWindow gameWindow = new GameWindow(mapModel,noOfPlayers);
+					gameWindow.setVisible(true);
+				}
+				else
+				{
+					String valErrorMsg = mapModel.getErrorMsg();
+					JOptionPane.showMessageDialog(this,
+							valErrorMsg,
+						    "Error Message",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

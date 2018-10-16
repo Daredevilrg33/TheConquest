@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -48,7 +49,7 @@ public class Utility {
 			return "";
 	}
 
-	public MapHierarchyModel parseMapFile(String filePath) {
+	public MapHierarchyModel parseAndValidateMap(String filePath) {
 		MapHierarchyModel mapModel = new MapHierarchyModel();
 		ArrayList<ContinentModel> continentModels = new ArrayList<>();
 		ArrayList<CountryModel> countryModels = new ArrayList<>();
@@ -67,6 +68,13 @@ public class Utility {
 				}
 				if (currentLine.equalsIgnoreCase("[Territories]")) {
 					isCountry = true;
+					if(!isContinent)
+					{
+						String valErrorMessage ="Map is invalid as there are no continents defined";
+						mapModel.setValErrorFlag(true);
+						mapModel.setErrorMsg(valErrorMessage);
+						break;
+					}
 					isContinent = false;
 					continue;
 				}

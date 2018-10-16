@@ -12,6 +12,8 @@ public class MapHierarchyModel {
 	public int totalCountries;
 	private ArrayList<ContinentModel> continentsList;
 	private ArrayList<CountryModel> countryList;
+	private boolean valErrorFlag =false;
+	private String errorMsg ="Map is invalid";
 
 	public MapHierarchyModel() {
 		this.continentsList = new ArrayList<>();
@@ -86,6 +88,38 @@ public class MapHierarchyModel {
 	 */
 	public void setCountryList(ArrayList<CountryModel> countryModels) {
 		this.countryList = countryModels;
+	}
+	
+	
+
+	/**
+	 * @return the valErrorFlag
+	 */
+	public boolean isValErrorFlag() {
+		return valErrorFlag;
+	}
+
+	/**
+	 * @param valErrorFlag the valErrorFlag to set
+	 */
+	public void setValErrorFlag(boolean valErrorFlag) {
+		this.valErrorFlag = valErrorFlag;
+	}
+	
+	
+
+	/**
+	 * @return the errorMsg
+	 */
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	/**
+	 * @param errorMsg the errorMsg to set
+	 */
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 
 	/**
