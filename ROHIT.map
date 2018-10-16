@@ -1,12 +1,12 @@
 [Continents]
 
-Rohit=2
-Bhigya=2
+List=2
+los=2
 
 [Territories]
 
-R1,0,0,Rohit,B2
-R2,0,0,Rohit,B2
-B1,0,0,Bhigya,B2
-B2,0,0,Bhigya,B2
+poiu,0,0,List,poiu
+gjs,0,0,List,poiu
+hhjkns,0,0,los,poiu
+lost,0,0,los,poiu
 

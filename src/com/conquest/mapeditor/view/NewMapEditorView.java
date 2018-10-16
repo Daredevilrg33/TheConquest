@@ -44,6 +44,8 @@ public class NewMapEditorView extends JFrame {
 	private MapHierarchyModel mapHierarchyModel;
 
 	public NewMapEditorView(MapHierarchyModel mapHierarchyModel) {
+		
+		this.mapHierarchyModel = mapHierarchyModel;
 
 		setLocationRelativeTo(null);
 
