@@ -110,6 +110,18 @@ public class CountryModel {
 		noOfArmiesCountry--;
 	}
 	
+	public CountryModel searchNeighboursCountry(String countryName) {
+		countryName = countryName.toLowerCase();
+		for (CountryModel loopCountry : listOfNeighbours)
+		{
+			if (loopCountry.getCountryName().equalsIgnoreCase(countryName)) {
+				return loopCountry;
+			}
+		}
+		return null;
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 

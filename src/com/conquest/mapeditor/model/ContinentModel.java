@@ -68,7 +68,7 @@ public class ContinentModel {
 	public CountryModel searchCountry(String countryName) {
 		countryName = countryName.toLowerCase();
 		for (CountryModel loopCountry : countriesList) {
-			if (loopCountry.getCountryName().equals(countryName)) {
+			if (loopCountry.getCountryName().equalsIgnoreCase(countryName)) {
 				return loopCountry;
 			}
 		}
