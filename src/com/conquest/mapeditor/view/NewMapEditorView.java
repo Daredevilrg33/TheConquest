@@ -163,8 +163,12 @@ public class NewMapEditorView extends JFrame {
 
 	public void updatePaintMatrix() {
 
-		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(),
-				mapHierarchyModel.getTotalCountries()) {
+		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(), mapHierarchyModel.getTotalCountries()) {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
@@ -172,8 +176,8 @@ public class NewMapEditorView extends JFrame {
 			}
 		};
 
-		String[][] vectorData = new String[mapHierarchyModel.getCountryList()
-				.size()][mapHierarchyModel.getTotalCountries() + 1];
+		String[][] vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size() + 1];
+//		System.out.println("updatepaintmatrix is active"+vectorData[][0]);
 		String[] countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
 
 		int columnCounter = 0;
@@ -219,7 +223,7 @@ public class NewMapEditorView extends JFrame {
 				int col = adjacencyTable.columnAtPoint(e.getPoint());
 				String neighbourCountryName = countriesColumn[col];
 				String sourceCountryName = vectorData[row][0];
-				System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString());
+				System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> " + row + "col--> "+ col);
 
 				if (adjacencyTable.getValueAt(row, col) == "1") {
 					for (CountryModel countryModel : countryModels) {
@@ -236,7 +240,7 @@ public class NewMapEditorView extends JFrame {
 						}
 					}
 
-				} else {
+				} else if (adjacencyTable.getValueAt(row, col) == "0") {
 					for (CountryModel countryModel : countryModels) {
 						System.out.println("Source Country: " + sourceCountryName);
 						System.out.println("Neighbour Country: " + neighbourCountryName);

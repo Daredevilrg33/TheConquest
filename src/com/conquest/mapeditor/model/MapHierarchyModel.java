@@ -207,7 +207,7 @@ public class MapHierarchyModel {
 	 * @param continentName
 	 * 			name of the existing continent that the new country adding in
 	 * @param listOfNeighbours
-	 * 			list of neighbouring countries.
+	 * 			list of neighboring countries.
 	 * @return Error message
 	 */
 	public String addCountry(String countryName, String continentName,ArrayList<CountryModel> listOfNeighbours) {

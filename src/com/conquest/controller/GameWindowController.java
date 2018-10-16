@@ -37,6 +37,7 @@ public class GameWindowController {
 	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
 
 		players = new PlayerModel[noOfPlayers];
+		
 		int pickedNumber = 0;
 		Random rand = new Random();
 
@@ -44,6 +45,11 @@ public class GameWindowController {
 
 			int value = j + 1;
 			players[j] = new PlayerModel("Player" + String.valueOf(value));
+			switch(noOfPlayers) {
+				case(3): {players[j].noOfArmyinPlayer(24); break;}
+				case(4): {players[j].noOfArmyinPlayer(19); break;}
+				case(5): {players[j].noOfArmyinPlayer(14); break;}
+			}
 		}
 
 		/*
@@ -82,10 +88,12 @@ public class GameWindowController {
 			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
 					.equalsIgnoreCase(selectedC.trim())) {
 				System.out.println("Previous Counter  Value : " + prevCounter);
-
-				players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
+				if( players[prevCounter].getnoOfArmyinPlayer() > 0){
+					players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
+					players[prevCounter].reduceArmyinPlayer();
+				}
 				System.out.println(
-						"No. of armies" + players[counter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
+						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
 				break;
 			}
 			i++;
@@ -96,6 +104,7 @@ public class GameWindowController {
 		prevCounter = counter;
 		System.out.println(players[counter].getPlayerCountryList().get(i).getCountryName());
 		gameWindow.updatePlayerLabel(players[counter].getPlayerName());
+		gameWindow.updatePlayerArmies(players[counter].getnoOfArmyinPlayer());
 		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());
 		gameWindow.invalidate();
 		gameWindow.revalidate();

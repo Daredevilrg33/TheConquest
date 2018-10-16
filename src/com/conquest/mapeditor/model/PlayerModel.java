@@ -7,6 +7,7 @@ public class PlayerModel {
 
 	private List<CountryModel> playerCountryList;
 	private String playerName;
+	private int noOfArmyinPlayer;
 
 	public PlayerModel(String playerName) {
 		this.playerName = playerName;
@@ -16,6 +17,19 @@ public class PlayerModel {
 	/**
 	 * @return the playerName
 	 */
+	
+	public void noOfArmyinPlayer(int number) {
+		this.noOfArmyinPlayer = number;
+	}
+	
+	public void reduceArmyinPlayer() {
+		this.noOfArmyinPlayer--;
+	}
+	
+	public int getnoOfArmyinPlayer() {
+		return noOfArmyinPlayer;
+	}
+	
 	public String getPlayerName() {
 		return playerName;
 	}

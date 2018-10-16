@@ -31,6 +31,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 705136013521611381L;
 	private GameWindowController gameWindowController;
 	private JLabel jPlayerLabel;
+	private JLabel jPlayerArmies;
 	private JComboBox<String> jComboBoxCountries;
 	private JButton jButtonPlace;
 	private String selectedCountry;
@@ -52,6 +53,11 @@ public class GameWindow extends JFrame implements ActionListener{
 		jButtonPlace.setBounds(290,50,100,30);
 		jButtonPlace.addActionListener(this);
 		add(jButtonPlace);
+		
+		jPlayerArmies = new JLabel();
+		jPlayerArmies.setBounds(410, 50, 200, 30);
+		add(jPlayerArmies);
+		
 		gameWindowController = new GameWindowController(this,Integer.parseInt(noOfPlayers),mapModel);
 		
 		addWindowListener(new WindowListener() {
@@ -107,6 +113,13 @@ public class GameWindow extends JFrame implements ActionListener{
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
+	
+	public void updatePlayerArmies (int RemainingArmies)
+	{
+//		System.out.println("updatePlayerLabel Value: "+  playerName);
+		jPlayerArmies.setText("Remaining Armies with player: " +RemainingArmies);
+	}
+	
 	
 	public void updateComboBoxCountries(List<CountryModel> countryModels)
 	{
