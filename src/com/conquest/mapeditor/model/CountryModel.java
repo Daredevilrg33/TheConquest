@@ -46,9 +46,6 @@ public class CountryModel {
 		this.listOfNeighbours = listOfNeighbours;
 	}
 
-	
-	
-	
 	/**
 	 * @return the countryName
 	 */
@@ -120,17 +117,5 @@ public class CountryModel {
 		}
 		return null;
 	}
-	
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-//	@Override
-//	public String toString() {
-//		return "CountryModel [countryName=" + countryName + ", belongsTo=" + belongsTo + ", listOfNeighbours="
-//				+ listOfNeighbours + "]";
-//	}
 
 }

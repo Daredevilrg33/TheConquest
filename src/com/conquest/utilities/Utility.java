@@ -83,7 +83,7 @@ public class Utility {
 					if (continentValues.length > 0) {
 						ContinentModel continentModel = new ContinentModel(continentValues[0]);
 						if (continentValues.length > 1)
-							continentModel.setNoOfArmies(Integer.valueOf(continentValues[1]));
+							continentModel.setControlValue(Integer.valueOf(continentValues[1]));
 						continentModels.add(continentModel);
 					}
 				}
