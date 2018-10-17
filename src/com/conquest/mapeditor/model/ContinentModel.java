@@ -10,7 +10,7 @@ public class ContinentModel {
 
 	private String continentName;
 	private ArrayList<CountryModel> countriesList;
-	private int noOfArmies;
+	private int controlValue;
 
 	/**
 	 * Constructor for Continent class.
@@ -68,7 +68,7 @@ public class ContinentModel {
 	public CountryModel searchCountry(String countryName) {
 		countryName = countryName.toLowerCase();
 		for (CountryModel loopCountry : countriesList) {
-			if (loopCountry.getCountryName().equals(countryName)) {
+			if (loopCountry.getCountryName().equalsIgnoreCase(countryName)) {
 				return loopCountry;
 			}
 		}
@@ -76,28 +76,16 @@ public class ContinentModel {
 	}
 
 	/**
-	 * @param noOfArmies the noOfArmies to set
+	 * @param controlValue the controlValue to set
 	 */
-	public void setNoOfArmies(int noOfArmies) {
-		this.noOfArmies = noOfArmies;
+	public void setControlValue(int controlValue) {
+		this.controlValue = controlValue;
 	}
-
+	
 	/**
-	 * @return the noOfArmies
+	 * @return the controlValue
 	 */
-	public int getNoOfArmies() {
-		return noOfArmies;
+	public int getControlValue() {
+		return controlValue;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-//	@Override
-//	public String toString() {
-//		return "ContinentModel [continentName=" + continentName + ", countriesList=" + countriesList + ", noOfArmies="
-//				+ noOfArmies + "]";
-//	}
-
 }

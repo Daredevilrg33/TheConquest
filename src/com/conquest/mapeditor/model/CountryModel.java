@@ -14,7 +14,7 @@ public class CountryModel {
 	private String countryName;
 	private ContinentModel belongsTo;
 	private int noOfArmiesCountry = 1;
-	private ArrayList<CountryModel> listOfNeighbours;
+	private ArrayList<String> listOfNeighbours;
 
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
@@ -26,6 +26,8 @@ public class CountryModel {
 		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
 	}
+
+	
 
 	/**
 	 * 
@@ -40,15 +42,12 @@ public class CountryModel {
 		this.listOfNeighbours = new ArrayList<>();
 	}
 
-	public CountryModel(String countryName, ContinentModel continentModel, ArrayList<CountryModel> listOfNeighbours) {
+	public CountryModel(String countryName, ContinentModel continentModel, ArrayList<String> listOfNeighbours) {
 		this.countryName = countryName;
 		this.belongsTo = continentModel;
 		this.listOfNeighbours = listOfNeighbours;
 	}
 
-	
-	
-	
 	/**
 	 * @return the countryName
 	 */
@@ -77,14 +76,14 @@ public class CountryModel {
 		this.belongsTo = belongsTo;
 	}
 
-	public boolean addNeighbour(CountryModel countryModel) {
-		return this.listOfNeighbours.add(countryModel);
+	public boolean addNeighbour(String countryName) {
+		return this.listOfNeighbours.add(countryName);
 	}
 
 	/**
 	 * @return the listOfNeighbours
 	 */
-	public ArrayList<CountryModel> getListOfNeighbours() {
+	public ArrayList<String> getListOfNeighbours() {
 		return listOfNeighbours;
 	}
 
@@ -110,15 +109,24 @@ public class CountryModel {
 		noOfArmiesCountry--;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
+	public String searchNeighboursCountry(String countryName) {
+		countryName = countryName.toLowerCase();
+		for (String country: listOfNeighbours)
+		{
+			if (country.equalsIgnoreCase(countryName)) {
+				return country;
+			}
+		}
+		return null;
+	}
+	
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-//	@Override
-//	public String toString() {
-//		return "CountryModel [countryName=" + countryName + ", belongsTo=" + belongsTo + ", listOfNeighbours="
-//				+ listOfNeighbours + "]";
-//	}
+	@Override
+	public String toString() {
+		return "CountryModel [countryName=" + countryName + ", belongsTo=" + belongsTo + ", noOfArmiesCountry="
+				+ noOfArmiesCountry + ", listOfNeighbours=" + listOfNeighbours + "]";
+	}
 
 }

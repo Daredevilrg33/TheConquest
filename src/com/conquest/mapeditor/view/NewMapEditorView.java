@@ -6,6 +6,8 @@ package com.conquest.mapeditor.view;
  */
 import java.awt.AWTEvent;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -15,7 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.conquest.mapeditor.controller.MapEditorController;
@@ -25,9 +29,8 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
-import com.conquest.utilities.Utility;
 
-public class NewMapEditorView extends JFrame {
+public class NewMapEditorView extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 4139667352960868764L;
 	private JScrollPane treeScrollPane;
@@ -40,7 +43,8 @@ public class NewMapEditorView extends JFrame {
 	private JButton addCountry;
 	private JButton addContinent;
 	private JButton jButtonSave;
-
+	private String[] countriesColumn;
+	private String[][] vectorData;
 	private MapHierarchyModel mapHierarchyModel;
 
 	public NewMapEditorView(MapHierarchyModel mapHierarchyModel) {
@@ -72,8 +76,8 @@ public class NewMapEditorView extends JFrame {
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
 		add(labelConnectivity);
 
-		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mappingScrollPane.setBounds(15, 55, 800, 600);
 		add(mappingScrollPane);
 
@@ -162,7 +166,7 @@ public class NewMapEditorView extends JFrame {
 	 */
 
 	public void updatePaintMatrix() {
-
+		
 		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(), mapHierarchyModel.getTotalCountries()) {
 
 			/**
@@ -176,9 +180,9 @@ public class NewMapEditorView extends JFrame {
 			}
 		};
 
-		String[][] vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size() + 1];
+		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size() + 1];
 //		System.out.println("updatepaintmatrix is active"+vectorData[][0]);
-		String[] countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
+		countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
 
 		int columnCounter = 0;
 		int rowCounter = 0;
@@ -193,7 +197,15 @@ public class NewMapEditorView extends JFrame {
 
 		tableMatrix.setDataVector(vectorData, countriesColumn);
 		adjacencyTable = new TableRenderer(tableMatrix);
-		adjacencyTable.setSize(300, 200);
+		adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		adjacencyTable.setRowHeight(20);
+		TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
+		for(int i=0;i<countriesColumn.length; i++ )
+		{
+			tableColumnModel.getColumn(i).setPreferredWidth(50);
+		}
+		
+//		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
 		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
@@ -203,13 +215,16 @@ public class NewMapEditorView extends JFrame {
 				String neighbourCountryName = countriesColumn[j];
 				String sourceCountryName = vectorData[i][0];
 				for (CountryModel countryModel : countryModels) {
-					System.out.println("Source Country: " + sourceCountryName);
-					System.out.println("Neighbour Country: " + neighbourCountryName);
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-						for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
-							if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+						for (String countryName : countryModel.getListOfNeighbours()) {
+							System.out.println("countryName" + countryName);
+							System.out.println("neighbourCountryName" + neighbourCountryName);
+							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
 
+							}else
+							{
+								adjacencyTable.setValueAt("0", i, j);
 							}
 						}
 					}
@@ -217,49 +232,94 @@ public class NewMapEditorView extends JFrame {
 
 			}
 		}
-		adjacencyTable.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				int row = adjacencyTable.rowAtPoint(e.getPoint());
-				int col = adjacencyTable.columnAtPoint(e.getPoint());
-				String neighbourCountryName = countriesColumn[col];
-				String sourceCountryName = vectorData[row][0];
-				System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> " + row + "col--> "+ col);
-
-				if (adjacencyTable.getValueAt(row, col) == "1") {
-					for (CountryModel countryModel : countryModels) {
-						System.out.println("Source Country: " + sourceCountryName);
-						System.out.println("Neighbour Country: " + neighbourCountryName);
-						if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-							for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
-								if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
-									countryModel.getListOfNeighbours().remove(countryModel1);
-									adjacencyTable.setValueAt("0", row, col);
-									return;
-								}
-							}
-						}
-					}
-
-				} else if (adjacencyTable.getValueAt(row, col) == "0") {
-					for (CountryModel countryModel : countryModels) {
-						System.out.println("Source Country: " + sourceCountryName);
-						System.out.println("Neighbour Country: " + neighbourCountryName);
-						if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-							for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
-								if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
-									countryModel.addNeighbour(countryModel1);
-									adjacencyTable.setValueAt("1", row, col);
-									return;
-								}
-							}
-						}
-					}
-
-				}
-
-			}
-		});
+		adjacencyTable.addMouseListener(this);
 
 	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Mouse Clicked");
+		int row = adjacencyTable.rowAtPoint(e.getPoint());
+		int col = adjacencyTable.columnAtPoint(e.getPoint());
+		String neighbourCountryName = countriesColumn[col];
+		String sourceCountryName = vectorData[row][0];
+		System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> " + row + "col--> "+ col);
+	
+		if (adjacencyTable.getValueAt(row, col) == "1") {
+			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				System.out.println("Value 1 Source Country: " + sourceCountryName);
+				System.out.println("Value 1 Neighbour Country: " + neighbourCountryName);
+				if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+					for (String countryName : countryModel.getListOfNeighbours()) {
+						if (countryName.trim().equalsIgnoreCase(neighbourCountryName)) {
+							countryModel.getListOfNeighbours().remove(countryName);
+							adjacencyTable.setValueAt("0", row, col);
+							System.out.println(countryModel);
+							return;
+						}
+					}
+				}
+			}
+
+		} else if (adjacencyTable.getValueAt(row, col) == "0") {
+			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				System.out.println("Value 2 Source Country: " + sourceCountryName);
+				System.out.println("Value 2 Neighbour Country: " + neighbourCountryName);
+				if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+					for (CountryModel countryModel1: mapHierarchyModel.getCountryList()) {
+						if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+							countryModel.addNeighbour(countryModel1.getCountryName().trim());
+							adjacencyTable.setValueAt("1", row, col);
+							System.out.println(countryModel);
+							return;
+						}
+					}
+				}
+			}
+		}
+		
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
