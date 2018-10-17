@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -176,16 +177,16 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		}
 		
 	}
-	public void updateComboBoxDestinationCountries(List<CountryModel> countryModels)
+	public void updateComboBoxDestinationCountries(ArrayList<String> arrayList)
 	{
 		
 		
 		jComboBoxDestinationCountries.removeAllItems();
-		for(CountryModel countryModel: countryModels)
+		for(int i=0;i<arrayList.size();i++)
 		{
 //			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
 
-			jComboBoxDestinationCountries.addItem(countryModel.getCountryName());
+			jComboBoxDestinationCountries.addItem(arrayList.get(i));
 		}
 		
 	}
@@ -198,7 +199,7 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		case "Send":
 			System.out.println("Selected Player Name: " +jPlayerLabel.getText().toString());
 			System.out.println("Selected Source Country Name: " + jComboBoxSourceCountries.getSelectedItem().toString());
-			System.out.println("Selected Destination Country Name: " + jComboBoxSourceCountries.getSelectedItem().toString());
+			System.out.println("Selected Destination Country Name: " + jComboBoxDestinationCountries.getSelectedItem().toString());
 
 			selectedSourceCountry = jComboBoxSourceCountries.getSelectedItem().toString();
 			selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
