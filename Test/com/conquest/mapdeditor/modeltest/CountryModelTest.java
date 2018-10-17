@@ -14,8 +14,8 @@ import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 
 public class CountryModelTest {
-	private CountryModel countryModel, countryModel1, countryModel2, countryModel3;
-	private ArrayList<CountryModel> countryNeighbourModels ;
+	
+	private ArrayList<String> countryNeighbourModels ;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,15 +27,12 @@ public class CountryModelTest {
 
 	@Before
 	public void beforeTest() throws Exception {
-		countryModel = new CountryModel("BHUTAN");
-		countryModel1 = new CountryModel("PAKISTAN");
-		countryModel2 = new CountryModel("NEPAL");
-		countryModel3 = new CountryModel("SRILANKA");
+	
 		countryNeighbourModels = new ArrayList<>();
-		countryNeighbourModels.add(countryModel);
-		countryNeighbourModels.add(countryModel1);
-		countryNeighbourModels.add(countryModel2);
-		countryNeighbourModels.add(countryModel3);
+		countryNeighbourModels.add("BHUTAN");
+		countryNeighbourModels.add("PAKISTAN");
+		countryNeighbourModels.add("NEPAL");
+		countryNeighbourModels.add("SRILANKA");
 	}
 
 	@After
@@ -49,10 +46,10 @@ public class CountryModelTest {
 	 ContinentModel cm = new ContinentModel("ASIA");
 
 		CountryModel c=new CountryModel("INDIA",cm,countryNeighbourModels);
-		assertEquals("BHUTAN",c.searchNeighboursCountry("Bhutan").getCountryName());
-		assertEquals("PAKISTAN",c.searchNeighboursCountry("PAKISTAN").getCountryName());
-		assertEquals("NEPAL",c.searchNeighboursCountry("NEPAL").getCountryName());
-		assertEquals("SRILANKA",c.searchNeighboursCountry("SRILANKA").getCountryName());
+		assertEquals("BHUTAN",c.searchNeighboursCountry("Bhutan"));
+		assertEquals("PAKISTAN",c.searchNeighboursCountry("PAKISTAN"));
+		assertEquals("NEPAL",c.searchNeighboursCountry("NEPAL"));
+		assertEquals("SRILANKA",c.searchNeighboursCountry("SRILANKA"));
 
 		
 		

@@ -18,8 +18,7 @@ public class ContinentModelTest {
 	private ContinentModel cm = new ContinentModel("ASIA");
 	private ArrayList<CountryModel> cl = new ArrayList<CountryModel>();
 	private MapHierarchyModel mh = new MapHierarchyModel();
-	private CountryModel countryModel, countryModel1, countryModel2, countryModel3;
-	private ArrayList<CountryModel> countryNeighbourModels ;
+	private ArrayList<String> countryNeighbourModels ;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -30,15 +29,12 @@ public class ContinentModelTest {
 
 	@Before
 	public void beforeTestCase() throws Exception {
-		countryModel = new CountryModel("Bhutan");
-		countryModel1 = new CountryModel("PAKISTAN");
-		countryModel2 = new CountryModel("NEPAL");
-		countryModel3 = new CountryModel("SRILANKA");
+	
 		countryNeighbourModels = new ArrayList<>();
-		countryNeighbourModels.add(countryModel);
-		countryNeighbourModels.add(countryModel1);
-		countryNeighbourModels.add(countryModel2);
-		countryNeighbourModels.add(countryModel3);
+		countryNeighbourModels.add("Bhutan");
+		countryNeighbourModels.add("PAKISTAN");
+		countryNeighbourModels.add("NEPAL");
+		countryNeighbourModels.add("SRILANKA");
 
 	}
 

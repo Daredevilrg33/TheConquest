@@ -2,6 +2,7 @@ package com.conquest.mapeditor.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -123,7 +124,14 @@ public class MapEditorController implements ActionListener {
 					else {
 						String errorMsg;
 						lastOperatedContinent = (String)continentInput.getItemAt(continentInput.getSelectedIndex());
-						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent,mapHierarchyModel.getCountryList());
+						ArrayList<String> countryNameList = new ArrayList<>();
+						countryNameList.add(countryInput.getText().trim());
+						for(CountryModel countryModel: mapHierarchyModel.getCountryList())
+						{
+							countryModel.addNeighbour(countryInput.getText().trim());
+							countryNameList.add(countryModel.getCountryName());
+						}
+						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent,countryNameList);
 						if (errorMsg == ""){
 							mapEditorView.updateHierarchyTree();
 							mapEditorView.updatePaintMatrix();

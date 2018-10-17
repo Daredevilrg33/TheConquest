@@ -210,7 +210,7 @@ public class MapHierarchyModel {
 	 * 			list of neighboring countries.
 	 * @return Error message
 	 */
-	public String addCountry(String countryName, String continentName,ArrayList<CountryModel> listOfNeighbours) {
+	public String addCountry(String countryName, String continentName,ArrayList<String> listOfNeighbours) {
 		ContinentModel targetContinent = searchContinent(continentName);
 		if (targetContinent == null) {
 			return "Continent <" + continentName + "> does not exists";

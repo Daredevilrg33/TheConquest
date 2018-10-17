@@ -100,7 +100,7 @@ public class Utility {
 							ContinentModel continentModel = new ContinentModel(countryValues[i]);
 							countryModel.setBelongsTo(continentModel);
 						} else {
-							countryModel.addNeighbour(new CountryModel(countryValues[i]));
+							countryModel.addNeighbour(countryValues[i]);
 						}
 					}
 					countryModels.add(countryModel);
@@ -142,8 +142,8 @@ public class Utility {
 			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
 					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
-					for (CountryModel countryModel1 : countryModel.getListOfNeighbours()) {
-						countryData = countryData.concat("," + countryModel1.getCountryName());
+					for (String countryName : countryModel.getListOfNeighbours()) {
+						countryData = countryData.concat("," + countryName);
 
 					}
 					countryData = countryData.concat(System.lineSeparator());
