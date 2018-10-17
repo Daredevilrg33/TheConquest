@@ -17,7 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.conquest.mapeditor.controller.MapEditorController;
@@ -27,7 +29,6 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
-import com.conquest.utilities.Utility;
 
 public class NewMapEditorView extends JFrame implements MouseListener {
 
@@ -75,8 +76,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
 		add(labelConnectivity);
 
-		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mappingScrollPane.setBounds(15, 55, 800, 600);
 		add(mappingScrollPane);
 
@@ -196,7 +197,15 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 		tableMatrix.setDataVector(vectorData, countriesColumn);
 		adjacencyTable = new TableRenderer(tableMatrix);
-		adjacencyTable.setSize(300, 200);
+		adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		adjacencyTable.setRowHeight(20);
+		TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
+		for(int i=0;i<countriesColumn.length; i++ )
+		{
+			tableColumnModel.getColumn(i).setPreferredWidth(50);
+		}
+		
+//		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
 		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
@@ -213,6 +222,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
 
+							}else
+							{
+								adjacencyTable.setValueAt("0", i, j);
 							}
 						}
 					}
