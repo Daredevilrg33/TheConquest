@@ -29,6 +29,19 @@ public class PlayerModel {
 		this.playerName = playerName;
 		this.playerCountryList = new ArrayList<>();
 	}
+	/**
+	 * PlayerModel Constructor
+	 * Instantiates a new player model.
+	 * @param playerName the player name
+	 * @param countryModelArrayList array list of coutries of the player.
+	 */
+	
+	public PlayerModel(String playerName, ArrayList<CountryModel> countryModelArrayList)
+	{
+		this.playerName = playerName;
+		this.playerCountryList = new ArrayList<>();
+		this.playerCountryList.addAll(countryModelArrayList);
+	}
 
 	/**
 	 * noOfArmyinPlayer Method
@@ -90,6 +103,24 @@ public class PlayerModel {
 	 */
 	public List<CountryModel> getPlayerCountryList() {
 		return playerCountryList;
+	}
+	
+	/**
+	 * Search a country by the country Name.
+	 * @param countryName : Name of the country to be searched.
+	 * @return Returns the Country Model.
+	 */
+	
+	public CountryModel searchCountry(String countryName)
+	{
+		for(CountryModel country : playerCountryList)
+		{
+			if(country.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
+			{
+				return country;
+			}
+		}
+		return null;
 	}
 
 }
