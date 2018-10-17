@@ -13,18 +13,34 @@ import org.junit.Test;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 
+/**
+ * The Class CountryModelTest.
+ */
 public class CountryModelTest {
 	
+
 	private ArrayList<String> countryNeighbourModels ;
 
+	/**
+	 * Sets the up before class.
+	 * @throws Exception the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tear down after class.
+	 * @throws Exception the exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Before test.
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void beforeTest() throws Exception {
 	
@@ -35,12 +51,18 @@ public class CountryModelTest {
 		countryNeighbourModels.add("SRILANKA");
 	}
 
+	/**
+	 * Tear down.
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}
-/**
- * Test used for checking the neighbours of country
- */
+
+	/**
+	 * searchNeighboursCountryTest Unit Test
+	 * Test used for checking the neighbours of country.
+	 */
 	@Test
 	public void searchNeighboursCountryTest() {
 	 ContinentModel cm = new ContinentModel("ASIA");
@@ -51,8 +73,6 @@ public class CountryModelTest {
 		assertEquals("NEPAL",c.searchNeighboursCountry("NEPAL"));
 		assertEquals("SRILANKA",c.searchNeighboursCountry("SRILANKA"));
 
-		
-		
 		//fail("Not yet implemented");
 	}
 

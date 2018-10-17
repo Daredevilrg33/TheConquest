@@ -1,6 +1,5 @@
 package com.conquest.window;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -18,23 +17,40 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
-
 /**
- * @author Rohit Gupta
+ * The Class GameWindow.
  *
+ * @author Rohit Gupta
  */
 public class GameWindow extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 705136013521611381L;
+	
+	/** The game window controller. */
 	private GameWindowController gameWindowController;
+	
+	/** The j player label. */
 	private JLabel jPlayerLabel;
+	
+	/** The j player armies. */
 	private JLabel jPlayerArmies;
+	
+	/** The j combo box countries. */
 	private JComboBox<String> jComboBoxCountries;
+	
+	/** The j button place. */
 	private JButton jButtonPlace;
+	
+	/** The selected country. */
 	private String selectedCountry;
+	
+	/**
+	 * GameWindow Parameterized Constructor 
+	 * Instantiates a new game window.
+	 * @param mapModel the map model
+	 * @param noOfPlayers the no of players
+	 */
 	public GameWindow(MapHierarchyModel mapModel, String noOfPlayers ) {
 		
 		setTitle("Game Window");
@@ -108,33 +124,46 @@ public class GameWindow extends JFrame implements ActionListener{
 		});
 	}
 	
+	/**
+	 * updatePlayerLabel Method
+	 * Update player label.
+	 * @param playerName the player name
+	 */
 	public void updatePlayerLabel (String playerName)
 	{
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
 	
+	/**
+	 * updatePlayerArmies Method
+	 * Update player armies.
+	 * @param RemainingArmies the remaining armies
+	 */
 	public void updatePlayerArmies (int RemainingArmies)
 	{
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerArmies.setText("Remaining Armies with player: " +RemainingArmies);
 	}
 	
-	
+	/**
+	 * updateComboBoxCountries Method
+	 * Update combo box countries.
+	 * @param countryModels the country models
+	 */
 	public void updateComboBoxCountries(List<CountryModel> countryModels)
 	{
-		
-		
 		jComboBoxCountries.removeAllItems();
 		for(CountryModel countryModel: countryModels)
 		{
 //			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
-
 			jComboBoxCountries.addItem(countryModel.getCountryName());
 		}
-		
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

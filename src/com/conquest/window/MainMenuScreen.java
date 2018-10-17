@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.conquest.window;
 
 import java.awt.event.ActionEvent;
@@ -15,16 +12,28 @@ import com.conquest.mapeditor.view.MapDashboard;
 import com.conquest.utilities.Constants;
 
 /**
- * @author Rohit Gupta
+ * The Class MainMenuScreen.
  *
+ * @author Rohit Gupta
  */
 public class MainMenuScreen extends JFrame implements ActionListener{
 
+	/** The button new game. */
 	private JButton btnNewGame;
+	
+	/** The button map editor. */
 	private JButton btnMapEditor;
+	
+	/** The button about us. */
 	private JButton btnAboutUs;
+	
+	/** The button exit. */
 	private JButton btnExit;
 	
+	/**
+	 * MainMenuScreen Constructor
+	 * Instantiates a new main menu screen.
+	 */
 	public MainMenuScreen() {
 		btnNewGame  = new JButton("New Game");
 		btnNewGame.setBounds(Constants.WIDTH/2-50, 50, 100, 30);
@@ -85,9 +94,6 @@ public class MainMenuScreen extends JFrame implements ActionListener{
 		}else {
 			System.exit(0);
 		}
-		
 				
-	}
-	
-	
+	}	
 }

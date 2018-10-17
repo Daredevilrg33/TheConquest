@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.conquest.controller;
 
 import java.util.Random;
@@ -12,8 +9,10 @@ import com.conquest.window.GameWindow;
 import com.conquest.window.ReinforcementWindow;
 
 /**
+ * Game Window Controller Class
+ * This class initializes Number of players, Player model, Game window object and Map HeirarchyModel 
  * @author Rohit Gupta
- *
+ * @version 1.0.0
  */
 public class GameWindowController {
 
@@ -24,15 +23,27 @@ public class GameWindowController {
 	private PlayerModel[] players;
 	private int i = 0;
 	private int prevCounter = 0;
-
+	
+/**
+ * Game Window Controller Constructor
+ * Constructor created to assign value of objects
+ * @param gameWindow Object of class GameWindow {@link GameWindow}
+ * @param noOfPlayers Number of players in game Range from (3-5)
+ * @param mapModel Object of class MapHierarchyModel {@link MapHierarchyModel}
+ */
 	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapHierarchyModel mapModel) {
-
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapModel = mapModel;
 		initializingPlayerModels(this.noOfPlayers, this.mapModel);
 	}
-
+	
+/**
+ * initializingPlayerModels method
+ * Void method to initialize player models as per number of players 
+ * @param noOfPlayers Input the number of players in game type integer
+ * @param mapModel MapHierarchyModel{@link MapHierarchyModel} object to pass map model 
+ */
 	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
 
 		players = new PlayerModel[noOfPlayers];
@@ -70,17 +81,18 @@ public class GameWindowController {
 					// System.out.println("size "+mapModel.getCountryModels().size());
 					// System.out.println("Picked Number "+pickedNumber);
 					// System.out.println(h);
-
 				}
 			}
 		}
-
 		updateUIInfo();
-
 	}
-
+	
+/**
+ * Checking method
+ * To check the number of armies
+ * @param selectedC type String {@link String}
+ */
 	public void checking(String selectedC) {
-
 		i = 0;
 //		System.out.println("Previous Counter  Value : " + prevCounter);
 
@@ -107,9 +119,10 @@ public class GameWindowController {
 			i++;
 		}
 	}
-
-	
-	
+/** 
+ * updateUIInfo method
+ * Void Method to update the window screen after any change has been made
+ */
 	public void updateUIInfo() {
 		prevCounter = counter;
 //		System.out.println(players[counter].getPlayerCountryList().get(i).getCountryName());
@@ -124,12 +137,5 @@ public class GameWindowController {
 			counter = 0;
 
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
 
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.conquest.utilities;
 
 import java.io.BufferedReader;
@@ -20,16 +17,16 @@ import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 
 /**
- * @author Rohit Gupta
+ * The Class Utility.
  *
+ * @author Rohit Gupta
  */
 public class Utility {
 
 	/**
+	 * pickFile Method
 	 * This method will provide the functionality to pick a map file.
-	 * 
 	 * @return : This will return the path of the map.
-	 * 
 	 */
 	public static String pickFile() {
 		// TODO Auto-generated method stub
@@ -49,6 +46,12 @@ public class Utility {
 			return "";
 	}
 
+	/**
+	 * parseAndValidateMap Method
+	 * Parses the and validate map.
+	 * @param filePath the file path
+	 * @return the map hierarchy model
+	 */
 	public MapHierarchyModel parseAndValidateMap(String filePath) {
 		MapHierarchyModel mapModel = new MapHierarchyModel();
 		ArrayList<ContinentModel> continentModels = new ArrayList<>();
@@ -125,6 +128,12 @@ public class Utility {
 		return mapModel;
 	}
 
+	/**
+	 * convertMapDataToString Method
+	 * Convert map data to string.
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @return the string
+	 */
 	private String convertMapDataToString(MapHierarchyModel mapHierarchyModel) {
 		String data = "";
 
@@ -155,6 +164,13 @@ public class Utility {
 		return data;
 	}
 
+	/**
+	 * saveMapFile Method
+	 * Save map file.
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param fileName the file name
+	 * @return true, if successful
+	 */
 	public boolean saveMapFile(MapHierarchyModel mapHierarchyModel, String fileName) {
 		boolean isFileSaved = false;
 		String data = convertMapDataToString(mapHierarchyModel);

@@ -14,19 +14,34 @@ import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 
+/**
+ * The Class ContinentModelTest.
+ */
 public class ContinentModelTest {
+	
 	private ContinentModel cm = new ContinentModel("ASIA");
+	
 	private ArrayList<CountryModel> cl = new ArrayList<CountryModel>();
+	
 	private MapHierarchyModel mh = new MapHierarchyModel();
 	private ArrayList<String> countryNeighbourModels ;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tear down after class.
+	 * @throws Exception the exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Before test case.
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void beforeTestCase() throws Exception {
 	
@@ -38,13 +53,18 @@ public class ContinentModelTest {
 
 	}
 
+	/**
+	 * Tear down.
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}
-/**
- * Test to search the countries whether it retrieved from search country method.
- */
 	
+	/**
+	 * searchCountryTest Unit test
+	 * Test to search the countries whether it retrieved from search country method.
+	 */
 	@Test
 	public void searchCountryTest() {
 		CountryModel c=new CountryModel("INDIA",cm,countryNeighbourModels);

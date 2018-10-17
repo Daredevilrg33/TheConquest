@@ -14,18 +14,29 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.view.NewMapEditorView;
 import com.conquest.utilities.Utility;
 
+/**
+ * MapEditorController Class using ActionListener {@link ActionListener}
+ * Object of Classes NewMapEditorView {@link NewMapEditorView} and
+ * MapHierarchyModel {@link MapHierarchyModel} are created
+ * @author dead
+ */
 public class MapEditorController implements ActionListener {
 	private NewMapEditorView mapEditorView;
 	private MapHierarchyModel mapHierarchyModel;
 
+	/**
+	 * MapEditorController Constructor
+	 * Constructor to give value to mapEditorView
+	 * @param mapEditorView Object of Class NewMapEditorView {@link NewMapEditorView} 
+	 */
 	public MapEditorController( NewMapEditorView mapEditorView) {
-	
 		this.mapEditorView = mapEditorView;
 	}
 	
 	/**
+	 * addModel method
 	 * Method to add a model to this controller.
-	 * @param mapHierarchyModel model
+	 * @param mapHierarchyModel object of MapHierarchyModel {@link MapHierarchyModel}
 	 */
 	public void addModel(MapHierarchyModel mapHierarchyModel)
 	{
@@ -51,10 +62,8 @@ public class MapEditorController implements ActionListener {
 			addCountry();
 			break;
 		case "Save":
-			String fileName= "ROHIT";
-			MapHierarchyModel mapHierarchyModel = mapEditorView.getMapHierarchyModel();
 			Utility utility = new Utility();
-			utility.saveMapFile(mapHierarchyModel,fileName);
+			utility.saveMapFile(mapHierarchyModel,mapHierarchyModel.getConquestMapName());
 			break;
 		default:
 			break;
@@ -64,7 +73,8 @@ public class MapEditorController implements ActionListener {
 	}
 
 	/**
-	 * Method to implement response to addContinentBtn, provide GUI to input new
+	 * addContinent method
+	 * Void Method to implement response to addContinentBtn, provide GUI to input new
 	 * continent's name,
 	 */
 	private void addContinent() {
@@ -87,8 +97,9 @@ public class MapEditorController implements ActionListener {
 	}
 
 	/**
-	 * Method to implement response to addCountryBtn, provide GUI to input new
-	 * country's name,
+	 * addCountry method 
+	 * Void Method to implement response to addCountryBtn, provide GUI to input new
+	 * country's name
 	 */
 	private void addCountry() {
 		
@@ -144,7 +155,5 @@ public class MapEditorController implements ActionListener {
 			}	
 		}
 	}
-
-	
 
 }

@@ -1,9 +1,6 @@
 package com.conquest.mapeditor.view;
 
-/**
- * @author Nancy Goyal
- *
- */
+
 import java.awt.AWTEvent;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
@@ -32,21 +29,43 @@ import com.conquest.utilities.Constants;
 
 public class NewMapEditorView extends JFrame implements MouseListener {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4139667352960868764L;
+	
+	/** The tree scroll pane. */
 	private JScrollPane treeScrollPane;
+	
+	/** The mapping scroll pane. */
 	private JScrollPane mappingScrollPane;
+	
+	/** The tree view. */
 	private TreeRenderer treeView;
+	
+	/** The adjacency table. */
 	private TableRenderer adjacencyTable;
 
+	/** The label connectivity. */
 	private JLabel labelConnectivity;
 
+	/** The add country button. */
 	private JButton addCountry;
+	
+	/** The add continent button. */
 	private JButton addContinent;
+	
+	/** The save button. */
 	private JButton jButtonSave;
 	private String[] countriesColumn;
 	private String[][] vectorData;
+
+	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
 
+	/**
+	 * NewMapEditorView Constructor
+	 * Instantiates a new new map editor view.
+	 * @param mapHierarchyModel the map hierarchy model
+	 */
 	public NewMapEditorView(MapHierarchyModel mapHierarchyModel) {
 		
 		this.mapHierarchyModel = mapHierarchyModel;
@@ -124,6 +143,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
+	 * Gets the map hierarchy model.
 	 * @return the mapHierarchyModel
 	 */
 	public MapHierarchyModel getMapHierarchyModel() {
@@ -131,6 +151,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
+	 * setMapHierarchyModel Method
+	 * Sets the map hierarchy model.
 	 * @param mapHierarchyModel the mapHierarchyModel to set
 	 */
 	public void setMapHierarchyModel(MapHierarchyModel mapHierarchyModel) {
@@ -138,8 +160,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
+	 * updateHierarchyTree Method
 	 * Method to refresh and update the continent hierarchy tree on adding new
-	 * continent or new country
+	 * continent or new country.
 	 */
 
 	public void updateHierarchyTree() {
@@ -161,8 +184,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
+	 * updatePaintMatrix Method
 	 * Method to refresh and paint the adjacency table matrix of connections between
-	 * the countries
+	 * the countries.
 	 */
 
 	public void updatePaintMatrix() {

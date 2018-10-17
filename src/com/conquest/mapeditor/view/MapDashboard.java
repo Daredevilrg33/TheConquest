@@ -24,18 +24,27 @@ import com.conquest.window.GameWindow;
 import com.conquest.window.MainMenuScreen;
 
 /**
+ * The Class MapDashboard.
  * @author Nancy Goyal
- *
  */
 public class MapDashboard extends JFrame implements ActionListener {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -6731694007847910246L;
+	
+	/** The button new map. */
 	private JButton btnNewMap;
+	
+	/** The button load map. */
 	private JButton btnLoadMap;
+	
+	/** The file name. */
 	private String filePath = "", fileName = "";
 
+	/**
+	 * MapDashboard Constructor
+	 * Instantiates a new map dashboard.
+	 */
 	public MapDashboard() {
 
 		setResizable(false);
@@ -90,8 +99,9 @@ public class MapDashboard extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * loadFromFile Method
 	 * Method to implement response to Load Existing Map, provide GUI to input
-	 * file's name
+	 * file's name.
 	 */
 	private void loadFromFile() {
 
@@ -119,6 +129,5 @@ public class MapDashboard extends JFrame implements ActionListener {
 				    JOptionPane.ERROR_MESSAGE);
 		}
 		
-
 	}
 }

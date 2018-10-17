@@ -6,8 +6,11 @@ package com.conquest.mapeditor.model;
 import java.util.ArrayList;
 
 /**
+ * CountryModel Class Initializes country name String, a ContinentModel
+ * {@link ContinentModel} as belongsTo and a ArrayList {@link ArrayList} as
+ * listofNeighbours
+ * 
  * @author Nancy Goyal
- *
  */
 public class CountryModel {
 
@@ -16,31 +19,43 @@ public class CountryModel {
 	private int noOfArmiesCountry = 1;
 	private ArrayList<String> listOfNeighbours;
 
+	/**
+	 * ContryModel Constructor Create a new empty ArrayList
+	 */
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
 	}
-	
 
+	/**
+	 * CountryModel Parameterized Constructor
+	 * 
+	 * @param countryName Name of country
+	 */
 	public CountryModel(String countryName) {
-		//this.countryName = countryName;
+		// this.countryName = countryName;
 		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
 	}
 
-	
-
 	/**
-	 * 
-	 * Constructor of Country class.
+	 * CountryModel Parameterized Constructor
 	 * 
 	 * @param countryName name of the new country
-	 * @param continent   continent object which contains this country
+	 * @param continent   Continent object which contains this country
 	 */
 	public CountryModel(String countryName, ContinentModel continent) {
 		this.setCountryName(countryName);
 		this.setBelongsTo(continent);
 		this.listOfNeighbours = new ArrayList<>();
 	}
+
+	/**
+	 * CountryModel Parameterized Constructor
+	 * 
+	 * @param countryName      Name of country
+	 * @param continentModel   Continent object which contains this country
+	 * @param listOfNeighbours List of all the neighbours country names
+	 */
 
 	public CountryModel(String countryName, ContinentModel continentModel, ArrayList<String> listOfNeighbours) {
 		this.countryName = countryName;
@@ -49,13 +64,17 @@ public class CountryModel {
 	}
 
 	/**
-	 * @return the countryName
+	 * getCountryName Method Getter Function to get String name
+	 * 
+	 * @return the countryName Name of country
 	 */
 	public String getCountryName() {
 		return countryName;
 	}
 
 	/**
+	 * setCountryName Method Setter Function to set name of country
+	 * 
 	 * @param countryName the countryName to set
 	 */
 	public void setCountryName(String countryName) {
@@ -63,6 +82,8 @@ public class CountryModel {
 	}
 
 	/**
+	 * getBelongsTo Method Method of type ContinentModel
+	 * 
 	 * @return the belongsTo
 	 */
 	public ContinentModel getBelongsTo() {
@@ -70,45 +91,66 @@ public class CountryModel {
 	}
 
 	/**
+	 * setBelongsTo Method
+	 * 
 	 * @param belongsTo the belongsTo to set
 	 */
 	public void setBelongsTo(ContinentModel belongsTo) {
 		this.belongsTo = belongsTo;
 	}
 
+	/**
+	 * addNeighbour Method Adds a new neighbour to a country
+	 * 
+	 * @param countryModel a CountryModel{@link CountryModel} object
+	 */
+
 	public boolean addNeighbour(String countryName) {
 		return this.listOfNeighbours.add(countryName);
 	}
 
 	/**
-	 * @return the listOfNeighbours
+	 * getListOfNeighbours Method
+	 * 
+	 * @return the listOfNeighbours of ArrayList type{@link ArrayList}
 	 */
 	public ArrayList<String> getListOfNeighbours() {
 		return listOfNeighbours;
 	}
 
 	/**
-	 * @return the noOfArmiesCountry
+	 * getNoOfArmiesCountry Method Getter Function to get noOfArmiesCountry
+	 * 
+	 * @return the noOfArmiesCountry Integer
 	 */
 	public int getNoOfArmiesCountry() {
 		return noOfArmiesCountry;
 	}
-	
+
 	/**
+	 * setNoOfArmiesCountry Method
+	 * 
 	 * @param noOfArmiesCountry the noOfArmiesCountry to set
 	 */
 	public void setNoOfArmiesCountry(int noOfArmiesCountry) {
 		this.noOfArmiesCountry = noOfArmiesCountry;
 	}
-	
+
 	public void addNoOfArmiesCountry() {
 		noOfArmiesCountry++;
 	}
-	
+
 	public void removeNoOfArmiesCountry() {
 		noOfArmiesCountry--;
 	}
-	
+
+	/**
+	 * searchNeighboursCountry Method
+	 * A function to find neighbour country to a country
+	 * @param countryName
+	 * @return CountryModel object
+	 */
+
 	public String searchNeighboursCountry(String countryName) {
 		countryName = countryName.toLowerCase();
 		for (String country: listOfNeighbours)
@@ -119,8 +161,10 @@ public class CountryModel {
 		}
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
