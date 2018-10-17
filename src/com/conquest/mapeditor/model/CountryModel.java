@@ -101,8 +101,9 @@ public class CountryModel {
 
 	/**
 	 * addNeighbour Method Adds a new neighbour to a country
-	 * 
-	 * @param countryModel a CountryModel{@link CountryModel} object
+	 * countryModel a CountryModel{@link CountryModel} object
+	 * @param countryName adds a neighbour country
+	 * @return boolean 
 	 */
 
 	public boolean addNeighbour(String countryName) {
@@ -147,7 +148,7 @@ public class CountryModel {
 	/**
 	 * searchNeighboursCountry Method
 	 * A function to find neighbour country to a country
-	 * @param countryName
+	 * @param countryName name of country to search
 	 * @return CountryModel object
 	 */
 

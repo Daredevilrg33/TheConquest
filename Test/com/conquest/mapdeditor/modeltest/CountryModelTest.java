@@ -50,7 +50,7 @@ public class CountryModelTest {
 		countryNeighbourModels.add("NEPAL");
 		countryNeighbourModels.add("SRILANKA");
 	}
-
+	
 	/**
 	 * Tear down.
 	 * @throws Exception the exception
