@@ -69,7 +69,7 @@ public class ContinentModelTest {
 	public void searchCountryTest() {
 		CountryModel c=new CountryModel("INDIA",cm,countryNeighbourModels);
 		cm.addCountry(c);
-		System.out.println(cm.searchCountry("INDIA"));
+		//System.out.println(cm.searchCountry("INDIA"));
 		assertEquals("INDIA",cm.searchCountry("INDIA").getCountryName());
 
 	}
