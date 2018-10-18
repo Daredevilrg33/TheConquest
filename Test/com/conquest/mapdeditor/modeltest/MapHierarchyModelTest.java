@@ -124,4 +124,20 @@ public class MapHierarchyModelTest {
 		assertEquals("RUSSIA", b.searchContinent("RUSSIA").getContinentName());
 
 	}
+	
+	@Test
+	public void deleteContinentTest() {
+		//fail("Not yet implemented");
+		b.deleteContinent("RUSSIA");
+		System.out.println(b.searchContinent("RUSSIA").getContinentName());
+		//assertNull(b.searchContinent("RUSSIA").getContinentName());
+		//deleteCountry
+		System.out.println(b.searchCountry("KREM").getCountryName());
+		//b.deleteCountry("KREM");
+		//System.out.println(b.searchCountry("KREM").getCountryName());
+		//assertNull(b.searchCountry("KREM").getCountryName());
+
+		
+	}
+	
 }
