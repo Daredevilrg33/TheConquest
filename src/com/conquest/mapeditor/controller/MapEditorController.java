@@ -152,6 +152,7 @@ public class MapEditorController implements ActionListener {
 						for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 							countryModel.addNeighbour(countryInput.getText().trim());
 							countryNameList.add(countryModel.getCountryName());
+							
 						}
 						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(), lastOperatedContinent,
 								countryNameList);
