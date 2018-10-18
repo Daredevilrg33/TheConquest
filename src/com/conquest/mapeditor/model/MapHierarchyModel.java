@@ -2,6 +2,8 @@ package com.conquest.mapeditor.model;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * The Class MapHierarchyModel.
  *
@@ -225,6 +227,54 @@ public class MapHierarchyModel {
 		}
 		return "";
 	}
+	
+	/**
+	 * Method to rename a continent.
+	 * 
+	 * @param continentName
+	 *            name of the continent want to rename
+	 * @param newContinentName
+	 *            new name of the continent
+	 * @return succeed or failed error message
+	 */
+	public String renameContinent(String continentName, String newContinentName) {
+		ContinentModel continent = searchContinent(continentName);
+		if(continent == null){
+			return "Continent  '"+continentName+"'  you want to change does not exists";
+		}
+		if (searchContinent(newContinentName)!=null){
+			return  "Continent '"+newContinentName+"' already exits";
+		}
+		else
+		{
+			continent.setContinentName(newContinentName);
+		}
+		return "";
+	}
+	
+	/**
+	 * Method to rename a continent.
+	 * 
+	 * @param continentName
+	 *            name of the continent want to rename
+	 * @param newContinentName
+	 *            new name of the continent
+	 * @return succeed or failed error message
+	 */
+	public String renameCountry(String countryName, String newCountrytName) {
+		CountryModel country = searchCountry(countryName);
+		if(country == null){
+			return "Country  '"+countryName+"'  you want to change does not exists";
+		}
+		if (searchCountry(newCountrytName)!=null){
+			return  "Country '"+newCountrytName+"' already exits";
+		}
+		else
+		{
+			country.setCountryName(newCountrytName);
+		}
+		return "";
+	}
 
 	/**
 	 * Method to delete a country.
@@ -237,6 +287,7 @@ public class MapHierarchyModel {
 		if (deleteCountry != null) {
 			deleteCountry.getBelongsTo().deleteCountry(deleteCountry);
 			getCountryList().remove(deleteCountry);
+			totalCountries--;
 			deleteCountry = null;
 		} else {
 			return "Can't find country with this name";

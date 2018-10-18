@@ -74,6 +74,12 @@ public class MapEditorController implements ActionListener {
 		case "Delete Country":
 			deleteCountry();
 			break;
+		case "Rename Continent":
+			renameContinent();
+			break;
+		case "Rename Country":
+			renameCountry();
+			break;
 		default:
 			break;
 
@@ -185,5 +191,60 @@ public class MapEditorController implements ActionListener {
 		} else
 			JOptionPane.showMessageDialog(null, errorMsg);
 
+	}
+	
+	/**
+	 * renameContinent method
+	 * Void Method to implement response to renameContinentMenu, provide GUI to rename continent in tree
+	 */
+	private void renameContinent() {
+		String errorMsg;
+		boolean retry = true;
+		while (retry) {
+			String inputContinent = JOptionPane.showInputDialog(null, "Enter the new continent name: ");
+			if (inputContinent != null) {
+				if ((inputContinent = inputContinent.trim()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Continent name can't be empty");
+				} 
+				else {
+					if ((errorMsg=mapHierarchyModel.renameContinent(selectedNode,inputContinent))==""){
+						mapEditorView.updateHierarchyTree();
+						retry = false;
+					}
+					else JOptionPane.showMessageDialog(null,errorMsg);
+				}	
+			}
+			else
+				retry = false;
+		}
+		
+	}
+	
+	/**
+	 * renameCountry method
+	 * Void Method to implement response to renameContinentMenu, provide GUI to rename country in tree and matrix
+	 */
+	private void renameCountry() {
+		String errorMsg;
+		boolean retry = true;
+		while (retry) {
+			String inputCountry = JOptionPane.showInputDialog(null, "Enter the new country name: ");
+			if (inputCountry != null) {
+				if ((inputCountry = inputCountry.trim()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Country name can't be empty");
+				} 
+				else {
+					if ((errorMsg=mapHierarchyModel.renameCountry(selectedNode,inputCountry))==""){
+						mapEditorView.updateHierarchyTree();
+						mapEditorView.updatePaintMatrix();
+						retry = false;
+					}
+					else JOptionPane.showMessageDialog(null,errorMsg);
+				}	
+			}
+			else
+				retry = false;
+		}
+		
 	}
 }
