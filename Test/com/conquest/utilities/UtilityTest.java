@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.mapeditor.model.MapHierarchyModel;
 
 public class UtilityTest {
 	Utility u = new Utility();
@@ -38,7 +39,7 @@ public class UtilityTest {
 	 * after that it compares with the list of counties that we have passed.
 	 */
 	@Test
-	public void parseAndValidateMaptest() {
+	public void parseAndValidateMapTest() {
 		// fail("Not yet implemented");
 		ArrayList<CountryModel> parsedCountryList = u.parseAndValidateMap("E:\\Asia.map").getCountryList();
 		System.out.println(parsedCountryList.size());
@@ -48,7 +49,6 @@ public class UtilityTest {
 		for (CountryModel loopCountry : parsedCountryList) {
 			countryNames.add(loopCountry.getCountryName());
 		}
-		System.out.println(countryNames + "hiiiii");
 		countryList.add("Russia");
 		countryList.add("Japan");
 		countryList.add("Georgia");
@@ -56,5 +56,25 @@ public class UtilityTest {
 		System.out.println(countryList);
 		assertTrue(countryList.equals(countryNames));
 	}
+	/**
+	 * Function to check whether the function is reading the file and returning the data without returning null.
+	 */
+	@Test
+	public void convertMapDataToStringTest() {
+		// fail("Not yet implemented");
+		MapHierarchyModel mapHierarchyModel = u.parseAndValidateMap("E:\\Asia.map");
+		System.out.println(u.convertMapDataToString(mapHierarchyModel));
+		assertNotNull(u.convertMapDataToString(mapHierarchyModel));
+		
+	}
+	
+	@Test
+	public void saveMapFileTest() {
+		MapHierarchyModel mapHierarchyModel = u.parseAndValidateMap("E:\\Asia.map");
+		String name="testfile";
+		assertTrue(u.saveMapFile(mapHierarchyModel, name));
+		
+	}
+	
 
 }

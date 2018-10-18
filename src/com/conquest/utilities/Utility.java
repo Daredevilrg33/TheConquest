@@ -156,7 +156,7 @@ public class Utility {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @return the string
 	 */
-	private String convertMapDataToString(MapHierarchyModel mapHierarchyModel) {
+	public String convertMapDataToString(MapHierarchyModel mapHierarchyModel) {
 		String data = "";
 
 		if (mapHierarchyModel.getContinentsList() != null && mapHierarchyModel.getContinentsList().size() > 0) {
