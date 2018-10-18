@@ -17,38 +17,42 @@ public class ReinfrocementWindowController {
 	private PlayerModel[] players;
 	private int prevCounter = 0;
 
-	
-	
-	public  ReinfrocementWindowController(PlayerModel[] players,ReinforcementWindow reinforcementWindow, int noOfPlayers, MapHierarchyModel mapModel) {
+	public ReinfrocementWindowController(PlayerModel[] players, ReinforcementWindow reinforcementWindow,
+			int noOfPlayers, MapHierarchyModel mapModel) {
 		this.reinforcementWindow = reinforcementWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapModel = mapModel;
-		this.players =  players;
-		
+		this.players = players;
+
 		updateUIInfo();
 
 	}
-	
+
 //	private void initializingPlayerModels(int Players, MapHierarchyModel mapModel) {
 //	
 //		players = new PlayerModel[Players];
 //		updateUIInfo();
 //	
 //	}
-	
-	public void sending(String sourceCountry,String destinationCountry,int armies) {
 
-		while(true) {
-			if(players[prevCounter].getPlayerCountryList().get(sourceCounter).getCountryName().trim()
+	public void sending(String sourceCountry, String destinationCountry, int armies) {
+
+		while (true) {
+			if (players[prevCounter].getPlayerCountryList().get(sourceCounter).getCountryName().trim()
 					.equalsIgnoreCase(sourceCountry.trim())) {
-				if(players[prevCounter].getPlayerCountryList().get(destinationCounter).getCountryName().trim()
+				if (players[prevCounter].getPlayerCountryList().get(destinationCounter).getCountryName().trim()
 						.equalsIgnoreCase(destinationCountry.trim())) {
-					for(int s=0; s<armies;s++) {
+					for (int s = 0; s < armies; s++) {
 						players[prevCounter].getPlayerCountryList().get(destinationCounter).addNoOfArmiesCountry();
 						players[prevCounter].getPlayerCountryList().get(sourceCounter).removeNoOfArmiesCountry();
-						}
-					System.out.println("New number of armies in destination"+players[prevCounter].getPlayerCountryList().get(destinationCounter).getCountryName()+" is "+players[prevCounter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
-					System.out.println("New number of armies in source"+players[prevCounter].getPlayerCountryList().get(sourceCounter).getCountryName()+" is "+players[prevCounter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+					}
+					System.out.println("New number of armies in destination"
+							+ players[prevCounter].getPlayerCountryList().get(destinationCounter).getCountryName()
+							+ " is " + players[prevCounter].getPlayerCountryList().get(destinationCounter)
+									.getNoOfArmiesCountry());
+					System.out.println("New number of armies in source"
+							+ players[prevCounter].getPlayerCountryList().get(sourceCounter).getCountryName() + " is "
+							+ players[prevCounter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 					break;
 				}
 				destinationCounter++;
@@ -64,23 +68,25 @@ public class ReinfrocementWindowController {
 //				sourceCounter = 0;
 //				prevCounter++;
 //				}
-			}
 		}
-		
-	
+	}
+
 	public void updateUIInfo() {
 		prevCounter = counter;
 
-		reinforcementWindow.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+		reinforcementWindow
+				.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
-		reinforcementWindow.updateArmyLabel(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry(),players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
+		reinforcementWindow.updateArmyLabel(
+				players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry(),
+				players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
-		reinforcementWindow.updateComboBoxDestinationCountries(players[counter].getPlayerCountryList().get(destinationCounter).getListOfNeighbours());
+		reinforcementWindow.updateComboBoxDestinationCountries(
+				players[counter].getPlayerCountryList().get(destinationCounter).getListOfNeighbours());
 		counter++;
 		if (counter == noOfPlayers)
 			counter = 0;
-		
+
 	}
-	
 
 }

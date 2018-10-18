@@ -240,9 +240,7 @@ public class MapHierarchyModel {
 
 	/**
 	 * Method to delete a country.
-	 * 
-	 * @param continentName
-	 *            name of the continent want to delete
+	 * @param countryName name of the country want to delete
 	 * @return succeed or failed error message
 	 */
 	public String deleteCountry(String countryName) {
