@@ -83,6 +83,8 @@ public class Utility {
 					continue;
 				}
 				if (isContinent) {
+					if(currentLine.indexOf('=')>0)
+					{
 					String[] continentValues = currentLine.split("=");
 					if (continentValues.length > 0) {
 						ContinentModel continentModel = new ContinentModel(continentValues[0]);
@@ -90,6 +92,15 @@ public class Utility {
 							continentModel.setControlValue(Integer.valueOf(continentValues[1]));
 						continentModels.add(continentModel);
 					}
+					}
+					else
+					{
+						String valErrorMessage = "Map is invalid as there are no territories tag defined";
+						mapModel.setValErrorFlag(true);
+						mapModel.setErrorMsg(valErrorMessage);
+						break;	
+					}
+					continue;
 				}
 
 				if (isCountry) {
@@ -120,9 +131,19 @@ public class Utility {
 				}
 				System.out.println(currentLine);
 			}
-
+			
 			mapModel.setContinentsList(continentModels);
-			mapModel.setCountryList(countryModels);
+			if(countryModels.size()==0 && !mapModel.isValErrorFlag())
+			{
+				String valErrorMessage = "Map is invalid as there are no countries defined";
+				mapModel.setValErrorFlag(true);
+				mapModel.setErrorMsg(valErrorMessage);
+			}
+			else
+				mapModel.setCountryList(countryModels);	
+
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
