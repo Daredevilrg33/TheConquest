@@ -68,6 +68,9 @@ public class UtilityTest {
 		
 	}
 	
+	/** 
+	 * Method to check wheter map file is getting created after the Map HierarchModel's object and file name is passed
+	 */
 	@Test
 	public void saveMapFileTest() {
 		MapHierarchyModel mapHierarchyModel = u.parseAndValidateMap("E:\\Asia.map");

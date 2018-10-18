@@ -100,9 +100,13 @@ public class ContinentModelTest {
 		assertEquals("RUSSIA", cm.searchCountry("RUSSIA").getCountryName());
 		assertEquals("AMERICA", cm.searchCountry("AMERICA").getCountryName());
 
+
 		cm.deleteCountry(c1);
-//		System.out.println(cm.searchCountry("AMERICA").getCountryName());
+		//System.out.println(cm.searchCountry("AMERICA").getCountryName());
 		assertNull(cm.searchCountry("AMERICA"));
+
+
+
 
 	}
 
