@@ -294,6 +294,28 @@ public class MapHierarchyModel {
 		}
 		return "";
 	}
+	
+	/**
+	 * Method to move a country.
+	 * 
+	 * @param continentName name of the continent to which you want to move
+	 * @param countryName name of the country you want to move
+	 * @return succeed or failed error message
+	 */
+	public String moveCountry(String countryName, String continentName) {
+		ContinentModel toContinent = searchContinent(continentName);
+		CountryModel moveCountry = searchCountry(countryName);
+		if (toContinent == null) 
+			return "Continent  '"+continentName+"'  you want to move does not exists";
+		else if(continentName.equalsIgnoreCase(moveCountry.getBelongsTo().getContinentName()))
+			return "Continent name cannot be same as existing one";
+		else{
+				moveCountry.getBelongsTo().getCountriesList().remove(moveCountry);
+				toContinent.getCountriesList().add(moveCountry);
+				moveCountry.setBelongsTo(toContinent);
+		}
+		return "";
+	}
 
 	/**
 	 * Method to add a new country to an existing continent.

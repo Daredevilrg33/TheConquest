@@ -149,6 +149,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		renameCountry = new JMenuItem("Rename Country");
 		renameCountry.addActionListener(mapEditorController);
 		moveCountry = new JMenuItem("Move to another continent");
+		moveCountry.addActionListener(mapEditorController);
 
 		countryMenu.add(deleteCountry);
 		countryMenu.addSeparator();
@@ -338,7 +339,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 						if (countryName.trim().equalsIgnoreCase(neighbourCountryName)) {
 							countryModel.getListOfNeighbours().remove(countryName);
 							adjacencyTable.setValueAt("0", row, col);
-							System.out.println(countryModel);
 							return;
 						}
 					}
@@ -354,7 +354,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 						if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
 							countryModel.addNeighbour(countryModel1.getCountryName().trim());
 							adjacencyTable.setValueAt("1", row, col);
-							System.out.println(countryModel);
 							return;
 						}
 					}

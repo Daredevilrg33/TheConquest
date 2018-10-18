@@ -80,6 +80,9 @@ public class MapEditorController implements ActionListener {
 		case "Rename Country":
 			renameCountry();
 			break;
+		case "Move to another continent":
+			moveCountry();
+			break;
 		default:
 			break;
 
@@ -222,7 +225,7 @@ public class MapEditorController implements ActionListener {
 	
 	/**
 	 * renameCountry method
-	 * Void Method to implement response to renameContinentMenu, provide GUI to rename country in tree and matrix
+	 * Void Method to implement response to renameCountryMenu, provide GUI to rename country in tree and matrix
 	 */
 	private void renameCountry() {
 		String errorMsg;
@@ -237,6 +240,32 @@ public class MapEditorController implements ActionListener {
 					if ((errorMsg=mapHierarchyModel.renameCountry(selectedNode,inputCountry))==""){
 						mapEditorView.updateHierarchyTree();
 						mapEditorView.updatePaintMatrix();
+						retry = false;
+					}
+					else JOptionPane.showMessageDialog(null,errorMsg);
+				}	
+			}
+			else
+				retry = false;
+		}
+		
+	}
+	/**
+	 * moveCountry method
+	 * Void Method to implement response to moveCountryMenu, provide GUI to move country to another continent in tree
+	 */
+	private void moveCountry() {
+		String errorMsg;
+		boolean retry = true;
+		while (retry) {
+			String inputContinent = JOptionPane.showInputDialog(null, "Enter the name of the continent to which you want to move this country: ");
+			if (inputContinent != null) {
+				if ((inputContinent = inputContinent.trim()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Continent name can't be empty");
+				} 
+				else {
+					if ((errorMsg=mapHierarchyModel.moveCountry(selectedNode,inputContinent))==""){
+						mapEditorView.updateHierarchyTree();
 						retry = false;
 					}
 					else JOptionPane.showMessageDialog(null,errorMsg);
