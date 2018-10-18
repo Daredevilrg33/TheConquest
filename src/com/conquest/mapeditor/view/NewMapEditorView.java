@@ -300,9 +300,11 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 							System.out.println("neighbourCountryName" + neighbourCountryName);
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
-
 							} else {
-								adjacencyTable.setValueAt("0", i, j);
+								if(adjacencyTable.getValueAt(i,j ) == null)
+								{
+									adjacencyTable.setValueAt("0", i, j);			
+								}
 							}
 						}
 					}
@@ -327,39 +329,43 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		int col = adjacencyTable.columnAtPoint(e.getPoint());
 		String neighbourCountryName = countriesColumn[col];
 		String sourceCountryName = vectorData[row][0];
+		
 		System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> "
 				+ row + "col--> " + col);
-
-		if (adjacencyTable.getValueAt(row, col) == "1") {
-			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-				System.out.println("Value 1 Source Country: " + sourceCountryName);
-				System.out.println("Value 1 Neighbour Country: " + neighbourCountryName);
-				if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-					for (String countryName : countryModel.getListOfNeighbours()) {
-						if (countryName.trim().equalsIgnoreCase(neighbourCountryName)) {
-							countryModel.getListOfNeighbours().remove(countryName);
-							adjacencyTable.setValueAt("0", row, col);
-							return;
+		if(!neighbourCountryName.trim().equalsIgnoreCase(sourceCountryName.trim()))
+		{
+			if (adjacencyTable.getValueAt(row, col) == "1") {
+				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+					System.out.println("Value 1 Source Country: " + sourceCountryName);
+					System.out.println("Value 1 Neighbour Country: " + neighbourCountryName);
+					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+						for (String countryName : countryModel.getListOfNeighbours()) {
+							if (countryName.trim().equalsIgnoreCase(neighbourCountryName)) {
+								countryModel.getListOfNeighbours().remove(countryName);
+								adjacencyTable.setValueAt("0", row, col);
+								return;
+							}
 						}
 					}
 				}
-			}
 
-		} else if (adjacencyTable.getValueAt(row, col) == "0") {
-			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-				System.out.println("Value 2 Source Country: " + sourceCountryName);
-				System.out.println("Value 2 Neighbour Country: " + neighbourCountryName);
-				if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-					for (CountryModel countryModel1 : mapHierarchyModel.getCountryList()) {
-						if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
-							countryModel.addNeighbour(countryModel1.getCountryName().trim());
-							adjacencyTable.setValueAt("1", row, col);
-							return;
+			} else if (adjacencyTable.getValueAt(row, col) == "0") {
+				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+					System.out.println("Value 2 Source Country: " + sourceCountryName);
+					System.out.println("Value 2 Neighbour Country: " + neighbourCountryName);
+					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
+						for (CountryModel countryModel1 : mapHierarchyModel.getCountryList()) {
+							if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
+								countryModel.addNeighbour(countryModel1.getCountryName().trim());
+								adjacencyTable.setValueAt("1", row, col);
+								return;
+							}
 						}
 					}
 				}
 			}
 		}
+		
 
 	}
 
