@@ -3,6 +3,8 @@ package com.conquest.mapeditor.view;
 
 import java.awt.AWTEvent;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -13,11 +15,14 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import com.conquest.mapeditor.controller.MapEditorController;
 import com.conquest.mapeditor.model.ContinentModel;
@@ -60,6 +65,11 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
+	
+	private JPopupMenu continentMenu, countryMenu;
+	private JMenuItem deleteContinent, renameContinent;
+	private JMenuItem deleteCountry, renameCountry, moveCountry;
+	private String userSelTreeNode;
 
 	/**
 	 * NewMapEditorView Constructor
@@ -122,6 +132,31 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		jButtonSave.setBounds(addCountry.getBounds().x + (int) addCountry.getBounds().getWidth() + 10, 20,
 				size.width - 100, size.height + 10);
 		add(jButtonSave);
+		
+		
+		/** menu buttons in the hierarchy tree for editing the map */
+		continentMenu = new JPopupMenu();	
+		deleteContinent = new JMenuItem("Delete Continent");
+		deleteContinent.addActionListener(mapEditorController);
+		renameContinent = new JMenuItem("Rename Continent");
+		renameContinent.addActionListener(mapEditorController);
+	    
+	    continentMenu.add(deleteContinent);
+	    continentMenu.addSeparator();
+	    continentMenu.add(renameContinent);
+	    
+	    countryMenu = new JPopupMenu();	
+	    deleteCountry = new JMenuItem("Delete Country");
+	    deleteCountry.addActionListener(mapEditorController);
+	    renameCountry = new JMenuItem("Rename Country");
+	    renameCountry.addActionListener(mapEditorController);
+	    moveCountry = new JMenuItem("Move to another continent");
+
+	    countryMenu.add(deleteCountry);
+	    countryMenu.addSeparator();
+	    countryMenu.add(renameCountry);
+	    countryMenu.add(moveCountry);
+		
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -178,6 +213,28 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			tRoot.add(continentNode);
 		}
 		treeView = new TreeRenderer(tRoot);
+		treeView.addMouseListener( new  MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				int selRow = treeView.getRowForLocation(e.getX(), e.getY());
+				TreePath selPath = treeView.getPathForLocation(e.getX(), e.getY());
+				if (selRow!=-1 && (e.getButton() == 3)){
+					treeView.setSelectionPath(selPath);
+					if (selPath!=null) {
+						 if (selPath.getParentPath().getParentPath()==null){//continents
+							userSelTreeNode =selPath.getLastPathComponent().toString();
+							continentMenu.show(e.getComponent(), e.getX()+5, e.getY()+5);
+							
+						}
+						else{//countries
+							userSelTreeNode =selPath.getLastPathComponent().toString();
+							countryMenu.show(e.getComponent(), e.getX()+5, e.getY()+5);
+						}
+					}
+				}
+				//popupMenu.show(e.getComponent(), e.getX(), e.getY());
+			}
+		}); 
+		
 		treeView.setShowsRootHandles(true);
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
@@ -344,6 +401,16 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getUserSelTreeNode() {
+		return userSelTreeNode;
+	}
+
+	public void setUserSelTreeNode(String userSelTreeNode) {
+		this.userSelTreeNode = userSelTreeNode;
+	}
+	
+	
 
 
 }

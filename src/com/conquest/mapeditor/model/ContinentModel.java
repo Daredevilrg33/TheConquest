@@ -75,6 +75,14 @@ public class ContinentModel {
 	public void addCountry(CountryModel country) {
 		countriesList.add(country);
 	}
+	
+	/**
+	 * Method to delete a country from countryList.
+	 * @param country country object to delete
+	 */
+	public void deleteCountry(CountryModel country) {
+		countriesList.remove(country);
+	}	
 
 	/**
 	 * searchCountry Method

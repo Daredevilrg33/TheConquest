@@ -23,6 +23,7 @@ import com.conquest.utilities.Utility;
 public class MapEditorController implements ActionListener {
 	private NewMapEditorView mapEditorView;
 	private MapHierarchyModel mapHierarchyModel;
+	private String selectedNode;
 
 	/**
 	 * MapEditorController Constructor
@@ -54,6 +55,7 @@ public class MapEditorController implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		String buttonName = event.getActionCommand();
+		selectedNode = mapEditorView.getUserSelTreeNode();
 		switch (buttonName) {
 		case "Add Continent":
 			addContinent();
@@ -64,6 +66,12 @@ public class MapEditorController implements ActionListener {
 		case "Save":
 			Utility utility = new Utility();
 			utility.saveMapFile(mapHierarchyModel,mapHierarchyModel.getConquestMapName());
+			break;
+		case "Delete Continent":
+			deleteContinent();
+			break;
+		case "Delete Country":
+			deleteCountry();
 			break;
 		default:
 			break;
@@ -156,4 +164,30 @@ public class MapEditorController implements ActionListener {
 		}
 	}
 
+	/**
+	 * deleteContinent method
+	 * Void Method to implement response to deleteContinentMenu, provide GUI to delete continent in tree
+	 */
+	private void deleteContinent() {
+		String errorMsg;
+		if ((errorMsg=mapHierarchyModel.deleteContinent(selectedNode))==""){
+			mapEditorView.updateHierarchyTree();
+		}
+		else JOptionPane.showMessageDialog(null,errorMsg);
+		
+	}
+	
+	/**
+	 * deleteCountry method
+	 * Void Method to implement response to deleteCountryMenu, provide GUI to delete country in tree
+	 */
+	private void deleteCountry() {
+		String errorMsg;
+		if ((errorMsg=mapHierarchyModel.deleteCountry(selectedNode))==""){
+			mapEditorView.updateHierarchyTree();
+			mapEditorView.updatePaintMatrix();
+		}
+		else JOptionPane.showMessageDialog(null,errorMsg);
+		
+	}
 }

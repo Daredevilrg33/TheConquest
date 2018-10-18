@@ -71,14 +71,15 @@ public class Utility {
 				}
 				if (currentLine.equalsIgnoreCase("[Territories]")) {
 					isCountry = true;
-					if(!isContinent)
+					isContinent = false;
+					if(!isContinent && continentModels.size()==0)
 					{
 						String valErrorMessage ="Map is invalid as there are no continents defined";
 						mapModel.setValErrorFlag(true);
 						mapModel.setErrorMsg(valErrorMessage);
 						break;
 					}
-					isContinent = false;
+					
 					continue;
 				}
 				if (isContinent) {
