@@ -17,12 +17,12 @@ import com.conquest.mapeditor.model.CountryModel;
  * The Class CountryModelTest.
  */
 public class CountryModelTest {
-	
 
-	private ArrayList<String> countryNeighbourModels ;
+	private ArrayList<String> countryNeighbourModels;
 
 	/**
 	 * Sets the up before class.
+	 * 
 	 * @throws Exception the exception
 	 */
 	@BeforeClass
@@ -31,6 +31,7 @@ public class CountryModelTest {
 
 	/**
 	 * Tear down after class.
+	 * 
 	 * @throws Exception the exception
 	 */
 	@AfterClass
@@ -39,20 +40,22 @@ public class CountryModelTest {
 
 	/**
 	 * Before test.
+	 * 
 	 * @throws Exception the exception
 	 */
 	@Before
 	public void beforeTest() throws Exception {
-	
+
 		countryNeighbourModels = new ArrayList<>();
 		countryNeighbourModels.add("BHUTAN");
 		countryNeighbourModels.add("PAKISTAN");
 		countryNeighbourModels.add("NEPAL");
 		countryNeighbourModels.add("SRILANKA");
 	}
-	
+
 	/**
 	 * Tear down.
+	 * 
 	 * @throws Exception the exception
 	 */
 	@After
@@ -60,20 +63,20 @@ public class CountryModelTest {
 	}
 
 	/**
-	 * searchNeighboursCountryTest Unit Test
-	 * Test used for checking the neighbours of country.
+	 * searchNeighboursCountryTest Unit Test Test used for checking the neighbours
+	 * of country.
 	 */
 	@Test
 	public void searchNeighboursCountryTest() {
-	 ContinentModel cm = new ContinentModel("ASIA");
+		ContinentModel cm = new ContinentModel("ASIA");
 
-		CountryModel c=new CountryModel("INDIA",cm,countryNeighbourModels);
-		assertEquals("BHUTAN",c.searchNeighboursCountry("Bhutan"));
-		assertEquals("PAKISTAN",c.searchNeighboursCountry("PAKISTAN"));
-		assertEquals("NEPAL",c.searchNeighboursCountry("NEPAL"));
-		assertEquals("SRILANKA",c.searchNeighboursCountry("SRILANKA"));
+		CountryModel c = new CountryModel("INDIA", cm, countryNeighbourModels);
+		assertEquals("BHUTAN", c.searchNeighboursCountry("Bhutan"));
+		assertEquals("PAKISTAN", c.searchNeighboursCountry("PAKISTAN"));
+		assertEquals("NEPAL", c.searchNeighboursCountry("NEPAL"));
+		assertEquals("SRILANKA", c.searchNeighboursCountry("SRILANKA"));
 
-		//fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 }

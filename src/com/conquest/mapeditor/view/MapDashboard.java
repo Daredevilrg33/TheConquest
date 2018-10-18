@@ -25,25 +25,25 @@ import com.conquest.window.MainMenuScreen;
 
 /**
  * The Class MapDashboard.
+ * 
  * @author Nancy Goyal
  */
 public class MapDashboard extends JFrame implements ActionListener {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -6731694007847910246L;
-	
+
 	/** The button new map. */
 	private JButton btnNewMap;
-	
+
 	/** The button load map. */
 	private JButton btnLoadMap;
-	
+
 	/** The file name. */
 	private String filePath = "", fileName = "";
 
 	/**
-	 * MapDashboard Constructor
-	 * Instantiates a new map dashboard.
+	 * MapDashboard Constructor Instantiates a new map dashboard.
 	 */
 	public MapDashboard() {
 
@@ -94,14 +94,13 @@ public class MapDashboard extends JFrame implements ActionListener {
 			dispose();
 		} else if (event.getSource() == btnLoadMap) {
 			loadFromFile();
-		} 
+		}
 
 	}
 
 	/**
-	 * loadFromFile Method
-	 * Method to implement response to Load Existing Map, provide GUI to input
-	 * file's name.
+	 * loadFromFile Method Method to implement response to Load Existing Map,
+	 * provide GUI to input file's name.
 	 */
 	private void loadFromFile() {
 
@@ -112,22 +111,16 @@ public class MapDashboard extends JFrame implements ActionListener {
 		System.out.println("File Name : " + fileName);
 		System.out.println("File Path : " + filePath);
 		Utility utility = new Utility();
-		MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);	
-		
-		if(!mapModel.isValErrorFlag())
-		{
+		MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
+
+		if (!mapModel.isValErrorFlag()) {
 			dispose();
 			NewMapEditorView newMap = new NewMapEditorView(mapModel);
 			newMap.setVisible(true);
-		}
-		else
-		{
+		} else {
 			String valErrorMsg = mapModel.getErrorMsg();
-			JOptionPane.showMessageDialog(this,
-					valErrorMsg,
-				    "Error Message",
-				    JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
 		}
-		
+
 	}
 }

@@ -26,31 +26,30 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 	/** The button select file. */
 	private JButton buttonSelectFile;
-	
+
 	/** The file path. */
 	private String filePath;
-	
+
 	/** The file name. */
 	private String fileName;
-	
+
 	/** The text field map. */
 	private JTextField textFieldMap;
-	
+
 	/** The players list. */
 	private String[] playersList = new String[] { "3", "4", "5" };
-	
+
 	/** The button start game. */
 	private JButton buttonStartGame;
-	
+
 	/** The combo box select player. */
 	private JComboBox<String> comboBoxSelectPlayer;
-	
+
 	/** The no of players. */
 	private String noOfPlayers;
 
 	/**
-	 * NewGameMenuScreen Constructor
-	 * Instantiates a new new game menu screen.
+	 * NewGameMenuScreen Constructor Instantiates a new new game menu screen.
 	 */
 	public NewGameMenuScreen() {
 
@@ -155,29 +154,20 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			textFieldMap.setText(fileName);
 		} else if (event.getSource() == buttonStartGame) {
 			noOfPlayers = (String) comboBoxSelectPlayer.getSelectedItem();
-			if(fileName == null || filePath==null || fileName.isEmpty() || filePath.isEmpty()) {
-				JOptionPane.showMessageDialog(this,
-					    "Select Map to continue.",
-					    "Error Message",
-					    JOptionPane.ERROR_MESSAGE);
-			}else
-			{
-				
+			if (fileName == null || filePath == null || fileName.isEmpty() || filePath.isEmpty()) {
+				JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+
 				Utility utility = new Utility();
-				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);	
-				if(!mapModel.isValErrorFlag())
-				{	
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
+				if (!mapModel.isValErrorFlag()) {
 					dispose();
-					GameWindow gameWindow = new GameWindow(mapModel,noOfPlayers);
+					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);
 					gameWindow.setVisible(true);
-				}
-				else
-				{
+				} else {
 					String valErrorMsg = mapModel.getErrorMsg();
-					JOptionPane.showMessageDialog(this,
-							valErrorMsg,
-						    "Error Message",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

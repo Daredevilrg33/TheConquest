@@ -24,8 +24,9 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 public class Utility {
 
 	/**
-	 * pickFile Method
-	 * This method will provide the functionality to pick a map file.
+	 * pickFile Method This method will provide the functionality to pick a map
+	 * file.
+	 * 
 	 * @return : This will return the path of the map.
 	 */
 	public static String pickFile() {
@@ -47,8 +48,8 @@ public class Utility {
 	}
 
 	/**
-	 * parseAndValidateMap Method
-	 * Parses the and validate map.
+	 * parseAndValidateMap Method Parses the and validate map.
+	 * 
 	 * @param filePath the file path
 	 * @return the map hierarchy model
 	 */
@@ -72,14 +73,13 @@ public class Utility {
 				if (currentLine.equalsIgnoreCase("[Territories]")) {
 					isCountry = true;
 					isContinent = false;
-					if(!isContinent && continentModels.size()==0)
-					{
-						String valErrorMessage ="Map is invalid as there are no continents defined";
+					if (!isContinent && continentModels.size() == 0) {
+						String valErrorMessage = "Map is invalid as there are no continents defined";
 						mapModel.setValErrorFlag(true);
 						mapModel.setErrorMsg(valErrorMessage);
 						break;
 					}
-					
+
 					continue;
 				}
 				if (isContinent) {
@@ -130,8 +130,8 @@ public class Utility {
 	}
 
 	/**
-	 * convertMapDataToString Method
-	 * Convert map data to string.
+	 * convertMapDataToString Method Convert map data to string.
+	 * 
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @return the string
 	 */
@@ -166,10 +166,10 @@ public class Utility {
 	}
 
 	/**
-	 * saveMapFile Method
-	 * Save map file.
+	 * saveMapFile Method Save map file.
+	 * 
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param fileName the file name
+	 * @param fileName          the file name
 	 * @return true, if successful
 	 */
 	public boolean saveMapFile(MapHierarchyModel mapHierarchyModel, String fileName) {

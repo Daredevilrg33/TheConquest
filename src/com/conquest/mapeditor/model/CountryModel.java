@@ -100,10 +100,11 @@ public class CountryModel {
 	}
 
 	/**
-	 * addNeighbour Method Adds a new neighbour to a country
-	 * countryModel a CountryModel{@link CountryModel} object
+	 * addNeighbour Method Adds a new neighbour to a country countryModel a
+	 * CountryModel{@link CountryModel} object
+	 * 
 	 * @param countryName adds a neighbour country
-	 * @return boolean 
+	 * @return boolean
 	 */
 
 	public boolean addNeighbour(String countryName) {
@@ -146,16 +147,16 @@ public class CountryModel {
 	}
 
 	/**
-	 * searchNeighboursCountry Method
-	 * A function to find neighbour country to a country
+	 * searchNeighboursCountry Method A function to find neighbour country to a
+	 * country
+	 * 
 	 * @param countryName name of country to search
 	 * @return CountryModel object
 	 */
 
 	public String searchNeighboursCountry(String countryName) {
 		countryName = countryName.toLowerCase();
-		for (String country: listOfNeighbours)
-		{
+		for (String country : listOfNeighbours) {
 			if (country.equalsIgnoreCase(countryName)) {
 				return country;
 			}

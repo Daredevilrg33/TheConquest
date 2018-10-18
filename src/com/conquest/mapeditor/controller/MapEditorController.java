@@ -15,9 +15,10 @@ import com.conquest.mapeditor.view.NewMapEditorView;
 import com.conquest.utilities.Utility;
 
 /**
- * MapEditorController Class using ActionListener {@link ActionListener}
- * Object of Classes NewMapEditorView {@link NewMapEditorView} and
- * MapHierarchyModel {@link MapHierarchyModel} are created
+ * MapEditorController Class using ActionListener {@link ActionListener} Object
+ * of Classes NewMapEditorView {@link NewMapEditorView} and MapHierarchyModel
+ * {@link MapHierarchyModel} are created
+ * 
  * @author dead
  */
 public class MapEditorController implements ActionListener {
@@ -26,24 +27,24 @@ public class MapEditorController implements ActionListener {
 	private String selectedNode;
 
 	/**
-	 * MapEditorController Constructor
-	 * Constructor to give value to mapEditorView
-	 * @param mapEditorView Object of Class NewMapEditorView {@link NewMapEditorView} 
+	 * MapEditorController Constructor Constructor to give value to mapEditorView
+	 * 
+	 * @param mapEditorView Object of Class NewMapEditorView
+	 *                      {@link NewMapEditorView}
 	 */
-	public MapEditorController( NewMapEditorView mapEditorView) {
+	public MapEditorController(NewMapEditorView mapEditorView) {
 		this.mapEditorView = mapEditorView;
 	}
-	
+
 	/**
-	 * addModel method
-	 * Method to add a model to this controller.
-	 * @param mapHierarchyModel object of MapHierarchyModel {@link MapHierarchyModel}
+	 * addModel method Method to add a model to this controller.
+	 * 
+	 * @param mapHierarchyModel object of MapHierarchyModel
+	 *                          {@link MapHierarchyModel}
 	 */
-	public void addModel(MapHierarchyModel mapHierarchyModel)
-	{
+	public void addModel(MapHierarchyModel mapHierarchyModel) {
 		this.mapHierarchyModel = mapHierarchyModel;
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -65,7 +66,7 @@ public class MapEditorController implements ActionListener {
 			break;
 		case "Save":
 			Utility utility = new Utility();
-			utility.saveMapFile(mapHierarchyModel,mapHierarchyModel.getConquestMapName());
+			utility.saveMapFile(mapHierarchyModel, mapHierarchyModel.getConquestMapName());
 			break;
 		case "Delete Continent":
 			deleteContinent();
@@ -81,9 +82,8 @@ public class MapEditorController implements ActionListener {
 	}
 
 	/**
-	 * addContinent method
-	 * Void Method to implement response to addContinentBtn, provide GUI to input new
-	 * continent's name,
+	 * addContinent method Void Method to implement response to addContinentBtn,
+	 * provide GUI to input new continent's name,
 	 */
 	private void addContinent() {
 		boolean retry = true;
@@ -95,7 +95,7 @@ public class MapEditorController implements ActionListener {
 				} else {
 					mapEditorView.getMapHierarchyModel().addContinent(inputContinent);
 					mapEditorView.updateHierarchyTree();
-					//mapEditorView.updatePaintMatrix();
+					// mapEditorView.updatePaintMatrix();
 					retry = false;
 				}
 
@@ -105,89 +105,85 @@ public class MapEditorController implements ActionListener {
 	}
 
 	/**
-	 * addCountry method 
-	 * Void Method to implement response to addCountryBtn, provide GUI to input new
-	 * country's name
+	 * addCountry method Void Method to implement response to addCountryBtn, provide
+	 * GUI to input new country's name
 	 */
 	private void addCountry() {
-		
+
 		String lastOperatedContinent = "";
 
-		if (mapHierarchyModel.getContinentsList().size()==0)
-			JOptionPane.showMessageDialog(null,"Country must belong to a continent, create at least one continent.");
-		else{
-			//Configure the ConfirmDialog
+		if (mapHierarchyModel.getContinentsList().size() == 0)
+			JOptionPane.showMessageDialog(null, "Country must belong to a continent, create at least one continent.");
+		else {
+			// Configure the ConfirmDialog
 			JTextField countryInput = new JTextField();
-			String continents[]= new String[mapHierarchyModel.getContinentsList().size()];
+			String continents[] = new String[mapHierarchyModel.getContinentsList().size()];
 			int loopcount = 0, defaultIndex = 0;
 			for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
-				continents[loopcount++]=loopContinent.getContinentName();
-				if (loopContinent.getContinentName().equals(lastOperatedContinent)) defaultIndex = loopcount-1; 
+				continents[loopcount++] = loopContinent.getContinentName();
+				if (loopContinent.getContinentName().equals(lastOperatedContinent))
+					defaultIndex = loopcount - 1;
 			}
 			JComboBox<Object> continentInput = new JComboBox<Object>(continents);
-			Object[] message = {
-					"Choose Continent Name:", continentInput,
-					"Enter country Name:", countryInput
-			};  
+			Object[] message = { "Choose Continent Name:", continentInput, "Enter country Name:", countryInput };
 			continentInput.setSelectedIndex(defaultIndex);
 			boolean retry = true;
-			while (retry){
+			while (retry) {
 				int option = JOptionPane.showConfirmDialog(null, message, "Input", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
-					if (countryInput.getText()==null||countryInput.getText().trim().isEmpty()){
-						JOptionPane.showMessageDialog(null,"Country name can't be empty");
-					}
-					else if (continentInput.getSelectedIndex()==-1){
-						JOptionPane.showMessageDialog(null,"Country must belong to a continent, choose one exiting continent or create a new one.");
-					}
-					else {
+					if (countryInput.getText() == null || countryInput.getText().trim().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Country name can't be empty");
+					} else if (continentInput.getSelectedIndex() == -1) {
+						JOptionPane.showMessageDialog(null,
+								"Country must belong to a continent, choose one exiting continent or create a new one.");
+					} else {
 						String errorMsg;
-						lastOperatedContinent = (String)continentInput.getItemAt(continentInput.getSelectedIndex());
+						lastOperatedContinent = (String) continentInput.getItemAt(continentInput.getSelectedIndex());
 						ArrayList<String> countryNameList = new ArrayList<>();
 						countryNameList.add(countryInput.getText().trim());
-						for(CountryModel countryModel: mapHierarchyModel.getCountryList())
-						{
+						for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 							countryModel.addNeighbour(countryInput.getText().trim());
 							countryNameList.add(countryModel.getCountryName());
 						}
-						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(),lastOperatedContinent,countryNameList);
-						if (errorMsg == ""){
+						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(), lastOperatedContinent,
+								countryNameList);
+						if (errorMsg == "") {
 							mapEditorView.updateHierarchyTree();
 							mapEditorView.updatePaintMatrix();
 							retry = false;
-						}
-						else JOptionPane.showMessageDialog(null, errorMsg);
+						} else
+							JOptionPane.showMessageDialog(null, errorMsg);
 					}
-				}
-				else retry = false;
-			}	
+				} else
+					retry = false;
+			}
 		}
 	}
 
 	/**
-	 * deleteContinent method
-	 * Void Method to implement response to deleteContinentMenu, provide GUI to delete continent in tree
+	 * deleteContinent method Void Method to implement response to
+	 * deleteContinentMenu, provide GUI to delete continent in tree
 	 */
 	private void deleteContinent() {
 		String errorMsg;
-		if ((errorMsg=mapHierarchyModel.deleteContinent(selectedNode))==""){
+		if ((errorMsg = mapHierarchyModel.deleteContinent(selectedNode)) == "") {
 			mapEditorView.updateHierarchyTree();
-		}
-		else JOptionPane.showMessageDialog(null,errorMsg);
-		
+		} else
+			JOptionPane.showMessageDialog(null, errorMsg);
+
 	}
-	
+
 	/**
-	 * deleteCountry method
-	 * Void Method to implement response to deleteCountryMenu, provide GUI to delete country in tree
+	 * deleteCountry method Void Method to implement response to deleteCountryMenu,
+	 * provide GUI to delete country in tree
 	 */
 	private void deleteCountry() {
 		String errorMsg;
-		if ((errorMsg=mapHierarchyModel.deleteCountry(selectedNode))==""){
+		if ((errorMsg = mapHierarchyModel.deleteCountry(selectedNode)) == "") {
 			mapEditorView.updateHierarchyTree();
 			mapEditorView.updatePaintMatrix();
-		}
-		else JOptionPane.showMessageDialog(null,errorMsg);
-		
+		} else
+			JOptionPane.showMessageDialog(null, errorMsg);
+
 	}
 }

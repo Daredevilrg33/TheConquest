@@ -1,6 +1,5 @@
 package com.conquest.mapeditor.view;
 
-
 import java.awt.AWTEvent;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -36,16 +35,16 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4139667352960868764L;
-	
+
 	/** The tree scroll pane. */
 	private JScrollPane treeScrollPane;
-	
+
 	/** The mapping scroll pane. */
 	private JScrollPane mappingScrollPane;
-	
+
 	/** The tree view. */
 	private TreeRenderer treeView;
-	
+
 	/** The adjacency table. */
 	private TableRenderer adjacencyTable;
 
@@ -54,10 +53,10 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/** The add country button. */
 	private JButton addCountry;
-	
+
 	/** The add continent button. */
 	private JButton addContinent;
-	
+
 	/** The save button. */
 	private JButton jButtonSave;
 	private String[] countriesColumn;
@@ -65,19 +64,19 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
-	
+
 	private JPopupMenu continentMenu, countryMenu;
 	private JMenuItem deleteContinent, renameContinent;
 	private JMenuItem deleteCountry, renameCountry, moveCountry;
 	private String userSelTreeNode;
 
 	/**
-	 * NewMapEditorView Constructor
-	 * Instantiates a new new map editor view.
+	 * NewMapEditorView Constructor Instantiates a new new map editor view.
+	 * 
 	 * @param mapHierarchyModel the map hierarchy model
 	 */
 	public NewMapEditorView(MapHierarchyModel mapHierarchyModel) {
-		
+
 		this.mapHierarchyModel = mapHierarchyModel;
 
 		setLocationRelativeTo(null);
@@ -96,7 +95,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		treeView = new TreeRenderer(continentRoot);
 
 		MapEditorController mapEditorController = new MapEditorController(this);
-		
+
 		mapEditorController.addModel(mapHierarchyModel);
 
 		labelConnectivity = new JLabel("Connectivity Between Countries");
@@ -132,31 +131,30 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		jButtonSave.setBounds(addCountry.getBounds().x + (int) addCountry.getBounds().getWidth() + 10, 20,
 				size.width - 100, size.height + 10);
 		add(jButtonSave);
-		
-		
+
 		/** menu buttons in the hierarchy tree for editing the map */
-		continentMenu = new JPopupMenu();	
+		continentMenu = new JPopupMenu();
 		deleteContinent = new JMenuItem("Delete Continent");
 		deleteContinent.addActionListener(mapEditorController);
 		renameContinent = new JMenuItem("Rename Continent");
 		renameContinent.addActionListener(mapEditorController);
-	    
-	    continentMenu.add(deleteContinent);
-	    continentMenu.addSeparator();
-	    continentMenu.add(renameContinent);
-	    
-	    countryMenu = new JPopupMenu();	
-	    deleteCountry = new JMenuItem("Delete Country");
-	    deleteCountry.addActionListener(mapEditorController);
-	    renameCountry = new JMenuItem("Rename Country");
-	    renameCountry.addActionListener(mapEditorController);
-	    moveCountry = new JMenuItem("Move to another continent");
 
-	    countryMenu.add(deleteCountry);
-	    countryMenu.addSeparator();
-	    countryMenu.add(renameCountry);
-	    countryMenu.add(moveCountry);
-		
+		continentMenu.add(deleteContinent);
+		continentMenu.addSeparator();
+		continentMenu.add(renameContinent);
+
+		countryMenu = new JPopupMenu();
+		deleteCountry = new JMenuItem("Delete Country");
+		deleteCountry.addActionListener(mapEditorController);
+		renameCountry = new JMenuItem("Rename Country");
+		renameCountry.addActionListener(mapEditorController);
+		moveCountry = new JMenuItem("Move to another continent");
+
+		countryMenu.add(deleteCountry);
+		countryMenu.addSeparator();
+		countryMenu.add(renameCountry);
+		countryMenu.add(moveCountry);
+
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -179,6 +177,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/**
 	 * Gets the map hierarchy model.
+	 * 
 	 * @return the mapHierarchyModel
 	 */
 	public MapHierarchyModel getMapHierarchyModel() {
@@ -186,8 +185,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
-	 * setMapHierarchyModel Method
-	 * Sets the map hierarchy model.
+	 * setMapHierarchyModel Method Sets the map hierarchy model.
+	 * 
 	 * @param mapHierarchyModel the mapHierarchyModel to set
 	 */
 	public void setMapHierarchyModel(MapHierarchyModel mapHierarchyModel) {
@@ -195,9 +194,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	}
 
 	/**
-	 * updateHierarchyTree Method
-	 * Method to refresh and update the continent hierarchy tree on adding new
-	 * continent or new country.
+	 * updateHierarchyTree Method Method to refresh and update the continent
+	 * hierarchy tree on adding new continent or new country.
 	 */
 
 	public void updateHierarchyTree() {
@@ -213,42 +211,41 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			tRoot.add(continentNode);
 		}
 		treeView = new TreeRenderer(tRoot);
-		treeView.addMouseListener( new  MouseAdapter(){
-			public void mousePressed(MouseEvent e){
+		treeView.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
 				int selRow = treeView.getRowForLocation(e.getX(), e.getY());
 				TreePath selPath = treeView.getPathForLocation(e.getX(), e.getY());
-				if (selRow!=-1 && (e.getButton() == 3)){
+				if (selRow != -1 && (e.getButton() == 3)) {
 					treeView.setSelectionPath(selPath);
-					if (selPath!=null) {
-						 if (selPath.getParentPath().getParentPath()==null){//continents
-							userSelTreeNode =selPath.getLastPathComponent().toString();
-							continentMenu.show(e.getComponent(), e.getX()+5, e.getY()+5);
-							
-						}
-						else{//countries
-							userSelTreeNode =selPath.getLastPathComponent().toString();
-							countryMenu.show(e.getComponent(), e.getX()+5, e.getY()+5);
+					if (selPath != null) {
+						if (selPath.getParentPath().getParentPath() == null) {// continents
+							userSelTreeNode = selPath.getLastPathComponent().toString();
+							continentMenu.show(e.getComponent(), e.getX() + 5, e.getY() + 5);
+
+						} else {// countries
+							userSelTreeNode = selPath.getLastPathComponent().toString();
+							countryMenu.show(e.getComponent(), e.getX() + 5, e.getY() + 5);
 						}
 					}
 				}
-				//popupMenu.show(e.getComponent(), e.getX(), e.getY());
+				// popupMenu.show(e.getComponent(), e.getX(), e.getY());
 			}
-		}); 
-		
+		});
+
 		treeView.setShowsRootHandles(true);
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
 	}
 
 	/**
-	 * updatePaintMatrix Method
-	 * Method to refresh and paint the adjacency table matrix of connections between
-	 * the countries.
+	 * updatePaintMatrix Method Method to refresh and paint the adjacency table
+	 * matrix of connections between the countries.
 	 */
 
 	public void updatePaintMatrix() {
-		
-		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(), mapHierarchyModel.getTotalCountries()) {
+
+		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(),
+				mapHierarchyModel.getTotalCountries()) {
 
 			/**
 			 * 
@@ -261,7 +258,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			}
 		};
 
-		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size() + 1];
+		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size()
+				+ 1];
 //		System.out.println("updatepaintmatrix is active"+vectorData[][0]);
 		countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
 
@@ -281,11 +279,10 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		adjacencyTable.setRowHeight(20);
 		TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
-		for(int i=0;i<countriesColumn.length; i++ )
-		{
+		for (int i = 0; i < countriesColumn.length; i++) {
 			tableColumnModel.getColumn(i).setPreferredWidth(50);
 		}
-		
+
 //		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
@@ -303,8 +300,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
 
-							}else
-							{
+							} else {
 								adjacencyTable.setValueAt("0", i, j);
 							}
 						}
@@ -317,7 +313,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -328,8 +326,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		int col = adjacencyTable.columnAtPoint(e.getPoint());
 		String neighbourCountryName = countriesColumn[col];
 		String sourceCountryName = vectorData[row][0];
-		System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> " + row + "col--> "+ col);
-	
+		System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> "
+				+ row + "col--> " + col);
+
 		if (adjacencyTable.getValueAt(row, col) == "1") {
 			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 				System.out.println("Value 1 Source Country: " + sourceCountryName);
@@ -351,7 +350,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 				System.out.println("Value 2 Source Country: " + sourceCountryName);
 				System.out.println("Value 2 Neighbour Country: " + neighbourCountryName);
 				if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
-					for (CountryModel countryModel1: mapHierarchyModel.getCountryList()) {
+					for (CountryModel countryModel1 : mapHierarchyModel.getCountryList()) {
 						if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {
 							countryModel.addNeighbour(countryModel1.getCountryName().trim());
 							adjacencyTable.setValueAt("1", row, col);
@@ -362,44 +361,51 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 				}
 			}
 		}
-		
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public String getUserSelTreeNode() {
@@ -409,8 +415,5 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	public void setUserSelTreeNode(String userSelTreeNode) {
 		this.userSelTreeNode = userSelTreeNode;
 	}
-	
-	
-
 
 }

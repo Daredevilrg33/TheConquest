@@ -11,15 +11,16 @@ public class ContinentModel {
 
 	/** The continent name. */
 	private String continentName;
-	
+
 	/** The countries list. */
 	private ArrayList<CountryModel> countriesList;
-	
+
 	/** The control value. */
 	private int controlValue;
 
 	/**
 	 * Constructor for Continent class.
+	 * 
 	 * @param continentName name of the new continent
 	 */
 	public ContinentModel(String continentName) {
@@ -28,9 +29,9 @@ public class ContinentModel {
 	}
 
 	/**
-	 * getContinentName method
-	 * Gets the continent name.
-	 * Getter function for continent name
+	 * getContinentName method Gets the continent name. Getter function for
+	 * continent name
+	 * 
 	 * @return the continentName
 	 */
 	public String getContinentName() {
@@ -38,9 +39,9 @@ public class ContinentModel {
 	}
 
 	/**
-	 * setContinentName Method
-	 * Sets the continent name.
-	 * Setter function for continent name
+	 * setContinentName Method Sets the continent name. Setter function for
+	 * continent name
+	 * 
 	 * @param continentName the continentName to set
 	 */
 	public void setContinentName(String continentName) {
@@ -48,9 +49,9 @@ public class ContinentModel {
 	}
 
 	/**
-	 * getCountriesList Method
-	 * Gets the countries list.
-	 * Getter function for country list
+	 * getCountriesList Method Gets the countries list. Getter function for country
+	 * list
+	 * 
 	 * @return the countriesList
 	 */
 	public ArrayList<CountryModel> getCountriesList() {
@@ -58,9 +59,9 @@ public class ContinentModel {
 	}
 
 	/**
-	 * setCountriesList method
-	 * Sets the countries list.
-	 * Setter function for country list
+	 * setCountriesList method Sets the countries list. Setter function for country
+	 * list
+	 * 
 	 * @param countriesList the countriesList to set
 	 */
 	public void setCountriesList(ArrayList<CountryModel> countriesList) {
@@ -68,25 +69,26 @@ public class ContinentModel {
 	}
 
 	/**
-	 * addCountry Method
-	 * Method to add a country to countryList.
+	 * addCountry Method Method to add a country to countryList.
+	 * 
 	 * @param country new country object
 	 */
 	public void addCountry(CountryModel country) {
 		countriesList.add(country);
 	}
-	
+
 	/**
 	 * Method to delete a country from countryList.
+	 * 
 	 * @param country country object to delete
 	 */
 	public void deleteCountry(CountryModel country) {
 		countriesList.remove(country);
-	}	
+	}
 
 	/**
-	 * searchCountry Method
-	 * Function to search a country in this continent.
+	 * searchCountry Method Function to search a country in this continent.
+	 * 
 	 * @param countryName the name of the country
 	 * @return the country object found in this continent or null if can't find
 	 */
@@ -101,17 +103,17 @@ public class ContinentModel {
 	}
 
 	/**
-	 * setControlValue Method
-	 * Sets the control value.
+	 * setControlValue Method Sets the control value.
+	 * 
 	 * @param controlValue the controlValue to set
 	 */
 	public void setControlValue(int controlValue) {
 		this.controlValue = controlValue;
 	}
-	
+
 	/**
-	 * getControlValue Method
-	 * Gets the control value.
+	 * getControlValue Method Gets the control value.
+	 * 
 	 * @return the controlValue
 	 */
 	public int getControlValue() {

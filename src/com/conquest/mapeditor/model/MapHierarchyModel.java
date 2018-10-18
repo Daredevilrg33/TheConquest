@@ -37,13 +37,11 @@ public class MapHierarchyModel {
 	}
 
 	/**
-	 * MapHierarchyModel Parametrized Constructor Instantiates a new map
-	 * hierarchy model.
+	 * MapHierarchyModel Parametrized Constructor Instantiates a new map hierarchy
+	 * model.
 	 * 
-	 * @param conquestMapName
-	 *            the conquest map name
-	 * @param totalCountries
-	 *            the total countries
+	 * @param conquestMapName the conquest map name
+	 * @param totalCountries  the total countries
 	 */
 	public MapHierarchyModel(String conquestMapName, int totalCountries) {
 		this.conquestMapName = conquestMapName;
@@ -64,8 +62,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the conquest map name. Setter function to set the map name
 	 * 
-	 * @param conquestMapName
-	 *            the conquestMapName to set
+	 * @param conquestMapName the conquestMapName to set
 	 */
 	public void setConquestMapName(String conquestMapName) {
 		this.conquestMapName = conquestMapName;
@@ -83,8 +80,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the continents list.
 	 * 
-	 * @param continentsList
-	 *            the continentsList to set
+	 * @param continentsList the continentsList to set
 	 */
 	public void setContinentsList(ArrayList<ContinentModel> continentsList) {
 		this.continentsList = continentsList;
@@ -102,8 +98,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the total countries.
 	 * 
-	 * @param totalCountries
-	 *            the totalCountries to set
+	 * @param totalCountries the totalCountries to set
 	 */
 	public void setTotalCountries(int totalCountries) {
 		this.totalCountries = totalCountries;
@@ -122,8 +117,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the country list.
 	 * 
-	 * @param countryModels
-	 *            the countryList to set
+	 * @param countryModels the countryList to set
 	 */
 	public void setCountryList(ArrayList<CountryModel> countryModels) {
 		this.countryList = countryModels;
@@ -141,8 +135,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the value error flag.
 	 * 
-	 * @param valErrorFlag
-	 *            the valErrorFlag to set
+	 * @param valErrorFlag the valErrorFlag to set
 	 */
 	public void setValErrorFlag(boolean valErrorFlag) {
 		this.valErrorFlag = valErrorFlag;
@@ -160,8 +153,7 @@ public class MapHierarchyModel {
 	/**
 	 * Sets the error message.
 	 * 
-	 * @param errorMsg
-	 *            the errorMsg to set
+	 * @param errorMsg the errorMsg to set
 	 */
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
@@ -170,8 +162,7 @@ public class MapHierarchyModel {
 	/**
 	 * Method to search the continent according to the continent's name.
 	 * 
-	 * @param continentName
-	 *            continent's name
+	 * @param continentName continent's name
 	 * @return continent that found or null if not exits
 	 */
 	public ContinentModel searchContinent(String continentName) {
@@ -186,8 +177,7 @@ public class MapHierarchyModel {
 	/**
 	 * Method to add a new continent.
 	 * 
-	 * @param continentName
-	 *            name of the new continent
+	 * @param continentName name of the new continent
 	 * @return the string
 	 */
 	public String addContinent(String continentName) {
@@ -205,8 +195,7 @@ public class MapHierarchyModel {
 	/**
 	 * Method to find the country according to the country's name.
 	 * 
-	 * @param countryName
-	 *            country's name
+	 * @param countryName country's name
 	 * @return country that found or null if not exits
 	 */
 	public CountryModel searchCountry(String countryName) {
@@ -222,8 +211,7 @@ public class MapHierarchyModel {
 	/**
 	 * Method to delete a continent.
 	 * 
-	 * @param continentName
-	 *            name of the continent want to delete
+	 * @param continentName name of the continent want to delete
 	 * @return succeed or failed error message
 	 */
 	public String deleteContinent(String continentName) {
@@ -240,6 +228,7 @@ public class MapHierarchyModel {
 
 	/**
 	 * Method to delete a country.
+	 * 
 	 * @param countryName name of the country want to delete
 	 * @return succeed or failed error message
 	 */
@@ -258,10 +247,9 @@ public class MapHierarchyModel {
 	/**
 	 * Method to add a new country to an existing continent.
 	 * 
-	 * @param countryName
-	 *            name of the new country
-	 * @param continentName
-	 *            name of the existing continent that the new country adding in
+	 * @param countryName   name of the new country
+	 * @param continentName name of the existing continent that the new country
+	 *                      adding in
 	 * @return Error message
 	 */
 	public String addCountry(String countryName, String continentName) {
@@ -284,12 +272,10 @@ public class MapHierarchyModel {
 	/**
 	 * Method to add a new country to an existing continent with neighbours.
 	 * 
-	 * @param countryName
-	 *            name of the new country
-	 * @param continentName
-	 *            name of the existing continent that the new country adding in
-	 * @param listOfNeighbours
-	 *            list of neighboring countries.
+	 * @param countryName      name of the new country
+	 * @param continentName    name of the existing continent that the new country
+	 *                         adding in
+	 * @param listOfNeighbours list of neighboring countries.
 	 * @return Error message
 	 */
 	public String addCountry(String countryName, String continentName, ArrayList<String> listOfNeighbours) {

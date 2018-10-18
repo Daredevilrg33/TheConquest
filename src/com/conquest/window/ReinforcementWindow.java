@@ -1,6 +1,5 @@
 package com.conquest.window;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -19,7 +18,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.utilities.Constants;
 
-public class ReinforcementWindow extends JFrame implements ActionListener{
+public class ReinforcementWindow extends JFrame implements ActionListener {
 
 	private ReinfrocementWindowController reinforcementWindowController;
 	private JComboBox<String> jComboBoxSourceCountries;
@@ -37,12 +36,11 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 	private JLabel jChosenNoOfArmies;
 	private PlayerModel[] players;
 
-	
 	public ReinforcementWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
 		this.players = players;
 		setTitle("Fortification Window");
 		setResizable(false);
-		setSize(Constants.MAP_EDITOR_WIDTH,Constants.MAP_EDITOR_HEIGHT);
+		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		jPlayerLabel = new JLabel();
@@ -56,21 +54,19 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		jComboBoxDestinationCountries.setBounds(300, 50, 100, 30);
 		add(jComboBoxDestinationCountries);
 		jButtonSend = new JButton("Send");
-		jButtonSend.setBounds(600,50,100,30);
+		jButtonSend.setBounds(600, 50, 100, 30);
 		jButtonSend.addActionListener(this);
 		add(jButtonSend);
-		
+
 		jComboBoxChosenNoOfArmies = new JComboBox<>();
-		jComboBoxChosenNoOfArmies.setBounds(450,50,100,30);
+		jComboBoxChosenNoOfArmies.setBounds(450, 50, 100, 30);
 		add(jComboBoxChosenNoOfArmies);
 
-		
 		jChosenNoOfArmies = new JLabel();
 		jChosenNoOfArmies.setBounds(450, 20, 200, 30);
 		jChosenNoOfArmies.setText("Select no. of Armies");
 		add(jChosenNoOfArmies);
 
-		
 		jSourceCountryLabel = new JLabel();
 		jSourceCountryLabel.setBounds(170, 20, 200, 30);
 		jSourceCountryLabel.setText("Source Country");
@@ -80,7 +76,7 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		jDestinationCountryLabel.setBounds(300, 20, 200, 30);
 		jDestinationCountryLabel.setText("Destination Country");
 		add(jDestinationCountryLabel);
-		
+
 		jSourceArmyLabel = new JLabel();
 		jSourceArmyLabel.setBounds(217, 78, 200, 30);
 		add(jSourceArmyLabel);
@@ -89,9 +85,8 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		jDestinationArmyLabel.setBounds(337, 78, 200, 30);
 		add(jDestinationArmyLabel);
 
-		
-		reinforcementWindowController = new ReinfrocementWindowController(players,this,players.length,mapModel);
-		
+		reinforcementWindowController = new ReinfrocementWindowController(players, this, players.length, mapModel);
+
 		addWindowListener(new WindowListener() {
 
 			@Override
@@ -140,78 +135,70 @@ public class ReinforcementWindow extends JFrame implements ActionListener{
 		});
 	}
 
-	public void updateArmy(int number)
-	{
-		
+	public void updateArmy(int number) {
+
 		jComboBoxChosenNoOfArmies.removeAllItems();
-		for(int i=1; i<=number;i++)
-		{
+		for (int i = 1; i <= number; i++) {
 			jComboBoxChosenNoOfArmies.addItem(Integer.toString(i));
 		}
-		
+
 	}
-	
-	public void updatePlayerLabel (String playerName)
-	{
+
+	public void updatePlayerLabel(String playerName) {
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
-	
-	public void updateArmyLabel (int sourceArmy,int DestinationArmy)
-	{
+
+	public void updateArmyLabel(int sourceArmy, int DestinationArmy) {
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jSourceArmyLabel.setText(Integer.toString(sourceArmy));
 		jDestinationArmyLabel.setText(Integer.toString(DestinationArmy));
 
 	}
-	public void updateComboBoxSourceCountries(List<CountryModel> countryModels)
-	{
-		
-		
+
+	public void updateComboBoxSourceCountries(List<CountryModel> countryModels) {
+
 		jComboBoxSourceCountries.removeAllItems();
-		for(CountryModel countryModel: countryModels)
-		{
+		for (CountryModel countryModel : countryModels) {
 //			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
 
 			jComboBoxSourceCountries.addItem(countryModel.getCountryName());
 		}
-		
+
 	}
-	public void updateComboBoxDestinationCountries(ArrayList<String> arrayList)
-	{
-		
-		
+
+	public void updateComboBoxDestinationCountries(ArrayList<String> arrayList) {
+
 		jComboBoxDestinationCountries.removeAllItems();
-		for(int i=0;i<arrayList.size();i++)
-		{
+		for (int i = 0; i < arrayList.size(); i++) {
 //			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
 
 			jComboBoxDestinationCountries.addItem(arrayList.get(i));
 		}
-		
+
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		switch (e.getActionCommand()) {
 		case "Send":
-			System.out.println("Selected Player Name: " +jPlayerLabel.getText().toString());
-			System.out.println("Selected Source Country Name: " + jComboBoxSourceCountries.getSelectedItem().toString());
-			System.out.println("Selected Destination Country Name: " + jComboBoxDestinationCountries.getSelectedItem().toString());
+			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
+			System.out
+					.println("Selected Source Country Name: " + jComboBoxSourceCountries.getSelectedItem().toString());
+			System.out.println(
+					"Selected Destination Country Name: " + jComboBoxDestinationCountries.getSelectedItem().toString());
 
 			selectedSourceCountry = jComboBoxSourceCountries.getSelectedItem().toString();
 			selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
 
 			jComboBoxChosenNoOfArmies.getSelectedItem();
-			reinforcementWindowController.sending(selectedSourceCountry,selectedDestinationCountry,armies);
+			reinforcementWindowController.sending(selectedSourceCountry, selectedDestinationCountry, armies);
 			reinforcementWindowController.updateUIInfo();
-			
+
 			break;
 		default:
 			break;
 		}
 	}
 }
-
