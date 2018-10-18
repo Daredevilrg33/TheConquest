@@ -65,8 +65,7 @@ public class MapEditorController implements ActionListener {
 			addCountry();
 			break;
 		case "Save":
-			Utility utility = new Utility();
-			utility.saveMapFile(mapHierarchyModel, mapHierarchyModel.getConquestMapName());
+			saveMapFile();
 			break;
 		case "Delete Continent":
 			deleteContinent();
@@ -166,6 +165,28 @@ public class MapEditorController implements ActionListener {
 				} else
 					retry = false;
 			}
+		}
+	}
+	
+	/**
+	 * saveMapFile method Void Method to implement response to save  button,
+	 * provide GUI to input new map's name,
+	 */
+	private void saveMapFile() {
+		boolean retry = true;
+		while (retry) {
+			String mapFileName = JOptionPane.showInputDialog(null, "Enter the name of the map: ");
+			if (mapFileName != null) {
+				if ((mapFileName = mapFileName.trim()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Map file name can't be empty");
+				} else {
+					Utility utility = new Utility();
+					utility.saveMapFile(mapHierarchyModel, mapFileName);
+					retry = false;
+				}
+
+			} else
+				retry = false;
 		}
 	}
 

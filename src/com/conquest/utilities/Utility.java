@@ -174,6 +174,7 @@ public class Utility {
 	 */
 	public boolean saveMapFile(MapHierarchyModel mapHierarchyModel, String fileName) {
 		boolean isFileSaved = false;
+		fileName =fileName.equals("")?mapHierarchyModel.getConquestMapName():fileName;
 		String data = convertMapDataToString(mapHierarchyModel);
 
 		if (!(data == null || data.isEmpty() || data.trim().equalsIgnoreCase(""))) {
