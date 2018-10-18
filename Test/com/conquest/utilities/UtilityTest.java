@@ -31,9 +31,12 @@ public class UtilityTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+/**
+ * First it parses the map and then extracts the list of countries from it and after that it compares with the list of counties
+ * that we have passed.
+ */
 	@Test
-	public void test() {
+	public void parseAndValidateMaptest() {
 		//fail("Not yet implemented");
 		ArrayList<CountryModel> parsedCountryList= u.parseAndValidateMap("E:\\Asia.map").getCountryList();
 		System.out.println(parsedCountryList.size());

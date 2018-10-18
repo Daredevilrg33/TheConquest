@@ -1,6 +1,10 @@
 package com.conquest.mapdeditor.modeltest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
@@ -73,5 +77,36 @@ public class ContinentModelTest {
 		assertEquals("INDIA",cm.searchCountry("INDIA").getCountryName());
 
 	}
+	/**
+	 * Test to check whether after deletion country is there or not.
+	 */
+	@Test
+	public void deleteCountryTest() {
+		CountryModel c=new CountryModel("RUSSIA");
+		CountryModel c1=new CountryModel("AMERICA");
+		CountryModel c2=new CountryModel("JAPAN");
+		CountryModel c3=new CountryModel("FRANCE");
+		cm.addCountry(c);
+		cm.addCountry(c1);
+		cm.addCountry(c2);
+		cm.addCountry(c3);
+	
+		
+		//System.out.println(cm.searchCountry("INDIA"));
+		assertEquals("RUSSIA",cm.searchCountry("RUSSIA").getCountryName());
+		assertEquals("AMERICA",cm.searchCountry("AMERICA").getCountryName());
+		cm.deleteCountry(c1);
+		System.out.println(cm.searchCountry("AMERICA").getCountryName());
+		assertNull(cm.searchCountry("AMERICA").getCountryName());
 
+
+
+	}
+
+	private Object not(boolean equals) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
