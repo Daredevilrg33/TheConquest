@@ -124,20 +124,27 @@ public class MapHierarchyModelTest {
 		assertEquals("RUSSIA", b.searchContinent("RUSSIA").getContinentName());
 
 	}
-	
+
 	@Test
 	public void deleteContinentTest() {
-		//fail("Not yet implemented");
-		b.deleteContinent("RUSSIA");
-		System.out.println(b.searchContinent("RUSSIA").getContinentName());
-		//assertNull(b.searchContinent("RUSSIA").getContinentName());
-		//deleteCountry
-		System.out.println(b.searchCountry("KREM").getCountryName());
-		//b.deleteCountry("KREM");
-		//System.out.println(b.searchCountry("KREM").getCountryName());
-		//assertNull(b.searchCountry("KREM").getCountryName());
-
+		// fail("Not yet implemented");
+		String value = b.deleteContinent("RUSSIA");
+		if (value.trim().isEmpty()) {
+			assertNull(b.searchContinent("RUSSIA"));
+		} else {
+			b.deleteCountry("SAINT");
+			b.deleteCountry("KREM");
+			b.deleteCountry("JOHN");
+			b.deleteContinent("RUSSIA");
+			assertNull(b.searchContinent("RUSSIA"));
+		}
+//		System.out.println(b.searchContinent("RUSSIA").getContinentName());
+//		//deleteCountry
 		
+		// b.deleteCountry("KREM");
+		// System.out.println(b.searchCountry("KREM").getCountryName());
+		// assertNull(b.searchCountry("KREM").getCountryName());
+
 	}
-	
+
 }
