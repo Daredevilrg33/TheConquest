@@ -49,7 +49,7 @@ public class MapHierarchyModel {
 		this.conquestMapName = conquestMapName;
 		this.totalCountries = totalCountries;
 		this.continentsList = new ArrayList<ContinentModel>();
-
+		this.countryList = new ArrayList<>();
 	}
 
 	/**

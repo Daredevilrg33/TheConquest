@@ -1,5 +1,7 @@
 package com.conquest.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.conquest.mapeditor.model.CountryModel;
@@ -77,19 +79,20 @@ public class GameWindowController {
 		 */
 		int pickedNumber = 0;
 		Random rand = new Random();
-
-		while (!(mapModel.getCountryList().isEmpty())) {
+		List<CountryModel> countryModelList = new ArrayList<>();
+		countryModelList.addAll(mapModel.getCountryList());
+		while (!(countryModelList.isEmpty())) {
 			for (int count1 = 0; count1 < noOfPlayers; count1++) {
-				if (!(mapModel.getCountryList().isEmpty())) {
-					pickedNumber = rand.nextInt(mapModel.getCountryList().size());
-					CountryModel countryModelTest = mapModel.getCountryList().get(pickedNumber);
+				if (!(countryModelList.isEmpty())) {
+					pickedNumber = rand.nextInt(countryModelList.size());
+					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].AddCountry(countryModelTest);
 						players[count1].reduceArmyinPlayer();
 					}
 
-					System.out.println(mapModel.getCountryList().get(pickedNumber));
-					mapModel.getCountryList().remove(pickedNumber);
+					System.out.println(countryModelList.get(pickedNumber).getCountryName());
+					countryModelList.remove(pickedNumber);
 					// h++;
 					// System.out.println("size "+mapModel.getCountryModels().size());
 					// System.out.println("Picked Number "+pickedNumber);
