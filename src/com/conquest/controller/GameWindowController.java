@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
@@ -80,6 +81,8 @@ public class GameWindowController {
 		int pickedNumber = 0;
 		Random rand = new Random();
 		List<CountryModel> countryModelList = new ArrayList<>();
+		List<ContinentModel> continentModelList = new ArrayList<>();
+		continentModelList.addAll(mapModel.getContinentsList());
 		countryModelList.addAll(mapModel.getCountryList());
 		while (!(countryModelList.isEmpty())) {
 			for (int count1 = 0; count1 < noOfPlayers; count1++) {
@@ -125,7 +128,7 @@ public class GameWindowController {
 //					System.out.println("I'm in block");
 					FortificationWindow reinforcementWindow = new FortificationWindow(mapModel, players);
 					reinforcementWindow.setVisible(true);
-					gameWindow.dispose();
+//					gameWindow.dispose();
 				}
 				System.out.println(
 						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());

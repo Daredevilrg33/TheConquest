@@ -297,14 +297,18 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 						for (String countryName : countryModel.getListOfNeighbours()) {
 							System.out.println("countryName" + countryName);
 							System.out.println("neighbourCountryName" + neighbourCountryName);
-							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
-								adjacencyTable.setValueAt("1", i, j);
-							} else {
-								if(adjacencyTable.getValueAt(i,j ) == null)
-								{
-									adjacencyTable.setValueAt("0", i, j);			
+							if(!sourceCountryName.trim().equalsIgnoreCase(countryName))
+							{
+								if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
+									adjacencyTable.setValueAt("1", i, j);
+								} else {
+									if(adjacencyTable.getValueAt(i,j ) == null)
+									{
+										adjacencyTable.setValueAt("0", i, j);			
+									}
 								}
-							}
+							}else
+								adjacencyTable.setValueAt("0", i, j);
 						}
 					}
 				}

@@ -211,8 +211,9 @@ public class Utility {
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
 					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
 					for (String countryName : countryModel.getListOfNeighbours()) {
-						countryData = countryData.concat("," + countryName);
-
+						if(!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
+							countryData = countryData.concat("," + countryName);
+						
 					}
 					countryData = countryData.concat(System.lineSeparator());
 					data = data.concat(countryData);
