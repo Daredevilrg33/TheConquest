@@ -51,7 +51,7 @@ public class GameWindowController {
 	 * @param mapModel    MapHierarchyModel{@link MapHierarchyModel} object to pass
 	 *                    map model
 	 */
-	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
+	void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
 
 		players = new PlayerModel[noOfPlayers];
 

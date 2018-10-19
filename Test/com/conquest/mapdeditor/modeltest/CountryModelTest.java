@@ -68,13 +68,13 @@ public class CountryModelTest {
 	 */
 	@Test
 	public void searchNeighboursCountryTest() {
-		ContinentModel cm = new ContinentModel("ASIA");
+		ContinentModel countryModel = new ContinentModel("ASIA");
 
-		CountryModel c = new CountryModel("INDIA", cm, countryNeighbourModels);
-		assertEquals("BHUTAN", c.searchNeighboursCountry("Bhutan"));
-		assertEquals("PAKISTAN", c.searchNeighboursCountry("PAKISTAN"));
-		assertEquals("NEPAL", c.searchNeighboursCountry("NEPAL"));
-		assertEquals("SRILANKA", c.searchNeighboursCountry("SRILANKA"));
+		CountryModel country = new CountryModel("INDIA", countryModel, countryNeighbourModels);
+		assertEquals("BHUTAN", country.searchNeighboursCountry("Bhutan"));
+		assertEquals("PAKISTAN", country.searchNeighboursCountry("PAKISTAN"));
+		assertEquals("NEPAL", country.searchNeighboursCountry("NEPAL"));
+		assertEquals("SRILANKA", country.searchNeighboursCountry("SRILANKA"));
 
 		// fail("Not yet implemented");
 	}

@@ -24,7 +24,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
  */
 public class ContinentModelTest {
 
-	private ContinentModel cm = new ContinentModel("ASIA");
+	private ContinentModel countryModel = new ContinentModel("ASIA");
 
 	private ArrayList<CountryModel> cl = new ArrayList<CountryModel>();
 
@@ -75,10 +75,10 @@ public class ContinentModelTest {
 	 */
 	@Test
 	public void searchCountryTest() {
-		CountryModel c = new CountryModel("INDIA", cm, countryNeighbourModels);
-		cm.addCountry(c);
+		CountryModel countrymodel = new CountryModel("INDIA", countryModel, countryNeighbourModels);
+		countryModel.addCountry(countrymodel);
 		// System.out.println(cm.searchCountry("INDIA"));
-		assertEquals("INDIA", cm.searchCountry("INDIA").getCountryName());
+		assertEquals("INDIA", countryModel.searchCountry("INDIA").getCountryName());
 
 	}
 
@@ -87,23 +87,21 @@ public class ContinentModelTest {
 	 */
 	@Test
 	public void deleteCountryTest() {
-		CountryModel c = new CountryModel("RUSSIA");
-		CountryModel c1 = new CountryModel("AMERICA");
-		CountryModel c2 = new CountryModel("JAPAN");
-		CountryModel c3 = new CountryModel("FRANCE");
-		cm.addCountry(c);
-		cm.addCountry(c1);
-		cm.addCountry(c2);
-		cm.addCountry(c3);
+		CountryModel countrymodel = new CountryModel("RUSSIA");
+		CountryModel countrymodel1 = new CountryModel("AMERICA");
+		CountryModel countrymodel2 = new CountryModel("JAPAN");
+		CountryModel countrymodel3 = new CountryModel("FRANCE");
+		countryModel.addCountry(countrymodel);
+		countryModel.addCountry(countrymodel1);
+		countryModel.addCountry(countrymodel2);
+		countryModel.addCountry(countrymodel3);
 
-		// System.out.println(cm.searchCountry("INDIA"));
-		assertEquals("RUSSIA", cm.searchCountry("RUSSIA").getCountryName());
-		assertEquals("AMERICA", cm.searchCountry("AMERICA").getCountryName());
+		assertEquals("RUSSIA", countryModel.searchCountry("RUSSIA").getCountryName());
+		assertEquals("AMERICA", countryModel.searchCountry("AMERICA").getCountryName());
 
 
-		cm.deleteCountry(c1);
-		//System.out.println(cm.searchCountry("AMERICA").getCountryName());
-		assertNull(cm.searchCountry("AMERICA"));
+		countryModel.deleteCountry(countrymodel1);
+		assertNull(countryModel.searchCountry("AMERICA"));
 
 
 

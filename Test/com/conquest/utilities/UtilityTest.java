@@ -16,7 +16,7 @@ import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 
 public class UtilityTest {
-	Utility u = new Utility();
+	Utility utility = new Utility();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -41,7 +41,7 @@ public class UtilityTest {
 	@Test
 	public void parseAndValidateMapTest() {
 		// fail("Not yet implemented");
-		ArrayList<CountryModel> parsedCountryList = u.parseAndValidateMap("E:\\Asia.map").getCountryList();
+		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap("E:\\Asia.map").getCountryList();
 		System.out.println(parsedCountryList.size());
 		ArrayList<String> countryNames = new ArrayList<String>();
 		ArrayList<String> countryList = new ArrayList<String>();
@@ -62,29 +62,32 @@ public class UtilityTest {
 	@Test
 	public void convertMapDataToStringTest() {
 		// fail("Not yet implemented");
-		MapHierarchyModel mapHierarchyModel = u.parseAndValidateMap("E:\\Asia.map");
-		System.out.println(u.convertMapDataToString(mapHierarchyModel));
-		assertNotNull(u.convertMapDataToString(mapHierarchyModel));
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap("E:\\Asia.map");
+		//System.out.println(u.convertMapDataToString(mapHierarchyModel));
+		assertNotNull(utility.convertMapDataToString(mapHierarchyModel));
 		
 	}
 	
 	/** 
-	 * Method to check wheter map file is getting created after the Map HierarchModel's object and file name is passed
+	 * Method to check whether map file is getting created after the Map HierarchModel's object and file name is passed
 	 */
 	@Test
 	public void saveMapFileTest() {
-		MapHierarchyModel mapHierarchyModel = u.parseAndValidateMap("E:\\Asia.map");
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap("E:\\Asia.map");
 		String name="testfile";
-		assertTrue(u.saveMapFile(mapHierarchyModel, name));
+		assertTrue(utility.saveMapFile(mapHierarchyModel, name));
 		
 	}
+	/**
+	 * Function to check that invalid map is not treated as a valid map
+	 */
 	@Test
 	public void ValidateMapTest() {
 		// fail("Not yet implemented");
-		ArrayList<CountryModel> parsedCountryList = u.parseAndValidateMap("E:\\Asiainvalid.map").getCountryList();
-		MapHierarchyModel mh= new MapHierarchyModel();
-		System.out.println(mh.isValErrorFlag());
-		assertFalse(mh.isValErrorFlag());
+		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap("E:\\Asiainvalid.map").getCountryList();
+		MapHierarchyModel maphierarchy= new MapHierarchyModel();
+		//System.out.println(mh.isValErrorFlag());
+		assertFalse(maphierarchy.isValErrorFlag());
 
 }
 }
