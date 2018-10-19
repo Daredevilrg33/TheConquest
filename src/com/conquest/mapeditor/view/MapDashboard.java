@@ -112,6 +112,7 @@ public class MapDashboard extends JFrame implements ActionListener {
 		System.out.println("File Path : " + filePath);
 		Utility utility = new Utility();
 		MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
+		mapModel.setConquestMapName(fileName);
 
 		if (!mapModel.isValErrorFlag()) {
 			dispose();

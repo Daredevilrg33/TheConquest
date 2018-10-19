@@ -161,6 +161,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 				Utility utility = new Utility();
 				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
+				mapModel.setConquestMapName(fileName);
 				if (!mapModel.isValErrorFlag()) {
 					dispose();
 					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);

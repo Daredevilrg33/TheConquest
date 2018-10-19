@@ -61,7 +61,7 @@ public class Utility {
 		boolean isCountry = false;
 		String[] neighbourCountries = null;
 		boolean neighbourFlag=false;
-		String targetCountry="";
+		String targetCountry=null;
 
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String currentLine;
@@ -146,10 +146,21 @@ public class Utility {
 				String valErrorMessage = "Map is invalid as there are no countries defined";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
+				return mapHierarchyModel;
+			}
+			else if(countryModels.size()<3  && !mapHierarchyModel.isValErrorFlag())
+			{
+				String valErrorMessage = "Map is invalid as there should be minimum three countries defined in the map";
+				mapHierarchyModel.setValErrorFlag(true);
+				mapHierarchyModel.setErrorMsg(valErrorMessage);
+				return mapHierarchyModel;
 			}
 			else
-				mapHierarchyModel.setCountryList(countryModels);	
+				mapHierarchyModel.setCountryList(countryModels);
 			
+			//validating if there is connectivity of country to any other country
+			if(targetCountry!=null)
+			{
 			for(CountryModel loopCountry :countryModels)
 			{
 				ArrayList<String> neighbours =loopCountry.getListOfNeighbours();
@@ -167,6 +178,8 @@ public class Utility {
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);	
 			}
+			}
+			
 			
 			
 		} catch (IOException e) {
