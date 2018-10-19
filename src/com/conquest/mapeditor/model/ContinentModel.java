@@ -101,6 +101,15 @@ public class ContinentModel {
 		}
 		return null;
 	}
+	public boolean searchingCountry(String countryName) {
+		countryName = countryName.toLowerCase();
+		for (CountryModel loopCountry : countriesList) {
+			if (loopCountry.getCountryName().equalsIgnoreCase(countryName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * setControlValue Method Sets the control value.

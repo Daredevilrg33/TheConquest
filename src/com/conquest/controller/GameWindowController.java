@@ -27,6 +27,7 @@ public class GameWindowController {
 	private PlayerModel[] players;
 	private int i = 0;
 	private int prevCounter = 0;
+	private ContinentModel[] continents;
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
@@ -52,9 +53,10 @@ public class GameWindowController {
 	 * @param mapModel    MapHierarchyModel{@link MapHierarchyModel} object to pass
 	 *                    map model
 	 */
-	void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
+	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
 
 		players = new PlayerModel[noOfPlayers];
+		continents = new ContinentModel[mapModel.getContinentsList().size()];
 
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
@@ -103,6 +105,36 @@ public class GameWindowController {
 				}
 			}
 		}
+		int z=0;
+//		players[0].RemoveCountry();
+////		players[0].RemoveCountry();
+//		players[1].RemoveCountry();
+//		players[2].RemoveCountry();
+//		players[0].AddCountry(mapModel.getContinentsList().get(0).getCountriesList().get(0));
+//		players[0].AddCountry(mapModel.getContinentsList().get(0).getCountriesList().get(1));
+//		players[1].AddCountry(mapModel.getContinentsList().get(1).getCountriesList().get(0));
+//		players[2].AddCountry(mapModel.getContinentsList().get(1).getCountriesList().get(1));
+		for(int j=0; j< noOfPlayers; j++) {
+			for(int s = 0;s<(mapModel.getContinentsList().size());s++) {
+				for(int count = 0; count < players[j].getPlayerCountryList().size();count++) {
+					if(mapModel.getContinentsList().get(s).searchingCountry(players[j].getPlayerCountryList().get(count).getCountryName())) {
+						{
+							z++;
+							System.out.println("Player  has "+players[j].getPlayerCountryList().size()+ " countries in "+mapModel.getContinentsList().get(s).getContinentName()+ " continent");
+							break;
+						}
+					}
+					if(z == mapModel.getContinentsList().size()) {
+						System.out.println(mapModel.getContinentsList().get(s).getControlValue());
+						for(int w =0; w<mapModel.getContinentsList().get(s).getControlValue();w++)
+							players[j].addArmyinPlayer();
+							z=0;
+					}
+				}
+			}
+		}
+		
+		
 		updateUIInfo();
 	}
 
