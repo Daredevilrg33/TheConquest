@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -15,15 +16,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import com.conquest.controller.ReinfrocementWindowController;
+import com.conquest.controller.FortificationWindowController;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.utilities.Constants;
 
-public class ReinforcementWindow extends JFrame implements ActionListener {
+public class FortificationWindow extends JFrame implements ActionListener {
 
-	private ReinfrocementWindowController reinforcementWindowController;
+	private FortificationWindowController reinforcementWindowController;
 	private JComboBox<String> jComboBoxSourceCountries;
 	private JComboBox<String> jComboBoxDestinationCountries;
 	private JComboBox<String> jComboBoxChosenNoOfArmies;
@@ -39,7 +40,7 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 	private JLabel jChosenNoOfArmies;
 	private PlayerModel[] players;
 
-	public ReinforcementWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
+	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
 		this.players = players;
 		setTitle("Fortification Window");
 		setResizable(false);
@@ -91,33 +92,9 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 		jDestinationArmyLabel.setBounds(337, 78, 200, 30);
 		add(jDestinationArmyLabel);
 
-		reinforcementWindowController = new ReinfrocementWindowController(players, this, players.length, mapModel);
+		reinforcementWindowController = new FortificationWindowController(players, this, players.length, mapModel);
 
-		addWindowListener(new WindowListener() {
-
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+		addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -127,17 +104,6 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 				initialScreen.setVisible(true);
 			}
 
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
 		});
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxDestinationCountries.addActionListener(this);
@@ -161,7 +127,6 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 	public void updateSourceArmyLabel(int sourceArmy) {
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jSourceArmyLabel.setText(Integer.toString(sourceArmy));
-//		jDestinationArmyLabel.setText(Integer.toString(DestinationArmy));
 
 	}
 
@@ -173,7 +138,6 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 	public void updateDestinationArmyLabel(int destinationArmy) {
 //		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jDestinationArmyLabel.setText(Integer.toString(destinationArmy));
-//		jDestinationArmyLabel.setText(Integer.toString(DestinationArmy));
 
 	}
 
@@ -226,15 +190,23 @@ public class ReinforcementWindow extends JFrame implements ActionListener {
 //			reinforcementWindowController.updateUIInfo();	   
 			}
 
-		} else if (e.getSource() == jComboBoxSourceCountries) {
+		}
+		else if (e.getSource() == jComboBoxSourceCountries) {
 			System.out.println("JCombo Source COuntry selected");
 			if (jComboBoxSourceCountries.getItemCount() != 0) {
 				selectedSourceCountry = jComboBoxSourceCountries.getSelectedItem().toString();
 //			selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
-				reinforcementWindowController.finding(selectedSourceCountry);
-				reinforcementWindowController.updateUIInfo();
+				
+				System.out.println(" Current Item Selected " + jComboBoxSourceCountries.getSelectedItem() + jComboBoxSourceCountries.getSelectedIndex());
+				if(jComboBoxSourceCountries.getSelectedIndex() > 0)
+				{
+					reinforcementWindowController.finding(selectedSourceCountry);
+					reinforcementWindowController.updateUIInfo();		
+				}
+			
 			}
-		} else if (e.getSource() == jComboBoxDestinationCountries) {
+		}
+		else if (e.getSource() == jComboBoxDestinationCountries) {
 			if (jComboBoxDestinationCountries.getItemCount() != 0) {
 				selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
 			} else {

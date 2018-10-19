@@ -1,12 +1,14 @@
 package com.conquest.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.GameWindow;
-import com.conquest.window.ReinforcementWindow;
+import com.conquest.window.FortificationWindow;
 
 /**
  * Game Window Controller Class This class initializes Number of players, Player
@@ -77,19 +79,20 @@ public class GameWindowController {
 		 */
 		int pickedNumber = 0;
 		Random rand = new Random();
-
-		while (!(mapModel.getCountryList().isEmpty())) {
+		List<CountryModel> countryModelList = new ArrayList<>();
+		countryModelList.addAll(mapModel.getCountryList());
+		while (!(countryModelList.isEmpty())) {
 			for (int count1 = 0; count1 < noOfPlayers; count1++) {
-				if (!(mapModel.getCountryList().isEmpty())) {
-					pickedNumber = rand.nextInt(mapModel.getCountryList().size());
-					CountryModel countryModelTest = mapModel.getCountryList().get(pickedNumber);
+				if (!(countryModelList.isEmpty())) {
+					pickedNumber = rand.nextInt(countryModelList.size());
+					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].AddCountry(countryModelTest);
-						players[count1].reduceArmyinPlayer();
+//						players[count1].reduceArmyinPlayer();
 					}
 
-					System.out.println(mapModel.getCountryList().get(pickedNumber));
-					mapModel.getCountryList().remove(pickedNumber);
+					System.out.println(countryModelList.get(pickedNumber).getCountryName());
+					countryModelList.remove(pickedNumber);
 					// h++;
 					// System.out.println("size "+mapModel.getCountryModels().size());
 					// System.out.println("Picked Number "+pickedNumber);
@@ -120,7 +123,7 @@ public class GameWindowController {
 				}
 				if (players[players.length - 1].getnoOfArmyinPlayer() == 0) {
 //					System.out.println("I'm in block");
-					ReinforcementWindow reinforcementWindow = new ReinforcementWindow(mapModel, players);
+					FortificationWindow reinforcementWindow = new FortificationWindow(mapModel, players);
 					reinforcementWindow.setVisible(true);
 					gameWindow.dispose();
 				}
