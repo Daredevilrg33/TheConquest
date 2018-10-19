@@ -59,6 +59,9 @@ public class Utility {
 		ArrayList<CountryModel> countryModels = new ArrayList<>();
 		boolean isContinent = false;
 		boolean isCountry = false;
+		String[] neighbourCountries = null;
+		boolean neighbourFlag=false;
+		String targetCountry="";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String currentLine;
@@ -105,6 +108,10 @@ public class Utility {
 
 				if (isCountry) {
 					String[] countryValues = currentLine.split(",");
+					if(countryValues.length<5)
+					{
+						targetCountry=countryValues[0];
+					}
 					CountryModel countryModel = new CountryModel();
 					for (int i = 0; i < countryValues.length; i++) {
 						if (i == 0) {
@@ -115,6 +122,7 @@ public class Utility {
 							ContinentModel continentModel = new ContinentModel(countryValues[i]);
 							countryModel.setBelongsTo(continentModel);
 						} else {
+							
 							countryModel.addNeighbour(countryValues[i]);
 						}
 					}
@@ -141,7 +149,24 @@ public class Utility {
 			}
 			else
 				mapHierarchyModel.setCountryList(countryModels);	
-
+			
+			for(CountryModel loopCountry :countryModels)
+			{
+				ArrayList<String> neighbours =loopCountry.getListOfNeighbours();
+				for(String country :neighbours)
+				{
+					if(country.equalsIgnoreCase(targetCountry))
+					{
+						neighbourFlag=true;
+					}
+				}
+			}
+			if(!neighbourFlag)
+			{
+				String valErrorMessage = "Map is invalid as there is no connectivity from or to country "+targetCountry;
+				mapHierarchyModel.setValErrorFlag(true);
+				mapHierarchyModel.setErrorMsg(valErrorMessage);	
+			}
 			
 			
 		} catch (IOException e) {
