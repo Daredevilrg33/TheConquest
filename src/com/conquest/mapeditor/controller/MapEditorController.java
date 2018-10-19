@@ -150,7 +150,10 @@ public class MapEditorController implements ActionListener {
 						ArrayList<String> countryNameList = new ArrayList<>();
 						countryNameList.add(countryInput.getText().trim());
 						for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-							countryModel.addNeighbour(countryInput.getText().trim());
+							if(!countryModel.getCountryName().trim().equalsIgnoreCase(countryInput.getText().trim()))
+							{
+								countryModel.addNeighbour(countryInput.getText().trim());	
+							}
 							countryNameList.add(countryModel.getCountryName());
 							
 						}

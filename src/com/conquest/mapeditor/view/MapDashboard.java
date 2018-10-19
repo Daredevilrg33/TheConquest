@@ -104,22 +104,30 @@ public class MapDashboard extends JFrame implements ActionListener {
 	private void loadFromFile() {
 
 		filePath = Utility.pickFile();
+		System.out.println("FilePath : " + filePath);
 		String pattern = Pattern.quote(System.getProperty("file.separator"));
 		String[] splitFilePath = filePath.split(pattern);
 		fileName = splitFilePath[splitFilePath.length - 1];
 		System.out.println("File Name : " + fileName);
 		System.out.println("File Path : " + filePath);
 		Utility utility = new Utility();
-		MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
-		mapModel.setConquestMapName(fileName);
+		MapHierarchyModel mapHierarchyModel = null;
+		if (!(filePath.trim().isEmpty() || filePath.trim().equalsIgnoreCase(""))) {
+			mapHierarchyModel = utility.parseAndValidateMap(filePath);
+			mapHierarchyModel.setConquestMapName(fileName);
 
-		if (!mapModel.isValErrorFlag()) {
-			dispose();
-			NewMapEditorView newMap = new NewMapEditorView(mapModel);
-			newMap.setVisible(true);
-		} else {
-			String valErrorMsg = mapModel.getErrorMsg();
-			JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
+		}
+		if (mapHierarchyModel != null) {
+			if (!mapHierarchyModel.isValErrorFlag()) {
+
+				dispose();
+				NewMapEditorView newMap = new NewMapEditorView(mapHierarchyModel);
+				newMap.setVisible(true);
+			} else {
+				String valErrorMsg = mapHierarchyModel.getErrorMsg();
+				JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
+			}
+
 		}
 
 	}

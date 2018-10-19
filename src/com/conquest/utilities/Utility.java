@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -61,7 +60,7 @@ public class Utility {
 		String[] neighbourCountries = null;
 		boolean neighbourFlag=false;
 		String targetCountry=null;
-
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String currentLine;
 			while ((currentLine = br.readLine()) != null) {
@@ -147,9 +146,9 @@ public class Utility {
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
 			}
-			else if(countryModels.size()<3  && !mapHierarchyModel.isValErrorFlag())
+			else if(countryModels.size()<6  && !mapHierarchyModel.isValErrorFlag())
 			{
-				String valErrorMessage = "Map is invalid as there should be minimum three countries defined in the map";
+				String valErrorMessage = "Map is invalid as there should be minimum six countries defined in the map";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
@@ -181,7 +180,7 @@ public class Utility {
 			
 			
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mapHierarchyModel;
@@ -211,8 +210,9 @@ public class Utility {
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
 					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
 					for (String countryName : countryModel.getListOfNeighbours()) {
-						countryData = countryData.concat("," + countryName);
-
+						if(!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
+							countryData = countryData.concat("," + countryName);
+						
 					}
 					countryData = countryData.concat(System.lineSeparator());
 					data = data.concat(countryData);
