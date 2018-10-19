@@ -92,7 +92,6 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 				
-
 			}
 
 			@Override

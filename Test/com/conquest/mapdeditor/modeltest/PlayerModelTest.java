@@ -52,7 +52,6 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void searchCountrytest() {
-		// fail("Not yet implemented");
 		PlayerModel playermodel = new PlayerModel("ROGER", countryModelArrayList);
 		assertEquals("JAPAN", playermodel.searchCountry("JAPAN").getCountryName());
 		assertEquals("IRAN", playermodel.searchCountry("IRAN").getCountryName());
@@ -65,7 +64,6 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void overallTest() {
-		// fail("Not yet implemented");
 		PlayerModel playermodel = new PlayerModel("FORD");
 		CountryModel countrymodel4 = new CountryModel("BANGLADESH");
 		playermodel.noOfArmyinPlayer(4);

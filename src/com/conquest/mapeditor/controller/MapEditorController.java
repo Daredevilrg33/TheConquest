@@ -17,18 +17,24 @@ import com.conquest.utilities.Utility;
 /**
  * MapEditorController Class using ActionListener {@link ActionListener} Object
  * of Classes NewMapEditorView {@link NewMapEditorView} and MapHierarchyModel
- * {@link MapHierarchyModel} are created
- * 
- * @author dead
+ * {@link MapHierarchyModel} are created.
+ *
+ *  @author Nancy Goyal
  */
 public class MapEditorController implements ActionListener {
+
+	/** The map editor view. */
 	private NewMapEditorView mapEditorView;
+
+	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
+
+	/** The selected node. */
 	private String selectedNode;
 
 	/**
-	 * MapEditorController Constructor Constructor to give value to mapEditorView
-	 * 
+	 * MapEditorController Constructor Constructor to give value to mapEditorView.
+	 *
 	 * @param mapEditorView Object of Class NewMapEditorView
 	 *                      {@link NewMapEditorView}
 	 */
@@ -76,9 +82,6 @@ public class MapEditorController implements ActionListener {
 		case "Rename Continent":
 			renameContinent();
 			break;
-//		case "Rename Country":
-//			renameCountry();
-//			break;
 		case "Move to another continent":
 			moveCountry();
 			break;
@@ -91,7 +94,7 @@ public class MapEditorController implements ActionListener {
 
 	/**
 	 * addContinent method Void Method to implement response to addContinentBtn,
-	 * provide GUI to input new continent's name,
+	 * provide GUI to input new continent's name,.
 	 */
 	private void addContinent() {
 		boolean retry = true;
@@ -103,7 +106,7 @@ public class MapEditorController implements ActionListener {
 				} else {
 					mapEditorView.getMapHierarchyModel().addContinent(inputContinent);
 					mapEditorView.updateHierarchyTree();
-					// mapEditorView.updatePaintMatrix();
+
 					retry = false;
 				}
 
@@ -114,7 +117,7 @@ public class MapEditorController implements ActionListener {
 
 	/**
 	 * addCountry method Void Method to implement response to addCountryBtn, provide
-	 * GUI to input new country's name
+	 * GUI to input new country's name.
 	 */
 	private void addCountry() {
 
@@ -150,12 +153,11 @@ public class MapEditorController implements ActionListener {
 						ArrayList<String> countryNameList = new ArrayList<>();
 						countryNameList.add(countryInput.getText().trim());
 						for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-							if(!countryModel.getCountryName().trim().equalsIgnoreCase(countryInput.getText().trim()))
-							{
-								countryModel.addNeighbour(countryInput.getText().trim());	
+							if (!countryModel.getCountryName().trim().equalsIgnoreCase(countryInput.getText().trim())) {
+								countryModel.addNeighbour(countryInput.getText().trim());
 							}
 							countryNameList.add(countryModel.getCountryName());
-							
+
 						}
 						errorMsg = mapHierarchyModel.addCountry(countryInput.getText().trim(), lastOperatedContinent,
 								countryNameList);
@@ -171,10 +173,10 @@ public class MapEditorController implements ActionListener {
 			}
 		}
 	}
-	
+
 	/**
-	 * saveMapFile method Void Method to implement response to save  button,
-	 * provide GUI to input new map's name,
+	 * saveMapFile method Void Method to implement response to save button, provide
+	 * GUI to input new map's name,.
 	 */
 	private void saveMapFile() {
 		boolean retry = true;
@@ -196,7 +198,7 @@ public class MapEditorController implements ActionListener {
 
 	/**
 	 * deleteContinent method Void Method to implement response to
-	 * deleteContinentMenu, provide GUI to delete continent in tree
+	 * deleteContinentMenu, provide GUI to delete continent in tree.
 	 */
 	private void deleteContinent() {
 		String errorMsg;
@@ -209,7 +211,7 @@ public class MapEditorController implements ActionListener {
 
 	/**
 	 * deleteCountry method Void Method to implement response to deleteCountryMenu,
-	 * provide GUI to delete country in tree
+	 * provide GUI to delete country in tree.
 	 */
 	private void deleteCountry() {
 		String errorMsg;
@@ -220,10 +222,10 @@ public class MapEditorController implements ActionListener {
 			JOptionPane.showMessageDialog(null, errorMsg);
 
 	}
-	
+
 	/**
-	 * renameContinent method
-	 * Void Method to implement response to renameContinentMenu, provide GUI to rename continent in tree
+	 * renameContinent method Void Method to implement response to
+	 * renameContinentMenu, provide GUI to rename continent in tree.
 	 */
 	private void renameContinent() {
 		String errorMsg;
@@ -233,72 +235,41 @@ public class MapEditorController implements ActionListener {
 			if (inputContinent != null) {
 				if ((inputContinent = inputContinent.trim()).isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Continent name can't be empty");
-				} 
-				else {
-					if ((errorMsg=mapHierarchyModel.renameContinent(selectedNode,inputContinent))==""){
+				} else {
+					if ((errorMsg = mapHierarchyModel.renameContinent(selectedNode, inputContinent)) == "") {
 						mapEditorView.updateHierarchyTree();
 						retry = false;
-					}
-					else JOptionPane.showMessageDialog(null,errorMsg);
-				}	
-			}
-			else
+					} else
+						JOptionPane.showMessageDialog(null, errorMsg);
+				}
+			} else
 				retry = false;
 		}
-		
+
 	}
-	
-//	/**
-//	 * renameCountry method
-//	 * Void Method to implement response to renameCountryMenu, provide GUI to rename country in tree and matrix
-//	 */
-//	private void renameCountry() {
-//		String errorMsg;
-//		boolean retry = true;
-//		while (retry) {
-//			String inputCountry = JOptionPane.showInputDialog(null, "Enter the new country name: ");
-//			if (inputCountry != null) {
-//				if ((inputCountry = inputCountry.trim()).isEmpty()) {
-//					JOptionPane.showMessageDialog(null, "Country name can't be empty");
-//				} 
-//				else {
-//					if ((errorMsg=mapHierarchyModel.renameCountry(selectedNode,inputCountry))==""){
-//						mapEditorView.updateHierarchyTree();
-//						mapEditorView.updatePaintMatrix();
-//						retry = false;
-//					}
-//					else JOptionPane.showMessageDialog(null,errorMsg);
-//				}	
-//			}
-//			else
-//				retry = false;
-//		}
-//		
-//	}
 	/**
-	 * moveCountry method
-	 * Void Method to implement response to moveCountryMenu, provide GUI to move country to another continent in tree
+	 * moveCountry method Void Method to implement response to moveCountryMenu,
+	 * provide GUI to move country to another continent in tree.
 	 */
 	private void moveCountry() {
 		String errorMsg;
 		boolean retry = true;
 		while (retry) {
-			String inputContinent = JOptionPane.showInputDialog(null, "Enter the name of the continent to which you want to move this country: ");
+			String inputContinent = JOptionPane.showInputDialog(null,
+					"Enter the name of the continent to which you want to move this country: ");
 			if (inputContinent != null) {
 				if ((inputContinent = inputContinent.trim()).isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Continent name can't be empty");
-				} 
-				else {
-					if ((errorMsg=mapHierarchyModel.moveCountry(selectedNode,inputContinent))==""){
+				} else {
+					if ((errorMsg = mapHierarchyModel.moveCountry(selectedNode, inputContinent)) == "") {
 						mapEditorView.updateHierarchyTree();
 						retry = false;
-					}
-					else JOptionPane.showMessageDialog(null,errorMsg);
-				}	
-			}
-			else
+					} else
+						JOptionPane.showMessageDialog(null, errorMsg);
+				}
+			} else
 				retry = false;
 		}
-		
+
 	}
 }

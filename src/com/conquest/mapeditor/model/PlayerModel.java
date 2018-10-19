@@ -19,6 +19,8 @@ public class PlayerModel {
 
 	/** The no of army for player. */
 	private int noOfArmyinPlayer;
+
+	/** The s. */
 	private int s = 0;
 
 	/**
@@ -60,11 +62,13 @@ public class PlayerModel {
 	public void reduceArmyinPlayer() {
 		this.noOfArmyinPlayer--;
 	}
-	
+
+	/**
+	 * Adds the army in player.
+	 */
 	public void addArmyinPlayer() {
 		this.noOfArmyinPlayer++;
 	}
-
 
 	/**
 	 * Gets the no of army for player.
@@ -99,11 +103,13 @@ public class PlayerModel {
 	 * @param countryName the country name
 	 */
 	public void AddCountry(CountryModel countryName) {
-		// CountryModel newCountry = new CountryModel(countryName);
 		playerCountryList.add(countryName);
 
 	}
-	
+
+	/**
+	 * Removes the country.
+	 */
 	public void RemoveCountry() {
 		playerCountryList.removeAll(playerCountryList);
 	}

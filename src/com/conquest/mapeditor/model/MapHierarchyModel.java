@@ -227,48 +227,42 @@ public class MapHierarchyModel {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Method to rename a continent.
 	 * 
-	 * @param continentName
-	 *            name of the continent want to rename
-	 * @param newContinentName
-	 *            new name of the continent
+	 * @param continentName    name of the continent want to rename
+	 * @param newContinentName new name of the continent
 	 * @return succeed or failed error message
 	 */
 	public String renameContinent(String continentName, String newContinentName) {
 		ContinentModel continent = searchContinent(continentName);
-		if(continent == null){
-			return "Continent  '"+continentName+"'  you want to change does not exists";
+		if (continent == null) {
+			return "Continent  '" + continentName + "'  you want to change does not exists";
 		}
-		if (searchContinent(newContinentName)!=null){
-			return  "Continent '"+newContinentName+"' already exits";
-		}
-		else
-		{
+		if (searchContinent(newContinentName) != null) {
+			return "Continent '" + newContinentName + "' already exits";
+		} else {
 			continent.setContinentName(newContinentName);
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Method to rename a continent.
 	 * 
-	 * @param countryName name of the continent want to rename
+	 * @param countryName     name of the continent want to rename
 	 * @param newCountrytName new name of the continent
 	 * @return succeed or failed error message
 	 */
 	public String renameCountry(String countryName, String newCountrytName) {
 		CountryModel country = searchCountry(countryName);
-		if(country == null){
-			return "Country  '"+countryName+"'  you want to change does not exists";
+		if (country == null) {
+			return "Country  '" + countryName + "'  you want to change does not exists";
 		}
-		if (searchCountry(newCountrytName)!=null){
-			return  "Country '"+newCountrytName+"' already exits";
-		}
-		else
-		{
+		if (searchCountry(newCountrytName) != null) {
+			return "Country '" + newCountrytName + "' already exits";
+		} else {
 			country.setCountryName(newCountrytName);
 		}
 		return "";
@@ -292,25 +286,25 @@ public class MapHierarchyModel {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Method to move a country.
-	 * 
+	 *
+	 * @param countryName   name of the country you want to move
 	 * @param continentName name of the continent to which you want to move
-	 * @param countryName name of the country you want to move
 	 * @return succeed or failed error message
 	 */
 	public String moveCountry(String countryName, String continentName) {
 		ContinentModel toContinent = searchContinent(continentName);
 		CountryModel moveCountry = searchCountry(countryName);
-		if (toContinent == null) 
-			return "Continent  '"+continentName+"'  you want to move does not exists";
-		else if(continentName.equalsIgnoreCase(moveCountry.getBelongsTo().getContinentName()))
+		if (toContinent == null)
+			return "Continent  '" + continentName + "'  you want to move does not exists";
+		else if (continentName.equalsIgnoreCase(moveCountry.getBelongsTo().getContinentName()))
 			return "Continent name cannot be same as existing one";
-		else{
-				moveCountry.getBelongsTo().getCountriesList().remove(moveCountry);
-				toContinent.getCountriesList().add(moveCountry);
-				moveCountry.setBelongsTo(toContinent);
+		else {
+			moveCountry.getBelongsTo().getCountriesList().remove(moveCountry);
+			toContinent.getCountriesList().add(moveCountry);
+			moveCountry.setBelongsTo(toContinent);
 		}
 		return "";
 	}

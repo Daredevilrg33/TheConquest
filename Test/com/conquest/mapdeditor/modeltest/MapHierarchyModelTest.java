@@ -76,8 +76,6 @@ public class MapHierarchyModelTest {
 	 */
 	@Test
 	public void getTotalCountriestest1() {
-		// fail("Not yet implemented");
-		// c.setTotalCountries(-1);
 		assertEquals(noOfCountries, maphierarchy.getTotalCountries());
 
 	}
@@ -87,7 +85,7 @@ public class MapHierarchyModelTest {
 	 */
 	@Test
 	public void getTotalCountriestest() {
-		
+
 		assertEquals(6, maphierarchy1.getTotalCountries());
 	}
 
@@ -107,7 +105,6 @@ public class MapHierarchyModelTest {
 
 	@Test
 	public void searchContinentTest() {
-		// fail("Not yet implemented");
 
 		assertEquals("ASIA", maphierarchy1.searchContinent("ASIA").getContinentName());
 		assertEquals("RUSSIA", maphierarchy1.searchContinent("RUSSIA").getContinentName());
@@ -119,7 +116,6 @@ public class MapHierarchyModelTest {
 	 */
 	@Test
 	public void deleteContinentTest() {
-		// fail("Not yet implemented");
 		String value = maphierarchy1.deleteContinent("RUSSIA");
 		if (value.trim().isEmpty()) {
 			assertNull(maphierarchy1.searchContinent("RUSSIA"));
@@ -130,7 +126,6 @@ public class MapHierarchyModelTest {
 			maphierarchy1.deleteContinent("RUSSIA");
 			assertNull(maphierarchy1.searchContinent("RUSSIA"));
 		}
-
 
 	}
 

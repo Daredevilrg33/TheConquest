@@ -76,7 +76,6 @@ public class CountryModelTest {
 		assertEquals("NEPAL", country.searchNeighboursCountry("NEPAL"));
 		assertEquals("SRILANKA", country.searchNeighboursCountry("SRILANKA"));
 
-		// fail("Not yet implemented");
 	}
 
 }

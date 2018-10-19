@@ -57,11 +57,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The selected country. */
 	private String selectedCountry;
-	
 
-	
-	
-	
 	/** The tree scroll pane. */
 	private JScrollPane treeScrollPane;
 
@@ -76,17 +72,17 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The label connectivity. */
 	private JLabel labelConnectivity;
-	
+
 	private String[] countriesColumn;
 	private String[][] vectorData;
-	
+
 	private MapHierarchyModel mapHierarchyModel;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
 	 * 
-	 * @param mapHierarchyModel    the map hierarchy model
-	 * @param noOfPlayers the no of players
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param noOfPlayers       the no of players
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
 
@@ -95,9 +91,9 @@ public class GameWindow extends JFrame implements ActionListener {
 		System.out.println("mapHierarchyModel Total Countries: " + mapHierarchyModel.getTotalCountries());
 		System.out.println("mapHierarchyModel Continent List Size: " + mapHierarchyModel.getContinentsList().size());
 		System.out.println("mapHierarchyModel Country List Size: " + mapHierarchyModel.getCountryList().size());
-		
+
 		this.mapHierarchyModel = mapHierarchyModel;
-		
+
 		setTitle("Game Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
@@ -118,7 +114,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		jPlayerArmies = new JLabel();
 		jPlayerArmies.setBounds(410, 670, 200, 30);
 		add(jPlayerArmies);
-		
+
 		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
 		treeView = new TreeRenderer(continentRoot);
 		labelConnectivity = new JLabel("Connectivity Between Countries");
@@ -126,7 +122,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		labelConnectivity.setFont(new Font("dialog", 1, 15));
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
 		add(labelConnectivity);
-		
+
 		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mappingScrollPane.setBounds(15, 55, 800, 600);
@@ -143,23 +139,22 @@ public class GameWindow extends JFrame implements ActionListener {
 
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				
 
 			}
 
 			@Override
 			public void windowIconified(WindowEvent arg0) {
-			
+
 			}
 
 			@Override
 			public void windowDeiconified(WindowEvent arg0) {
-			
+
 			}
 
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -171,15 +166,15 @@ public class GameWindow extends JFrame implements ActionListener {
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
-				
+
 			}
 
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				
+
 			}
 		});
-		
+
 		if (this.mapHierarchyModel.getContinentsList().size() > 0) {
 			updateHierarchyTree();
 			updatePaintMatrix();
@@ -190,7 +185,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * updateHierarchyTree Method Method to refresh and update the continent
 	 * hierarchy tree on adding new continent or new country.
 	 */
-	
+
 	public void updateHierarchyTree() {
 
 		DefaultMutableTreeNode tRoot = new DefaultMutableTreeNode(
@@ -208,9 +203,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
 	}
-	
-	
-	
+
 	/**
 	 * updatePaintMatrix Method Method to refresh and paint the adjacency table
 	 * matrix of connections between the countries.
@@ -234,14 +227,14 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size()
 				+ 1];
-		System.out.println("CountryList().size() : "+mapHierarchyModel.getCountryList().size());
+		System.out.println("CountryList().size() : " + mapHierarchyModel.getCountryList().size());
 		countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
 
 		int columnCounter = 0;
 		int rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
-			System.out.println("loopContinent: " + loopContinent.getContinentName() + " : "+loopCountriesList.size());
+			System.out.println("loopContinent: " + loopContinent.getContinentName() + " : " + loopCountriesList.size());
 
 			for (CountryModel loopCountry : loopCountriesList) {
 				countriesColumn[0] = "C/C";
@@ -259,7 +252,6 @@ public class GameWindow extends JFrame implements ActionListener {
 			tableColumnModel.getColumn(i).setPreferredWidth(50);
 		}
 
-//		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
 		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
@@ -276,9 +268,8 @@ public class GameWindow extends JFrame implements ActionListener {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
 							} else {
-								if(adjacencyTable.getValueAt(i,j ) == null)
-								{
-									adjacencyTable.setValueAt("0", i, j);			
+								if (adjacencyTable.getValueAt(i, j) == null) {
+									adjacencyTable.setValueAt("0", i, j);
 								}
 							}
 						}
@@ -289,14 +280,13 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
 	/**
 	 * updatePlayerLabel Method Update player label.
 	 * 
 	 * @param playerName the player name
 	 */
 	public void updatePlayerLabel(String playerName) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
 
@@ -306,7 +296,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * @param RemainingArmies the remaining armies
 	 */
 	public void updatePlayerArmies(int RemainingArmies) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerArmies.setText("Remaining Armies with player: " + RemainingArmies);
 	}
 
@@ -318,7 +307,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	public void updateComboBoxCountries(List<CountryModel> countryModels) {
 		jComboBoxCountries.removeAllItems();
 		for (CountryModel countryModel : countryModels) {
-//			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
 			jComboBoxCountries.addItem(countryModel.getCountryName());
 		}
 	}
@@ -347,8 +335,4 @@ public class GameWindow extends JFrame implements ActionListener {
 			break;
 		}
 	}
-//	
-//	public String transferCountry() {
-//		return selectedCountry;
-//	}
 }
