@@ -7,6 +7,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 /**
  * The Class TreeRenderer.
+ *  @author Nancy Goyal
  */
 public class TreeRenderer extends JTree {
 
@@ -24,12 +25,7 @@ public class TreeRenderer extends JTree {
 	public TreeRenderer(DefaultMutableTreeNode continentRoot) {
 		super(continentRoot);
 
-		// create the tree by passing in the root node
 		tree = new JTree(continentRoot);
-		// ImageIcon imageIcon = new
-		// ImageIcon(TreeRenderer.class.getResource("/resources/continents.png"));
-		// DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-		// renderer.setLeafIcon(imageIcon);
 		add(tree);
 
 		this.setVisible(true);

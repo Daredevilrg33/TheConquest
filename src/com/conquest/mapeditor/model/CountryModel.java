@@ -8,27 +8,34 @@ import java.util.ArrayList;
 /**
  * CountryModel Class Initializes country name String, a ContinentModel
  * {@link ContinentModel} as belongsTo and a ArrayList {@link ArrayList} as
- * listofNeighbours
- * 
+ * listofNeighbours.
+ *
  * @author Nancy Goyal
  */
 public class CountryModel {
 
+	/** The country name. */
 	private String countryName;
+
+	/** The belongs to. */
 	private ContinentModel belongsTo;
+
+	/** The no of armies country. */
 	private int noOfArmiesCountry = 1;
+
+	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
 
 	/**
-	 * ContryModel Constructor Create a new empty ArrayList
+	 * ContryModel Constructor Create a new empty ArrayList.
 	 */
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
 	}
 
 	/**
-	 * CountryModel Parameterized Constructor
-	 * 
+	 * CountryModel Parameterized Constructor.
+	 *
 	 * @param countryName Name of country
 	 */
 	public CountryModel(String countryName) {
@@ -38,8 +45,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * CountryModel Parameterized Constructor
-	 * 
+	 * CountryModel Parameterized Constructor.
+	 *
 	 * @param countryName name of the new country
 	 * @param continent   Continent object which contains this country
 	 */
@@ -50,8 +57,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * CountryModel Parameterized Constructor
-	 * 
+	 * CountryModel Parameterized Constructor.
+	 *
 	 * @param countryName      Name of country
 	 * @param continentModel   Continent object which contains this country
 	 * @param listOfNeighbours List of all the neighbours country names
@@ -64,8 +71,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * getCountryName Method Getter Function to get String name
-	 * 
+	 * getCountryName Method Getter Function to get String name.
+	 *
 	 * @return the countryName Name of country
 	 */
 	public String getCountryName() {
@@ -73,8 +80,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * setCountryName Method Setter Function to set name of country
-	 * 
+	 * setCountryName Method Setter Function to set name of country.
+	 *
 	 * @param countryName the countryName to set
 	 */
 	public void setCountryName(String countryName) {
@@ -82,8 +89,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * getBelongsTo Method Method of type ContinentModel
-	 * 
+	 * getBelongsTo Method Method of type ContinentModel.
+	 *
 	 * @return the belongsTo
 	 */
 	public ContinentModel getBelongsTo() {
@@ -91,8 +98,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * setBelongsTo Method
-	 * 
+	 * setBelongsTo Method.
+	 *
 	 * @param belongsTo the belongsTo to set
 	 */
 	public void setBelongsTo(ContinentModel belongsTo) {
@@ -101,8 +108,8 @@ public class CountryModel {
 
 	/**
 	 * addNeighbour Method Adds a new neighbour to a country countryModel a
-	 * CountryModel{@link CountryModel} object
-	 * 
+	 * CountryModel{@link CountryModel} object.
+	 *
 	 * @param countryName adds a neighbour country
 	 * @return boolean
 	 */
@@ -112,8 +119,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * getListOfNeighbours Method
-	 * 
+	 * getListOfNeighbours Method.
+	 *
 	 * @return the listOfNeighbours of ArrayList type{@link ArrayList}
 	 */
 	public ArrayList<String> getListOfNeighbours() {
@@ -121,8 +128,8 @@ public class CountryModel {
 	}
 
 	/**
-	 * getNoOfArmiesCountry Method Getter Function to get noOfArmiesCountry
-	 * 
+	 * getNoOfArmiesCountry Method Getter Function to get noOfArmiesCountry.
+	 *
 	 * @return the noOfArmiesCountry Integer
 	 */
 	public int getNoOfArmiesCountry() {
@@ -130,26 +137,32 @@ public class CountryModel {
 	}
 
 	/**
-	 * setNoOfArmiesCountry Method
-	 * 
+	 * setNoOfArmiesCountry Method.
+	 *
 	 * @param noOfArmiesCountry the noOfArmiesCountry to set
 	 */
 	public void setNoOfArmiesCountry(int noOfArmiesCountry) {
 		this.noOfArmiesCountry = noOfArmiesCountry;
 	}
 
+	/**
+	 * Adds the no of armies country.
+	 */
 	public void addNoOfArmiesCountry() {
 		noOfArmiesCountry++;
 	}
 
+	/**
+	 * Removes the no of armies country.
+	 */
 	public void removeNoOfArmiesCountry() {
 		noOfArmiesCountry--;
 	}
 
 	/**
 	 * searchNeighboursCountry Method A function to find neighbour country to a
-	 * country
-	 * 
+	 * country.
+	 *
 	 * @param countryName name of country to search
 	 * @return CountryModel object
 	 */

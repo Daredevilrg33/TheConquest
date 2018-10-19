@@ -9,8 +9,8 @@ import com.conquest.window.GameWindow;
 import com.conquest.window.MainMenuScreen;
 
 /**
- * Game class 
- * Main class of project
+ * Game class Main class of project
+ * 
  * @author Rohit Gupta
  */
 public class Game {

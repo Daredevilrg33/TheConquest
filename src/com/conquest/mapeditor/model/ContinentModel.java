@@ -101,6 +101,13 @@ public class ContinentModel {
 		}
 		return null;
 	}
+
+	/**
+	 * Searching country.
+	 *
+	 * @param countryName the country name
+	 * @return true, if successful
+	 */
 	public boolean searchingCountry(String countryName) {
 		countryName = countryName.toLowerCase();
 		for (CountryModel loopCountry : countriesList) {

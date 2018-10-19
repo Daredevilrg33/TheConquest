@@ -63,15 +63,15 @@ public class GameWindowController {
 			players[j] = new PlayerModel("Player" + String.valueOf(value));
 			switch (noOfPlayers) {
 			case (3): {
-				players[j].noOfArmyinPlayer(25);
+				players[j].noOfArmyInPlayer(25);
 				break;
 			}
 			case (4): {
-				players[j].noOfArmyinPlayer(20);
+				players[j].noOfArmyInPlayer(20);
 				break;
 			}
 			case (5): {
-				players[j].noOfArmyinPlayer(15);
+				players[j].noOfArmyInPlayer(15);
 				break;
 			}
 			}
@@ -144,11 +144,11 @@ public class GameWindowController {
 		while (true) {
 			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
 					.equalsIgnoreCase(selectedC.trim())) {
-				if (players[prevCounter].getnoOfArmyinPlayer() > 0) {
+				if (players[prevCounter].getnoOfArmyInPlayer() > 0) {
 					players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
-					players[prevCounter].reduceArmyinPlayer();
+					players[prevCounter].reduceArmyInPlayer();
 				}
-				if (players[players.length - 1].getnoOfArmyinPlayer() == 0) {
+				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 					FortificationWindow reinforcementWindow = new FortificationWindow(mapHierarchyModel, players);
 					reinforcementWindow.setVisible(true);
 				}
@@ -167,7 +167,7 @@ public class GameWindowController {
 	public void updateUIInfo() {
 		prevCounter = counter;
 		gameWindow.updatePlayerLabel(players[counter].getPlayerName());
-		gameWindow.updatePlayerArmies(players[counter].getnoOfArmyinPlayer());
+		gameWindow.updatePlayerArmies(players[counter].getnoOfArmyInPlayer());
 		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());
 		gameWindow.invalidate();
 		gameWindow.revalidate();

@@ -20,7 +20,6 @@ public class PlayerModel {
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
 	
-
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 * 
@@ -50,18 +49,21 @@ public class PlayerModel {
 	 * @param number the number
 	 */
 
-	public void noOfArmyinPlayer(int number) {
+	public void noOfArmyInPlayer(int number) {
 		this.noOfArmyInPlayer = number;
 	}
 
 	/**
 	 * Reduce army for player.
 	 */
-	public void reduceArmyinPlayer() {
+	public void reduceArmyInPlayer() {
 		this.noOfArmyInPlayer--;
 	}
-	
-	public void addArmyinPlayer() {
+
+	/**
+	 * Adds the army in player.
+	 */
+	public void addArmyInPlayer() {
 		this.noOfArmyInPlayer++;
 	}
 	
@@ -74,7 +76,7 @@ public class PlayerModel {
 	 * 
 	 * @return the no of army for player
 	 */
-	public int getnoOfArmyinPlayer() {
+	public int getnoOfArmyInPlayer() {
 		return noOfArmyInPlayer;
 	}
 
@@ -102,11 +104,13 @@ public class PlayerModel {
 	 * @param countryName the country name
 	 */
 	public void AddCountry(CountryModel countryName) {
-		// CountryModel newCountry = new CountryModel(countryName);
 		playerCountryList.add(countryName);
 
 	}
-	
+
+	/**
+	 * Removes the country.
+	 */
 	public void RemoveCountry() {
 		playerCountryList.removeAll(playerCountryList);
 	}
