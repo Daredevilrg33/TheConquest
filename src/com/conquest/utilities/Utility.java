@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -61,7 +60,7 @@ public class Utility {
 		String[] neighbourCountries = null;
 		boolean neighbourFlag=false;
 		String targetCountry=null;
-
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String currentLine;
 			while ((currentLine = br.readLine()) != null) {
@@ -181,7 +180,7 @@ public class Utility {
 			
 			
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mapHierarchyModel;
