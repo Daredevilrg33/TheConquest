@@ -78,6 +78,13 @@ public class UtilityTest {
 		assertTrue(u.saveMapFile(mapHierarchyModel, name));
 		
 	}
-	
+	@Test
+	public void ValidateMapTest() {
+		// fail("Not yet implemented");
+		ArrayList<CountryModel> parsedCountryList = u.parseAndValidateMap("E:\\Asiainvalid.map").getCountryList();
+		MapHierarchyModel mh= new MapHierarchyModel();
+		System.out.println(mh.isValErrorFlag());
+		assertFalse(mh.isValErrorFlag());
 
+}
 }

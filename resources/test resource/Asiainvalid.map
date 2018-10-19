@@ -1,0 +1,13 @@
+
+North Asia=3
+Persia=8
+
+
+[Territories]
+
+
+Russia,363,81,North Asia,Japan,North Korea
+Japan,678,141,North Asia,Russia,North Korea
+
+Georgia,110,152,Persia,Russia,Azerbaijan,Armenia,Turkey
+Armenia,122,177,Persia,Georgia,Azerbaijan,Iran,Turkey
