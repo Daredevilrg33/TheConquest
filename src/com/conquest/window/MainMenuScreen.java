@@ -92,6 +92,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 			dispose();
 		} else if (event.getSource() == btnHelp) {
 			GameHelp gameHelp = new GameHelp();
+			gameHelp.setVisible(true);
 			dispose();
 		} else {
 			System.exit(0);
