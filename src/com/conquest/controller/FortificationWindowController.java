@@ -48,6 +48,20 @@ public class FortificationWindowController {
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
 	}
 	
+	public void skipping() {
+		if(counter<noOfPlayers-1)
+			counter++;
+		else
+			counter = 0;
+		sourceCounter=0;
+		destinationCounter=0;
+		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
+		reinforcementWindow.updateComboBoxDestinationCountries(a);
+		reinforcementWindow.newArmyLabel();
+		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+	
+	}
+	
 	public void finding(String sourceCountry) {
 
 		sourceCounter = 0 ;
