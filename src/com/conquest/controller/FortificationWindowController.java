@@ -85,6 +85,13 @@ public class FortificationWindowController {
 		}
 	
 	}
+	
+	public boolean checking() {
+		if(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry()==1)
+			return true;
+		else
+			return false;
+	}
 		
 	public void updateDestinationUI(String selectedDestination) {
 		for(int i=0; i<players[counter].getPlayerCountryList().size();i++) {
