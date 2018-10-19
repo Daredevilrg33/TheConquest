@@ -216,6 +216,14 @@ public class MapEditorController implements ActionListener {
 	private void deleteCountry() {
 		String errorMsg;
 		if ((errorMsg = mapHierarchyModel.deleteCountry(selectedNode)) == "") {
+			for(CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				for(String countryName  : countryModel.getListOfNeighbours()) {
+					if(countryName.trim().equalsIgnoreCase(selectedNode.trim())) {
+						countryModel.getListOfNeighbours().remove(countryName);
+						break;
+					}
+				}
+			}
 			mapEditorView.updateHierarchyTree();
 			mapEditorView.updatePaintMatrix();
 		} else
