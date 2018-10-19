@@ -54,7 +54,7 @@ public class Utility {
 	 * @return the map hierarchy model
 	 */
 	public MapHierarchyModel parseAndValidateMap(String filePath) {
-		MapHierarchyModel mapModel = new MapHierarchyModel();
+		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel();
 		ArrayList<ContinentModel> continentModels = new ArrayList<>();
 		ArrayList<CountryModel> countryModels = new ArrayList<>();
 		boolean isContinent = false;
@@ -75,8 +75,8 @@ public class Utility {
 					isContinent = false;
 					if (!isContinent && continentModels.size() == 0) {
 						String valErrorMessage = "Map is invalid as there are no continents defined";
-						mapModel.setValErrorFlag(true);
-						mapModel.setErrorMsg(valErrorMessage);
+						mapHierarchyModel.setValErrorFlag(true);
+						mapHierarchyModel.setErrorMsg(valErrorMessage);
 						break;
 					}
 
@@ -96,8 +96,8 @@ public class Utility {
 					else
 					{
 						String valErrorMessage = "Map is invalid as there are no territories tag defined";
-						mapModel.setValErrorFlag(true);
-						mapModel.setErrorMsg(valErrorMessage);
+						mapHierarchyModel.setValErrorFlag(true);
+						mapHierarchyModel.setErrorMsg(valErrorMessage);
 						break;	
 					}
 					continue;
@@ -132,22 +132,22 @@ public class Utility {
 				System.out.println(currentLine);
 			}
 			
-			mapModel.setContinentsList(continentModels);
-			if(countryModels.size()==0 && !mapModel.isValErrorFlag())
+			mapHierarchyModel.setContinentsList(continentModels);
+			if(countryModels.size()==0 && !mapHierarchyModel.isValErrorFlag())
 			{
 				String valErrorMessage = "Map is invalid as there are no countries defined";
-				mapModel.setValErrorFlag(true);
-				mapModel.setErrorMsg(valErrorMessage);
+				mapHierarchyModel.setValErrorFlag(true);
+				mapHierarchyModel.setErrorMsg(valErrorMessage);
 			}
 			else
-				mapModel.setCountryList(countryModels);	
+				mapHierarchyModel.setCountryList(countryModels);	
 
 			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return mapModel;
+		return mapHierarchyModel;
 	}
 
 	/**

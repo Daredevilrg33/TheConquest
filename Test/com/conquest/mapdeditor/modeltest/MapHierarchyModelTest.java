@@ -125,6 +125,9 @@ public class MapHierarchyModelTest {
 
 	}
 
+	/**
+	 * Method to check whether the continent is deleted or not.
+	 */
 	@Test
 	public void deleteContinentTest() {
 		// fail("Not yet implemented");
@@ -138,12 +141,7 @@ public class MapHierarchyModelTest {
 			b.deleteContinent("RUSSIA");
 			assertNull(b.searchContinent("RUSSIA"));
 		}
-//		System.out.println(b.searchContinent("RUSSIA").getContinentName());
-//		//deleteCountry
-		
-		// b.deleteCountry("KREM");
-		// System.out.println(b.searchCountry("KREM").getCountryName());
-		// assertNull(b.searchCountry("KREM").getCountryName());
+
 
 	}
 
