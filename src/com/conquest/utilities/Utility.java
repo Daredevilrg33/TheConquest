@@ -141,14 +141,14 @@ public class Utility {
 			mapHierarchyModel.setContinentsList(continentModels);
 			if(countryModels.size()==0 && !mapHierarchyModel.isValErrorFlag())
 			{
-				String valErrorMessage = "Map is invalid as there are no countries defined";
+				String valErrorMessage = "Map is invalid as there are no countries defined.";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
 			}
-			else if(countryModels.size()<6  && !mapHierarchyModel.isValErrorFlag())
+			else if(countryModels.size()<5  && !mapHierarchyModel.isValErrorFlag())
 			{
-				String valErrorMessage = "Map is invalid as there should be minimum six countries defined in the map";
+				String valErrorMessage = "Map is invalid as there should be minimum five countries defined in the map.";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
