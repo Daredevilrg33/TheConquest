@@ -24,8 +24,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	/** The button map editor. */
 	private JButton btnMapEditor;
 
-	/** The button about us. */
-	private JButton btnAboutUs;
+	/** The button help describing rules and javaDoc. */
+	private JButton btnHelp;
 
 	/** The button exit. */
 	private JButton btnExit;
@@ -44,10 +44,10 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 		btnMapEditor.addActionListener(this);
 		add(btnMapEditor);
 
-		btnAboutUs = new JButton("About Us");
-		btnAboutUs.setBounds(Constants.WIDTH / 2 - 50, 190, 100, 30);
-		btnAboutUs.addActionListener(this);
-		add(btnAboutUs);
+		btnHelp = new JButton("Help");
+		btnHelp.setBounds(Constants.WIDTH / 2 - 50, 190, 100, 30);
+		btnHelp.addActionListener(this);
+		add(btnHelp);
 
 		btnExit = new JButton("Exit");
 		btnExit.setBounds(Constants.WIDTH / 2 - 50, 260, 100, 30);
@@ -90,7 +90,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 			MapDashboard mapDashboard = new MapDashboard();
 			mapDashboard.setVisible(true);
 			dispose();
-		} else if (event.getSource() == btnAboutUs) {
+		} else if (event.getSource() == btnHelp) {
+			GameHelp gameHelp = new GameHelp();
 			dispose();
 		} else {
 			System.exit(0);

@@ -147,9 +147,9 @@ public class Utility {
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
 			}
-			else if(countryModels.size()<3  && !mapHierarchyModel.isValErrorFlag())
+			else if(countryModels.size()<6  && !mapHierarchyModel.isValErrorFlag())
 			{
-				String valErrorMessage = "Map is invalid as there should be minimum three countries defined in the map";
+				String valErrorMessage = "Map is invalid as there should be minimum six countries defined in the map";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;

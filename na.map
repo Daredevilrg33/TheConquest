@@ -1,0 +1,10 @@
+[Continents]
+
+c1=3
+
+[Territories]
+
+ca,0,0,c1
+cw,0,0,c1
+xc,0,0,c1
+
