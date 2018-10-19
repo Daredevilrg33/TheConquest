@@ -164,7 +164,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
 				dispose();
 				MapDashboard mapDashboard = new MapDashboard();
 				mapDashboard.setVisible(true);
@@ -323,7 +322,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println("Mouse Clicked");
 		int row = adjacencyTable.rowAtPoint(e.getPoint());
 		int col = adjacencyTable.columnAtPoint(e.getPoint());
@@ -376,7 +374,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -387,7 +384,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -398,7 +394,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -409,7 +404,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -30,7 +30,6 @@ public class Utility {
 	 * @return : This will return the path of the map.
 	 */
 	public static String pickFile() {
-		// TODO Auto-generated method stub
 		String filePath = "";
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		jfc.setDialogTitle("Select Map");
@@ -244,7 +243,6 @@ public class Utility {
 
 				isFileSaved = true;
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				isFileSaved = false;
 			} finally {

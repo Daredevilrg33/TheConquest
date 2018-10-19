@@ -111,7 +111,6 @@ public class ContinentModelTest {
 	}
 
 	private Object not(boolean equals) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

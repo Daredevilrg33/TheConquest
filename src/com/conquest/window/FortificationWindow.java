@@ -97,7 +97,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				// TODO Auto-generated method stub
 				dispose();
 				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);
@@ -167,7 +166,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 		if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());

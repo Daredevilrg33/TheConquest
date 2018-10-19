@@ -70,7 +70,6 @@ public class MapDashboard extends JFrame implements ActionListener {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
 				dispose();
 				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);

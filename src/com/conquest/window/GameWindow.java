@@ -85,7 +85,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
 	 * 
-	 * @param mapModel    the map model
+	 * @param mapHierarchyModel    the map hierarchy model
 	 * @param noOfPlayers the no of players
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
@@ -143,31 +143,27 @@ public class GameWindow extends JFrame implements ActionListener {
 
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
+				
 
 			}
 
 			@Override
 			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
+			
 			}
 
 			@Override
 			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
+			
 			}
 
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
+				
 			}
 
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				// TODO Auto-generated method stub
 				dispose();
 				MainMenuScreen initialScreen = new MainMenuScreen();
 				initialScreen.setVisible(true);
@@ -175,14 +171,12 @@ public class GameWindow extends JFrame implements ActionListener {
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
+				
 			}
 
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-
+				
 			}
 		});
 		
@@ -337,7 +331,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
 		switch (e.getActionCommand()) {
 		case "Place":
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
