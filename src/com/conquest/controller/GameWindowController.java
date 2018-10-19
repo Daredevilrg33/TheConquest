@@ -22,7 +22,7 @@ public class GameWindowController {
 
 	private GameWindow gameWindow;
 	private int noOfPlayers = 0;
-	private MapHierarchyModel mapModel;
+	private MapHierarchyModel mapHierarchyModel;
 	private int counter = 0;
 	private PlayerModel[] players;
 	private int i = 0;
@@ -41,22 +41,22 @@ public class GameWindowController {
 	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapHierarchyModel mapModel) {
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
-		this.mapModel = mapModel;
-		initializingPlayerModels(this.noOfPlayers, this.mapModel);
+		this.mapHierarchyModel = mapModel;
+		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
 	}
 
 	/**
 	 * initializingPlayerModels method Void method to initialize player models as
 	 * per number of players
 	 * 
-	 * @param noOfPlayers Input the number of players in game type integer
-	 * @param mapModel    MapHierarchyModel{@link MapHierarchyModel} object to pass
-	 *                    map model
+	 * @param noOfPlayers       Input the number of players in game type integer
+	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
+	 *                          pass map model
 	 */
-	private void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapModel) {
+	public void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel) {
 
 		players = new PlayerModel[noOfPlayers];
-		continents = new ContinentModel[mapModel.getContinentsList().size()];
+		continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
 
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
@@ -84,8 +84,8 @@ public class GameWindowController {
 		Random rand = new Random();
 		List<CountryModel> countryModelList = new ArrayList<>();
 		List<ContinentModel> continentModelList = new ArrayList<>();
-		continentModelList.addAll(mapModel.getContinentsList());
-		countryModelList.addAll(mapModel.getCountryList());
+		continentModelList.addAll(mapHierarchyModel.getContinentsList());
+		countryModelList.addAll(mapHierarchyModel.getCountryList());
 		while (!(countryModelList.isEmpty())) {
 			for (int count1 = 0; count1 < noOfPlayers; count1++) {
 				if (!(countryModelList.isEmpty())) {
@@ -98,44 +98,38 @@ public class GameWindowController {
 
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
-					// h++;
-					// System.out.println("size "+mapModel.getCountryModels().size());
-					// System.out.println("Picked Number "+pickedNumber);
-					// System.out.println(h);
+					
 				}
 			}
 		}
-//		int z=0;
-////		players[0].RemoveCountry();
-//////		players[0].RemoveCountry();
-////		players[1].RemoveCountry();
-////		players[2].RemoveCountry();
-////		players[0].AddCountry(mapModel.getContinentsList().get(0).getCountriesList().get(0));
-////		players[0].AddCountry(mapModel.getContinentsList().get(0).getCountriesList().get(1));
-////		players[1].AddCountry(mapModel.getContinentsList().get(1).getCountriesList().get(0));
-////		players[2].AddCountry(mapModel.getContinentsList().get(1).getCountriesList().get(1));
-//		for(int j=0; j< noOfPlayers; j++) {
-//			for(int s = 0;s<(mapModel.getContinentsList().size());s++) {
-//				for(int count = 0; count < players[j].getPlayerCountryList().size();count++) {
-//					if(mapModel.getContinentsList().get(s).searchingCountry(players[j].getPlayerCountryList().get(count).getCountryName())) {
-//						{
-//							z++;
-//							System.out.println("Player  has "+players[j].getPlayerCountryList().size()+ " countries in "+mapModel.getContinentsList().get(s).getContinentName()+ " continent");
-//							break;
-//						}
-//					}
-//					if(z == mapModel.getContinentsList().size()) {
-//						System.out.println(mapModel.getContinentsList().get(s).getControlValue());
-//						for(int w =0; w<mapModel.getContinentsList().get(s).getControlValue();w++)
-//							players[j].addArmyinPlayer();
-//							z=0;
-//					}
-//				}
-//			}
-//		}
-//		
-		
+
+		isControlValueTobeAdded(this.mapHierarchyModel,players);
 		updateUIInfo();
+	}
+
+	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
+		int z = 0;
+		for (int i = 0; i < playerModels.length; i++) {
+			PlayerModel playerModel = playerModels[i];
+			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+				z = 0;
+				for (CountryModel countryModel : continentModel.getCountriesList()) {
+					
+					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
+					if (value == null) {
+						System.out.println("Country is not availaible.");
+						break;
+					} else {
+						z++;
+						System.out.println("Country is  availaible.");
+						if (z == continentModel.getCountriesList().size()) {
+							playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
+							z = 0;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -145,22 +139,18 @@ public class GameWindowController {
 	 */
 	public void checking(String selectedC) {
 		i = 0;
-//		System.out.println("Previous Counter  Value : " + prevCounter);
+
 
 		while (true) {
 			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
 					.equalsIgnoreCase(selectedC.trim())) {
-//				System.out.println("Previous Counter  Value : " + prevCounter);
-//				System.out.println("Player " + prevCounter + "Armies" + players[prevCounter].getnoOfArmyinPlayer());
 				if (players[prevCounter].getnoOfArmyinPlayer() > 0) {
 					players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
 					players[prevCounter].reduceArmyinPlayer();
 				}
 				if (players[players.length - 1].getnoOfArmyinPlayer() == 0) {
-//					System.out.println("I'm in block");
-					FortificationWindow reinforcementWindow = new FortificationWindow(mapModel, players);
+					FortificationWindow reinforcementWindow = new FortificationWindow(mapHierarchyModel, players);
 					reinforcementWindow.setVisible(true);
-//					gameWindow.dispose();
 				}
 				System.out.println(
 						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
@@ -176,7 +166,6 @@ public class GameWindowController {
 	 */
 	public void updateUIInfo() {
 		prevCounter = counter;
-//		System.out.println(players[counter].getPlayerCountryList().get(i).getCountryName());
 		gameWindow.updatePlayerLabel(players[counter].getPlayerName());
 		gameWindow.updatePlayerArmies(players[counter].getnoOfArmyinPlayer());
 		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());

@@ -90,11 +90,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
 
-		System.out.println("mapHierarchyModel Map Name: " + mapHierarchyModel.getConquestMapName());
-		System.out.println("mapHierarchyModel Error Msg: " + mapHierarchyModel.getErrorMsg());
-		System.out.println("mapHierarchyModel Total Countries: " + mapHierarchyModel.getTotalCountries());
-		System.out.println("mapHierarchyModel Continent List Size: " + mapHierarchyModel.getContinentsList().size());
-		System.out.println("mapHierarchyModel Country List Size: " + mapHierarchyModel.getCountryList().size());
+		
 		
 		this.mapHierarchyModel = mapHierarchyModel;
 		
@@ -104,19 +100,19 @@ public class GameWindow extends JFrame implements ActionListener {
 		setLayout(null);
 		setLocationRelativeTo(null);
 		jPlayerLabel = new JLabel();
-		jPlayerLabel.setBounds(50, 670, 100, 30);
+		jPlayerLabel.setBounds(50, 620, 100, 30);
 		add(jPlayerLabel);
 
 		jComboBoxCountries = new JComboBox<>();
-		jComboBoxCountries.setBounds(170, 670, 100, 30);
+		jComboBoxCountries.setBounds(170, 620, 100, 30);
 		add(jComboBoxCountries);
 		jButtonPlace = new JButton("Place");
-		jButtonPlace.setBounds(290, 670, 100, 30);
+		jButtonPlace.setBounds(290, 620, 100, 30);
 		jButtonPlace.addActionListener(this);
 		add(jButtonPlace);
 
 		jPlayerArmies = new JLabel();
-		jPlayerArmies.setBounds(410, 670, 200, 30);
+		jPlayerArmies.setBounds(410, 620, 200, 30);
 		add(jPlayerArmies);
 		
 		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
@@ -129,13 +125,13 @@ public class GameWindow extends JFrame implements ActionListener {
 		
 		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		mappingScrollPane.setBounds(15, 55, 800, 600);
+		mappingScrollPane.setBounds(15, 55, 800, 550);
 		add(mappingScrollPane);
 
 		treeScrollPane = new JScrollPane(treeView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		treeScrollPane.setBounds(mappingScrollPane.getBounds().x + (int) (mappingScrollPane.getBounds().getWidth()), 55,
-				300, 600);
+				300, 550);
 		add(treeScrollPane);
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
 
@@ -259,7 +255,6 @@ public class GameWindow extends JFrame implements ActionListener {
 			tableColumnModel.getColumn(i).setPreferredWidth(50);
 		}
 
-//		adjacencyTable.setSize(300, 200);
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
 		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
@@ -271,8 +266,6 @@ public class GameWindow extends JFrame implements ActionListener {
 				for (CountryModel countryModel : countryModels) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
-							System.out.println("countryName" + countryName);
-							System.out.println("neighbourCountryName" + neighbourCountryName);
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 								adjacencyTable.setValueAt("1", i, j);
 							} else {
@@ -296,7 +289,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * @param playerName the player name
 	 */
 	public void updatePlayerLabel(String playerName) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
 
@@ -306,7 +298,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * @param RemainingArmies the remaining armies
 	 */
 	public void updatePlayerArmies(int RemainingArmies) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerArmies.setText("Remaining Armies with player: " + RemainingArmies);
 	}
 
@@ -318,7 +309,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	public void updateComboBoxCountries(List<CountryModel> countryModels) {
 		jComboBoxCountries.removeAllItems();
 		for (CountryModel countryModel : countryModels) {
-//			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
 			jComboBoxCountries.addItem(countryModel.getCountryName());
 		}
 	}
@@ -347,8 +337,5 @@ public class GameWindow extends JFrame implements ActionListener {
 			break;
 		}
 	}
-//	
-//	public String transferCountry() {
-//		return selectedCountry;
-//	}
+
 }

@@ -18,8 +18,8 @@ public class PlayerModel {
 	private String playerName;
 
 	/** The no of army for player. */
-	private int noOfArmyinPlayer;
-	private int s = 0;
+	private int noOfArmyInPlayer;
+	
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
@@ -51,20 +51,23 @@ public class PlayerModel {
 	 */
 
 	public void noOfArmyinPlayer(int number) {
-		this.noOfArmyinPlayer = number;
+		this.noOfArmyInPlayer = number;
 	}
 
 	/**
 	 * Reduce army for player.
 	 */
 	public void reduceArmyinPlayer() {
-		this.noOfArmyinPlayer--;
+		this.noOfArmyInPlayer--;
 	}
 	
 	public void addArmyinPlayer() {
-		this.noOfArmyinPlayer++;
+		this.noOfArmyInPlayer++;
 	}
-
+	
+	public void addControlValueToNoOfArmy(int controlValue) {
+		this.noOfArmyInPlayer = this.noOfArmyInPlayer + controlValue;
+	}
 
 	/**
 	 * Gets the no of army for player.
@@ -72,7 +75,7 @@ public class PlayerModel {
 	 * @return the no of army for player
 	 */
 	public int getnoOfArmyinPlayer() {
-		return noOfArmyinPlayer;
+		return noOfArmyInPlayer;
 	}
 
 	/**
