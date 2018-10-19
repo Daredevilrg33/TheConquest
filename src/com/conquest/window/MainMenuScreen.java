@@ -67,7 +67,6 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
 				System.exit(0);
 			}
 		});
@@ -82,7 +81,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
+
 		if (event.getSource() == btnNewGame) {
 			NewGameMenuScreen secondScreen = new NewGameMenuScreen();
 			secondScreen.setVisible(true);

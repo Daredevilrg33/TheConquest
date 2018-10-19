@@ -24,10 +24,10 @@ public class MapHierarchyModel {
 	/** The country list. */
 	private ArrayList<CountryModel> countryList;
 
-	/** The val error flag. */
+	/** The value error flag. */
 	private boolean valErrorFlag = false;
 
-	/** The error msg. */
+	/** The error message. */
 	private String errorMsg = "Map is invalid";
 
 	/**
@@ -39,7 +39,7 @@ public class MapHierarchyModel {
 	}
 
 	/**
-	 * MapHierarchyModel Parametrized Constructor Instantiates a new map hierarchy
+	 * MapHierarchyModel Parameterized Constructor Instantiates a new map hierarchy
 	 * model.
 	 * 
 	 * @param conquestMapName the conquest map name
@@ -255,10 +255,8 @@ public class MapHierarchyModel {
 	/**
 	 * Method to rename a continent.
 	 * 
-	 * @param continentName
-	 *            name of the continent want to rename
-	 * @param newContinentName
-	 *            new name of the continent
+	 * @param countryName name of the continent want to rename
+	 * @param newCountrytName new name of the continent
 	 * @return succeed or failed error message
 	 */
 	public String renameCountry(String countryName, String newCountrytName) {
