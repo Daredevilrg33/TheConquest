@@ -67,7 +67,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	private JPopupMenu continentMenu, countryMenu;
 	private JMenuItem deleteContinent, renameContinent;
-	private JMenuItem deleteCountry, renameCountry, moveCountry;
+	private JMenuItem deleteCountry, moveCountry;
 	private String userSelTreeNode;
 
 	/**
@@ -146,14 +146,14 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		countryMenu = new JPopupMenu();
 		deleteCountry = new JMenuItem("Delete Country");
 		deleteCountry.addActionListener(mapEditorController);
-		renameCountry = new JMenuItem("Rename Country");
-		renameCountry.addActionListener(mapEditorController);
+		//renameCountry = new JMenuItem("Rename Country");
+		//renameCountry.addActionListener(mapEditorController);
 		moveCountry = new JMenuItem("Move to another continent");
 		moveCountry.addActionListener(mapEditorController);
 
 		countryMenu.add(deleteCountry);
 		countryMenu.addSeparator();
-		countryMenu.add(renameCountry);
+		//countryMenu.add(renameCountry);
 		countryMenu.add(moveCountry);
 
 		addWindowListener(new WindowAdapter() {

@@ -76,9 +76,9 @@ public class MapEditorController implements ActionListener {
 		case "Rename Continent":
 			renameContinent();
 			break;
-		case "Rename Country":
-			renameCountry();
-			break;
+//		case "Rename Country":
+//			renameCountry();
+//			break;
 		case "Move to another continent":
 			moveCountry();
 			break;
@@ -248,33 +248,33 @@ public class MapEditorController implements ActionListener {
 		
 	}
 	
-	/**
-	 * renameCountry method
-	 * Void Method to implement response to renameCountryMenu, provide GUI to rename country in tree and matrix
-	 */
-	private void renameCountry() {
-		String errorMsg;
-		boolean retry = true;
-		while (retry) {
-			String inputCountry = JOptionPane.showInputDialog(null, "Enter the new country name: ");
-			if (inputCountry != null) {
-				if ((inputCountry = inputCountry.trim()).isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Country name can't be empty");
-				} 
-				else {
-					if ((errorMsg=mapHierarchyModel.renameCountry(selectedNode,inputCountry))==""){
-						mapEditorView.updateHierarchyTree();
-						mapEditorView.updatePaintMatrix();
-						retry = false;
-					}
-					else JOptionPane.showMessageDialog(null,errorMsg);
-				}	
-			}
-			else
-				retry = false;
-		}
-		
-	}
+//	/**
+//	 * renameCountry method
+//	 * Void Method to implement response to renameCountryMenu, provide GUI to rename country in tree and matrix
+//	 */
+//	private void renameCountry() {
+//		String errorMsg;
+//		boolean retry = true;
+//		while (retry) {
+//			String inputCountry = JOptionPane.showInputDialog(null, "Enter the new country name: ");
+//			if (inputCountry != null) {
+//				if ((inputCountry = inputCountry.trim()).isEmpty()) {
+//					JOptionPane.showMessageDialog(null, "Country name can't be empty");
+//				} 
+//				else {
+//					if ((errorMsg=mapHierarchyModel.renameCountry(selectedNode,inputCountry))==""){
+//						mapEditorView.updateHierarchyTree();
+//						mapEditorView.updatePaintMatrix();
+//						retry = false;
+//					}
+//					else JOptionPane.showMessageDialog(null,errorMsg);
+//				}	
+//			}
+//			else
+//				retry = false;
+//		}
+//		
+//	}
 	/**
 	 * moveCountry method
 	 * Void Method to implement response to moveCountryMenu, provide GUI to move country to another continent in tree
