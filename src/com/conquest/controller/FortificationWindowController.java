@@ -1,18 +1,13 @@
 package com.conquest.controller;
 
-import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
-import com.conquest.window.GameWindow;
-import com.conquest.controller.GameWindowController;
 import com.conquest.window.FortificationWindow;
 import java.util.ArrayList;
 
 public class FortificationWindowController {
 	private FortificationWindow reinforcementWindow;
 	private int noOfPlayers = 0;
-	private MapHierarchyModel mapModel;
-	private int armies;
 	private int sourceCounter = 0;
 	private int destinationCounter = 0;
 	private int counter = 0;
@@ -23,8 +18,6 @@ public class FortificationWindowController {
 			int noOfPlayers, MapHierarchyModel mapModel) {
 		this.reinforcementWindow = reinforcementWindow;
 		this.noOfPlayers = noOfPlayers;
-		this.mapModel = mapModel;
-
 		this.players =  players;
 
 		updateSourceUI();
@@ -32,7 +25,6 @@ public class FortificationWindowController {
 //		reinforcementWindow.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 //		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
-		
 	}
 
 	
@@ -54,7 +46,6 @@ public class FortificationWindowController {
 		reinforcementWindow.updateComboBoxDestinationCountries(a);
 		reinforcementWindow.newArmyLabel();
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
-
 	}
 	
 	public void finding(String sourceCountry) {
@@ -75,15 +66,12 @@ public class FortificationWindowController {
 							System.out.println("destination Country is: "+players[counter].getPlayerCountryList().get(destinationCounter).getCountryName());
 							
 							a.add(players[counter].getPlayerCountryList().get(destinationCounter).getCountryName());
-
 						}
 					}
-
 				}
 				break;
 			}
 		}
-	
 	}
 	
 	public boolean checking() {
@@ -99,15 +87,12 @@ public class FortificationWindowController {
 				destinationCounter = i;
 				break;
 			}
-		}
-		
-		reinforcementWindow.updateDestinationArmyLabel(players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());		
-		
+		}		
+		reinforcementWindow.updateDestinationArmyLabel(players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
 	}
 	
 	public void updateSourceUI() {
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
-
 	}
 	
 	public void updateUIInfo() {

@@ -2,8 +2,7 @@ package com.conquest.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -178,11 +177,15 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 			if (jComboBoxSourceCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
 
-				JOptionPane.showMessageDialog(this, "Select Country to continue.", "Error Message",
+				JOptionPane.showMessageDialog(this, "Select Source Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
 
 			} else if(reinforcementWindowController.checking()){
 				JOptionPane.showMessageDialog(this, "Low number of Armies in Source Country\n Unable to send", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+			}
+			else if(jComboBoxDestinationCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
+				JOptionPane.showMessageDialog(this, "Select Destination Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
 			}
 			else{
