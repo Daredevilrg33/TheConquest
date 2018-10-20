@@ -110,20 +110,24 @@ public class GameWindowController {
 						players[count1].AddCountry(countryModelTest);
 						players[count1].reduceArmyInPlayer();
 					}
-
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
-
 				}
 			}
 		}
-
+		for (int count1 = 0; count1 < noOfPlayers; count1++) {
+			int j= players[count1].getnoOfArmyInPlayer()/3;
+			for(int i = 0; i < j; i++) {
+				players[count1].addArmyInPlayer();
+			}
+		}
+		
 		isControlValueTobeAdded(this.mapHierarchyModel, players);
 		updateUIInfo();
 	}
 
 	/**
-	 * Checks if is control value tobe added.
+	 * Checks if is control value to be added.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param playerModels      the player models
@@ -138,11 +142,11 @@ public class GameWindowController {
 
 					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
 					if (value == null) {
-						System.out.println("Country is not availaible.");
+						System.out.println("Country is not available.");
 						break;
 					} else {
 						z++;
-						System.out.println("Country is  availaible.");
+						System.out.println("Country is  available.");
 						if (z == continentModel.getCountriesList().size()) {
 							playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
 							z = 0;

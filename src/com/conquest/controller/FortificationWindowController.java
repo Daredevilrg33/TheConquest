@@ -67,33 +67,31 @@ public class FortificationWindowController {
 				+ players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 		System.out.println("Newnumber of armies in destination: "
 				+ players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
-		if (counter < noOfPlayers - 1)
-			counter++;
-		else
-			counter = 0;
-
-		sourceCounter = 0;
-		destinationCounter = -1;
-		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
-		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
-		reinforcementWindow.newArmyLabel();
-		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+		updateUIInfo();
 	}
-
-	/**
-	 * Skipping. When player wants to skip reinforcement phase
-	 */
-	public void skipping() {
+	public void nextPlayer() {
 		if (counter < noOfPlayers - 1)
 			counter++;
 		else
-			counter = 0;
+			afterFortification();
+
+	}
+	
+	public void afterFortification() {
+		reinforcementWindow.dispose();
+	}
+	
+	
+	public void updateBackend() {
+	
 		sourceCounter = 0;
 		destinationCounter = -1;
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
-		reinforcementWindow.newArmyLabel();
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+		updateSourceUI();
+		reinforcementWindow.newArmyLabel();
+
 	}
 
 	/**

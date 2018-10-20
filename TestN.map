@@ -1,0 +1,10 @@
+[Continents]
+
+C1=3
+
+[Territories]
+
+C2,0,0,C1,C2,Cdd,Cdf
+Cdd,0,0,C1,Cdd,C2,Cdf
+Cdf,0,0,C1,Cdf,C2,Cdd
+

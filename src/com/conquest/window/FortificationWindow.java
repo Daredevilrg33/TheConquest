@@ -26,7 +26,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	private JComboBox<String> jComboBoxDestinationCountries;
 	private JComboBox<String> jComboBoxChosenNoOfArmies;
 	private JButton jButtonSend;
-	private JButton jButtonSkip;
+	private JButton jButtonFinish;
 	private String selectedSourceCountry;
 	private int armies;
 	private String selectedDestinationCountry;
@@ -63,10 +63,10 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jButtonSend.addActionListener(this);
 		add(jButtonSend);
 
-		jButtonSkip = new JButton("Skip");
-		jButtonSkip.setBounds(750, 50, 100, 30);
-		jButtonSkip.addActionListener(this);
-		add(jButtonSkip);
+		jButtonFinish = new JButton("Finish");
+		jButtonFinish.setBounds(750, 50, 100, 30);
+		jButtonFinish.addActionListener(this);
+		add(jButtonFinish);
 
 		jComboBoxChosenNoOfArmies = new JComboBox<>();
 		jComboBoxChosenNoOfArmies.setBounds(450, 50, 100, 30);
@@ -163,8 +163,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == jButtonSkip) {
-			reinforcementWindowController.skipping();
+		if (e.getSource() == jButtonFinish) {
+			reinforcementWindowController.nextPlayer();
+			reinforcementWindowController.updateBackend();
 		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
 			System.out
@@ -185,6 +186,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 				armies = Integer.valueOf(jComboBoxChosenNoOfArmies.getSelectedItem().toString());
 				reinforcementWindowController.sending(armies);
+				reinforcementWindowController.updateUIInfo();
+				reinforcementWindowController.updateBackend();
 			}
 
 		} else if (e.getSource() == jComboBoxSourceCountries) {
