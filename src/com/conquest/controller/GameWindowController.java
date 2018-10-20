@@ -13,26 +13,41 @@ import com.conquest.window.FortificationWindow;
 
 /**
  * Game Window Controller Class This class initializes Number of players, Player
- * model, Game window object and Map HeirarchyModel
- * 
+ * model, Game window object and Map HeirarchyModel.
+ *
  * @author Rohit Gupta
  * @version 1.0.0
  */
 public class GameWindowController {
 
+	/** The game window. */
 	private GameWindow gameWindow;
+	
+	/** The no of players. */
 	private int noOfPlayers = 0;
+	
+	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
+	
+	/** The counter. */
 	private int counter = 0;
+	
+	/** The players. */
 	private PlayerModel[] players;
+	
+	/** The i. */
 	private int i = 0;
+	
+	/** The previous counter. */
 	private int prevCounter = 0;
+	
+	/** The continents. */
 	private ContinentModel[] continents;
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
-	 * objects
-	 * 
+	 * objects.
+	 *
 	 * @param gameWindow  Object of class GameWindow {@link GameWindow}
 	 * @param noOfPlayers Number of players in game Range from (3-5)
 	 * @param mapModel    Object of class MapHierarchyModel
@@ -47,8 +62,8 @@ public class GameWindowController {
 
 	/**
 	 * initializingPlayerModels method Void method to initialize player models as
-	 * per number of players
-	 * 
+	 * per number of players.
+	 *
 	 * @param noOfPlayers       Input the number of players in game type integer
 	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
 	 *                          pass map model
@@ -98,15 +113,21 @@ public class GameWindowController {
 
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
-					
+
 				}
 			}
 		}
 
-		isControlValueTobeAdded(this.mapHierarchyModel,players);
+		isControlValueTobeAdded(this.mapHierarchyModel, players);
 		updateUIInfo();
 	}
 
+	/**
+	 * Checks if is control value tobe added.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param playerModels the player models
+	 */
 	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 		int z = 0;
 		for (int i = 0; i < playerModels.length; i++) {
@@ -114,7 +135,7 @@ public class GameWindowController {
 			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 				z = 0;
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
-					
+
 					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
 					if (value == null) {
 						System.out.println("Country is not availaible.");
@@ -133,13 +154,12 @@ public class GameWindowController {
 	}
 
 	/**
-	 * Checking method To check the number of armies
-	 * 
+	 * Checking method To check the number of armies.
+	 *
 	 * @param selectedC type String {@link String}
 	 */
 	public void checking(String selectedC) {
 		i = 0;
-
 
 		while (true) {
 			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
@@ -162,7 +182,7 @@ public class GameWindowController {
 
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
-	 * has been made
+	 * has been made.
 	 */
 	public void updateUIInfo() {
 		prevCounter = counter;

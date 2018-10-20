@@ -7,15 +7,41 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.FortificationWindow;
 
+/**
+ * The Class FortificationWindowController.
+ * @author Tushar
+ */
 public class FortificationWindowController {
+	
+	/** The reinforcement window. */
 	private FortificationWindow reinforcementWindow;
+	
+	/** The no of players. */
 	private int noOfPlayers = 0;
+	
+	/** The source counter. */
 	private int sourceCounter = 0;
+	
+	/** The destination counter. */
 	private int destinationCounter = 0;
+	
+	/** The counter. */
 	private int counter = 0;
+	
+	/** The players. */
 	private PlayerModel[] players;
+	
+	/** The destination country models. */
 	ArrayList<String> destinationCountryModels = new ArrayList<>();
 
+	/**
+	 * Instantiates a new fortification window controller.
+	 *
+	 * @param players the players
+	 * @param reinforcementWindow the reinforcement window
+	 * @param noOfPlayers the no of players
+	 * @param mapModel the map model
+	 */
 	public FortificationWindowController(PlayerModel[] players, FortificationWindow reinforcementWindow,
 			int noOfPlayers, MapHierarchyModel mapModel) {
 		this.reinforcementWindow = reinforcementWindow;
@@ -23,12 +49,14 @@ public class FortificationWindowController {
 		this.players = players;
 
 		updateSourceUI();
-//		reinforcementWindow.updateSourceArmyLabel(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry())
-//		reinforcementWindow.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
-//		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
 	}
 
+	/**
+	 * Sending.
+	 *
+	 * @param armies the armies
+	 */
 	public void sending(int armies) {
 		for (int s = 0; s < armies; s++) {
 			players[counter].getPlayerCountryList().get(destinationCounter).addNoOfArmiesCountry();
@@ -51,6 +79,10 @@ public class FortificationWindowController {
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
 	}
 
+	/**
+	 * Skipping.
+	 * When player wants to skip reinforcement phase
+	 */
 	public void skipping() {
 		if (counter < noOfPlayers - 1)
 			counter++;
@@ -65,6 +97,11 @@ public class FortificationWindowController {
 
 	}
 
+	/**
+	 * Finding.
+	 *
+	 * @param sourceCountry the source country
+	 */
 	public void finding(String sourceCountry) {
 
 		PlayerModel playerModel = players[counter];
@@ -86,6 +123,11 @@ public class FortificationWindowController {
 
 	}
 
+	/**
+	 * Checking.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean checking() {
 		if (players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry() == 1)
 			return true;
@@ -93,6 +135,11 @@ public class FortificationWindowController {
 			return false;
 	}
 
+	/**
+	 * Update destination UI.
+	 *
+	 * @param selectedDestination the selected destination
+	 */
 	public void updateDestinationUI(String selectedDestination) {
 		for (int i = 0; i < players[counter].getPlayerCountryList().size(); i++) {
 			if (players[counter].getPlayerCountryList().get(i).getCountryName().equalsIgnoreCase(selectedDestination)) {
@@ -104,18 +151,22 @@ public class FortificationWindowController {
 				players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
 	}
 
+	/**
+	 * Update source UI.
+	 */
 	public void updateSourceUI() {
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 	}
 
+	/**
+	 * Update UI info.
+	 */
 	public void updateUIInfo() {
 
 		reinforcementWindow
 				.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 		reinforcementWindow.updateSourceArmyLabel(
 				players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
-//		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
-//		reinforcementWindow.updateComboBoxDestinationCountries(players[counter].getPlayerCountryList().get(destinationCounter).getListOfNeighbours());
 		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
 		destinationCountryModels.clear();
 
