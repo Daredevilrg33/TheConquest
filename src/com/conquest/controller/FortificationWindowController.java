@@ -9,38 +9,39 @@ import com.conquest.window.FortificationWindow;
 
 /**
  * The Class FortificationWindowController.
+ * 
  * @author Tushar
  */
 public class FortificationWindowController {
-	
+
 	/** The reinforcement window. */
 	private FortificationWindow reinforcementWindow;
-	
+
 	/** The no of players. */
 	private int noOfPlayers = 0;
-	
+
 	/** The source counter. */
 	private int sourceCounter = 0;
-	
+
 	/** The destination counter. */
-	private int destinationCounter = 0;
-	
+	private int destinationCounter = -1;
+
 	/** The counter. */
 	private int counter = 0;
-	
+
 	/** The players. */
 	private PlayerModel[] players;
-	
+
 	/** The destination country models. */
 	ArrayList<String> destinationCountryModels = new ArrayList<>();
 
 	/**
 	 * Instantiates a new fortification window controller.
 	 *
-	 * @param players the players
+	 * @param players             the players
 	 * @param reinforcementWindow the reinforcement window
-	 * @param noOfPlayers the no of players
-	 * @param mapModel the map model
+	 * @param noOfPlayers         the no of players
+	 * @param mapModel            the map model
 	 */
 	public FortificationWindowController(PlayerModel[] players, FortificationWindow reinforcementWindow,
 			int noOfPlayers, MapHierarchyModel mapModel) {
@@ -72,7 +73,7 @@ public class FortificationWindowController {
 			counter = 0;
 
 		sourceCounter = 0;
-		destinationCounter = 0;
+		destinationCounter = -1;
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
 		reinforcementWindow.newArmyLabel();
@@ -80,8 +81,7 @@ public class FortificationWindowController {
 	}
 
 	/**
-	 * Skipping.
-	 * When player wants to skip reinforcement phase
+	 * Skipping. When player wants to skip reinforcement phase
 	 */
 	public void skipping() {
 		if (counter < noOfPlayers - 1)
@@ -89,12 +89,11 @@ public class FortificationWindowController {
 		else
 			counter = 0;
 		sourceCounter = 0;
-		destinationCounter = 0;
+		destinationCounter = -1;
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
 		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
 		reinforcementWindow.newArmyLabel();
 		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
-
 	}
 
 	/**
@@ -109,6 +108,7 @@ public class FortificationWindowController {
 		ArrayList<String> tempDestList = new ArrayList<>();
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountry)) {
+				sourceCounter = playerModel.getPlayerCountryList().indexOf(countryModel);
 				tempDestList.addAll(countryModel.getListOfNeighbours());
 				break;
 			}
@@ -147,8 +147,11 @@ public class FortificationWindowController {
 				break;
 			}
 		}
-		reinforcementWindow.updateDestinationArmyLabel(
-				players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
+		if (destinationCounter >= 0)
+			reinforcementWindow.updateDestinationArmyLabel(
+					players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
+		else
+			reinforcementWindow.updateDestinationArmyLabel(0);
 	}
 
 	/**

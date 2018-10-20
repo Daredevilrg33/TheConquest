@@ -22,25 +22,25 @@ public class GameWindowController {
 
 	/** The game window. */
 	private GameWindow gameWindow;
-	
+
 	/** The no of players. */
 	private int noOfPlayers = 0;
-	
+
 	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
-	
+
 	/** The counter. */
 	private int counter = 0;
-	
+
 	/** The players. */
 	private PlayerModel[] players;
-	
+
 	/** The i. */
 	private int i = 0;
-	
+
 	/** The previous counter. */
 	private int prevCounter = 0;
-	
+
 	/** The continents. */
 	private ContinentModel[] continents;
 
@@ -108,7 +108,7 @@ public class GameWindowController {
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].AddCountry(countryModelTest);
-//						players[count1].reduceArmyinPlayer();
+						players[count1].reduceArmyInPlayer();
 					}
 
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
@@ -126,7 +126,7 @@ public class GameWindowController {
 	 * Checks if is control value tobe added.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param playerModels the player models
+	 * @param playerModels      the player models
 	 */
 	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 		int z = 0;

@@ -68,7 +68,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jButtonSkip.addActionListener(this);
 		add(jButtonSkip);
 
-		
 		jComboBoxChosenNoOfArmies = new JComboBox<>();
 		jComboBoxChosenNoOfArmies.setBounds(450, 50, 100, 30);
 		add(jComboBoxChosenNoOfArmies);
@@ -103,7 +102,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				dispose();
-			
+
 			}
 
 		});
@@ -122,12 +121,10 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	}
 
 	public void updatePlayerLabel(String playerName) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jPlayerLabel.setText(playerName);
 	}
 
 	public void updateSourceArmyLabel(int sourceArmy) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jSourceArmyLabel.setText(Integer.toString(sourceArmy));
 
 	}
@@ -138,7 +135,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	}
 
 	public void updateDestinationArmyLabel(int destinationArmy) {
-//		System.out.println("updatePlayerLabel Value: "+  playerName);
 		jDestinationArmyLabel.setText(Integer.toString(destinationArmy));
 
 	}
@@ -148,8 +144,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jComboBoxSourceCountries.removeAllItems();
 		jComboBoxSourceCountries.addItem("Select country:");
 		for (CountryModel countryModel : countryModels) {
-//			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
-
 			jComboBoxSourceCountries.addItem(countryModel.getCountryName());
 		}
 
@@ -161,8 +155,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jComboBoxDestinationCountries.addItem("Select country:");
 
 		for (int i = arrayList.size() - 1; i >= 0; i--) {
-//			System.out.println("updateComboBoxCountries Value: "+  countryModel.getCountryName());
-
 			jComboBoxDestinationCountries.addItem(arrayList.get(i));
 		}
 
@@ -171,54 +163,47 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if(e.getSource() == jButtonSkip) {
+		if (e.getSource() == jButtonSkip) {
 			reinforcementWindowController.skipping();
-		}
-		else if (e.getSource() == jButtonSend) {
+		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
 			System.out
 					.println("Selected Source Country Name: " + jComboBoxSourceCountries.getSelectedItem().toString());
-//			System.out.println("Selected Destination Country Name: " + jComboBoxDestinationCountries.getSelectedItem().toString());
 
 			if (jComboBoxSourceCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
 
 				JOptionPane.showMessageDialog(this, "Select Source Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
 
-			} else if(reinforcementWindowController.checking()){
-				JOptionPane.showMessageDialog(this, "Low number of Armies in Source Country\n Unable to send", "Error Message",
-						JOptionPane.ERROR_MESSAGE);
-			}
-			else if(jComboBoxDestinationCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
+			} else if (reinforcementWindowController.checking()) {
+				JOptionPane.showMessageDialog(this, "Low number of Armies in Source Country\n Unable to send",
+						"Error Message", JOptionPane.ERROR_MESSAGE);
+			} else if (jComboBoxDestinationCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
 				JOptionPane.showMessageDialog(this, "Select Destination Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
-			}
-			else{
+			} else {
 
 				armies = Integer.valueOf(jComboBoxChosenNoOfArmies.getSelectedItem().toString());
 				reinforcementWindowController.sending(armies);
-//			reinforcementWindowController.updateSourceUI();
-//			reinforcementWindowController.updatePlayer();
-//			reinforcementWindowController.updateUIInfo();	   
 			}
 
-		}
-		else if (e.getSource() == jComboBoxSourceCountries) {
+		} else if (e.getSource() == jComboBoxSourceCountries) {
 			System.out.println("JCombo Source COuntry selected");
 			if (jComboBoxSourceCountries.getItemCount() != 0) {
 				selectedSourceCountry = jComboBoxSourceCountries.getSelectedItem().toString();
-//			selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
-				
-				System.out.println(" Current Item Selected " + jComboBoxSourceCountries.getSelectedItem() + jComboBoxSourceCountries.getSelectedIndex());
-				if(jComboBoxSourceCountries.getSelectedIndex() > 0)
-				{
+
+				System.out.println(" Current Item Selected " + jComboBoxSourceCountries.getSelectedItem()
+						+ jComboBoxSourceCountries.getSelectedIndex());
+				if (jComboBoxSourceCountries.getSelectedIndex() > 0) {
 					reinforcementWindowController.finding(selectedSourceCountry);
-					reinforcementWindowController.updateUIInfo();		
+					reinforcementWindowController.updateUIInfo();
 				}
-			
+				updateDestinationArmyLabel(0);
 			}
-		}
-		else if (e.getSource() == jComboBoxDestinationCountries) {
+		} else if (e.getSource() == jComboBoxDestinationCountries) {
+			if (jComboBoxDestinationCountries.getSelectedIndex() == 0) {
+				updateDestinationArmyLabel(0);
+			}
 			if (jComboBoxDestinationCountries.getItemCount() != 0) {
 				selectedDestinationCountry = jComboBoxDestinationCountries.getSelectedItem().toString();
 			} else {
