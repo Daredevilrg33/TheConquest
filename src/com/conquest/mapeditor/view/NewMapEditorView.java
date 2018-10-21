@@ -254,8 +254,8 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 	public void updatePaintMatrix() {
 
-		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(),
-				mapHierarchyModel.getTotalCountries()) {
+		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getCountryList().size(),
+				mapHierarchyModel.getCountryList().size()) {
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {

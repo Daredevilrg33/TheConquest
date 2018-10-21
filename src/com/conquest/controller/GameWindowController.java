@@ -198,5 +198,12 @@ public class GameWindowController {
 			counter = 0;
 
 	}
+	
+	/**
+	 * @return the players
+	 */
+	public PlayerModel[] getPlayers() {
+		return players;
+	}
 
 }
