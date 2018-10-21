@@ -116,12 +116,10 @@ public class GameWindowController {
 			}
 		}
 		for (int count1 = 0; count1 < noOfPlayers; count1++) {
-			int j= players[count1].getnoOfArmyInPlayer()/3;
-			for(int i = 0; i < j; i++) {
+			for(int i = 0; i < players[count1].getPlayerCountryList().size()/3; i++) {
 				players[count1].addArmyInPlayer();
 			}
 		}
-		
 		isControlValueTobeAdded(this.mapHierarchyModel, players);
 		updateUIInfo();
 	}
@@ -183,7 +181,7 @@ public class GameWindowController {
 			i++;
 		}
 	}
-
+	
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
 	 * has been made.
@@ -195,7 +193,6 @@ public class GameWindowController {
 		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());
 		gameWindow.invalidate();
 		gameWindow.revalidate();
-
 		counter++;
 		if (counter == noOfPlayers)
 			counter = 0;

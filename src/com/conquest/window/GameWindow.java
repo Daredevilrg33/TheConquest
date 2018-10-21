@@ -315,14 +315,9 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		switch (e.getActionCommand()) {
 		case "Place":
-			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
-			System.out.println("Selected Country Name: " + jComboBoxCountries.getSelectedItem().toString());
-
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.checking(selectedCountry);
-
 			gameWindowController.updateUIInfo();
-
 			break;
 		default:
 			break;
