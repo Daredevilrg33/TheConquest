@@ -1,0 +1,13 @@
+[Continents]
+
+qq=2
+aa=1
+
+[Territories]
+
+con1,0,0,qq,aa,bb
+bb,0,0,qq,con1,aa
+bbc,0,0,qq,con1,bb
+sbc,0,0,qq,con1,bbc
+aa,0,0,aa,con1,bb
+

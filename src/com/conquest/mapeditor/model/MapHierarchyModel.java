@@ -277,8 +277,16 @@ public class MapHierarchyModel {
 	public String deleteCountry(String countryName) {
 		CountryModel deleteCountry = searchCountry(countryName);
 		if (deleteCountry != null) {
-			deleteCountry.getBelongsTo().deleteCountry(deleteCountry);
+			ContinentModel continentModel=deleteCountry.getBelongsTo();
+			continentModel.deleteCountry(deleteCountry);
 			getCountryList().remove(deleteCountry);
+			for(ContinentModel loopContinent :getContinentsList())
+			{
+				if (loopContinent.getContinentName().equalsIgnoreCase(continentModel.getContinentName())) {
+					loopContinent.getCountriesList().remove(deleteCountry);
+				}
+			}
+			
 			totalCountries--;
 			deleteCountry = null;
 		} else {

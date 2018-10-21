@@ -279,15 +279,20 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			}
 		}
 
-		tableMatrix.setDataVector(vectorData, countriesColumn);
-		adjacencyTable = new TableRenderer(tableMatrix);
-		adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		adjacencyTable.setRowHeight(20);
-		TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
-		for (int i = 0; i < countriesColumn.length; i++) {
-			tableColumnModel.getColumn(i).setPreferredWidth(50);
+		if (vectorData.length > 0) {
+			tableMatrix.setDataVector(vectorData, countriesColumn);
+			adjacencyTable = new TableRenderer(tableMatrix);
+			adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			adjacencyTable.setRowHeight(20);
+			TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
+			for (int i = 0; i < countriesColumn.length; i++) {
+				tableColumnModel.getColumn(i).setPreferredWidth(50);
+			}
+		} else {
+			tableMatrix = new DefaultTableModel(mapHierarchyModel.getCountryList().size(),
+					mapHierarchyModel.getCountryList().size());
+			adjacencyTable = new TableRenderer(tableMatrix);
 		}
-
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
 		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
