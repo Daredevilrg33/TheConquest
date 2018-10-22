@@ -184,6 +184,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			updateHierarchyTree();
 			updatePaintMatrix();
 		}
+		
 	}
 
 	/**
@@ -253,23 +254,17 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 
 	public void updatePaintMatrix() {
-
-		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getCountryList().size(),
-				mapHierarchyModel.getCountryList().size()) {
-			private static final long serialVersionUID = 1L;
-
+		int numberOfCountries = mapHierarchyModel.getCountryList().size();
+		DefaultTableModel tableMatrix = new DefaultTableModel(numberOfCountries, numberOfCountries) {
 			public boolean isCellEditable(int row, int column) {
-				// all cells false
 				return false;
 			}
 		};
+		
+		vectorData = new String[numberOfCountries][numberOfCountries + 1];
+		countriesColumn = new String[numberOfCountries + 1];
 
-		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size()
-				+ 1];
-		countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
-
-		int columnCounter = 0;
-		int rowCounter = 0;
+		int columnCounter = 0,rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -289,8 +284,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 				tableColumnModel.getColumn(i).setPreferredWidth(50);
 			}
 		} else {
-			tableMatrix = new DefaultTableModel(mapHierarchyModel.getCountryList().size(),
-					mapHierarchyModel.getCountryList().size());
+			tableMatrix = new DefaultTableModel(numberOfCountries, numberOfCountries);
 			adjacencyTable = new TableRenderer(tableMatrix);
 		}
 		mappingScrollPane.getViewport().removeAll();
@@ -304,8 +298,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 				for (CountryModel countryModel : countryModels) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
-							System.out.println("countryName" + countryName);
-							System.out.println("neighbourCountryName" + neighbourCountryName);
 							if (!sourceCountryName.trim().equalsIgnoreCase(countryName)) {
 								if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
 									adjacencyTable.setValueAt("1", i, j);
@@ -339,13 +331,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		String neighbourCountryName = countriesColumn[col];
 		String sourceCountryName = vectorData[row][0];
 
-		System.out.println(" Value in the cell clicked :" + adjacencyTable.getValueAt(row, col).toString() + "row--> "
-				+ row + "col--> " + col);
 		if (!neighbourCountryName.trim().equalsIgnoreCase(sourceCountryName.trim())) {
 			if (adjacencyTable.getValueAt(row, col) == "1") {
 				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-					System.out.println("Value 1 Source Country: " + sourceCountryName);
-					System.out.println("Value 1 Neighbour Country: " + neighbourCountryName);
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName)) {
@@ -359,8 +347,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 			} else if (adjacencyTable.getValueAt(row, col) == "0") {
 				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-					System.out.println("Value 2 Source Country: " + sourceCountryName);
-					System.out.println("Value 2 Neighbour Country: " + neighbourCountryName);
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (CountryModel countryModel1 : mapHierarchyModel.getCountryList()) {
 							if (countryModel1.getCountryName().trim().equalsIgnoreCase(neighbourCountryName)) {

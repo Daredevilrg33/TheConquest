@@ -205,32 +205,19 @@ public class GameWindow extends JFrame implements ActionListener {
 	 */
 
 	public void updatePaintMatrix() {
-
-		DefaultTableModel tableMatrix = new DefaultTableModel(mapHierarchyModel.getTotalCountries(),
-				mapHierarchyModel.getTotalCountries()) {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
+		int numberOfCountries = mapHierarchyModel.getCountryList().size();
+		DefaultTableModel tableMatrix = new DefaultTableModel(numberOfCountries,numberOfCountries) {
 			public boolean isCellEditable(int row, int column) {
-				// all cells false
 				return false;
 			}
 		};
 
-		vectorData = new String[mapHierarchyModel.getCountryList().size()][mapHierarchyModel.getCountryList().size()
-				+ 1];
-		System.out.println("CountryList().size() : " + mapHierarchyModel.getCountryList().size());
-		countriesColumn = new String[mapHierarchyModel.getCountryList().size() + 1];
+		vectorData = new String[numberOfCountries][numberOfCountries+ 1];
+		countriesColumn = new String[numberOfCountries + 1];
 
-		int columnCounter = 0;
-		int rowCounter = 0;
+		int columnCounter = 0,rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
-			System.out.println("loopContinent: " + loopContinent.getContinentName() + " : " + loopCountriesList.size());
-
 			for (CountryModel loopCountry : loopCountriesList) {
 				countriesColumn[0] = "C/C";
 				countriesColumn[++columnCounter] = loopCountry.getCountryName();
