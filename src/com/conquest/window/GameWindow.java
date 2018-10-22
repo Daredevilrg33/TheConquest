@@ -229,10 +229,6 @@ public class GameWindow extends JFrame implements ActionListener {
 		adjacencyTable = new TableRenderer(tableMatrix);
 		adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		adjacencyTable.setRowHeight(20);
-		TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
-		for (int i = 0; i < countriesColumn.length; i++) {
-			tableColumnModel.getColumn(i).setPreferredWidth(50);
-		}
 
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
@@ -240,8 +236,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
-				String neighbourCountryName = countriesColumn[j];
-				String sourceCountryName = vectorData[i][0];
+				String neighbourCountryName = countriesColumn[j], sourceCountryName = vectorData[i][0];
 				for (CountryModel countryModel : countryModels) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {

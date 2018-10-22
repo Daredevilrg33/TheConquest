@@ -279,10 +279,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			adjacencyTable = new TableRenderer(tableMatrix);
 			adjacencyTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			adjacencyTable.setRowHeight(20);
-			TableColumnModel tableColumnModel = adjacencyTable.getColumnModel();
-			for (int i = 0; i < countriesColumn.length; i++) {
-				tableColumnModel.getColumn(i).setPreferredWidth(50);
-			}
 		} else {
 			tableMatrix = new DefaultTableModel(numberOfCountries, numberOfCountries);
 			adjacencyTable = new TableRenderer(tableMatrix);
@@ -293,8 +289,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
-				String neighbourCountryName = countriesColumn[j];
-				String sourceCountryName = vectorData[i][0];
+				String neighbourCountryName = countriesColumn[j],sourceCountryName = vectorData[i][0];
 				for (CountryModel countryModel : countryModels) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
@@ -325,11 +320,9 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Mouse Clicked");
 		int row = adjacencyTable.rowAtPoint(e.getPoint());
 		int col = adjacencyTable.columnAtPoint(e.getPoint());
-		String neighbourCountryName = countriesColumn[col];
-		String sourceCountryName = vectorData[row][0];
+		String neighbourCountryName = countriesColumn[col],sourceCountryName = vectorData[row][0];
 
 		if (!neighbourCountryName.trim().equalsIgnoreCase(sourceCountryName.trim())) {
 			if (adjacencyTable.getValueAt(row, col) == "1") {
