@@ -285,12 +285,11 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		}
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
-		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
 
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
 				String neighbourCountryName = countriesColumn[j],sourceCountryName = vectorData[i][0];
-				for (CountryModel countryModel : countryModels) {
+				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
 							if (!sourceCountryName.trim().equalsIgnoreCase(countryName)) {

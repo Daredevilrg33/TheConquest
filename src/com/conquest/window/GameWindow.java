@@ -232,12 +232,11 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		mappingScrollPane.getViewport().removeAll();
 		mappingScrollPane.getViewport().add(adjacencyTable);
-		List<CountryModel> countryModels = mapHierarchyModel.getCountryList();
 
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
 				String neighbourCountryName = countriesColumn[j], sourceCountryName = vectorData[i][0];
-				for (CountryModel countryModel : countryModels) {
+				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
