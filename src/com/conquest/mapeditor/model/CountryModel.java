@@ -4,6 +4,7 @@
 package com.conquest.mapeditor.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * CountryModel Class Initializes country name String, a ContinentModel
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Nancy Goyal
  */
-public class CountryModel {
+public class CountryModel extends Observable {
 
 	/** The country name. */
 	private String countryName;
@@ -31,6 +32,7 @@ public class CountryModel {
 	 */
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
+
 	}
 
 	/**
@@ -42,6 +44,8 @@ public class CountryModel {
 		// this.countryName = countryName;
 		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
+		updateChanges();
+
 	}
 
 	/**
@@ -54,6 +58,8 @@ public class CountryModel {
 		this.setCountryName(countryName);
 		this.setBelongsTo(continent);
 		this.listOfNeighbours = new ArrayList<>();
+		updateChanges();
+
 	}
 
 	/**
@@ -68,6 +74,8 @@ public class CountryModel {
 		this.countryName = countryName;
 		this.belongsTo = continentModel;
 		this.listOfNeighbours = listOfNeighbours;
+		updateChanges();
+
 	}
 
 	/**
@@ -86,6 +94,7 @@ public class CountryModel {
 	 */
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+		updateChanges();
 	}
 
 	/**
@@ -104,6 +113,7 @@ public class CountryModel {
 	 */
 	public void setBelongsTo(ContinentModel belongsTo) {
 		this.belongsTo = belongsTo;
+		updateChanges();
 	}
 
 	/**
@@ -115,7 +125,9 @@ public class CountryModel {
 	 */
 
 	public boolean addNeighbour(String countryName) {
-		return this.listOfNeighbours.add(countryName);
+		boolean isAdded = listOfNeighbours.add(countryName);
+		updateChanges();
+		return isAdded;
 	}
 
 	/**
@@ -143,6 +155,7 @@ public class CountryModel {
 	 */
 	public void setNoOfArmiesCountry(int noOfArmiesCountry) {
 		this.noOfArmiesCountry = noOfArmiesCountry;
+		updateChanges();
 	}
 
 	/**
@@ -150,6 +163,7 @@ public class CountryModel {
 	 */
 	public void addNoOfArmiesCountry() {
 		noOfArmiesCountry++;
+		updateChanges();
 	}
 
 	/**
@@ -157,6 +171,7 @@ public class CountryModel {
 	 */
 	public void removeNoOfArmiesCountry() {
 		noOfArmiesCountry--;
+		updateChanges();
 	}
 
 	/**
@@ -188,4 +203,8 @@ public class CountryModel {
 				+ noOfArmiesCountry + ", listOfNeighbours=" + listOfNeighbours + "]";
 	}
 
+	public void updateChanges() {
+		setChanged();
+		notifyObservers(this);
+	}
 }

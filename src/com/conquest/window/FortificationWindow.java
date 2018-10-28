@@ -37,9 +37,11 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	private JLabel jDestinationCountryLabel;
 	private JLabel jChosenNoOfArmies;
 	private PlayerModel[] players;
+	private static int noOfPlayersDoneFortification = 0;
 
 	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
 		this.players = players;
+		noOfPlayersDoneFortification = players.length;
 		setTitle("Fortification Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
@@ -164,8 +166,13 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == jButtonFinish) {
-			reinforcementWindowController.nextPlayer();
 			reinforcementWindowController.updateBackend();
+			noOfPlayersDoneFortification--;
+			if (noOfPlayersDoneFortification == 0)
+				dispose();
+			else
+				reinforcementWindowController.nextPlayer();
+
 		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
 			System.out
@@ -188,6 +195,12 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				reinforcementWindowController.sending(armies);
 				reinforcementWindowController.updateUIInfo();
 				reinforcementWindowController.updateBackend();
+				noOfPlayersDoneFortification--;
+				if (noOfPlayersDoneFortification == 0)
+					dispose();
+				else
+					reinforcementWindowController.nextPlayer();
+
 			}
 
 		} else if (e.getSource() == jComboBoxSourceCountries) {

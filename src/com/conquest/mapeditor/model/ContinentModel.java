@@ -1,13 +1,14 @@
 package com.conquest.mapeditor.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * The Class ContinentModel.
  *
  * @author Nancy Goyal
  */
-public class ContinentModel {
+public class ContinentModel extends Observable {
 
 	/** The continent name. */
 	private String continentName;
@@ -26,6 +27,7 @@ public class ContinentModel {
 	public ContinentModel(String continentName) {
 		this.setContinentName(continentName);
 		this.countriesList = new ArrayList<CountryModel>();
+		updateChanges();
 	}
 
 	/**
@@ -46,6 +48,7 @@ public class ContinentModel {
 	 */
 	public void setContinentName(String continentName) {
 		this.continentName = continentName;
+		updateChanges();
 	}
 
 	/**
@@ -66,6 +69,7 @@ public class ContinentModel {
 	 */
 	public void setCountriesList(ArrayList<CountryModel> countriesList) {
 		this.countriesList = countriesList;
+		updateChanges();
 	}
 
 	/**
@@ -75,6 +79,7 @@ public class ContinentModel {
 	 */
 	public void addCountry(CountryModel country) {
 		countriesList.add(country);
+		updateChanges();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ContinentModel {
 	 */
 	public void deleteCountry(CountryModel country) {
 		countriesList.remove(country);
+		updateChanges();
 	}
 
 	/**
@@ -125,6 +131,7 @@ public class ContinentModel {
 	 */
 	public void setControlValue(int controlValue) {
 		this.controlValue = controlValue;
+		updateChanges();
 	}
 
 	/**
@@ -134,5 +141,10 @@ public class ContinentModel {
 	 */
 	public int getControlValue() {
 		return controlValue;
+	}
+
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
 	}
 }

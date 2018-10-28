@@ -137,7 +137,6 @@ public class GameWindowController {
 			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 				z = 0;
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
-
 					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
 					if (value == null) {
 						System.out.println("Country is not available.");
