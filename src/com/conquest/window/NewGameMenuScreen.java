@@ -153,6 +153,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 				Utility utility = new Utility();
 				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
+				if(mapModel.getTotalCountries()<Integer.parseInt(noOfPlayers) && !mapModel.isValErrorFlag())
+				{
+					mapModel.setValErrorFlag(true);
+					mapModel.setErrorMsg("Number of countries cannot be less than number of players");	
+				}
+					
 				mapModel.setConquestMapName(fileName);
 				if (!mapModel.isValErrorFlag()) {
 					dispose();
