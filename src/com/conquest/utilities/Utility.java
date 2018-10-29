@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -146,15 +147,18 @@ public class Utility {
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
 			}
-			else if(countryModels.size()<5  && !mapHierarchyModel.isValErrorFlag())
+			else if(countryModels.size()<3  && !mapHierarchyModel.isValErrorFlag())
 			{
-				String valErrorMessage = "Map is invalid as there should be minimum five countries defined in the map.";
+				String valErrorMessage = "Map is invalid as there should be minimum three countries defined in the map as there are minimum three players which can play.";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
 			}
 			else
+			{
 				mapHierarchyModel.setCountryList(countryModels);
+				mapHierarchyModel.setTotalCountries(countryModels.size());
+			}
 			
 			//validating if there is connectivity of country to any other country
 			if(targetCountry!=null)
@@ -251,5 +255,42 @@ public class Utility {
 		}
 		return isFileSaved;
 	}
+	
+	
+	/**
+	 * beforeSaveValidation Method validate map.
+	 * 
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param fileName          the file name
+	 * @return true, if successful
+	 */
+	public boolean beforeSaveValidation(MapHierarchyModel mapHierarchyModel) {
+		if (mapHierarchyModel.getCountryList().size() < 3) {
+			JOptionPane.showMessageDialog(null,
+					"Minimum three countries should be defined in the map as there are minimum three players which can play.");
+			return false;
+		}
+		String targetCountry = null;
+		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+			for (CountryModel countryModel : continentModel.getCountriesList()) {
+				if (countryModel.getListOfNeighbours().size() < 2) {
+					targetCountry = countryModel.getCountryName();
+					break;
+				}
+			}
+		}
+		if (targetCountry != null) {
+			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+				for (CountryModel countryModel : continentModel.getCountriesList()) {
+					if (countryModel.searchNeighboursCountry(targetCountry) == null) {
+						JOptionPane.showMessageDialog(null,
+								"Map is invalid as there is no connectivity from or to country " + targetCountry);
+						return false;
+					}
 
+				}
+			}
+		}
+		return true;
+	}
 }

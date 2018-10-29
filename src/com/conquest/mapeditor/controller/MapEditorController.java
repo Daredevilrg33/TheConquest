@@ -180,15 +180,16 @@ public class MapEditorController implements ActionListener {
 	 */
 	private void saveMapFile() {
 		boolean retry = true;
-		while (retry) {
+		Utility utility = new Utility();
+		boolean saveVal=utility.beforeSaveValidation(mapHierarchyModel);
+		while (retry && saveVal) {
 			String mapFileName = JOptionPane.showInputDialog(null, "Enter the name of the map: ");
 			if (mapFileName != null) {
 				if ((mapFileName = mapFileName.trim()).isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Map file name can't be empty");
 				} else {
-					Utility utility = new Utility();
 					utility.saveMapFile(mapHierarchyModel, mapFileName);
-					retry = false;
+					retry = !saveVal;
 				}
 
 			} else
