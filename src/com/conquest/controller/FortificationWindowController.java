@@ -50,7 +50,7 @@ public class FortificationWindowController {
 		this.players = players;
 
 		updateSourceUI();
-		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+		this.reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
 	}
 
 	/**
@@ -69,6 +69,7 @@ public class FortificationWindowController {
 				+ players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
 		updateUIInfo();
 	}
+	
 	public void nextPlayer() {
 		if (counter < noOfPlayers - 1)
 			counter++;
@@ -76,14 +77,13 @@ public class FortificationWindowController {
 			afterFortification();
 
 	}
-	
+
 	public void afterFortification() {
 		reinforcementWindow.dispose();
 	}
-	
-	
+
 	public void updateBackend() {
-	
+
 		sourceCounter = 0;
 		destinationCounter = -1;
 		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());

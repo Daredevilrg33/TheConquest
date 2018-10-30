@@ -4,12 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,14 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
 
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
+import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
@@ -86,7 +86,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
 
-
 		this.mapHierarchyModel = mapHierarchyModel;
 
 		setTitle("Game Window");
@@ -94,21 +93,6 @@ public class GameWindow extends JFrame implements ActionListener {
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		jPlayerLabel = new JLabel();
-		jPlayerLabel.setBounds(50, 620, 100, 30);
-		add(jPlayerLabel);
-
-		jComboBoxCountries = new JComboBox<>();
-		jComboBoxCountries.setBounds(170, 620, 100, 30);
-		add(jComboBoxCountries);
-		jButtonPlace = new JButton("Place");
-		jButtonPlace.setBounds(290, 620, 100, 30);
-		jButtonPlace.addActionListener(this);
-		add(jButtonPlace);
-
-		jPlayerArmies = new JLabel();
-		jPlayerArmies.setBounds(410, 620, 200, 30);
-		add(jPlayerArmies);
 
 		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
 		treeView = new TreeRenderer(continentRoot);
@@ -128,45 +112,35 @@ public class GameWindow extends JFrame implements ActionListener {
 		treeScrollPane.setBounds(mappingScrollPane.getBounds().x + (int) (mappingScrollPane.getBounds().getWidth()), 55,
 				300, 550);
 		add(treeScrollPane);
+
+		jPlayerLabel = new JLabel();
+		jPlayerLabel.setBounds(50, 620, 100, 30);
+		add(jPlayerLabel);
+
+		jComboBoxCountries = new JComboBox<>();
+		jComboBoxCountries.setBounds(170, 620, 100, 30);
+		add(jComboBoxCountries);
+		jButtonPlace = new JButton("Place");
+		jButtonPlace.setBounds(290, 620, 100, 30);
+		jButtonPlace.addActionListener(this);
+		add(jButtonPlace);
+
+		jPlayerArmies = new JLabel();
+		jPlayerArmies.setBounds(410, 620, 200, 30);
+		add(jPlayerArmies);
+
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
-
-		addWindowListener(new WindowListener() {
-
+		addWindowListener(new WindowAdapter() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
+			 */
 			@Override
-			public void windowOpened(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(WindowEvent e) {
+				NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+				newGameMenuScreen.setVisible(true);
 				dispose();
-				MainMenuScreen initialScreen = new MainMenuScreen();
-				initialScreen.setVisible(true);
-			}
-
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-
 			}
 		});
 
@@ -206,16 +180,16 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	public void updatePaintMatrix() {
 		int numberOfCountries = mapHierarchyModel.getCountryList().size();
-		DefaultTableModel tableMatrix = new DefaultTableModel(numberOfCountries,numberOfCountries) {
+		DefaultTableModel tableMatrix = new DefaultTableModel(numberOfCountries, numberOfCountries) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 
-		vectorData = new String[numberOfCountries][numberOfCountries+ 1];
+		vectorData = new String[numberOfCountries][numberOfCountries + 1];
 		countriesColumn = new String[numberOfCountries + 1];
 
-		int columnCounter = 0,rowCounter = 0;
+		int columnCounter = 0, rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -304,5 +278,14 @@ public class GameWindow extends JFrame implements ActionListener {
 			break;
 		}
 	}
+
+	public void redirectToAttackPhase() {
+		PlayerModel[] players = gameWindowController.getPlayers();
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(mapHierarchyModel, players[0]);
+		attackPhaseWindow.setVisible(true);
+		dispose();
+	}
+	
+	
 
 }

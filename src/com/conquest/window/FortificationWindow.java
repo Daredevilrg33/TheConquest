@@ -37,14 +37,13 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	private JLabel jDestinationCountryLabel;
 	private JLabel jChosenNoOfArmies;
 	private PlayerModel[] players;
-	private static int noOfPlayersDoneFortification = 0;
 
 	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
 		this.players = players;
-		noOfPlayersDoneFortification = players.length;
+
 		setTitle("Fortification Window");
 		setResizable(false);
-		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
+		setSize(Constants.MAP_EDITOR_WIDTH, Constants.HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		jPlayerLabel = new JLabel();
@@ -119,7 +118,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		for (int i = 1; i <= number; i++) {
 			jComboBoxChosenNoOfArmies.addItem(Integer.toString(i));
 		}
-
 	}
 
 	public void updatePlayerLabel(String playerName) {
@@ -166,12 +164,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == jButtonFinish) {
+			
+			reinforcementWindowController.nextPlayer();
 			reinforcementWindowController.updateBackend();
-			noOfPlayersDoneFortification--;
-			if (noOfPlayersDoneFortification == 0)
-				dispose();
-			else
-				reinforcementWindowController.nextPlayer();
 
 		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
@@ -194,12 +189,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				armies = Integer.valueOf(jComboBoxChosenNoOfArmies.getSelectedItem().toString());
 				reinforcementWindowController.sending(armies);
 				reinforcementWindowController.updateUIInfo();
+				
+				reinforcementWindowController.nextPlayer();
 				reinforcementWindowController.updateBackend();
-				noOfPlayersDoneFortification--;
-				if (noOfPlayersDoneFortification == 0)
-					dispose();
-				else
-					reinforcementWindowController.nextPlayer();
 
 			}
 
