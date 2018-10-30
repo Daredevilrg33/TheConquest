@@ -1,8 +1,7 @@
 package com.conquest.mapeditor.model;
 
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
+import java.util.Observable;
 
 /**
  * The Class MapHierarchyModel.
@@ -10,7 +9,7 @@ import javax.swing.JOptionPane;
  * @author Nancy Goyal
  * @version 1.0.0
  */
-public class MapHierarchyModel {
+public class MapHierarchyModel extends Observable {
 
 	/** The conquest map name. */
 	private String conquestMapName = "Default";
@@ -277,16 +276,15 @@ public class MapHierarchyModel {
 	public String deleteCountry(String countryName) {
 		CountryModel deleteCountry = searchCountry(countryName);
 		if (deleteCountry != null) {
-			ContinentModel continentModel=deleteCountry.getBelongsTo();
+			ContinentModel continentModel = deleteCountry.getBelongsTo();
 			continentModel.deleteCountry(deleteCountry);
 			getCountryList().remove(deleteCountry);
-			for(ContinentModel loopContinent :getContinentsList())
-			{
+			for (ContinentModel loopContinent : getContinentsList()) {
 				if (loopContinent.getContinentName().equalsIgnoreCase(continentModel.getContinentName())) {
 					loopContinent.getCountriesList().remove(deleteCountry);
 				}
 			}
-			
+
 			totalCountries--;
 			deleteCountry = null;
 		} else {
@@ -366,5 +364,10 @@ public class MapHierarchyModel {
 		countryList.add(newCountry);
 
 		return "";
+	}
+
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
 	}
 }

@@ -25,9 +25,10 @@ public class GameWindowControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-/**
- * no of armies after reinforcements
- */
+
+	/**
+	 * no of armies after reinforcements
+	 */
 	@Test
 	public void test() {
 		// fail("Not yet implemented");
@@ -37,9 +38,11 @@ public class GameWindowControllerTest {
 		GameWindowController gamewindow = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gamewindow.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gamewindow.getPlayers();
-		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size() );
-		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer() );
-		assertEquals(23,playerModels[1].getnoOfArmyInPlayer());
+		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+
+		
+		assertEquals(25, playerModels[1].getnoOfArmyInPlayer());
 	}
 
 }

@@ -91,7 +91,6 @@ public class GameWindowController {
 			}
 			}
 		}
-
 		/*
 		 * randomly placing army of each player in different country by round robin
 		 */
@@ -108,19 +107,14 @@ public class GameWindowController {
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].AddCountry(countryModelTest);
-						players[count1].reduceArmyInPlayer();
 					}
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
 				}
 			}
 		}
-		for (int count1 = 0; count1 < noOfPlayers; count1++) {
-			for(int i = 0; i < players[count1].getPlayerCountryList().size()/3; i++) {
-				players[count1].addArmyInPlayer();
-			}
-		}
-		isControlValueTobeAdded(this.mapHierarchyModel, players);
+//		calculateAndAddReinforcementArmy(players);
+//		isControlValueTobeAdded(this.mapHierarchyModel, players);
 		updateUIInfo();
 	}
 
@@ -139,11 +133,9 @@ public class GameWindowController {
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
 					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
 					if (value == null) {
-						System.out.println("Country is not available.");
 						break;
 					} else {
 						z++;
-						System.out.println("Country is  available.");
 						if (z == continentModel.getCountriesList().size()) {
 							playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
 							z = 0;
@@ -180,7 +172,7 @@ public class GameWindowController {
 			i++;
 		}
 	}
-	
+
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
 	 * has been made.
@@ -197,12 +189,29 @@ public class GameWindowController {
 			counter = 0;
 
 	}
-	
+
 	/**
 	 * @return the players
 	 */
 	public PlayerModel[] getPlayers() {
 		return players;
+	}
+
+	/**
+	 * calculateAndAddReinforcementArmy method Void Method to calculate and add
+	 * Reinforcement armies according to the no of coutries per player.
+	 * 
+	 * @param players
+	 */
+	public void calculateAndAddReinforcementArmy(PlayerModel[] players) {
+		for (int count1 = 0; count1 < players.length; count1++) {
+			int reinforcementArmyCount = players[count1].getPlayerCountryList().size() / 3;
+			if (reinforcementArmyCount < 3)
+				reinforcementArmyCount = 3;
+			for (int i = 0; i < reinforcementArmyCount; i++) {
+				players[count1].addArmyInPlayer();
+			}
+		}
 	}
 
 }

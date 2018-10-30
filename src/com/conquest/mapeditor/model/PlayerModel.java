@@ -2,6 +2,7 @@ package com.conquest.mapeditor.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * The Class PlayerModel.
@@ -9,7 +10,7 @@ import java.util.List;
  * @author ROHIT GUPTA
  * @version 1.0.0
  */
-public class PlayerModel {
+public class PlayerModel extends Observable {
 
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
@@ -19,7 +20,7 @@ public class PlayerModel {
 
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
-	
+
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 * 
@@ -28,6 +29,7 @@ public class PlayerModel {
 	public PlayerModel(String playerName) {
 		this.playerName = playerName;
 		this.playerCountryList = new ArrayList<>();
+		updateChanges();
 	}
 
 	/**
@@ -41,6 +43,7 @@ public class PlayerModel {
 		this.playerName = playerName;
 		this.playerCountryList = new ArrayList<>();
 		this.playerCountryList.addAll(countryModelArrayList);
+		updateChanges();
 	}
 
 	/**
@@ -51,6 +54,7 @@ public class PlayerModel {
 
 	public void noOfArmyInPlayer(int number) {
 		this.noOfArmyInPlayer = number;
+		updateChanges();
 	}
 
 	/**
@@ -58,6 +62,7 @@ public class PlayerModel {
 	 */
 	public void reduceArmyInPlayer() {
 		this.noOfArmyInPlayer--;
+		updateChanges();
 	}
 
 	/**
@@ -65,10 +70,12 @@ public class PlayerModel {
 	 */
 	public void addArmyInPlayer() {
 		this.noOfArmyInPlayer++;
+		updateChanges();
 	}
-	
+
 	public void addControlValueToNoOfArmy(int controlValue) {
 		this.noOfArmyInPlayer = this.noOfArmyInPlayer + controlValue;
+		updateChanges();
 	}
 
 	/**
@@ -96,6 +103,7 @@ public class PlayerModel {
 	 */
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+		updateChanges();
 	}
 
 	/**
@@ -105,7 +113,7 @@ public class PlayerModel {
 	 */
 	public void AddCountry(CountryModel countryName) {
 		playerCountryList.add(countryName);
-
+		updateChanges();
 	}
 
 	/**
@@ -113,6 +121,7 @@ public class PlayerModel {
 	 */
 	public void RemoveCountry() {
 		playerCountryList.removeAll(playerCountryList);
+		updateChanges();
 	}
 
 	/**
@@ -138,6 +147,11 @@ public class PlayerModel {
 			}
 		}
 		return null;
+	}
+
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
 	}
 
 }

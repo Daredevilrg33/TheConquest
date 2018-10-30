@@ -2,6 +2,7 @@ package com.conquest.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.regex.Pattern;
@@ -87,43 +88,17 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		setLayout(null);
 		setLocationRelativeTo(null);
 
-		addWindowListener(new WindowListener() {
-
+		addWindowListener(new WindowAdapter() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
+			 */
 			@Override
-			public void windowOpened(WindowEvent arg0) {
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-			
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-				
-			}
-
-			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(WindowEvent e) {
+				MainMenuScreen mainMenuScreen = new MainMenuScreen();
+				mainMenuScreen.setVisible(true);
 				dispose();
-				MainMenuScreen initialScreen = new MainMenuScreen();
-				initialScreen.setVisible(true);
-			}
-
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				
-			}
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-				
 			}
 		});
 	}
@@ -153,12 +128,11 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 				Utility utility = new Utility();
 				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
-				if(mapModel.getTotalCountries()<Integer.parseInt(noOfPlayers) && !mapModel.isValErrorFlag())
-				{
+				if (mapModel.getTotalCountries() < Integer.parseInt(noOfPlayers) && !mapModel.isValErrorFlag()) {
 					mapModel.setValErrorFlag(true);
-					mapModel.setErrorMsg("Number of countries cannot be less than number of players");	
+					mapModel.setErrorMsg("Number of countries cannot be less than number of players");
 				}
-					
+
 				mapModel.setConquestMapName(fileName);
 				if (!mapModel.isValErrorFlag()) {
 					dispose();

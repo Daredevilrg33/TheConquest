@@ -22,7 +22,7 @@ public class CountryModel extends Observable {
 	private ContinentModel belongsTo;
 
 	/** The no of armies country. */
-	private int noOfArmiesCountry = 1;
+	private int noOfArmiesCountry;
 
 	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
