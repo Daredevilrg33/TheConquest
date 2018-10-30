@@ -1,6 +1,8 @@
 package com.conquest.window;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -63,6 +66,9 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The mapping scroll pane. */
 	private JScrollPane mappingScrollPane;
+	
+	/** The phaseView scroll pane. */
+	private JPanel phaseViewPanel;
 
 	/** The tree view. */
 	private TreeRenderer treeView;
@@ -72,6 +78,9 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The label connectivity. */
 	private JLabel labelConnectivity;
+	
+	/** The label phase. */
+	private JLabel labelPhase;
 
 	private String[] countriesColumn;
 	private String[][] vectorData;
@@ -120,15 +129,27 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		mappingScrollPane.setBounds(15, 55, 800, 550);
+		mappingScrollPane.setBounds(15, 55, 800, 350);
 		add(mappingScrollPane);
 
 		treeScrollPane = new JScrollPane(treeView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		treeScrollPane.setBounds(mappingScrollPane.getBounds().x + (int) (mappingScrollPane.getBounds().getWidth()), 55,
-				300, 550);
+				300, 350);
 		add(treeScrollPane);
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
+		
+		phaseViewPanel = new JPanel();
+		phaseViewPanel.setBounds(15, treeScrollPane.getBounds().y + (int) (treeScrollPane.getBounds().getHeight()),
+				800+(int) (treeScrollPane.getBounds().getWidth()), 150);
+		add(phaseViewPanel);
+		phaseViewPanel.setBackground(Color.lightGray);
+		phaseViewPanel.setLayout(new FlowLayout());
+		
+		labelPhase = new JLabel("StartUp Phase");
+		labelPhase.setFont(new Font("dialog", 1, 15));
+		phaseViewPanel.add(labelPhase);
+		
 
 		addWindowListener(new WindowListener() {
 
