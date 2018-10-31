@@ -149,21 +149,20 @@ public class GameWindowController {
 	/**
 	 * Checking method To check the number of armies.
 	 *
-	 * @param selectedC type String {@link String}
+	 * @param selectedCountryName type String {@link String}
 	 */
-	public void checking(String selectedC) {
+	public void checking(String selectedCountryName) {
 		i = 0;
 
 		while (true) {
 			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
-					.equalsIgnoreCase(selectedC.trim())) {
+					.equalsIgnoreCase(selectedCountryName.trim())) {
 				if (players[prevCounter].getnoOfArmyInPlayer() > 0) {
 					players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
 					players[prevCounter].reduceArmyInPlayer();
 				}
 				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
-					FortificationWindow reinforcementWindow = new FortificationWindow(mapHierarchyModel, players);
-					reinforcementWindow.setVisible(true);
+					gameWindow.redirectToAttackPhase();
 				}
 				System.out.println(
 						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());

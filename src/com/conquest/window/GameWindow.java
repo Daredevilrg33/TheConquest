@@ -66,7 +66,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The mapping scroll pane. */
 	private JScrollPane mappingScrollPane;
-	
+
 	/** The phaseView scroll pane. */
 	private JPanel phaseViewPanel;
 
@@ -78,7 +78,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The label connectivity. */
 	private JLabel labelConnectivity;
-	
+
 	/** The label phase. */
 	private JLabel labelPhase;
 
@@ -124,15 +124,14 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		phaseViewPanel = new JPanel();
 		phaseViewPanel.setBounds(15, treeScrollPane.getBounds().y + (int) (treeScrollPane.getBounds().getHeight()),
-				800+(int) (treeScrollPane.getBounds().getWidth()), 150);
+				800 + (int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(phaseViewPanel);
 		phaseViewPanel.setBackground(Color.lightGray);
 		phaseViewPanel.setLayout(new FlowLayout());
-		
+
 		labelPhase = new JLabel("StartUp Phase");
 		labelPhase.setFont(new Font("dialog", 1, 15));
 		phaseViewPanel.add(labelPhase);
-		
 
 		jPlayerLabel = new JLabel();
 		jPlayerLabel.setBounds(50, 620, 100, 30);
@@ -304,9 +303,13 @@ public class GameWindow extends JFrame implements ActionListener {
 		PlayerModel[] players = gameWindowController.getPlayers();
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(mapHierarchyModel, players[0]);
 		attackPhaseWindow.setVisible(true);
-		dispose();
+
 	}
-	
-	
+
+	public void redirectToFortificationWindow() {
+		FortificationWindow fortificationWindow = new FortificationWindow(mapHierarchyModel,
+				gameWindowController.getPlayers());
+		fortificationWindow.setVisible(true);
+	}
 
 }
