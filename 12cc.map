@@ -1,0 +1,17 @@
+[Continents]
+
+aabb=2
+acc=1
+lml=2
+jhg=2
+
+[Territories]
+
+asd,0,0,aabb,sda,tyo,qwe,rty,uwq,opi
+sda,0,0,aabb,asd,tyo,qwe,uwq,opi
+tyo,0,0,acc,sda,qwe,rty
+qwe,0,0,lml,asd,tyo,rty,uwq,opi
+rty,0,0,lml,asd,sda,tyo,qwe,uwq,opi
+uwq,0,0,jhg,asd,sda,tyo,qwe,rty
+opi,0,0,jhg,sda,tyo,qwe,rty,uwq
+

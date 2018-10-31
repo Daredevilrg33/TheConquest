@@ -27,22 +27,42 @@ public class GameWindowControllerTest {
 	}
 
 	/**
-	 * no of armies after reinforcements
+	 * no of armies a player have at the time of startup
 	 */
 	@Test
-	public void test() {
+	public void noOfArmyTest() {
 		// fail("Not yet implemented");
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
-		GameWindowController gamewindow = new GameWindowController(gameWindow, 3, mapHierarchyModel);
-		gamewindow.initializingPlayerModels(3, mapHierarchyModel);
-		PlayerModel[] playerModels = gamewindow.getPlayers();
+		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
+		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
+		PlayerModel[] playerModels = gameWindowController.getPlayers();
 		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 
 		
-		assertEquals(25, playerModels[1].getnoOfArmyInPlayer());
+		assertEquals(25,playerModels[1].getnoOfArmyInPlayer());
 	}
+/**
+ * No of armies a player has after first reinforcement phase depending on the number of countries he has.
+ * 
+ */
+	@Test
+	public void noOfArmyAfterTest() {
+		// fail("Not yet implemented");
 
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		gameWindow = new GameWindow(mapHierarchyModel, "3");
+		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
+		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
+		PlayerModel[] playerModels = gameWindowController.getPlayers();
+		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+		gameWindowController.calculateAndAddReinforcementArmy(playerModels);
+
+		
+		assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
+	}
+	
 }
