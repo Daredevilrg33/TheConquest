@@ -1,0 +1,13 @@
+[Continents]
+
+North Asia=2
+Persia=3
+
+[Territories]
+
+Russia,0,0,North Asia,Japan,North Korea
+Japan,0,0,North Asia,Russia,North Korea
+North Korea,0,0,Persia,Georgia,Azerbaijan,Iran,Turkey
+Georgia,0,0,Persia,Russia,Azerbaijan,Armenia,Turkey
+Armenia,0,0,Persia,Georgia,Azerbaijan,Iran,Turkey
+
