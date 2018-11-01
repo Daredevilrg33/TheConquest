@@ -6,6 +6,7 @@ package com.conquest.mapeditor.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+
 /**
  * CountryModel Class Initializes country name String, a ContinentModel
  * {@link ContinentModel} as belongsTo and a ArrayList {@link ArrayList} as
@@ -26,6 +27,9 @@ public class CountryModel extends Observable {
 
 	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
+
+	/**player who owns this country*/
+	private PlayerModel owner;
 
 	/**
 	 * ContryModel Constructor Create a new empty ArrayList.
@@ -171,6 +175,24 @@ public class CountryModel extends Observable {
 	 */
 	public void removeNoOfArmiesCountry() {
 		noOfArmiesCountry--;
+		updateChanges();
+	}
+	
+	/**
+	 * Method to get country's owner.
+	 * @return country's current owner
+	 */
+	public PlayerModel getOwner() {
+		return owner;
+	}
+
+	/**
+	 * Method to set country's owner, is used at the beginning
+	 * of a game or during an attack phase.
+	 * @param owner country's new owner
+	 */
+	public void setOwner(PlayerModel owner) {
+		this.owner = owner;
 		updateChanges();
 	}
 

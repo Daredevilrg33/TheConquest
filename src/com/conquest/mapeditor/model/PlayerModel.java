@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+
 /**
  * The Class PlayerModel.
  * 
@@ -147,6 +148,17 @@ public class PlayerModel extends Observable {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * This method is to move armies from one country to another
+	 * @param country1 armies moved to
+	 * @param country2 armies moved from
+	 * @param armies armies number
+	 */
+	public void moveArmies(CountryModel sourceCountry,CountryModel destCountry, int armies){
+		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry()+armies);
+		sourceCountry.setNoOfArmiesCountry(destCountry.getNoOfArmiesCountry()-armies);
 	}
 
 	private void updateChanges() {

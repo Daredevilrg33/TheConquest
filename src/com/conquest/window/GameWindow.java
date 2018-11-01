@@ -1,6 +1,7 @@
 package com.conquest.window;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -23,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.ContinentModel;
@@ -81,6 +83,12 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The label phase. */
 	private JLabel labelPhase;
+	
+	/** The phase view. */
+	private TreeRenderer phaseView;
+	
+	/** The phase scroll pane. */
+	private JScrollPane phaseScrollPane;
 
 	private String[] countriesColumn;
 	private String[][] vectorData;
@@ -102,9 +110,8 @@ public class GameWindow extends JFrame implements ActionListener {
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-
-		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
-		treeView = new TreeRenderer(continentRoot);
+		
+		
 		labelConnectivity = new JLabel("Connectivity Between Countries");
 		Dimension size = labelConnectivity.getPreferredSize();
 		labelConnectivity.setFont(new Font("dialog", 1, 15));
@@ -116,6 +123,8 @@ public class GameWindow extends JFrame implements ActionListener {
 		mappingScrollPane.setBounds(15, 55, 800, 350);
 		add(mappingScrollPane);
 
+		DefaultMutableTreeNode continentRoot = new DefaultMutableTreeNode("Continent Hierarchy");
+		treeView = new TreeRenderer(continentRoot);
 		treeScrollPane = new JScrollPane(treeView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		treeScrollPane.setBounds(mappingScrollPane.getBounds().x + (int) (mappingScrollPane.getBounds().getWidth()), 55,
@@ -124,10 +133,12 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		phaseViewPanel = new JPanel();
 		phaseViewPanel.setBounds(15, treeScrollPane.getBounds().y + (int) (treeScrollPane.getBounds().getHeight()),
-				800 + (int) (treeScrollPane.getBounds().getWidth()), 150);
+				800 + (int) (treeScrollPane.getBounds().getWidth()), 30);
 		add(phaseViewPanel);
 		phaseViewPanel.setBackground(Color.lightGray);
 		phaseViewPanel.setLayout(new FlowLayout());
+		
+	
 
 		labelPhase = new JLabel("StartUp Phase");
 		labelPhase.setFont(new Font("dialog", 1, 15));
@@ -150,6 +161,13 @@ public class GameWindow extends JFrame implements ActionListener {
 		add(jPlayerArmies);
 
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
+		
+		
+		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
+				800 + (int) (treeScrollPane.getBounds().getWidth()), 150);
+		add(phaseScrollPane);
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -171,7 +189,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * updateHierarchyTree Method Method to refresh and update the continent
+	 * updateHierarchyTree Method to refresh and update the continent
 	 * hierarchy tree on adding new continent or new country.
 	 */
 
@@ -187,10 +205,28 @@ public class GameWindow extends JFrame implements ActionListener {
 			}
 			tRoot.add(continentNode);
 		}
+		
+		DefaultMutableTreeNode playerRoot = new DefaultMutableTreeNode("Game Information");
+		for (PlayerModel player : gameWindowController.getPlayers()) {
+			List<CountryModel> loopCountriesList = player.getPlayerCountryList();
+			DefaultMutableTreeNode playerNode = new DefaultMutableTreeNode(player.getPlayerName());
+			for (CountryModel loopCountry : loopCountriesList) {
+				playerNode.add(new DefaultMutableTreeNode(loopCountry.getCountryName() +" ( "+loopCountry.getNoOfArmiesCountry()+" ) armies"));
+			}
+			playerRoot.add(playerNode);
+		}
 		treeView = new TreeRenderer(tRoot);
 		treeView.setShowsRootHandles(true);
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
+		
+		
+		phaseView = new TreeRenderer(playerRoot);
+		phaseView.setShowsRootHandles(true);
+		phaseScrollPane.getViewport().removeAll();
+		phaseView.expandAll(new TreePath(playerRoot), 1);
+		phaseScrollPane.getViewport().add(phaseView);
+		
 	}
 
 	/**
@@ -292,6 +328,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		case "Place":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.checking(selectedCountry);
+			updateHierarchyTree();
 			gameWindowController.updateUIInfo();
 			break;
 		default:
