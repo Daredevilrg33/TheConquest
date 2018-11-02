@@ -1,6 +1,7 @@
 package com.conquest.mapeditor.view;
 
 import java.awt.AWTEvent;
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
