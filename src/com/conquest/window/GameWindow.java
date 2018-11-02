@@ -338,7 +338,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	public void redirectToAttackPhase() {
 		PlayerModel[] players = gameWindowController.getPlayers();
-		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(mapHierarchyModel, players[0]);
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(mapHierarchyModel, players);
 		attackPhaseWindow.setVisible(true);
 
 	}

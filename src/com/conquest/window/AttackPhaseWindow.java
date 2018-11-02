@@ -5,6 +5,7 @@ package com.conquest.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.conquest.controller.AttackWindowController;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
@@ -22,23 +24,28 @@ import com.conquest.utilities.Constants;
  *
  */
 public class AttackPhaseWindow extends JFrame implements ActionListener {
+	private AttackWindowController attackWindowController;
 	private JLabel jSourceArmyLabel;
 	private JLabel jTargetArmyLabel;
 	private JComboBox<String> jComboBoxSourceCountries;
 	private JComboBox<String> jComboBoxTargetCountries;
 	private JButton jButtonAttack;
+	private JLabel jPlayerLabel;
 	private JButton jButtonAllOutAttack;
-	private MapHierarchyModel mapHierarchyModel;
+	private MapHierarchyModel mapHierarchyModel;	
+	private PlayerModel[] player;
 
-	public AttackPhaseWindow(MapHierarchyModel mapHierarchyModel, PlayerModel playerModel) {
+
+	public AttackPhaseWindow(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModel) {
 		this.mapHierarchyModel = mapHierarchyModel;
+		this.player = playerModel;
 		setTitle("Attack Phase");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
 
-		JLabel jPlayerLabel = new JLabel(playerModel.getPlayerName());
+		jPlayerLabel = new JLabel();
 		jPlayerLabel.setBounds(50, 50, 100, 30);
 		add(jPlayerLabel);
 
@@ -46,7 +53,6 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jComboBoxSourceCountries.setBounds(170, 50, 100, 30);
 
 		add(jComboBoxSourceCountries);
-		updateComboBoxSourceCountries(playerModel.getPlayerCountryList());
 		jComboBoxTargetCountries = new JComboBox<>();
 		jComboBoxTargetCountries.setBounds(300, 50, 100, 30);
 		add(jComboBoxTargetCountries);
@@ -78,21 +84,30 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jTargetArmyLabel = new JLabel();
 		jTargetArmyLabel.setBounds(337, 78, 200, 30);
 		add(jTargetArmyLabel);
+		
+		attackWindowController = new AttackWindowController(player, this, player.length, mapHierarchyModel);
 		jComboBoxSourceCountries.addActionListener(this);
+
 	}
 
+
+	public void updatePlayerLabel(String label) {
+		jPlayerLabel.setText(label);
+	}
 	public void updateComboBoxSourceCountries(List<CountryModel> countryModels) {
 		jComboBoxSourceCountries.removeAllItems();
+		jComboBoxSourceCountries.addItem("Select Country:");
 		for (CountryModel countryModel : countryModels) {
 			jComboBoxSourceCountries.addItem(countryModel.getCountryName());
 		}
 	}
 
-	public void updateComboBoxTargetCountries(List<CountryModel> countryModels) {
+	public void updateComboBoxTargetCountries(ArrayList<String> countryModels) {
 		jComboBoxTargetCountries.removeAllItems();
-		jComboBoxTargetCountries.addItem("Select Country");
-		for (CountryModel countryModel : countryModels) {
-			jComboBoxTargetCountries.addItem(countryModel.getCountryName());
+		jComboBoxTargetCountries.addItem("Select country:");
+
+		for (int i = countryModels.size() - 1; i >= 0; i--) {
+			jComboBoxTargetCountries.addItem(countryModels.get(i));
 		}
 	}
 
@@ -117,6 +132,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
 			CountryModel sourceCountry = mapHierarchyModel.searchCountry(sourceCountryName);
 			updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
+			attackWindowController.finding(sourceCountryName);
+			attackWindowController.updateTargetUIInfo();
 		} else if (e.getSource() == jComboBoxTargetCountries) {
 			if (jComboBoxTargetCountries.getSelectedIndex() == 0) {
 				updateTargetArmyLabel(0);
