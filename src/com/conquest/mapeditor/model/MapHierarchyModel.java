@@ -29,7 +29,7 @@ public class MapHierarchyModel extends Observable {
 	/** The error message. */
 	private String errorMsg = "Map is invalid";
 	
-	public boolean isVisited;
+//	public boolean isVisited;
 
 	/**
 	 * MapHierarchyModel Constructor Instantiates a new map hierarchy model.
@@ -368,13 +368,13 @@ public class MapHierarchyModel extends Observable {
 		return "";
 	}
 	
-	public boolean getisVisited() {
-		return isVisited;
-	}
-	
-	public void setisVisited(boolean isVisited) {
-		this.isVisited = isVisited;
-	}
+//	public boolean getisVisited() {
+//		return isVisited;
+//	}
+//	
+//	public void setisVisited(boolean isVisited) {
+//		this.isVisited = isVisited;
+//	}
 
 	private void updateChanges() {
 		setChanged();

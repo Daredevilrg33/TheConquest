@@ -31,7 +31,6 @@ import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
 
-import prct.DepthFirstSearchExample.country;
 
 /**
  * The Class NewMapEditorView.
@@ -405,45 +404,45 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		return userSelTreeNode;
 	}
 
-	static ArrayList<CountryModel> countries=new ArrayList<>();
-	public ArrayList<CountryModel> findNeighbours(int adjacency_matrix[][],CountryModel x)
-	{
-		int nodeIndex=-1;
- 
-		ArrayList<CountryModel> neighbours=new ArrayList<>();
-		for (int i = 0; i < countries.size(); i++) {
-			if(countries.get(i).equals(x))
-			{
-				nodeIndex=i;
-				break;
-			}
-		}
- 
-		if(nodeIndex!=-1)
-		{
-			for (int j = 0; j < adjacency_matrix[nodeIndex].length; j++) {
-				if(adjacency_matrix[nodeIndex][j]==1)
-				{
-					neighbours.add(countries.get(j));
-				}
-			}
-		}
-		return neighbours;
-	}
-	public  void dfs(int adjacency_matrix[][], CountryModel node)
-	{
- 
-		System.out.print(node.data + " ");
-		ArrayList<CountryModel> neighbours=findNeighbours(adjacency_matrix,node);
-       mapHierarchyModel.isVisited=true;
-		for (int i = 0; i < neighbours.size(); i++) {
-			CountryModel n=neighbours.get(i);
-			if(n!=null && !mapHierarchyModel.isVisited)
-			{
-				dfs(adjacency_matrix,n);
-			}
-		}
-	}
+//	static ArrayList<CountryModel> countries=new ArrayList<>();
+//	public ArrayList<CountryModel> findNeighbours(int adjacency_matrix[][],CountryModel x)
+//	{
+//		int nodeIndex=-1;
+// 
+//		ArrayList<CountryModel> neighbours=new ArrayList<>();
+//		for (int i = 0; i < countries.size(); i++) {
+//			if(countries.get(i).equals(x))
+//			{
+//				nodeIndex=i;
+//				break;
+//			}
+//		}
+// 
+//		if(nodeIndex!=-1)
+//		{
+//			for (int j = 0; j < adjacency_matrix[nodeIndex].length; j++) {
+//				if(adjacency_matrix[nodeIndex][j]==1)
+//				{
+//					neighbours.add(countries.get(j));
+//				}
+//			}
+//		}
+//		return neighbours;
+//	}
+//	public  void dfs(int adjacency_matrix[][], CountryModel node)
+//	{
+// 
+//		System.out.print(node.data + " ");
+//		ArrayList<CountryModel> neighbours=findNeighbours(adjacency_matrix,node);
+//       mapHierarchyModel.isVisited=true;
+//		for (int i = 0; i < neighbours.size(); i++) {
+//			CountryModel n=neighbours.get(i);
+//			if(n!=null && !mapHierarchyModel.isVisited)
+//			{
+//				dfs(adjacency_matrix,n);
+//			}
+//		}
+//	}
 	
 	/**
 	 * Sets the user select tree node.
