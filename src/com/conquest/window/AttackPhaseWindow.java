@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.conquest.controller.AttackWindowController;
 import com.conquest.mapeditor.model.CountryModel;
@@ -87,6 +88,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		
 		attackWindowController = new AttackWindowController(player, this, player.length, mapHierarchyModel);
 		jComboBoxSourceCountries.addActionListener(this);
+		jComboBoxTargetCountries.addActionListener(this);
 
 	}
 
@@ -94,12 +96,14 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void updatePlayerLabel(String label) {
 		jPlayerLabel.setText(label);
 	}
-	public void updateComboBoxSourceCountries(List<CountryModel> countryModels) {
+	public void updateComboBoxSourceCountries(ArrayList<String> countryModels) {		
 		jComboBoxSourceCountries.removeAllItems();
-		jComboBoxSourceCountries.addItem("Select Country:");
-		for (CountryModel countryModel : countryModels) {
-			jComboBoxSourceCountries.addItem(countryModel.getCountryName());
+		jComboBoxSourceCountries.addItem("Select country:");
+
+		for (int i = countryModels.size() - 1; i >= 0; i--) {
+			jComboBoxSourceCountries.addItem(countryModels.get(i));
 		}
+		
 	}
 
 	public void updateComboBoxTargetCountries(ArrayList<String> countryModels) {
@@ -133,17 +137,21 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			CountryModel sourceCountry = mapHierarchyModel.searchCountry(sourceCountryName);
 			updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
 			attackWindowController.finding(sourceCountryName);
-			attackWindowController.updateTargetUIInfo();
+			if(attackWindowController.targetCountryList().isEmpty()) {
+				JOptionPane.showMessageDialog(this, "No Target country eligible from this country", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+			}else
+				attackWindowController.updateTargetUIInfo();
 		} else if (e.getSource() == jComboBoxTargetCountries) {
-			if (jComboBoxTargetCountries.getSelectedIndex() == 0) {
-				updateTargetArmyLabel(0);
-			} else {
+			System.out.println(jComboBoxTargetCountries.getSelectedIndex());
+			if (jComboBoxTargetCountries.getSelectedIndex() != 0) {
 				String targetCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
 				CountryModel targetCountry = mapHierarchyModel.searchCountry(targetCountryName);
 				updateTargetArmyLabel(targetCountry.getNoOfArmiesCountry());
 			}
 		} else if (e.getSource() == jButtonAttack) {
-
+			attackWindowController.attack((String) jComboBoxSourceCountries.getSelectedItem(),(String) jComboBoxTargetCountries.getSelectedItem() );
+			
 		} else if (e.getSource() == jButtonAllOutAttack) {
 
 		}
