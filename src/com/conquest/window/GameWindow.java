@@ -1,5 +1,6 @@
 package com.conquest.window;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -15,13 +16,16 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -89,6 +93,10 @@ public class GameWindow extends JFrame implements ActionListener {
 	
 	/** The phase scroll pane. */
 	private JScrollPane phaseScrollPane;
+	
+	/** The phase scroll pane. */
+	private JPanel progressBarPanel;
+	
 
 	private String[] countriesColumn;
 	private String[][] vectorData;
@@ -163,11 +171,26 @@ public class GameWindow extends JFrame implements ActionListener {
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
 		
 		
+		
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
-				800 + (int) (treeScrollPane.getBounds().getWidth()), 150);
+				700, 150);
 		add(phaseScrollPane);
+		
+		
+		/*progressBarPanel = new JPanel();
+		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()), phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
+				 (int) (treeScrollPane.getBounds().getWidth()), 50);
+		add(progressBarPanel);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(25);
+		progressBar.setStringPainted(true);
+		Border border = BorderFactory.createTitledBorder("Reading...");
+		progressBar.setBorder(border);
+		progressBarPanel.add(progressBar, BorderLayout.NORTH);*/
+		
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -185,6 +208,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		if (this.mapHierarchyModel.getContinentsList().size() > 0) {
 			updateHierarchyTree();
 			updatePaintMatrix();
+			updateGameInformation();
 		}
 	}
 
@@ -206,6 +230,19 @@ public class GameWindow extends JFrame implements ActionListener {
 			tRoot.add(continentNode);
 		}
 		
+		treeView = new TreeRenderer(tRoot);
+		treeView.setShowsRootHandles(true);
+		treeScrollPane.getViewport().removeAll();
+		treeScrollPane.getViewport().add(treeView);
+		
+	}
+	
+	/**
+	 * updateHierarchyTree Method to refresh and update the Game Information and phase view
+	 */
+
+	public void updateGameInformation() {
+		
 		DefaultMutableTreeNode playerRoot = new DefaultMutableTreeNode("Game Information");
 		for (PlayerModel player : gameWindowController.getPlayers()) {
 			List<CountryModel> loopCountriesList = player.getPlayerCountryList();
@@ -215,11 +252,6 @@ public class GameWindow extends JFrame implements ActionListener {
 			}
 			playerRoot.add(playerNode);
 		}
-		treeView = new TreeRenderer(tRoot);
-		treeView.setShowsRootHandles(true);
-		treeScrollPane.getViewport().removeAll();
-		treeScrollPane.getViewport().add(treeView);
-		
 		
 		phaseView = new TreeRenderer(playerRoot);
 		phaseView.setShowsRootHandles(true);
@@ -228,6 +260,8 @@ public class GameWindow extends JFrame implements ActionListener {
 		phaseScrollPane.getViewport().add(phaseView);
 		
 	}
+	
+	
 
 	/**
 	 * updatePaintMatrix Method Method to refresh and paint the adjacency table
@@ -314,6 +348,24 @@ public class GameWindow extends JFrame implements ActionListener {
 			jComboBoxCountries.addItem(countryModel.getCountryName());
 		}
 	}
+	
+	/**
+	 * updatePhaseView Method Update phase View.
+	 * 
+	 */
+	public void updatePhaseView() {
+		if(!labelPhase.getText().equalsIgnoreCase("Reinforcement Phase")){
+		labelPhase.setText("Reinforcement Phase");
+		gameWindowController.calculateAndAddReinforcementArmy();
+		updateGameInformation();
+		}
+		else
+		{
+			jButtonPlace.setEnabled(false);
+			redirectToAttackPhase();
+		}
+		
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -328,7 +380,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		case "Place":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.checking(selectedCountry);
-			updateHierarchyTree();
+			updateGameInformation();
 			gameWindowController.updateUIInfo();
 			break;
 		default:

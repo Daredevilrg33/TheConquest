@@ -162,7 +162,8 @@ public class GameWindowController {
 					players[prevCounter].reduceArmyInPlayer();
 				}
 				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
-					gameWindow.redirectToAttackPhase();
+					gameWindow.updatePhaseView();
+					break;
 				}
 				System.out.println(
 						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
@@ -198,11 +199,11 @@ public class GameWindowController {
 
 	/**
 	 * calculateAndAddReinforcementArmy method Void Method to calculate and add
-	 * Reinforcement armies according to the no of coutries per player.
+	 * Reinforcement armies according to the no of countries per player.
 	 * 
 	 * @param players
 	 */
-	public void calculateAndAddReinforcementArmy(PlayerModel[] players) {
+	public void calculateAndAddReinforcementArmy() {
 		for (int count1 = 0; count1 < players.length; count1++) {
 			int reinforcementArmyCount = players[count1].getPlayerCountryList().size() / 3;
 			if (reinforcementArmyCount < 3)

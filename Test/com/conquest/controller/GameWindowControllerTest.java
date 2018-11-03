@@ -64,7 +64,7 @@ public class GameWindowControllerTest {
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
 		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
-		gameWindowController.calculateAndAddReinforcementArmy(playerModels);
+		gameWindowController.calculateAndAddReinforcementArmy();
 
 		
 		assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
@@ -98,7 +98,7 @@ public class GameWindowControllerTest {
 			System.out.println("Country NAME: " + playerModels[1].getPlayerName());
 			System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 			System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
-			gameWindowController.calculateAndAddReinforcementArmy(playerModels);
+			gameWindowController.calculateAndAddReinforcementArmy();
 
 			
 			assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
