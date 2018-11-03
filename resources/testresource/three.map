@@ -1,0 +1,12 @@
+[Continents]
+
+con1=2
+con2=2
+
+[Territories]
+
+c1,0,0,con1,c11,c2,c111,c3,c4
+c11,0,0,con1,c1,c2,c111,c3,c4
+c3,0,0,con2,c1,c11,c2,c111,c4
+c4,0,0,con2,c1,c11,c2,c111,c3
+

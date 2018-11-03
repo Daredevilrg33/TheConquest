@@ -27,7 +27,7 @@ public class MapHierarchyModel extends Observable {
 	private boolean valErrorFlag = false;
 
 	/** The error message. */
-	private String errorMsg = "Map is invalid";
+	public String errorMsg = "Map is invalid";
 	
 //	public boolean isVisited;
 
