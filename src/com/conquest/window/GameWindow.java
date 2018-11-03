@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -395,11 +396,18 @@ public class GameWindow extends JFrame implements ActionListener {
 	
 	public void addProgressBar()
 	{
+		Random randomGenerator = new Random();
+		
 		PlayerModel[] players = gameWindowController.getPlayers();
 		for (int i = 0; i < players.length; i++) {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setValue(calculatePercentage(players[i]));
 		progressBar.setStringPainted(true);
+		int red = randomGenerator.nextInt(256);
+		int green = randomGenerator.nextInt(256);
+		int blue = randomGenerator.nextInt(256);
+		Color randomColour = new Color(red,green,blue);
+		progressBar.setForeground(randomColour);
 		Border border = BorderFactory.createTitledBorder(players[i].getPlayerName());
 		progressBar.setBorder(border);
 		progressBarPanel.add(progressBar, BorderLayout.NORTH);
