@@ -170,26 +170,18 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
 		
-		
-		
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				700, 150);
 		add(phaseScrollPane);
 		
-		
-		/*progressBarPanel = new JPanel();
+		progressBarPanel = new JPanel();
 		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()), phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
-				 (int) (treeScrollPane.getBounds().getWidth()), 50);
+				 (int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
+		addProgressBar();
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(25);
-		progressBar.setStringPainted(true);
-		Border border = BorderFactory.createTitledBorder("Reading...");
-		progressBar.setBorder(border);
-		progressBarPanel.add(progressBar, BorderLayout.NORTH);*/
 		
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -399,6 +391,25 @@ public class GameWindow extends JFrame implements ActionListener {
 		FortificationWindow fortificationWindow = new FortificationWindow(mapHierarchyModel,
 				gameWindowController.getPlayers());
 		fortificationWindow.setVisible(true);
+	}
+	
+	public void addProgressBar()
+	{
+		PlayerModel[] players = gameWindowController.getPlayers();
+		for (int i = 0; i < players.length; i++) {
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(calculatePercentage(players[i]));
+		progressBar.setStringPainted(true);
+		Border border = BorderFactory.createTitledBorder(players[i].getPlayerName());
+		progressBar.setBorder(border);
+		progressBarPanel.add(progressBar, BorderLayout.NORTH);
+	}
+	}
+	
+	public int calculatePercentage(PlayerModel player)
+	{
+		double x = ((double)player.getPlayerCountryList().size()/mapHierarchyModel.getTotalCountries())*100;
+		return (int)x;
 	}
 
 }
