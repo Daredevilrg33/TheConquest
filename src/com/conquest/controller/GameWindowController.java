@@ -8,6 +8,7 @@ import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
+import com.conquest.model.GameModel;
 import com.conquest.window.GameWindow;
 import com.conquest.window.FortificationWindow;
 
@@ -44,6 +45,7 @@ public class GameWindowController {
 	/** The continents. */
 	private ContinentModel[] continents;
 
+	private GameModel gameModel;
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
 	 * objects.
@@ -57,6 +59,7 @@ public class GameWindowController {
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapHierarchyModel = mapModel;
+		this.gameModel = new GameModel(mapHierarchyModel, this);
 		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
 	}
 
@@ -75,7 +78,7 @@ public class GameWindowController {
 
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
-			players[j] = new PlayerModel("Player" + String.valueOf(value));
+			players[j] = new PlayerModel("Player" + String.valueOf(value),gameModel);
 			switch (noOfPlayers) {
 			case (3): {
 				players[j].noOfArmyInPlayer(25);
@@ -151,7 +154,7 @@ public class GameWindowController {
 	 *
 	 * @param selectedCountryName type String {@link String}
 	 */
-	public void checking(String selectedCountryName) {
+	public void placingInitialArmies(String selectedCountryName) {
 		i = 0;
 
 		while (true) {
@@ -172,6 +175,7 @@ public class GameWindowController {
 			i++;
 		}
 	}
+	
 
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
@@ -197,21 +201,6 @@ public class GameWindowController {
 		return players;
 	}
 
-	/**
-	 * calculateAndAddReinforcementArmy method Void Method to calculate and add
-	 * Reinforcement armies according to the no of countries per player.
-	 * 
-	 * @param players
-	 */
-	public void calculateAndAddReinforcementArmy() {
-		for (int count1 = 0; count1 < players.length; count1++) {
-			int reinforcementArmyCount = players[count1].getPlayerCountryList().size() / 3;
-			if (reinforcementArmyCount < 3)
-				reinforcementArmyCount = 3;
-			for (int i = 0; i < reinforcementArmyCount; i++) {
-				players[count1].addArmyInPlayer();
-			}
-		}
-	}
+	
 
 }

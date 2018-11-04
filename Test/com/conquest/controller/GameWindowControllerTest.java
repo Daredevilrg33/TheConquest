@@ -12,6 +12,7 @@ import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
+import com.conquest.model.GameModel;
 import com.conquest.utilities.Utility;
 import com.conquest.window.GameWindow;
 
@@ -64,7 +65,7 @@ public class GameWindowControllerTest {
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
 		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
-		gameWindowController.calculateAndAddReinforcementArmy();
+		playerModels[1].calculateAndAddReinforcementArmy();
 
 		
 		assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
@@ -89,7 +90,7 @@ public class GameWindowControllerTest {
 			CountryModel countrymodel2 = new CountryModel("JAPAN");
 			CountryModel countrymodel3 = new CountryModel("FRANCE");
 			
-			PlayerModel pm=new PlayerModel("Player2");
+			PlayerModel pm=new PlayerModel("Player2",countryModelArrayList);
 			pm.AddCountry(countrymodel);
 			pm.AddCountry(countrymodel1);
 			pm.AddCountry(countrymodel2);
@@ -98,7 +99,7 @@ public class GameWindowControllerTest {
 			System.out.println("Country NAME: " + playerModels[1].getPlayerName());
 			System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 			System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
-			gameWindowController.calculateAndAddReinforcementArmy();
+			playerModels[1].calculateAndAddReinforcementArmy();
 
 			
 			assertEquals(28,playerModels[1].getnoOfArmyInPlayer());

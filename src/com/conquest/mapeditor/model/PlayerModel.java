@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import com.conquest.controller.GameWindowController;
+import com.conquest.model.GameModel;
+import com.conquest.window.AttackPhaseWindow;
+import com.conquest.window.GameWindow;
 
 /**
  * The Class PlayerModel.
@@ -22,13 +26,19 @@ public class PlayerModel extends Observable {
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
 
+	private GameWindow gameWindow;
+
+	private GameModel riskMapModel;
+
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 * 
-	 * @param playerName the player name
+	 * @param playerName
+	 *            the player name
 	 */
-	public PlayerModel(String playerName) {
+	public PlayerModel(String playerName, GameModel riskMapModel) {
 		this.playerName = playerName;
+		this.riskMapModel = riskMapModel;
 		this.playerCountryList = new ArrayList<>();
 		updateChanges();
 	}
@@ -36,8 +46,10 @@ public class PlayerModel extends Observable {
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 * 
-	 * @param playerName            the player name
-	 * @param countryModelArrayList array list of coutries of the player.
+	 * @param playerName
+	 *            the player name
+	 * @param countryModelArrayList
+	 *            array list of coutries of the player.
 	 */
 
 	public PlayerModel(String playerName, ArrayList<CountryModel> countryModelArrayList) {
@@ -50,7 +62,8 @@ public class PlayerModel extends Observable {
 	/**
 	 * noOfArmyinPlayer Method No of army for player.
 	 * 
-	 * @param number the number
+	 * @param number
+	 *            the number
 	 */
 
 	public void noOfArmyInPlayer(int number) {
@@ -100,7 +113,8 @@ public class PlayerModel extends Observable {
 	/**
 	 * setPlayerName Method Sets the player name.
 	 * 
-	 * @param playerName the playerName to set
+	 * @param playerName
+	 *            the playerName to set
 	 */
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
@@ -110,7 +124,8 @@ public class PlayerModel extends Observable {
 	/**
 	 * AddCountry Method Adds the country.
 	 * 
-	 * @param countryName the country name
+	 * @param countryName
+	 *            the country name
 	 */
 	public void AddCountry(CountryModel countryName) {
 		playerCountryList.add(countryName);
@@ -137,7 +152,8 @@ public class PlayerModel extends Observable {
 	/**
 	 * Search a country by the country Name.
 	 * 
-	 * @param countryName : Name of the country to be searched.
+	 * @param countryName
+	 *            : Name of the country to be searched.
 	 * @return Returns the Country Model.
 	 */
 
@@ -149,16 +165,114 @@ public class PlayerModel extends Observable {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * This method is to move armies from one country to another
-	 * @param country1 armies moved to
-	 * @param country2 armies moved from
-	 * @param armies armies number
+	 * 
+	 * @param country1
+	 *            armies moved to
+	 * @param country2
+	 *            armies moved from
+	 * @param armies
+	 *            armies number
 	 */
-	public void moveArmies(CountryModel sourceCountry,CountryModel destCountry, int armies){
-		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry()+armies);
-		sourceCountry.setNoOfArmiesCountry(destCountry.getNoOfArmiesCountry()-armies);
+	public void moveArmies(CountryModel sourceCountry, CountryModel destCountry, int armies) {
+		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry() + armies);
+		sourceCountry.setNoOfArmiesCountry(destCountry.getNoOfArmiesCountry() - armies);
+	}
+
+	/**
+	 * The function to judge if player win
+	 * 
+	 * @param countryNum
+	 *            number of countries
+	 * @return true if player win
+	 */
+	public boolean isGameWon(int countryNum) {
+		if (this.playerCountryList.size() == countryNum)
+			return true;
+		else
+			return false;
+	}
+
+	public void gamePhase(GameWindow gameWindow) {
+		this.gameWindow = gameWindow;
+		reinforcementPhase();
+	}
+
+	public void reinforcementPhase() {
+		calculateAndAddReinforcementArmy();
+	}
+
+	public String AttackPhase() {
+		PlayerModel[] players = gameWindow.getPlayers();
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players);
+		attackPhaseWindow.setVisible(true);
+
+		if (isGameWon(riskMapModel.getRiskGameModel().totalCountries)) {
+			gameWindow.labelPhase.setText("Game Over");
+			riskMapModel.setGameState(1);
+			return this.playerName + " has won the game!";
+		}
+		FortificationPhase();
+		return "success";
+	}
+
+	public void FortificationPhase() {
+	}
+
+	/**
+	 * calculateAndAddReinforcementArmy method Void Method to calculate and add
+	 * Reinforcement armies according to the no of countries per player.
+	 * 
+	 */
+	public void calculateAndAddReinforcementArmy() {
+		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
+		if (reinforcementArmyCount < 3)
+			reinforcementArmyCount = 3;
+		for (int i = 0; i < reinforcementArmyCount; i++) {
+			this.addArmyInPlayer();
+		}
+	}
+
+	/**
+	 * Checking method To check the number of armies.
+	 *
+	 * @param selectedCountryName
+	 *            type String {@link String}
+	 */
+	public void placeReinforcedArmy(String selectedCountryName) {
+		int i = 0;
+
+		while (true) {
+			if (this.getPlayerCountryList().get(i).getCountryName().trim()
+					.equalsIgnoreCase(selectedCountryName.trim())) {
+				if (this.getnoOfArmyInPlayer() > 0) {
+					this.getPlayerCountryList().get(i).addNoOfArmiesCountry();
+					this.reduceArmyInPlayer();
+					updateReinforcedArmiesUI();
+				}
+				if (this.getnoOfArmyInPlayer() == 0) {
+					AttackPhase();
+					break;
+				}
+				break;
+			}
+			i++;
+		}
+	}
+
+	/**
+	 * updateReinforcedArmiesUI method Void Method to update the window screen
+	 * after any change has been made.
+	 */
+	public void updateReinforcedArmiesUI() {
+		gameWindow.updatePlayerLabel(this.getPlayerName());
+		gameWindow.updatePlayerArmies(this.getnoOfArmyInPlayer());
+		gameWindow.updateComboBoxCountries(this.getPlayerCountryList());
+		gameWindow.invalidate();
+		gameWindow.revalidate();
+
 	}
 
 	private void updateChanges() {

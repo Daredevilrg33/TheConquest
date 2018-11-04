@@ -38,6 +38,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
+import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
 
 /**
@@ -87,28 +88,33 @@ public class GameWindow extends JFrame implements ActionListener {
 	private JLabel labelConnectivity;
 
 	/** The label phase. */
-	private JLabel labelPhase;
-	
+	public JLabel labelPhase;
+
 	/** The phase view. */
 	private TreeRenderer phaseView;
-	
+
 	/** The phase scroll pane. */
 	private JScrollPane phaseScrollPane;
-	
+
 	/** The phase scroll pane. */
 	private JPanel progressBarPanel;
-	
 
 	private String[] countriesColumn;
 	private String[][] vectorData;
 
 	private MapHierarchyModel mapHierarchyModel;
+	private PlayerModel currPlayer;
+	private PlayerModel[] players;
+	private int playerCounter = 0;
+	private GameModel gameModel;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
 	 * 
-	 * @param mapHierarchyModel the map hierarchy model
-	 * @param noOfPlayers       the no of players
+	 * @param mapHierarchyModel
+	 *            the map hierarchy model
+	 * @param noOfPlayers
+	 *            the no of players
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
 
@@ -119,8 +125,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		
-		
+
 		labelConnectivity = new JLabel("Connectivity Between Countries");
 		Dimension size = labelConnectivity.getPreferredSize();
 		labelConnectivity.setFont(new Font("dialog", 1, 15));
@@ -146,8 +151,6 @@ public class GameWindow extends JFrame implements ActionListener {
 		add(phaseViewPanel);
 		phaseViewPanel.setBackground(Color.lightGray);
 		phaseViewPanel.setLayout(new FlowLayout());
-		
-	
 
 		labelPhase = new JLabel("StartUp Phase");
 		labelPhase.setFont(new Font("dialog", 1, 15));
@@ -160,35 +163,39 @@ public class GameWindow extends JFrame implements ActionListener {
 		jComboBoxCountries = new JComboBox<>();
 		jComboBoxCountries.setBounds(170, 620, 100, 30);
 		add(jComboBoxCountries);
-		jButtonPlace = new JButton("Place");
-		jButtonPlace.setBounds(290, 620, 100, 30);
+		jButtonPlace = new JButton("Place Initial Armies");
+		jButtonPlace.setBounds(310, 620, 150, 30);
 		jButtonPlace.addActionListener(this);
 		add(jButtonPlace);
 
 		jPlayerArmies = new JLabel();
-		jPlayerArmies.setBounds(410, 620, 200, 30);
+		jPlayerArmies.setBounds(480, 620, 200, 30);
 		add(jPlayerArmies);
 
-		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), this.mapHierarchyModel);
 		
+		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
+		players = gameWindowController.getPlayers();
+		gameModel = new GameModel(mapHierarchyModel, gameWindowController);
+
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				700, 150);
 		add(phaseScrollPane);
-		
+
 		progressBarPanel = new JPanel();
-		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()), phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
-				 (int) (treeScrollPane.getBounds().getWidth()), 150);
+		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()),
+				phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
+				(int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
 		addProgressBar();
-		
-		
+
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
+			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.
+			 * WindowEvent)
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -205,9 +212,17 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	public PlayerModel[] getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(PlayerModel[] players) {
+		this.players = players;
+	}
+
 	/**
-	 * updateHierarchyTree Method to refresh and update the continent
-	 * hierarchy tree on adding new continent or new country.
+	 * updateHierarchyTree Method to refresh and update the continent hierarchy
+	 * tree on adding new continent or new country.
 	 */
 
 	public void updateHierarchyTree() {
@@ -222,39 +237,39 @@ public class GameWindow extends JFrame implements ActionListener {
 			}
 			tRoot.add(continentNode);
 		}
-		
+
 		treeView = new TreeRenderer(tRoot);
 		treeView.setShowsRootHandles(true);
 		treeScrollPane.getViewport().removeAll();
 		treeScrollPane.getViewport().add(treeView);
-		
+
 	}
-	
+
 	/**
-	 * updateHierarchyTree Method to refresh and update the Game Information and phase view
+	 * updateHierarchyTree Method to refresh and update the Game Information and
+	 * phase view
 	 */
 
 	public void updateGameInformation() {
-		
+
 		DefaultMutableTreeNode playerRoot = new DefaultMutableTreeNode("Game Information");
 		for (PlayerModel player : gameWindowController.getPlayers()) {
 			List<CountryModel> loopCountriesList = player.getPlayerCountryList();
 			DefaultMutableTreeNode playerNode = new DefaultMutableTreeNode(player.getPlayerName());
 			for (CountryModel loopCountry : loopCountriesList) {
-				playerNode.add(new DefaultMutableTreeNode(loopCountry.getCountryName() +" ( "+loopCountry.getNoOfArmiesCountry()+" ) armies"));
+				playerNode.add(new DefaultMutableTreeNode(
+						loopCountry.getCountryName() + " ( " + loopCountry.getNoOfArmiesCountry() + " ) armies"));
 			}
 			playerRoot.add(playerNode);
 		}
-		
+
 		phaseView = new TreeRenderer(playerRoot);
 		phaseView.setShowsRootHandles(true);
 		phaseScrollPane.getViewport().removeAll();
 		phaseView.expandAll(new TreePath(playerRoot), 1);
 		phaseScrollPane.getViewport().add(phaseView);
-		
+
 	}
-	
-	
 
 	/**
 	 * updatePaintMatrix Method Method to refresh and paint the adjacency table
@@ -315,7 +330,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updatePlayerLabel Method Update player label.
 	 * 
-	 * @param playerName the player name
+	 * @param playerName
+	 *            the player name
 	 */
 	public void updatePlayerLabel(String playerName) {
 		jPlayerLabel.setText(playerName);
@@ -324,7 +340,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updatePlayerArmies Method Update player armies.
 	 * 
-	 * @param RemainingArmies the remaining armies
+	 * @param RemainingArmies
+	 *            the remaining armies
 	 */
 	public void updatePlayerArmies(int RemainingArmies) {
 		jPlayerArmies.setText("Remaining Armies with player: " + RemainingArmies);
@@ -333,7 +350,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updateComboBoxCountries Method Update combo box countries.
 	 * 
-	 * @param countryModels the country models
+	 * @param countryModels
+	 *            the country models
 	 */
 	public void updateComboBoxCountries(List<CountryModel> countryModels) {
 		jComboBoxCountries.removeAllItems();
@@ -341,23 +359,30 @@ public class GameWindow extends JFrame implements ActionListener {
 			jComboBoxCountries.addItem(countryModel.getCountryName());
 		}
 	}
-	
+
 	/**
 	 * updatePhaseView Method Update phase View.
 	 * 
 	 */
 	public void updatePhaseView() {
-		if(!labelPhase.getText().equalsIgnoreCase("Reinforcement Phase")){
-		labelPhase.setText("Reinforcement Phase");
-		gameWindowController.calculateAndAddReinforcementArmy();
-		updateGameInformation();
-		}
-		else
-		{
+		if (!labelPhase.getText().equalsIgnoreCase("Reinforcement Phase")) {
+			labelPhase.setText("Reinforcement Phase");
+			jButtonPlace.setText("Place Reinforce Armies");
+			PlayerModel[] players = gameWindowController.getPlayers();
+			if (playerCounter > players.length)
+				playerCounter = 0;
+			if (gameModel.getGameState() != 1) {
+				PlayerModel playerModel = players[playerCounter];
+				this.currPlayer = playerModel;
+				gameModel.setCurrPlayer(playerModel);
+				gameModel.increaseTurn();
+				playerModel.gamePhase(this);
+			}
+			updateGameInformation();
+		} else {
 			jButtonPlace.setEnabled(false);
-			redirectToAttackPhase();
 		}
-		
+
 	}
 
 	/*
@@ -370,22 +395,19 @@ public class GameWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		switch (e.getActionCommand()) {
-		case "Place":
+		case "Place Initial Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
-			gameWindowController.checking(selectedCountry);
+			gameWindowController.placingInitialArmies(selectedCountry);
 			updateGameInformation();
 			gameWindowController.updateUIInfo();
+			break;
+		case "Place Reinforce Armies":
+			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
+			this.currPlayer.placeReinforcedArmy(selectedCountry);
 			break;
 		default:
 			break;
 		}
-	}
-
-	public void redirectToAttackPhase() {
-		PlayerModel[] players = gameWindowController.getPlayers();
-		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(mapHierarchyModel, players);
-		attackPhaseWindow.setVisible(true);
-
 	}
 
 	public void redirectToFortificationWindow() {
@@ -393,31 +415,29 @@ public class GameWindow extends JFrame implements ActionListener {
 				gameWindowController.getPlayers());
 		fortificationWindow.setVisible(true);
 	}
-	
-	public void addProgressBar()
-	{
+
+	public void addProgressBar() {
 		Random randomGenerator = new Random();
-		
+
 		PlayerModel[] players = gameWindowController.getPlayers();
 		for (int i = 0; i < players.length; i++) {
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(calculatePercentage(players[i]));
-		progressBar.setStringPainted(true);
-		int red = randomGenerator.nextInt(256);
-		int green = randomGenerator.nextInt(256);
-		int blue = randomGenerator.nextInt(256);
-		Color randomColour = new Color(red,green,blue);
-		progressBar.setForeground(randomColour);
-		Border border = BorderFactory.createTitledBorder(players[i].getPlayerName());
-		progressBar.setBorder(border);
-		progressBarPanel.add(progressBar, BorderLayout.NORTH);
+			JProgressBar progressBar = new JProgressBar();
+			progressBar.setValue(calculatePercentage(players[i]));
+			progressBar.setStringPainted(true);
+			int red = randomGenerator.nextInt(256);
+			int green = randomGenerator.nextInt(256);
+			int blue = randomGenerator.nextInt(256);
+			Color randomColour = new Color(red, green, blue);
+			progressBar.setForeground(randomColour);
+			Border border = BorderFactory.createTitledBorder(players[i].getPlayerName());
+			progressBar.setBorder(border);
+			progressBarPanel.add(progressBar, BorderLayout.NORTH);
+		}
 	}
-	}
-	
-	public int calculatePercentage(PlayerModel player)
-	{
-		double x = ((double)player.getPlayerCountryList().size()/mapHierarchyModel.getTotalCountries())*100;
-		return (int)x;
+
+	public int calculatePercentage(PlayerModel player) {
+		double x = ((double) player.getPlayerCountryList().size() / mapHierarchyModel.getTotalCountries()) * 100;
+		return (int) x;
 	}
 
 }
