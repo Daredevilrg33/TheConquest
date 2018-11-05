@@ -37,7 +37,6 @@ public class GameWindowControllerTest {
 	 */
 	@Test
 	public void noOfArmyTest() {
-		// fail("Not yet implemented");
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
@@ -56,7 +55,6 @@ public class GameWindowControllerTest {
  */
 	@Test
 	public void noOfArmyAfterTest() {
-		// fail("Not yet implemented");
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
@@ -77,7 +75,6 @@ public class GameWindowControllerTest {
 	 */
 		@Test
 		public void noOfArmyCountryTest() {
-			// fail("Not yet implemented");
 
 			MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 			gameWindow = new GameWindow(mapHierarchyModel, "3");
