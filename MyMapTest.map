@@ -1,0 +1,12 @@
+[Continents]
+
+Rohit=3
+List=1
+
+[Territories]
+
+huihis,0,0,Rohit,oioio
+oioio,0,0,Rohit,huihis
+jkjkjs,0,0,Rohit,jhsjks
+jhsjks,0,0,List,jkjkjs
+

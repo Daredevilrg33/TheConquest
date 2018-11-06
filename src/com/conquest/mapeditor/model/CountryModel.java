@@ -6,7 +6,6 @@ package com.conquest.mapeditor.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
-
 /**
  * CountryModel Class Initializes country name String, a ContinentModel
  * {@link ContinentModel} as belongsTo and a ArrayList {@link ArrayList} as
@@ -28,15 +27,17 @@ public class CountryModel extends Observable {
 	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
 
-	/**player who owns this country*/
+	/** player who owns this country */
 	private PlayerModel owner;
+
+	private boolean isVisited;
 
 	/**
 	 * ContryModel Constructor Create a new empty ArrayList.
 	 */
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
-
+		isVisited=false;
 	}
 
 	/**
@@ -48,6 +49,7 @@ public class CountryModel extends Observable {
 		// this.countryName = countryName;
 		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
+		isVisited=false;
 		updateChanges();
 
 	}
@@ -62,6 +64,7 @@ public class CountryModel extends Observable {
 		this.setCountryName(countryName);
 		this.setBelongsTo(continent);
 		this.listOfNeighbours = new ArrayList<>();
+		isVisited=false;
 		updateChanges();
 
 	}
@@ -78,6 +81,7 @@ public class CountryModel extends Observable {
 		this.countryName = countryName;
 		this.belongsTo = continentModel;
 		this.listOfNeighbours = listOfNeighbours;
+		isVisited=false;
 		updateChanges();
 
 	}
@@ -177,9 +181,10 @@ public class CountryModel extends Observable {
 		noOfArmiesCountry--;
 		updateChanges();
 	}
-	
+
 	/**
 	 * Method to get country's owner.
+	 * 
 	 * @return country's current owner
 	 */
 	public PlayerModel getOwner() {
@@ -187,8 +192,9 @@ public class CountryModel extends Observable {
 	}
 
 	/**
-	 * Method to set country's owner, is used at the beginning
-	 * of a game or during an attack phase.
+	 * Method to set country's owner, is used at the beginning of a game or during
+	 * an attack phase.
+	 * 
 	 * @param owner country's new owner
 	 */
 	public void setOwner(PlayerModel owner) {
@@ -212,6 +218,20 @@ public class CountryModel extends Observable {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param isVisited the isVisited to set
+	 */
+	public void setVisited(boolean isVisited) {
+		this.isVisited = isVisited;
+	}
+
+	/**
+	 * @return the isVisited
+	 */
+	public boolean isVisited() {
+		return isVisited;
 	}
 
 	/*

@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -14,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
@@ -128,8 +131,10 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 				Utility utility = new Utility();
 				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
-				checkValidation(mapModel,Integer.valueOf(noOfPlayers));
+				checkValidation(mapModel, Integer.valueOf(noOfPlayers));
 				mapModel.setConquestMapName(fileName);
+				boolean isConnected = isMapConnected(mapModel);
+				System.out.println("Map Is Connected: " + isConnected);
 				if (!mapModel.isValErrorFlag()) {
 					dispose();
 					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);
@@ -141,19 +146,62 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
-	
-	public String checkValidation(MapHierarchyModel mapHierarchyModel,int noOfPlayers)
-	{
-		String mes="";
+
+	public String checkValidation(MapHierarchyModel mapHierarchyModel, int noOfPlayers) {
+		String mes = "";
 		if (mapHierarchyModel.getTotalCountries() < noOfPlayers && !mapHierarchyModel.isValErrorFlag()) {
 			mapHierarchyModel.setValErrorFlag(true);
 			mapHierarchyModel.setErrorMsg("Number of countries cannot be less than number of players");
-			
-		}
-		else {
-			mes="Passed";
+
+		} else {
+			mes = "Passed";
 		}
 		return mes;
 	}
+
+	public boolean isMapConnected(MapHierarchyModel mapHierarchyModel) {
+		boolean isConnected = true;
+		dfsUsingStack(mapHierarchyModel, mapHierarchyModel.getCountryList().get(1));
+		for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+			if (countryModel.isVisited())
+				countryModel.setVisited(false);
+			else {
+				isConnected = false;
+				break;
+			}
+		}
+		if(!isConnected)
+		{
+			mapHierarchyModel.setErrorMsg("Map is not connected !!");
+			mapHierarchyModel.setValErrorFlag(true);
+		}
+		
+		return isConnected;
+	}
+
+	public void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
+		Stack<CountryModel> stack = new Stack<CountryModel>();
+		stack.add(countryModel);
+		countryModel.setVisited(true);
+		while (!stack.isEmpty()) {
+			CountryModel element = stack.pop();
+			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
+			List<String> neigbourNames = element.getListOfNeighbours();
+			List<CountryModel> neighbours = new ArrayList<>();
+
+			for (String neighbourName : neigbourNames) {
+
+				neighbours.add(mapHierarchyModel.searchCountry(neighbourName));
+			}
+			for (int i = 0; i < neighbours.size(); i++) {
+				CountryModel n = neighbours.get(i);
+				if (n != null && !n.isVisited()) {
+					stack.add(n);
+					n.setVisited(true);
+
+				}
+			}
+		}
+	}
+
 }
