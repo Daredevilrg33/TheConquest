@@ -199,8 +199,24 @@ public class AttackWindowController {
 				sourceCountryModels.add(countryModel.getCountryName());
 			}
 		}
-		attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryModels);
+				attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryModels);
 	}
+	 public void updateNoOfDiceUIInfo() {
+		 int diceFlag = 0;
+			PlayerModel playerModel = players[counter];
+		 for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+				if (countryModel.getNoOfArmiesCountry() > 3) {
+					diceFlag = 3;
+			}	
+				else if(countryModel.getNoOfArmiesCountry() > 2) {
+					diceFlag = 2;
+			}	
+				else if (countryModel.getNoOfArmiesCountry() > 1) {
+					diceFlag = 1;
+			}	}
+		 attackPhaseWindow.updateComboBoxNoOfDice(diceFlag);
+
+	 }
 
 	/**
 	 * Target country list.
