@@ -16,24 +16,44 @@ import com.conquest.model.GameModel;
 import com.conquest.utilities.Utility;
 import com.conquest.window.GameWindow;
 
+/**
+ * The Class GameWindowControllerTest.
+ */
 public class GameWindowControllerTest {
+	
+	/** The utility object. */
 	private Utility utility = new Utility();
+	
+	/** The country model object. */
 	private ContinentModel countryModel = new ContinentModel("AUSTRALIA");
-	/** The asia map file path. */
+	
+	/** The Asia map file path. */
 	private static String asiaMapFilePath;
+	
+	/** The game window object. */
 	GameWindow gameWindow;
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 	}
 
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}
 
 	/**
-	 * no of armies a player have at the time of startup
+	 * no of armies a player have at the time of startup.
 	 */
 	@Test
 	public void noOfArmyTest() {
@@ -46,7 +66,6 @@ public class GameWindowControllerTest {
 		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
 		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 
-		
 		assertEquals(25,playerModels[1].getnoOfArmyInPlayer());
 	}
 /**
@@ -65,7 +84,6 @@ public class GameWindowControllerTest {
 		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 		playerModels[1].calculateAndAddReinforcementArmy();
 
-		
 		assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
 	}
 	
@@ -98,10 +116,8 @@ public class GameWindowControllerTest {
 			System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 			playerModels[1].calculateAndAddReinforcementArmy();
 
-			
 			assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
 		}
 		
-	
 }
 

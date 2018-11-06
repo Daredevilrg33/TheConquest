@@ -31,6 +31,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	private JButton btnExit;
 
 	/**
+	 * Instantiates a new main menu screen.
 	 */
 	public MainMenuScreen() {
 		btnNewGame = new JButton("New Game");

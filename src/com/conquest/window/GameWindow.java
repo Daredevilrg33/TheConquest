@@ -99,13 +99,25 @@ public class GameWindow extends JFrame implements ActionListener {
 	/** The phase scroll pane. */
 	private JPanel progressBarPanel;
 
+	/** The countries column. */
 	private String[] countriesColumn;
+	
+	/** The vector data. */
 	private String[][] vectorData;
 
+	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
+	
+	/** The current player. */
 	private PlayerModel currPlayer;
+	
+	/** The players. */
 	private PlayerModel[] players;
+	
+	/** The player counter. */
 	private int playerCounter = 0;
+	
+	/** The game model. */
 	private GameModel gameModel;
 
 	/**
@@ -212,10 +224,20 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Gets the players.
+	 *
+	 * @return the players
+	 */
 	public PlayerModel[] getPlayers() {
 		return players;
 	}
 
+	/**
+	 * Sets the players.
+	 *
+	 * @param players the new players
+	 */
 	public void setPlayers(PlayerModel[] players) {
 		this.players = players;
 	}
@@ -247,7 +269,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/**
 	 * updateHierarchyTree Method to refresh and update the Game Information and
-	 * phase view
+	 * phase view.
 	 */
 
 	public void updateGameInformation() {
@@ -410,12 +432,18 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Redirect to fortification window.
+	 */
 	public void redirectToFortificationWindow() {
 		FortificationWindow fortificationWindow = new FortificationWindow(mapHierarchyModel,
 				gameWindowController.getPlayers());
 		fortificationWindow.setVisible(true);
 	}
 
+	/**
+	 * Adds the progress bar.
+	 */
 	public void addProgressBar() {
 		Random randomGenerator = new Random();
 
@@ -435,6 +463,12 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Calculate percentage.
+	 *
+	 * @param player the player
+	 * @return the int
+	 */
 	public int calculatePercentage(PlayerModel player) {
 		double x = ((double) player.getPlayerCountryList().size() / mapHierarchyModel.getTotalCountries()) * 100;
 		return (int) x;

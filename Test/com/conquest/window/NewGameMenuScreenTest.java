@@ -10,21 +10,39 @@ import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Utility;
 
+/**
+ * The Class NewGameMenuScreenTest.
+ */
 public class NewGameMenuScreenTest {
+	
+	/** The utility. */
 	private Utility utility = new Utility();
-	/** The asia map file path. */
+	
+	/** The Asia map file path. */
 	private static String asiaMapFilePath;
+	
+	/** The threemap filepath. */
 	private static String threemapFilepath;
+	
+	/** The game window. */
 	GameWindow gameWindow;
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 		threemapFilepath= System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
 	}
 	
-	
-	
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}

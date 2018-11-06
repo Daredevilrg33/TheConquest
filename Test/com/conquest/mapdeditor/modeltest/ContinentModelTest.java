@@ -24,13 +24,17 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
  */
 public class ContinentModelTest {
 
+	/** The country model. */
 	private ContinentModel countryModel = new ContinentModel("ASIA");
-
-	private ArrayList<CountryModel> cl = new ArrayList<CountryModel>();
-
-	private MapHierarchyModel mh = new MapHierarchyModel();
+	
+	/** The country neighbor models. */
 	private ArrayList<String> countryNeighbourModels;
 
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -77,7 +81,6 @@ public class ContinentModelTest {
 	public void searchCountryTest() {
 		CountryModel countrymodel = new CountryModel("INDIA", countryModel, countryNeighbourModels);
 		countryModel.addCountry(countrymodel);
-		// System.out.println(cm.searchCountry("INDIA"));
 		assertEquals("INDIA", countryModel.searchCountry("INDIA").getCountryName());
 
 	}
@@ -104,6 +107,12 @@ public class ContinentModelTest {
 
 	}
 
+	/**
+	 * Not.
+	 *
+	 * @param equals the equals
+	 * @return the object
+	 */
 	private Object not(boolean equals) {
 		return null;
 	}

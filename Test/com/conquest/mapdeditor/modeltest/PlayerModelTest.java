@@ -14,18 +14,37 @@ import org.junit.Test;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.PlayerModel;
 
+/**
+ * The Class PlayerModelTest.
+ */
 public class PlayerModelTest {
 
+	/** The country model array list. */
 	private ArrayList<CountryModel> countryModelArrayList;
 
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Tear down after class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Before test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void beforeTest() throws Exception {
 		CountryModel countrymodel = new CountryModel("IRAQ");
@@ -42,6 +61,11 @@ public class PlayerModelTest {
 
 	}
 
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}

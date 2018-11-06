@@ -7,6 +7,9 @@ import com.conquest.controller.GameWindowControllerTest;
 import com.conquest.mapdeditor.modeltest.ControllerTestSuite;
 import com.conquest.utilities.UtilityTest;
 
+/**
+ * The Class MainTestSuite.
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ControllerTestSuite.class, GameWindowControllerTest.class,UtilityTest.class})
 public class MainTestSuite {

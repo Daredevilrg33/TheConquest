@@ -21,6 +21,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class NewGameMenuScreen.
  *
@@ -147,6 +148,13 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Check validation of Map.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param noOfPlayers the no of players
+	 * @return the string
+	 */
 	public String checkValidation(MapHierarchyModel mapHierarchyModel, int noOfPlayers) {
 		String mes = "";
 		if (mapHierarchyModel.getTotalCountries() < noOfPlayers && !mapHierarchyModel.isValErrorFlag()) {
@@ -159,6 +167,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		return mes;
 	}
 
+	/**
+	 * Checks if is map connected.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @return true, if is map connected
+	 */
 	public boolean isMapConnected(MapHierarchyModel mapHierarchyModel) {
 		boolean isConnected = true;
 		dfsUsingStack(mapHierarchyModel, mapHierarchyModel.getCountryList().get(1));
@@ -179,6 +193,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		return isConnected;
 	}
 
+	/**
+	 * Depth first search using stack.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param countryModel the country model
+	 */
 	public void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);

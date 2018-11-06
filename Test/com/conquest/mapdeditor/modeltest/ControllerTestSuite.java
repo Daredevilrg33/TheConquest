@@ -2,10 +2,11 @@ package com.conquest.mapdeditor.modeltest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
 /**
- * TEST Suite for Controller
- * @author Bhigya Pande
+ * TEST Suite for Controller.
  *
+ * @author Bhigya Pande
  */
 
 @RunWith(Suite.class)
