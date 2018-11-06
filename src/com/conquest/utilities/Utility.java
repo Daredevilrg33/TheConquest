@@ -160,7 +160,9 @@ public class Utility {
 				mapHierarchyModel.setTotalCountries(countryModels.size());
 			}
 			
-			//validating if there is connectivity of country to any other country
+			/**
+			 * validating if there is connectivity of country to any other country
+			 */
 			if(targetCountry!=null)
 			{
 			for(CountryModel loopCountry :countryModels)
@@ -259,9 +261,8 @@ public class Utility {
 	
 	/**
 	 * beforeSaveValidation Method validate map.
-	 * 
+	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param fileName          the file name
 	 * @return true, if successful
 	 */
 	public boolean beforeSaveValidation(MapHierarchyModel mapHierarchyModel) {

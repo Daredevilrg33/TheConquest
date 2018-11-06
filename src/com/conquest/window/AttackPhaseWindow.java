@@ -22,21 +22,48 @@ import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
 
 /**
- * @author Rohit Gupta
+ * The Class AttackPhaseWindow.
  *
+ * @author Rohit Gupta
  */
 public class AttackPhaseWindow extends JFrame implements ActionListener {
+	
+	/** The attack window controller. */
 	private AttackWindowController attackWindowController;
+	
+	/** The j source army label. */
 	private JLabel jSourceArmyLabel;
+	
+	/** The j target army label. */
 	private JLabel jTargetArmyLabel;
+	
+	/** The j combo box source countries. */
 	private JComboBox<String> jComboBoxSourceCountries;
+	
+	/** The j combo box target countries. */
 	private JComboBox<String> jComboBoxTargetCountries;
+	
+	/** The j button attack. */
 	private JButton jButtonAttack;
+	
+	/** The j player label. */
 	private JLabel jPlayerLabel;
+	
+	/** The j button all out attack. */
 	private JButton jButtonAllOutAttack;
+	
+	/** The risk map model. */
 	private GameModel riskMapModel;
+	
+	/** The player. */
 	private PlayerModel[] player;
 
+	/**
+	 * Instantiates a new attack phase window.
+	 *
+	 * @param riskMapModel the risk map model
+	 * @param playerModel the player model
+	 */
 	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModel) {
 		this.riskMapModel = riskMapModel;
 		this.player = playerModel;
@@ -92,10 +119,20 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Update player label.
+	 *
+	 * @param label the label
+	 */
 	public void updatePlayerLabel(String label) {
 		jPlayerLabel.setText(label);
 	}
 
+	/**
+	 * Update combo box source countries.
+	 *
+	 * @param countryModels the country models
+	 */
 	public void updateComboBoxSourceCountries(ArrayList<String> countryModels) {
 		jComboBoxSourceCountries.removeAllItems();
 		jComboBoxSourceCountries.addItem("Select country:");
@@ -106,6 +143,11 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Update combo box target countries.
+	 *
+	 * @param countryModels the country models
+	 */
 	public void updateComboBoxTargetCountries(ArrayList<String> countryModels) {
 		jComboBoxTargetCountries.removeAllItems();
 		jComboBoxTargetCountries.addItem("Select country:");
@@ -115,10 +157,20 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Update target army label.
+	 *
+	 * @param armyCount the army count
+	 */
 	public void updateTargetArmyLabel(int armyCount) {
 		jTargetArmyLabel.setText(String.valueOf(armyCount));
 	}
 
+	/**
+	 * Update source army label.
+	 *
+	 * @param armyCount the army count
+	 */
 	public void updateSourceArmyLabel(int armyCount) {
 		jSourceArmyLabel.setText(String.valueOf(armyCount));
 	}
@@ -131,7 +183,6 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource() == jComboBoxSourceCountries) {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
 			CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);

@@ -26,15 +26,17 @@ public class PlayerModel extends Observable {
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
 
+	/** The game window. */
 	private GameWindow gameWindow;
 
+	/** The risk map model. */
 	private GameModel riskMapModel;
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
-	 * 
-	 * @param playerName
-	 *            the player name
+	 *
+	 * @param playerName            the player name
+	 * @param riskMapModel the risk map model
 	 */
 	public PlayerModel(String playerName, GameModel riskMapModel) {
 		this.playerName = playerName;
@@ -49,7 +51,7 @@ public class PlayerModel extends Observable {
 	 * @param playerName
 	 *            the player name
 	 * @param countryModelArrayList
-	 *            array list of coutries of the player.
+	 *            array list of countries of the player.
 	 */
 
 	public PlayerModel(String playerName, ArrayList<CountryModel> countryModelArrayList) {
@@ -87,6 +89,11 @@ public class PlayerModel extends Observable {
 		updateChanges();
 	}
 
+	/**
+	 * Adds the control value to no of army.
+	 *
+	 * @param controlValue the control value
+	 */
 	public void addControlValueToNoOfArmy(int controlValue) {
 		this.noOfArmyInPlayer = this.noOfArmyInPlayer + controlValue;
 		updateChanges();
@@ -167,14 +174,11 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * This method is to move armies from one country to another
-	 * 
-	 * @param country1
-	 *            armies moved to
-	 * @param country2
-	 *            armies moved from
-	 * @param armies
-	 *            armies number
+	 * This method is to move armies from one country to another.
+	 *
+	 * @param sourceCountry the source country
+	 * @param destCountry the destination country
+	 * @param armies            armies number
 	 */
 	public void moveArmies(CountryModel sourceCountry, CountryModel destCountry, int armies) {
 		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry() + armies);
@@ -182,10 +186,9 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * The function to judge if player win
-	 * 
-	 * @param countryNum
-	 *            number of countries
+	 * The function to judge if player win.
+	 *
+	 * @param countryNum    number of countries
 	 * @return true if player win
 	 */
 	public boolean isGameWon(int countryNum) {
@@ -195,15 +198,28 @@ public class PlayerModel extends Observable {
 			return false;
 	}
 
+	/**
+	 * Game phase.
+	 *
+	 * @param gameWindow the game window
+	 */
 	public void gamePhase(GameWindow gameWindow) {
 		this.gameWindow = gameWindow;
 		reinforcementPhase();
 	}
 
+	/**
+	 * Reinforcement phase.
+	 */
 	public void reinforcementPhase() {
 		calculateAndAddReinforcementArmy();
 	}
 
+	/**
+	 * Attack phase.
+	 *
+	 * @return the string
+	 */
 	public String AttackPhase() {
 		PlayerModel[] players = gameWindow.getPlayers();
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players);
@@ -218,6 +234,9 @@ public class PlayerModel extends Observable {
 		return "success";
 	}
 
+	/**
+	 * Fortification phase.
+	 */
 	public void FortificationPhase() {
 	}
 
@@ -275,6 +294,9 @@ public class PlayerModel extends Observable {
 
 	}
 
+	/**
+	 * Update changes.
+	 */
 	private void updateChanges() {
 		setChanged();
 		notifyObservers(this);

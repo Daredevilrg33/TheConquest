@@ -19,25 +19,66 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.utilities.Constants;
 
+
+/**
+ * The Class FortificationWindow.
+ */
 public class FortificationWindow extends JFrame implements ActionListener {
 
+	/** The reinforcement window controller. */
 	private FortificationWindowController reinforcementWindowController;
+	
+	/** The j combo box source countries. */
 	private JComboBox<String> jComboBoxSourceCountries;
+	
+	/** The j combo box destination countries. */
 	private JComboBox<String> jComboBoxDestinationCountries;
+	
+	/** The j combo box chosen no of armies. */
 	private JComboBox<String> jComboBoxChosenNoOfArmies;
+	
+	/** The j button send. */
 	private JButton jButtonSend;
+	
+	/** The j button finish. */
 	private JButton jButtonFinish;
+	
+	/** The selected source country. */
 	private String selectedSourceCountry;
+	
+	/** The armies. */
 	private int armies;
+	
+	/** The selected destination country. */
 	private String selectedDestinationCountry;
+	
+	/** The j source army label. */
 	private JLabel jSourceArmyLabel;
+	
+	/** The j destination army label. */
 	private JLabel jDestinationArmyLabel;
+	
+	/** The j player label. */
 	private JLabel jPlayerLabel;
+	
+	/** The j source country label. */
 	private JLabel jSourceCountryLabel;
+	
+	/** The j destination country label. */
 	private JLabel jDestinationCountryLabel;
+	
+	/** The j chosen no of armies. */
 	private JLabel jChosenNoOfArmies;
+	
+	/** The players. */
 	private PlayerModel[] players;
 
+	/**
+	 * Instantiates a new fortification window.
+	 *
+	 * @param mapModel the map model
+	 * @param players the players
+	 */
 	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
 		this.players = players;
 
@@ -112,6 +153,11 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Update army.
+	 *
+	 * @param number the number
+	 */
 	public void updateArmy(int number) {
 
 		jComboBoxChosenNoOfArmies.removeAllItems();
@@ -120,25 +166,48 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Update player label.
+	 *
+	 * @param playerName the player name
+	 */
 	public void updatePlayerLabel(String playerName) {
 		jPlayerLabel.setText(playerName);
 	}
 
+	/**
+	 * Update source army label.
+	 *
+	 * @param sourceArmy the source army
+	 */
 	public void updateSourceArmyLabel(int sourceArmy) {
 		jSourceArmyLabel.setText(Integer.toString(sourceArmy));
 
 	}
 
+	/**
+	 * New army label.
+	 */
 	public void newArmyLabel() {
 		jSourceArmyLabel.setText("");
 		jDestinationArmyLabel.setText("");
 	}
 
+	/**
+	 * Update destination army label.
+	 *
+	 * @param destinationArmy the destination army
+	 */
 	public void updateDestinationArmyLabel(int destinationArmy) {
 		jDestinationArmyLabel.setText(Integer.toString(destinationArmy));
 
 	}
 
+	/**
+	 * Update combo box source countries.
+	 *
+	 * @param countryModels the country models
+	 */
 	public void updateComboBoxSourceCountries(List<CountryModel> countryModels) {
 
 		jComboBoxSourceCountries.removeAllItems();
@@ -149,6 +218,11 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Update combo box destination countries.
+	 *
+	 * @param arrayList the array list
+	 */
 	public void updateComboBoxDestinationCountries(ArrayList<String> arrayList) {
 
 		jComboBoxDestinationCountries.removeAllItems();
@@ -160,6 +234,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
