@@ -8,16 +8,19 @@ import java.awt.Canvas;
 import com.conquest.window.GameWindow;
 import com.conquest.window.MainMenuScreen;
 
+// TODO: Auto-generated Javadoc
 /**
- * Game class Main class of project
- * 
+ * Game class Main class of project.
+ *
  * @author Rohit Gupta
  */
 public class Game {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -4669025547633011027L;
 
 	/**
-	 * Game class Constructor
+	 * Game class Constructor.
 	 */
 	public Game() {
 

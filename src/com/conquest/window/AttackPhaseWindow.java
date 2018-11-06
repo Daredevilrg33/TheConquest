@@ -136,7 +136,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
 			CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);
 			updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
-			attackWindowController.findingCountry(sourceCountryName);
+			attackWindowController.finding(sourceCountryName);
 			if (attackWindowController.targetCountryList().isEmpty()) {
 				JOptionPane.showMessageDialog(this, "No Target country eligible from this country", "Error Message",
 						JOptionPane.ERROR_MESSAGE);

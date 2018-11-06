@@ -12,6 +12,7 @@ import com.conquest.model.GameModel;
 import com.conquest.window.GameWindow;
 import com.conquest.window.FortificationWindow;
 
+
 /**
  * Game Window Controller Class This class initializes Number of players, Player
  * model, Game window object and Map HeirarchyModel.
@@ -45,6 +46,7 @@ public class GameWindowController {
 	/** The continents. */
 	private ContinentModel[] continents;
 
+	/** The game model. */
 	private GameModel gameModel;
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
@@ -116,8 +118,11 @@ public class GameWindowController {
 				}
 			}
 		}
-//		calculateAndAddReinforcementArmy(players);
-//		isControlValueTobeAdded(this.mapHierarchyModel, players);
+/**
+ * 		calculateAndAddReinforcementArmy(players);
+ * isControlValueTobeAdded(this.mapHierarchyModel, players);
+ */
+//		
 		updateUIInfo();
 	}
 
@@ -195,6 +200,8 @@ public class GameWindowController {
 	}
 
 	/**
+	 * Gets the players.
+	 *
 	 * @return the players
 	 */
 	public PlayerModel[] getPlayers() {

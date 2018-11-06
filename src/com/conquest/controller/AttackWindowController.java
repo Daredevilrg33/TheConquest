@@ -76,7 +76,7 @@ public class AttackWindowController {
 	 *
 	 * @param sourceCountry the source country
 	 */
-	public void findingCountry(String sourceCountry) {
+	public void finding(String sourceCountry) {
 		PlayerModel playerModel = players[counter];
 		ArrayList<String> tempCountryModels1 = new ArrayList<>();
 		ArrayList<String> tempCountryModels2 = new ArrayList<>();

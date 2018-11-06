@@ -143,6 +143,9 @@ public class ContinentModel extends Observable {
 		return controlValue;
 	}
 
+	/**
+	 * Update changes.
+	 */
 	private void updateChanges() {
 		setChanged();
 		notifyObservers(this);

@@ -54,7 +54,7 @@ public class FortificationWindowController {
 	}
 
 	/**
-	 * Sending.
+	 * Sending Countries.
 	 *
 	 * @param armies the armies
 	 */
@@ -70,6 +70,9 @@ public class FortificationWindowController {
 		updateUIInfo();
 	}
 	
+	/**
+	 * Next player.
+	 */
 	public void nextPlayer() {
 		if (counter < noOfPlayers - 1)
 			counter++;
@@ -78,10 +81,16 @@ public class FortificationWindowController {
 
 	}
 
+	/**
+	 * After fortification.
+	 */
 	public void afterFortification() {
 		reinforcementWindow.dispose();
 	}
 
+	/**
+	 * Update Backend.
+	 */
 	public void updateBackend() {
 
 		sourceCounter = 0;
@@ -95,7 +104,7 @@ public class FortificationWindowController {
 	}
 
 	/**
-	 * Finding.
+	 * Finding Countries in Fortification.
 	 *
 	 * @param sourceCountry the source country
 	 */
