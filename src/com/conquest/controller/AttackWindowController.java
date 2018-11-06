@@ -11,11 +11,14 @@ import com.conquest.window.AttackPhaseWindow;
 import java.security.SecureRandom;
 
 /**
- * @author Siddhant
+ * The Class AttackWindowController.
  *
+ * @author Siddhant
  */
 
 public class AttackWindowController {
+	
+	/** The attack phase window. */
 	private AttackPhaseWindow attackPhaseWindow;
 
 	/** The no of players. */
@@ -35,8 +38,18 @@ public class AttackWindowController {
 
 	/** The destination country models. */
 	ArrayList<String> targetCountryModels = new ArrayList<>();
+	
+	/** The source country models. */
 	ArrayList<String> sourceCountryModels = new ArrayList<>();
 
+	/**
+	 * Instantiates a new attack window controller.
+	 *
+	 * @param players the players
+	 * @param attackPhaseWindow the attack phase window
+	 * @param noOfPlayers the no of players
+	 * @param riskMapModel the risk map model
+	 */
 	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, int noOfPlayers,
 			GameModel riskMapModel) {
 		this.attackPhaseWindow = attackPhaseWindow;
@@ -47,6 +60,10 @@ public class AttackWindowController {
 		attackPhaseWindow.updatePlayerLabel(players[counter].getPlayerName());
 	}
 
+	/**
+	 * Next player.
+	 * Switches to next player
+	 */
 	public void nextPlayer() {
 		if (counter < noOfPlayers) {
 			counter++;
@@ -54,7 +71,12 @@ public class AttackWindowController {
 			counter = 0;
 	}
 
-	public void finding(String sourceCountry) {
+	/**
+	 * Finding Countries.
+	 *
+	 * @param sourceCountry the source country
+	 */
+	public void findingCountry(String sourceCountry) {
 		PlayerModel playerModel = players[counter];
 		ArrayList<String> tempCountryModels1 = new ArrayList<>();
 		ArrayList<String> tempCountryModels2 = new ArrayList<>();
@@ -91,6 +113,11 @@ public class AttackWindowController {
 
 	}
 
+	/**
+	 * Roll dice.
+	 *
+	 * @return pickedNumber + 1 the number on dice rolled
+	 */
 	public int rollDice() {
 		int pickedNumber;
 		SecureRandom number = new SecureRandom();
@@ -98,6 +125,12 @@ public class AttackWindowController {
 		return pickedNumber + 1;
 	}
 
+	/**
+	 * Attack.
+	 *
+	 * @param attackingCountry the attacking country
+	 * @param targetCountry the target country
+	 */
 	public void attack(String attackingCountry, String targetCountry) {
 
 		int i = 0;
@@ -138,6 +171,9 @@ public class AttackWindowController {
 		System.out.println("largest dice in defending " + obj1);
 	}
 
+	/**
+	 * Update source UI info.
+	 */
 	public void updateSourceUIInfo() {
 		PlayerModel playerModel = players[counter];
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
@@ -148,10 +184,18 @@ public class AttackWindowController {
 		attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryModels);
 	}
 
+	/**
+	 * Target country list.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<String> targetCountryList() {
 		return targetCountryModels;
 	}
 
+	/**
+	 * Update target UI info.
+	 */
 	public void updateTargetUIInfo() {
 		attackPhaseWindow.updateComboBoxTargetCountries(targetCountryModels);
 		targetCountryModels.clear();
