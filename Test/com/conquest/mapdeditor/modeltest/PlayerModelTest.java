@@ -92,7 +92,7 @@ public class PlayerModelTest {
 		CountryModel countrymodel4 = new CountryModel("BANGLADESH");
 		playermodel.noOfArmyInPlayer(4);
 		assertEquals("FORD", playermodel.getPlayerName());
-		playermodel.AddCountry(countrymodel4);
+		playermodel.addCountry(countrymodel4);
 		assertEquals("BANGLADESH", playermodel.searchCountry("BANGLADESH").getCountryName());
 		assertEquals(4, playermodel.getnoOfArmyInPlayer());
 

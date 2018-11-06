@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
@@ -223,5 +224,29 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			}
 		}
 	}
-
+	
+	public boolean isContinentConnected(MapHierarchyModel mapHierarchyModel) {
+		boolean isConnected = true;
+		for(ContinentModel continentModel: mapHierarchyModel.getContinentsList())
+		{
+			List<CountryModel> countryList = continentModel.getCountriesList();
+			
+		}
+		dfsUsingStack(mapHierarchyModel, mapHierarchyModel.getCountryList().get(1));
+		for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+			if (countryModel.isVisited())
+				countryModel.setVisited(false);
+			else {
+				isConnected = false;
+				break;
+			}
+		}
+		if(!isConnected)
+		{
+			mapHierarchyModel.setErrorMsg("Map is not connected !!");
+			mapHierarchyModel.setValErrorFlag(true);
+		}
+		
+		return isConnected;
+	}
 }

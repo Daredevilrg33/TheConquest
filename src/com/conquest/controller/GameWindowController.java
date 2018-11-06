@@ -111,7 +111,7 @@ public class GameWindowController {
 					pickedNumber = rand.nextInt(countryModelList.size());
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
-						players[count1].AddCountry(countryModelTest);
+						players[count1].addCountry(countryModelTest);
 					}
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);

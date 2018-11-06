@@ -134,7 +134,7 @@ public class PlayerModel extends Observable {
 	 * @param countryName
 	 *            the country name
 	 */
-	public void AddCountry(CountryModel countryName) {
+	public void addCountry(CountryModel countryName) {
 		playerCountryList.add(countryName);
 		updateChanges();
 	}
@@ -142,7 +142,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * Removes the country.
 	 */
-	public void RemoveCountry() {
+	public void removeCountry() {
 		playerCountryList.removeAll(playerCountryList);
 		updateChanges();
 	}

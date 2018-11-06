@@ -63,8 +63,8 @@ public class GameWindowControllerTest {
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
-		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+//		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+//		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 
 		assertEquals(25,playerModels[1].getnoOfArmyInPlayer());
 	}
@@ -80,8 +80,8 @@ public class GameWindowControllerTest {
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
-		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+//		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+//		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
 		playerModels[1].calculateAndAddReinforcementArmy();
 
 		assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
@@ -100,23 +100,37 @@ public class GameWindowControllerTest {
 			gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 			PlayerModel[] playerModels = gameWindowController.getPlayers();
 			 ArrayList<CountryModel> countryModelArrayList = new  ArrayList<CountryModel>();
-			CountryModel countrymodel = new CountryModel("RUSSIA");
-			CountryModel countrymodel1 = new CountryModel("AMERICA");
-			CountryModel countrymodel2 = new CountryModel("JAPAN");
-			CountryModel countrymodel3 = new CountryModel("FRANCE");
+			CountryModel countrymodel = new CountryModel("RUSSIA12");
+			CountryModel countrymodel1 = new CountryModel("AMERICA31");
+			CountryModel countrymodel2 = new CountryModel("JAPAN12");
+			CountryModel countrymodel3 = new CountryModel("FRANCE43");
+			CountryModel countrymodel4 = new CountryModel("Sri Lanka");
+			CountryModel countrymodel5 = new CountryModel("Australia");
+			CountryModel countrymodel6 = new CountryModel("United Kingdom");
+			CountryModel countrymodel7 = new CountryModel("Germany");
+			CountryModel countrymodel8 = new CountryModel("Crotia");
+			CountryModel countrymodel9 = new CountryModel("Netherlands");
+			CountryModel countrymodel10 = new CountryModel("New Zealand");
 			
-			PlayerModel pm=new PlayerModel("Player2",countryModelArrayList);
-			pm.AddCountry(countrymodel);
-			pm.AddCountry(countrymodel1);
-			pm.AddCountry(countrymodel2);
-			pm.AddCountry(countrymodel3);
-			
+			playerModels[1].addCountry(countrymodel);
+			playerModels[1].addCountry(countrymodel1);
+			playerModels[1].addCountry(countrymodel2);
+			playerModels[1].addCountry(countrymodel3);
+			playerModels[1].addCountry(countrymodel4);
+			playerModels[1].addCountry(countrymodel5);
+			playerModels[1].addCountry(countrymodel6);
+			playerModels[1].addCountry(countrymodel7);
+			playerModels[1].addCountry(countrymodel8);
+			playerModels[1].addCountry(countrymodel9);
+			playerModels[1].addCountry(countrymodel10);
 			System.out.println("Country NAME: " + playerModels[1].getPlayerName());
-			System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-			System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+			System.out.println("Country List Size: " + playerModels[0].getPlayerCountryList().size());
+			System.out.println("player no of army: " + playerModels[0].getnoOfArmyInPlayer());
 			playerModels[1].calculateAndAddReinforcementArmy();
-
-			assertEquals(28,playerModels[1].getnoOfArmyInPlayer());
+			playerModels[0].calculateAndAddReinforcementArmy();
+			assertEquals(28,playerModels[0].getnoOfArmyInPlayer());
+			assertEquals(29,playerModels[1].getnoOfArmyInPlayer());
+			
 		}
 		
 }
