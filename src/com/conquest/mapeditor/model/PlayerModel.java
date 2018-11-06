@@ -222,7 +222,7 @@ public class PlayerModel extends Observable {
 	 */
 	public String AttackPhase() {
 		PlayerModel[] players = gameWindow.getPlayers();
-		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players);
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players,this);
 		attackPhaseWindow.setVisible(true);
 
 		if (isGameWon(riskMapModel.getRiskGameModel().totalCountries)) {
