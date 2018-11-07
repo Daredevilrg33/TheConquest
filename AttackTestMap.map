@@ -1,0 +1,16 @@
+[Continents]
+
+Rohit=4
+Bhig=4
+
+[Territories]
+
+C1,0,0,Rohit,C2,C3,C4,CA,CB,CC,CD
+C2,0,0,Rohit,C1,C3,C4,CA,CB,CC,CD
+C3,0,0,Rohit,C1,C2,C4,CA,CB,CC,CD
+C4,0,0,Rohit,C1,C2,C3,CA,CB,CC,CD
+CA,0,0,Bhig,C1,C2,C3,C4,CB,CC,CD
+CB,0,0,Bhig,C1,C2,C3,C4,CA,CC,CD
+CC,0,0,Bhig,C1,C2,C3,C4,CA,CB,CD
+CD,0,0,Bhig,C1,C2,C3,C4,CA,CB,CC
+

@@ -254,20 +254,26 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jComboBoxSourceCountries) {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
-			CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);
-			updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
-			attackWindowController.finding(sourceCountryName);
-			if (attackWindowController.targetCountryList().isEmpty()) {
-				JOptionPane.showMessageDialog(this, "No Target country eligible from this country", "Error Message",
-						JOptionPane.ERROR_MESSAGE);
-			} else
-				{
+			if(!sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
+				CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);
+				updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
+				attackWindowController.finding(sourceCountryName);
+				System.out.println("targetCountryList().size()" + attackWindowController.targetCountryList().size());
+				if (attackWindowController.targetCountryList().size() < 1) {
+					JOptionPane.showMessageDialog(this, "No Target country eligible from this country", "Error Message",
+							JOptionPane.ERROR_MESSAGE);
+				} else
+					{
+					
+				    attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
+				    }
 				attackWindowController.updateTargetUIInfo();
-			    attackWindowController.updateNoOfDiceUIInfo();
-			    }
+				
+			}
+			updateTargetArmyLabel(0);
 		} else if (e.getSource() == jComboBoxTargetCountries) {
 			System.out.println(jComboBoxTargetCountries.getSelectedIndex());
-			if (jComboBoxTargetCountries.getSelectedIndex() != 0) {
+			if (jComboBoxTargetCountries.getSelectedIndex() > 0) {
 				String targetCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
 				CountryModel targetCountry = riskMapModel.getRiskGameModel().searchCountry(targetCountryName);
 				updateTargetArmyLabel(targetCountry.getNoOfArmiesCountry());

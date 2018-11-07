@@ -230,23 +230,48 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		for(ContinentModel continentModel: mapHierarchyModel.getContinentsList())
 		{
 			List<CountryModel> countryList = continentModel.getCountriesList();
-			
-		}
-		dfsUsingStack(mapHierarchyModel, mapHierarchyModel.getCountryList().get(1));
-		for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-			if (countryModel.isVisited())
-				countryModel.setVisited(false);
-			else {
-				isConnected = false;
-				break;
+			dfsUsingStackContinent(continentModel, mapHierarchyModel.getCountryList().get(1));
+			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				if (countryModel.isVisited())
+					countryModel.setVisited(false);
+				else {
+					isConnected = false;
+					mapHierarchyModel.setErrorMsg("Continent: " + continentModel.getContinentName() + " is not connected !!");
+					mapHierarchyModel.setValErrorFlag(true);
+					return isConnected;
+					
+				}
 			}
 		}
-		if(!isConnected)
-		{
-			mapHierarchyModel.setErrorMsg("Map is not connected !!");
-			mapHierarchyModel.setValErrorFlag(true);
-		}
+		
+		
+	
 		
 		return isConnected;
+	}
+	
+	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
+		Stack<CountryModel> stack = new Stack<CountryModel>();
+		stack.add(countryModel);
+		countryModel.setVisited(true);
+		while (!stack.isEmpty()) {
+			CountryModel element = stack.pop();
+			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
+			List<String> neigbourNames = element.getListOfNeighbours();
+			List<CountryModel> neighbours = new ArrayList<>();
+
+			for (String neighbourName : neigbourNames) {
+
+				neighbours.add(continentModel.searchCountry(neighbourName));
+			}
+			for (int i = 0; i < neighbours.size(); i++) {
+				CountryModel n = neighbours.get(i);
+				if (n != null && !n.isVisited()) {
+					stack.add(n);
+					n.setVisited(true);
+
+				}
+			}
+		}
 	}
 }

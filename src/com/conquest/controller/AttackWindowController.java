@@ -81,6 +81,9 @@ public class AttackWindowController {
 	 */
 	public void finding(String sourceCountry) {
 		PlayerModel playerModel = players[counter];
+		System.out.println("Finding counter value: " + counter);
+		
+		System.out.println("Player Model Name" + playerModel.getPlayerName());
 		ArrayList<String> tempCountryModels1 = new ArrayList<>();
 		ArrayList<String> tempCountryModels2 = new ArrayList<>();
 
@@ -90,10 +93,12 @@ public class AttackWindowController {
 				tempCountryModels2.addAll(countryModel.getListOfNeighbours());
 				tempCountryModels1.addAll(countryModel.getListOfNeighbours());
 				targetCountryModels.addAll(countryModel.getListOfNeighbours());
+				
 				break;
 			}
 		}
 
+		System.out.println("Before Removing: " + targetCountryModels.size());
 		for (String neighbor : tempCountryModels1) {
 			for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 				if (countryModel.getCountryName().trim().equalsIgnoreCase(neighbor)) {
@@ -102,7 +107,8 @@ public class AttackWindowController {
 				}
 			}
 		}
-
+		System.out.println("After Removing: NEighbours " + targetCountryModels.size());
+		
 		for (PlayerModel player : players) {
 			for (String s : tempCountryModels2) {
 				CountryModel c = player.searchCountry(s);
@@ -113,7 +119,8 @@ public class AttackWindowController {
 				}
 			}
 		}
-
+		System.out.println("After Removing: NEighbours " + targetCountryModels.size());
+		
 	}
 
 	/**
@@ -201,19 +208,17 @@ public class AttackWindowController {
 		}
 				attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryModels);
 	}
-	 public void updateNoOfDiceUIInfo() {
+	 public void updateNoOfDiceUIInfo(CountryModel countryModel) {
 		 int diceFlag = 0;
 			PlayerModel playerModel = players[counter];
-		 for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
-				if (countryModel.getNoOfArmiesCountry() > 3) {
-					diceFlag = 3;
-			}	
-				else if(countryModel.getNoOfArmiesCountry() > 2) {
-					diceFlag = 2;
-			}	
-				else if (countryModel.getNoOfArmiesCountry() > 1) {
-					diceFlag = 1;
-			}	}
+	
+			if (countryModel.getNoOfArmiesCountry() > 3) {
+				diceFlag = 3;
+			} else if (countryModel.getNoOfArmiesCountry() > 2) {
+				diceFlag = 2;
+			} else if (countryModel.getNoOfArmiesCountry() > 1) {
+				diceFlag = 1;
+			}
 		 attackPhaseWindow.updateComboBoxNoOfDice(diceFlag);
 
 	 }
