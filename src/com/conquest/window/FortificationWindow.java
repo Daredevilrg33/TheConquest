@@ -70,7 +70,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	private JLabel jChosenNoOfArmies;
 
 	/** The players. */
-	private PlayerModel[] players;
+	private PlayerModel player;
 
 	/**
 	 * Instantiates a new fortification window.
@@ -78,8 +78,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	 * @param mapModel the map model
 	 * @param players  the players
 	 */
-	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel[] players) {
-		this.players = players;
+	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel player) {
+		this.player = player;
 
 		setTitle("Fortification Window");
 		setResizable(false);
@@ -136,7 +136,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jDestinationArmyLabel.setBounds(337, 78, 200, 30);
 		add(jDestinationArmyLabel);
 
-		reinforcementWindowController = new FortificationWindowController(players, this, players.length, mapModel);
+		reinforcementWindowController = new FortificationWindowController(player, this);
 
 		addWindowListener(new WindowAdapter() {
 
@@ -244,7 +244,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 		if (e.getSource() == jButtonFinish) {
 
-			reinforcementWindowController.nextPlayer();
+//			reinforcementWindowController.nextPlayer();
+			// Start the Reinforcement Phase for the next player.
 			reinforcementWindowController.updateBackend();
 
 		} else if (e.getSource() == jButtonSend) {
@@ -269,7 +270,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				reinforcementWindowController.sending(armies);
 				reinforcementWindowController.updateUIInfo();
 
-				reinforcementWindowController.nextPlayer();
+//				reinforcementWindowController.nextPlayer();
+				// Start the Reinforcement Phase for the next player.
+				
 				reinforcementWindowController.updateBackend();
 
 			}

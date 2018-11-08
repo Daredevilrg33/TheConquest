@@ -15,10 +15,7 @@ import com.conquest.window.FortificationWindow;
 public class FortificationWindowController {
 
 	/** The reinforcement window. */
-	private FortificationWindow reinforcementWindow;
-
-	/** The no of players. */
-	private int noOfPlayers = 0;
+	private FortificationWindow fortificationWindow;
 
 	/** The source counter. */
 	private int sourceCounter = 0;
@@ -26,39 +23,31 @@ public class FortificationWindowController {
 	/** The destination counter. */
 	private int destinationCounter = -1;
 
-	/** The counter. */
-	private int counter = 0;
-
 	/** The players. */
-	private PlayerModel[] players;
+	private PlayerModel player;
 
 	/** The destination country models. */
 	ArrayList<String> destinationCountryModels = new ArrayList<>();
 
 	/**
 	 * Instantiates a new fortification window controller.
+	 *
+	 * @param players             the players
+	 * @param reinforcementWindow the reinforcement window
+	 * @param noOfPlayers         the no of players
 	 */
+	public FortificationWindowController(PlayerModel player, FortificationWindow fortificationWindow) {
+		this.fortificationWindow = fortificationWindow;
+		this.player = player;
+		if (fortificationWindow != null) {
+			updateSourceUI();
+			this.fortificationWindow.updatePlayerLabel(player.getPlayerName());
+		}
 
-	public FortificationWindowController() {
-		//
 	}
 
-	/**
-	 * Instantiates a new fortification window controller.
-	 *
-	 * @param players the players
-	 * @param reinforcementWindow the reinforcement window
-	 * @param noOfPlayers the no of players
-	 * @param mapModel the map model
-	 */
-	public FortificationWindowController(PlayerModel[] players, FortificationWindow reinforcementWindow,
-			int noOfPlayers, MapHierarchyModel mapModel) {
-		this.reinforcementWindow = reinforcementWindow;
-		this.noOfPlayers = noOfPlayers;
-		this.players = players;
-
-		updateSourceUI();
-		this.reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+	public PlayerModel getCurrentPlayer() {
+		return player;
 	}
 
 	/**
@@ -68,32 +57,22 @@ public class FortificationWindowController {
 	 */
 	public void sending(int armies) {
 		for (int s = 0; s < armies; s++) {
-			players[counter].getPlayerCountryList().get(destinationCounter).addNoOfArmiesCountry();
-			players[counter].getPlayerCountryList().get(sourceCounter).removeNoOfArmiesCountry();
+			getCurrentPlayer().getPlayerCountryList().get(destinationCounter).addNoOfArmiesCountry();
+			getCurrentPlayer().getPlayerCountryList().get(sourceCounter).removeNoOfArmiesCountry();
 		}
 		System.out.println("Newnumber of armies in source: "
-				+ players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+				+ getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 		System.out.println("Newnumber of armies in destination: "
-				+ players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
-		updateUIInfo();
-	}
-
-	/**
-	 * Next player.
-	 */
-	public void nextPlayer() {
-		if (counter < noOfPlayers - 1)
-			counter++;
-		else
-			afterFortification();
-
+				+ getCurrentPlayer().getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
+		if (fortificationWindow != null)
+			updateUIInfo();
 	}
 
 	/**
 	 * After fortification.
 	 */
 	public void afterFortification() {
-		reinforcementWindow.dispose();
+		fortificationWindow.dispose();
 	}
 
 	/**
@@ -103,11 +82,11 @@ public class FortificationWindowController {
 
 		sourceCounter = 0;
 		destinationCounter = -1;
-		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
-		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
-		reinforcementWindow.updatePlayerLabel(players[counter].getPlayerName());
+		fortificationWindow.updateComboBoxSourceCountries(getCurrentPlayer().getPlayerCountryList());
+		fortificationWindow.updateComboBoxDestinationCountries(destinationCountryModels);
+		fortificationWindow.updatePlayerLabel(getCurrentPlayer().getPlayerName());
 		updateSourceUI();
-		reinforcementWindow.newArmyLabel();
+		fortificationWindow.newArmyLabel();
 
 	}
 
@@ -118,19 +97,17 @@ public class FortificationWindowController {
 	 */
 	public void finding(String sourceCountry) {
 
-		PlayerModel playerModel = players[counter];
-
 		ArrayList<String> tempDestList = new ArrayList<>();
-		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+		for (CountryModel countryModel : getCurrentPlayer().getPlayerCountryList()) {
 			if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountry)) {
-				sourceCounter = playerModel.getPlayerCountryList().indexOf(countryModel);
+				sourceCounter = getCurrentPlayer().getPlayerCountryList().indexOf(countryModel);
 				tempDestList.addAll(countryModel.getListOfNeighbours());
 				break;
 			}
 		}
 
 		for (String destinationCountryName : tempDestList) {
-			CountryModel countryModel = playerModel.searchCountry(destinationCountryName.trim());
+			CountryModel countryModel = getCurrentPlayer().searchCountry(destinationCountryName.trim());
 			if (countryModel != null) {
 				destinationCountryModels.add(destinationCountryName.trim());
 			}
@@ -144,7 +121,7 @@ public class FortificationWindowController {
 	 * @return true, if successful
 	 */
 	public boolean checking() {
-		if (players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry() == 1)
+		if (getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry() == 1)
 			return true;
 		else
 			return false;
@@ -156,24 +133,28 @@ public class FortificationWindowController {
 	 * @param selectedDestination the selected destination
 	 */
 	public void updateDestinationUI(String selectedDestination) {
-		for (int i = 0; i < players[counter].getPlayerCountryList().size(); i++) {
-			if (players[counter].getPlayerCountryList().get(i).getCountryName().equalsIgnoreCase(selectedDestination)) {
+		for (int i = 0; i < getCurrentPlayer().getPlayerCountryList().size(); i++) {
+			if (getCurrentPlayer().getPlayerCountryList().get(i).getCountryName()
+					.equalsIgnoreCase(selectedDestination)) {
 				destinationCounter = i;
 				break;
 			}
 		}
-		if (destinationCounter >= 0)
-			reinforcementWindow.updateDestinationArmyLabel(
-					players[counter].getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
-		else
-			reinforcementWindow.updateDestinationArmyLabel(0);
+		if (fortificationWindow != null) {
+			if (destinationCounter >= 0)
+				fortificationWindow.updateDestinationArmyLabel(
+						getCurrentPlayer().getPlayerCountryList().get(destinationCounter).getNoOfArmiesCountry());
+			else
+				fortificationWindow.updateDestinationArmyLabel(0);
+
+		}
 	}
 
 	/**
 	 * Update source UI.
 	 */
 	public void updateSourceUI() {
-		reinforcementWindow.updateComboBoxSourceCountries(players[counter].getPlayerCountryList());
+		fortificationWindow.updateComboBoxSourceCountries(getCurrentPlayer().getPlayerCountryList());
 	}
 
 	/**
@@ -181,11 +162,11 @@ public class FortificationWindowController {
 	 */
 	public void updateUIInfo() {
 
-		reinforcementWindow
-				.updateArmy(players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
-		reinforcementWindow.updateSourceArmyLabel(
-				players[counter].getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
-		reinforcementWindow.updateComboBoxDestinationCountries(destinationCountryModels);
+		fortificationWindow
+				.updateArmy(getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+		fortificationWindow.updateSourceArmyLabel(
+				getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+		fortificationWindow.updateComboBoxDestinationCountries(destinationCountryModels);
 		destinationCountryModels.clear();
 
 	}

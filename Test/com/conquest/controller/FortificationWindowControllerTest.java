@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.mapeditor.model.PlayerModel;
+import com.conquest.window.FortificationWindow;
 
 /**
  * The Class FortificationWindowControllerTest.
@@ -56,12 +58,19 @@ public class FortificationWindowControllerTest {
 		CountryModel country1 = new CountryModel("BHUTAN", countryModel, countryNeighbourModels1);
 		country1.setNoOfArmiesCountry(20);
 
-		FortificationWindowController fortificationcontroller = new FortificationWindowController();
+		ArrayList<CountryModel> countryModels = new ArrayList<>();
+		countryModels.add(country);
+		countryModels.add(country1);
+
+		PlayerModel player = new PlayerModel("Player1", countryModels);
+
+		FortificationWindowController fortificationcontroller = new FortificationWindowController(player, null);
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
 		fortificationcontroller.finding("INDIA");
 		fortificationcontroller.updateDestinationUI("BHUTAN");
 		fortificationcontroller.sending(6);
+		
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
 
