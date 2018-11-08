@@ -24,6 +24,12 @@ public class NewGameMenuScreenTest {
 	/** The threemap filepath. */
 	private static String threemapFilepath;
 	
+	/** The countryconnectedmap filepath. */
+	private static String countryconnectedpath;
+	
+	/** The countrynotconnectedmap filepath. */
+	private static String countrynotconnectedpath;
+	
 	/** The game window. */
 	GameWindow gameWindow;
 
@@ -36,6 +42,8 @@ public class NewGameMenuScreenTest {
 	public void setUp() throws Exception {
 		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 		threemapFilepath= System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
+		countryconnectedpath= System.getProperty("user.dir") + "\\resources\\testresource\\countryconnected.map";
+		countrynotconnectedpath= System.getProperty("user.dir") + "\\resources\\testresource\\countrynotconnected.map";
 	}
 	
 	/**
@@ -68,6 +76,34 @@ public class NewGameMenuScreenTest {
 		System.out.println(newgame.checkValidation(mapHierarchyModel,5));
 		System.out.println(mapHierarchyModel.errorMsg);
 		assertEquals("Number of countries cannot be less than number of players",mapHierarchyModel.errorMsg);
+	}
+	/**
+	 * test to check whether all the countries are connected or not.
+	 */
+	@Test
+	public void countriesconnectedTest() {
+		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(countryconnectedpath);
+		newgame.isMapConnected(mapHierarchyModel);
+		System.out.println(mapHierarchyModel.getErrorMsg());
+		System.out.println(mapHierarchyModel.isValErrorFlag());
+		assertEquals("Map is valid",mapHierarchyModel.getErrorMsg());
+		assertEquals("false",String.valueOf(mapHierarchyModel.isValErrorFlag()));
+		
+	}
+	
+	/**
+	 * test to check whether all the countries are connected or not.
+	 */
+	@Test
+	public void countriesconnected2Test() {
+		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(countrynotconnectedpath);
+		newgame.isMapConnected(mapHierarchyModel);
+		System.out.println(mapHierarchyModel.getErrorMsg());
+		System.out.println(mapHierarchyModel.isValErrorFlag());
+		assertEquals("Map is not connected !!",mapHierarchyModel.getErrorMsg());
+		assertEquals("true",String.valueOf(mapHierarchyModel.isValErrorFlag()));
 	}
 
 }
