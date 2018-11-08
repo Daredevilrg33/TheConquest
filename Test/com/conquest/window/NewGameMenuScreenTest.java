@@ -14,16 +14,16 @@ import com.conquest.utilities.Utility;
  * The Class NewGameMenuScreenTest.
  */
 public class NewGameMenuScreenTest {
-	
+
 	/** The utility. */
 	private Utility utility = new Utility();
-	
+
 	/** The Asia map file path. */
 	private static String asiaMapFilePath;
-	
+
 	/** The threemap filepath. */
 	private static String threemapFilepath;
-	
+
 	/** The game window. */
 	GameWindow gameWindow;
 
@@ -35,9 +35,9 @@ public class NewGameMenuScreenTest {
 	@Before
 	public void setUp() throws Exception {
 		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
-		threemapFilepath= System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
+		threemapFilepath = System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
 	}
-	
+
 	/**
 	 * Tear down.
 	 *
@@ -52,22 +52,22 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void checkValidationTest() {
-		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		NewGameMenuScreen newgame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
-		System.out.println(newgame.checkValidation(mapHierarchyModel,5));
-		assertEquals("Passed",String.valueOf(newgame.checkValidation(mapHierarchyModel,5)));
+		System.out.println(newgame.checkValidation(mapHierarchyModel, 5));
+		assertEquals("Passed", String.valueOf(newgame.checkValidation(mapHierarchyModel, 5)));
 	}
-	
+
 	/**
 	 * startup phase test. test having 5 players and 4 countries.
 	 */
 	@Test
 	public void checkValidation1Test() {
-		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		NewGameMenuScreen newgame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(threemapFilepath);
-		System.out.println(newgame.checkValidation(mapHierarchyModel,5));
+		System.out.println(newgame.checkValidation(mapHierarchyModel, 5));
 		System.out.println(mapHierarchyModel.errorMsg);
-		assertEquals("Number of countries cannot be less than number of players",mapHierarchyModel.errorMsg);
+		assertEquals("Number of countries cannot be less than number of players", mapHierarchyModel.errorMsg);
 	}
 
 }

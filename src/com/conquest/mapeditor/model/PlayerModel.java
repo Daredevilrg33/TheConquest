@@ -35,7 +35,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 *
-	 * @param playerName            the player name
+	 * @param playerName   the player name
 	 * @param riskMapModel the risk map model
 	 */
 	public PlayerModel(String playerName, GameModel riskMapModel) {
@@ -48,10 +48,8 @@ public class PlayerModel extends Observable {
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 * 
-	 * @param playerName
-	 *            the player name
-	 * @param countryModelArrayList
-	 *            array list of countries of the player.
+	 * @param playerName            the player name
+	 * @param countryModelArrayList array list of countries of the player.
 	 */
 
 	public PlayerModel(String playerName, ArrayList<CountryModel> countryModelArrayList) {
@@ -64,8 +62,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * noOfArmyinPlayer Method No of army for player.
 	 * 
-	 * @param number
-	 *            the number
+	 * @param number the number
 	 */
 
 	public void noOfArmyInPlayer(int number) {
@@ -120,8 +117,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * setPlayerName Method Sets the player name.
 	 * 
-	 * @param playerName
-	 *            the playerName to set
+	 * @param playerName the playerName to set
 	 */
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
@@ -131,8 +127,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * AddCountry Method Adds the country.
 	 * 
-	 * @param countryName
-	 *            the country name
+	 * @param countryName the country name
 	 */
 	public void addCountry(CountryModel countryName) {
 		playerCountryList.add(countryName);
@@ -159,8 +154,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * Search a country by the country Name.
 	 * 
-	 * @param countryName
-	 *            : Name of the country to be searched.
+	 * @param countryName : Name of the country to be searched.
 	 * @return Returns the Country Model.
 	 */
 
@@ -177,8 +171,8 @@ public class PlayerModel extends Observable {
 	 * This method is to move armies from one country to another.
 	 *
 	 * @param sourceCountry the source country
-	 * @param destCountry the destination country
-	 * @param armies            armies number
+	 * @param destCountry   the destination country
+	 * @param armies        armies number
 	 */
 	public void moveArmies(CountryModel sourceCountry, CountryModel destCountry, int armies) {
 		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry() + armies);
@@ -188,7 +182,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * The function to judge if player win.
 	 *
-	 * @param countryNum    number of countries
+	 * @param countryNum number of countries
 	 * @return true if player win
 	 */
 	public boolean isGameWon(int countryNum) {
@@ -222,7 +216,7 @@ public class PlayerModel extends Observable {
 	 */
 	public String AttackPhase() {
 		PlayerModel[] players = gameWindow.getPlayers();
-		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players,this);
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players, this);
 		attackPhaseWindow.setVisible(true);
 
 		if (isGameWon(riskMapModel.getRiskGameModel().totalCountries)) {
@@ -257,8 +251,7 @@ public class PlayerModel extends Observable {
 	/**
 	 * Checking method To check the number of armies.
 	 *
-	 * @param selectedCountryName
-	 *            type String {@link String}
+	 * @param selectedCountryName type String {@link String}
 	 */
 	public void placeReinforcedArmy(String selectedCountryName) {
 		int i = 0;
@@ -282,8 +275,8 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * updateReinforcedArmiesUI method Void Method to update the window screen
-	 * after any change has been made.
+	 * updateReinforcedArmiesUI method Void Method to update the window screen after
+	 * any change has been made.
 	 */
 	public void updateReinforcedArmiesUI() {
 		gameWindow.updatePlayerLabel(this.getPlayerName());

@@ -26,7 +26,7 @@ public class ContinentModelTest {
 
 	/** The country model. */
 	private ContinentModel countryModel = new ContinentModel("ASIA");
-	
+
 	/** The country neighbor models. */
 	private ArrayList<String> countryNeighbourModels;
 

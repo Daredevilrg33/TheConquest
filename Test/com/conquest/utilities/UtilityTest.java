@@ -19,13 +19,13 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
  * The Class UtilityTest.
  */
 public class UtilityTest {
-	
+
 	/** The utility. */
 	private Utility utility = new Utility();
-	
+
 	/** The asia map file path. */
 	private static String asiaMapFilePath;
-	
+
 	/** The asia invalid map file path. */
 	private static String asiaInvalidMapFilePath;
 

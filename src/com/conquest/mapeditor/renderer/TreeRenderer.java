@@ -11,7 +11,8 @@ import javax.swing.tree.TreePath;
 
 /**
  * The Class TreeRenderer.
- *  @author Nancy Goyal
+ * 
+ * @author Nancy Goyal
  */
 public class TreeRenderer extends JTree {
 
@@ -34,11 +35,12 @@ public class TreeRenderer extends JTree {
 
 		this.setVisible(true);
 	}
-	
+
 	/**
 	 * Method to expand or collapse all tree structure.
+	 * 
 	 * @param parent the parent node
-	 * @param mode 1 - expand, other number - collapse
+	 * @param mode   1 - expand, other number - collapse
 	 */
 	public void expandAll(TreePath parent, int mode) {
 		TreeNode node = (TreeNode) parent.getLastPathComponent();
@@ -49,8 +51,10 @@ public class TreeRenderer extends JTree {
 				this.expandAll(path, mode);
 			}
 		}
-		if (mode==1) this.expandPath(parent);
-		else this.collapsePath(parent);
+		if (mode == 1)
+			this.expandPath(parent);
+		else
+			this.collapsePath(parent);
 	}
 
 }

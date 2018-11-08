@@ -37,7 +37,7 @@ public class CountryModel extends Observable {
 	 */
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
-		isVisited=false;
+		isVisited = false;
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class CountryModel extends Observable {
 		// this.countryName = countryName;
 		this.setCountryName(countryName);
 		this.listOfNeighbours = new ArrayList<>();
-		isVisited=false;
+		isVisited = false;
 		updateChanges();
 
 	}
@@ -64,7 +64,7 @@ public class CountryModel extends Observable {
 		this.setCountryName(countryName);
 		this.setBelongsTo(continent);
 		this.listOfNeighbours = new ArrayList<>();
-		isVisited=false;
+		isVisited = false;
 		updateChanges();
 
 	}
@@ -81,7 +81,7 @@ public class CountryModel extends Observable {
 		this.countryName = countryName;
 		this.belongsTo = continentModel;
 		this.listOfNeighbours = listOfNeighbours;
-		isVisited=false;
+		isVisited = false;
 		updateChanges();
 
 	}

@@ -23,7 +23,7 @@ public class FortificationWindowControllerTest {
 
 	@Test
 	public void fortificationTest() {
-		
+
 		ContinentModel countryModel = new ContinentModel("ASIA");
 		ArrayList<String> countryNeighbourModels = new ArrayList<>();
 		countryNeighbourModels.add("BHUTAN");
@@ -39,8 +39,8 @@ public class FortificationWindowControllerTest {
 		country.setNoOfArmiesCountry(10);
 		CountryModel country1 = new CountryModel("BHUTAN", countryModel, countryNeighbourModels1);
 		country1.setNoOfArmiesCountry(20);
-		
-		FortificationWindowController fortificationcontroller=new FortificationWindowController();
+
+		FortificationWindowController fortificationcontroller = new FortificationWindowController();
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
 		fortificationcontroller.finding("INDIA");
@@ -49,8 +49,6 @@ public class FortificationWindowControllerTest {
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
 
-		
-		
 	}
 
 }

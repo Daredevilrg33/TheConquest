@@ -28,56 +28,55 @@ import com.conquest.utilities.Constants;
  * @author Rohit Gupta
  */
 public class AttackPhaseWindow extends JFrame implements ActionListener {
-	
+
 	/** The attack window controller. */
 	private AttackWindowController attackWindowController;
-	
+
 	/** The j source army label. */
 	private JLabel jSourceArmyLabel;
-	
+
 	/** The j target army label. */
 	private JLabel jTargetArmyLabel;
-	
+
 	/** The j combo box source countries. */
 	private JComboBox<String> jComboBoxSourceCountries;
-	
+
 	/** The j combo box target countries. */
 	private JComboBox<String> jComboBoxTargetCountries;
-	
+
 	private JComboBox<String> jComboBoxNoOfDice;
 
-	
 	/** The j button attack. */
 	private JButton jButtonAttack;
-	
+
 	/** The j player label. */
 	private JLabel jPlayerLabel;
-	
+
 	/** The j button all out attack. */
 	private JButton jButtonAllOutAttack;
-	
+
 	/** The risk map model. */
 	private GameModel riskMapModel;
-	
+
 	/** The player. */
 	private PlayerModel[] player;
-	
+
 	private JLabel diceImage;
 	public JLabel attackDice1;
 	public JLabel attackDice2;
 	public JLabel attackDice3;
 	public JLabel defendDice1;
 	public JLabel defendDice2;
-	
+
 	public ArrayList<Integer> diceResultsAttacking = new ArrayList<>();
-	
+
 	public ArrayList<Integer> diceResultsDefending = new ArrayList<>();
 
 	/**
 	 * Instantiates a new attack phase window.
 	 *
 	 * @param riskMapModel the risk map model
-	 * @param playerModel the player model
+	 * @param playerModel  the player model
 	 */
 	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModel, PlayerModel currentPlayer) {
 		this.riskMapModel = riskMapModel;
@@ -103,7 +102,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jComboBoxNoOfDice = new JComboBox<>();
 		jComboBoxNoOfDice.setBounds(430, 50, 100, 30);
 		add(jComboBoxNoOfDice);
-		
+
 		jButtonAttack = new JButton("Attack");
 		jButtonAttack.setBounds(540, 50, 80, 30);
 		jButtonAttack.addActionListener(this);
@@ -123,7 +122,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jTargetCountryLabel.setBounds(300, 20, 200, 30);
 		jTargetCountryLabel.setText("Target Country");
 		add(jTargetCountryLabel);
-		
+
 		JLabel jNoOfDiceLabel = new JLabel();
 		jNoOfDiceLabel.setBounds(430, 20, 200, 30);
 		jNoOfDiceLabel.setText("Select Dice");
@@ -136,29 +135,29 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jTargetArmyLabel = new JLabel();
 		jTargetArmyLabel.setBounds(337, 78, 200, 30);
 		add(jTargetArmyLabel);
-		
+
 		ImageIcon diceIcon = new ImageIcon("resources/dice-icon.png");
 		diceImage = new JLabel("");
 		diceImage.setIcon(diceIcon);
-		diceImage.setBounds(890, 15,100,50);
+		diceImage.setBounds(890, 15, 100, 50);
 		add(diceImage);
-		
+
 		attackDice1 = new JLabel("");
 		attackDice1.setBounds(840, 50, 100, 30);
 		add(attackDice1);
-		
+
 		attackDice2 = new JLabel("");
 		attackDice2.setBounds(840, 70, 100, 30);
 		add(attackDice2);
-		
+
 		attackDice3 = new JLabel("");
 		attackDice3.setBounds(840, 90, 100, 30);
 		add(attackDice3);
-		
+
 		defendDice1 = new JLabel("");
 		defendDice1.setBounds(940, 50, 100, 30);
 		add(defendDice1);
-		
+
 		defendDice2 = new JLabel("");
 		defendDice2.setBounds(940, 70, 100, 30);
 		add(defendDice2);
@@ -167,7 +166,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxTargetCountries.addActionListener(this);
 		jComboBoxNoOfDice.addActionListener(this);
-		
+
 	}
 
 	/**
@@ -207,24 +206,23 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			jComboBoxTargetCountries.addItem(countryModels.get(i));
 		}
 	}
-	
+
 	public void updateComboBoxNoOfDice(int noOfDice) {
 		jComboBoxNoOfDice.removeAllItems();
 		jComboBoxNoOfDice.addItem("Select Die:");
-		if(noOfDice == 3) {
+		if (noOfDice == 3) {
 			jComboBoxNoOfDice.addItem("1");
 			jComboBoxNoOfDice.addItem("2");
-			jComboBoxNoOfDice.addItem("3");			
+			jComboBoxNoOfDice.addItem("3");
 		}
-		if(noOfDice == 2) {
+		if (noOfDice == 2) {
 			jComboBoxNoOfDice.addItem("1");
-			jComboBoxNoOfDice.addItem("2");			
+			jComboBoxNoOfDice.addItem("2");
 		}
-		if(noOfDice == 1) {
+		if (noOfDice == 1) {
 			jComboBoxNoOfDice.addItem("1");
-		}		
+		}
 	}
-		
 
 	/**
 	 * Update target army label.
@@ -254,7 +252,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jComboBoxSourceCountries) {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
-			if(!sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
+			if (!sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
 				CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);
 				updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
 				attackWindowController.finding(sourceCountryName);
@@ -262,13 +260,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 				if (attackWindowController.targetCountryList().size() < 1) {
 					JOptionPane.showMessageDialog(this, "No Target country eligible from this country", "Error Message",
 							JOptionPane.ERROR_MESSAGE);
-				} else
-					{
-					
-				    attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
-				    }
+				} else {
+
+					attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
+				}
 				attackWindowController.updateTargetUIInfo();
-				
+
 			}
 			updateTargetArmyLabel(0);
 		} else if (e.getSource() == jComboBoxTargetCountries) {

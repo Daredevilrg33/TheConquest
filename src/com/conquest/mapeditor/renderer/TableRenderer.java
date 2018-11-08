@@ -5,7 +5,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * The Class TableRenderer.
- *  @author Nancy Goyal
+ * 
+ * @author Nancy Goyal
  */
 public class TableRenderer extends JTable {
 

@@ -101,32 +101,30 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/** The countries column. */
 	private String[] countriesColumn;
-	
+
 	/** The vector data. */
 	private String[][] vectorData;
 
 	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
-	
+
 	/** The current player. */
 	private PlayerModel currPlayer;
-	
+
 	/** The players. */
 	private PlayerModel[] players;
-	
+
 	/** The player counter. */
 	private int playerCounter = 0;
-	
+
 	/** The game model. */
 	private GameModel gameModel;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
 	 * 
-	 * @param mapHierarchyModel
-	 *            the map hierarchy model
-	 * @param noOfPlayers
-	 *            the no of players
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param noOfPlayers       the no of players
 	 */
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
 
@@ -184,7 +182,6 @@ public class GameWindow extends JFrame implements ActionListener {
 		jPlayerArmies.setBounds(480, 620, 200, 30);
 		add(jPlayerArmies);
 
-		
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
 		players = gameWindowController.getPlayers();
 		gameModel = new GameModel(mapHierarchyModel, gameWindowController);
@@ -206,8 +203,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.
-			 * WindowEvent)
+			 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event. WindowEvent)
 			 */
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -243,8 +239,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * updateHierarchyTree Method to refresh and update the continent hierarchy
-	 * tree on adding new continent or new country.
+	 * updateHierarchyTree Method to refresh and update the continent hierarchy tree
+	 * on adding new continent or new country.
 	 */
 
 	public void updateHierarchyTree() {
@@ -352,8 +348,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updatePlayerLabel Method Update player label.
 	 * 
-	 * @param playerName
-	 *            the player name
+	 * @param playerName the player name
 	 */
 	public void updatePlayerLabel(String playerName) {
 		jPlayerLabel.setText(playerName);
@@ -362,8 +357,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updatePlayerArmies Method Update player armies.
 	 * 
-	 * @param RemainingArmies
-	 *            the remaining armies
+	 * @param RemainingArmies the remaining armies
 	 */
 	public void updatePlayerArmies(int RemainingArmies) {
 		jPlayerArmies.setText("Remaining Armies with player: " + RemainingArmies);
@@ -372,8 +366,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	/**
 	 * updateComboBoxCountries Method Update combo box countries.
 	 * 
-	 * @param countryModels
-	 *            the country models
+	 * @param countryModels the country models
 	 */
 	public void updateComboBoxCountries(List<CountryModel> countryModels) {
 		jComboBoxCountries.removeAllItems();

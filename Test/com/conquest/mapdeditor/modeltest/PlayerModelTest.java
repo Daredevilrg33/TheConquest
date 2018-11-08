@@ -88,7 +88,7 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void overallTest() {
-		PlayerModel playermodel = new PlayerModel("FORD",countryModelArrayList);
+		PlayerModel playermodel = new PlayerModel("FORD", countryModelArrayList);
 		CountryModel countrymodel4 = new CountryModel("BANGLADESH");
 		playermodel.noOfArmyInPlayer(4);
 		assertEquals("FORD", playermodel.getPlayerName());

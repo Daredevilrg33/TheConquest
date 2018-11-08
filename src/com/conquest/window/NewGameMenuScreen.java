@@ -153,7 +153,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * Check validation of Map.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param noOfPlayers the no of players
+	 * @param noOfPlayers       the no of players
 	 * @return the string
 	 */
 	public String checkValidation(MapHierarchyModel mapHierarchyModel, int noOfPlayers) {
@@ -185,12 +185,11 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 				break;
 			}
 		}
-		if(!isConnected)
-		{
+		if (!isConnected) {
 			mapHierarchyModel.setErrorMsg("Map is not connected !!");
 			mapHierarchyModel.setValErrorFlag(true);
 		}
-		
+
 		return isConnected;
 	}
 
@@ -198,7 +197,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * Depth first search using stack.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param countryModel the country model
+	 * @param countryModel      the country model
 	 */
 	public void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
@@ -224,11 +223,10 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
+
 	public boolean isContinentConnected(MapHierarchyModel mapHierarchyModel) {
 		boolean isConnected = true;
-		for(ContinentModel continentModel: mapHierarchyModel.getContinentsList())
-		{
+		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 			List<CountryModel> countryList = continentModel.getCountriesList();
 			dfsUsingStackContinent(continentModel, mapHierarchyModel.getCountryList().get(1));
 			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
@@ -236,20 +234,18 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 					countryModel.setVisited(false);
 				else {
 					isConnected = false;
-					mapHierarchyModel.setErrorMsg("Continent: " + continentModel.getContinentName() + " is not connected !!");
+					mapHierarchyModel
+							.setErrorMsg("Continent: " + continentModel.getContinentName() + " is not connected !!");
 					mapHierarchyModel.setValErrorFlag(true);
 					return isConnected;
-					
+
 				}
 			}
 		}
-		
-		
-	
-		
+
 		return isConnected;
 	}
-	
+
 	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);

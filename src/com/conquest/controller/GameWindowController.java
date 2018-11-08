@@ -12,7 +12,6 @@ import com.conquest.model.GameModel;
 import com.conquest.window.GameWindow;
 import com.conquest.window.FortificationWindow;
 
-
 /**
  * Game Window Controller Class This class initializes Number of players, Player
  * model, Game window object and Map HeirarchyModel.
@@ -48,6 +47,7 @@ public class GameWindowController {
 
 	/** The game model. */
 	private GameModel gameModel;
+
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
 	 * objects.
@@ -80,7 +80,7 @@ public class GameWindowController {
 
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
-			players[j] = new PlayerModel("Player" + String.valueOf(value),gameModel);
+			players[j] = new PlayerModel("Player" + String.valueOf(value), gameModel);
 			switch (noOfPlayers) {
 			case (3): {
 				players[j].noOfArmyInPlayer(25);
@@ -118,10 +118,10 @@ public class GameWindowController {
 				}
 			}
 		}
-/**
- * 		calculateAndAddReinforcementArmy(players);
- * isControlValueTobeAdded(this.mapHierarchyModel, players);
- */
+		/**
+		 * calculateAndAddReinforcementArmy(players);
+		 * isControlValueTobeAdded(this.mapHierarchyModel, players);
+		 */
 //		
 		updateUIInfo();
 	}
@@ -180,7 +180,6 @@ public class GameWindowController {
 			i++;
 		}
 	}
-	
 
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
@@ -207,7 +206,5 @@ public class GameWindowController {
 	public PlayerModel[] getPlayers() {
 		return players;
 	}
-
-	
 
 }

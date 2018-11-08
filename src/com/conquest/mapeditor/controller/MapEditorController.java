@@ -19,7 +19,7 @@ import com.conquest.utilities.Utility;
  * of Classes NewMapEditorView {@link NewMapEditorView} and MapHierarchyModel
  * {@link MapHierarchyModel} are created.
  *
- *  @author Nancy Goyal
+ * @author Nancy Goyal
  */
 public class MapEditorController implements ActionListener {
 
@@ -181,7 +181,7 @@ public class MapEditorController implements ActionListener {
 	private void saveMapFile() {
 		boolean retry = true;
 		Utility utility = new Utility();
-		boolean saveVal=utility.beforeSaveValidation(mapHierarchyModel);
+		boolean saveVal = utility.beforeSaveValidation(mapHierarchyModel);
 		while (retry && saveVal) {
 			String mapFileName = JOptionPane.showInputDialog(null, "Enter the name of the map: ");
 			if (mapFileName != null) {
@@ -217,9 +217,9 @@ public class MapEditorController implements ActionListener {
 	private void deleteCountry() {
 		String errorMsg;
 		if ((errorMsg = mapHierarchyModel.deleteCountry(selectedNode)) == "") {
-			for(CountryModel countryModel : mapHierarchyModel.getCountryList()) {
-				for(String countryName  : countryModel.getListOfNeighbours()) {
-					if(countryName.trim().equalsIgnoreCase(selectedNode.trim())) {
+			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				for (String countryName : countryModel.getListOfNeighbours()) {
+					if (countryName.trim().equalsIgnoreCase(selectedNode.trim())) {
 						countryModel.getListOfNeighbours().remove(countryName);
 						break;
 					}
@@ -256,6 +256,7 @@ public class MapEditorController implements ActionListener {
 		}
 
 	}
+
 	/**
 	 * moveCountry method Void Method to implement response to moveCountryMenu,
 	 * provide GUI to move country to another continent in tree.

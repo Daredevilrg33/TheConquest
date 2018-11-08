@@ -14,26 +14,26 @@ import com.conquest.window.GameWindow;
  * @version 1.0.0
  */
 public class GameModel extends Observable {
-	
+
 	/** The players. */
 	private PlayerModel[] players;
-	
+
 	/** The current player. */
 	private PlayerModel currPlayer;
-	
+
 	/** The game state. */
 	private int gameState = 0; // 0=on 1=won
-	
+
 	/** The risk game model. */
 	private MapHierarchyModel riskGameModel;
-	
+
 	/** The turn. */
 	private int turn;
 
 	/**
 	 * Instantiates a new game model.
 	 *
-	 * @param mapHierarchyModel the map hierarchy model
+	 * @param mapHierarchyModel    the map hierarchy model
 	 * @param gameWindowController the game window controller
 	 */
 	public GameModel(MapHierarchyModel mapHierarchyModel, GameWindowController gameWindowController) {

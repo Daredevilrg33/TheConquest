@@ -32,9 +32,9 @@ import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.utilities.Constants;
 
-
 /**
  * The Class NewMapEditorView.
+ * 
  * @author Nancy Goyal
  */
 public class NewMapEditorView extends JFrame implements MouseListener {
@@ -186,7 +186,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 			updateHierarchyTree();
 			updatePaintMatrix();
 		}
-		
+
 	}
 
 	/**
@@ -262,11 +262,11 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 				return false;
 			}
 		};
-		
+
 		vectorData = new String[numberOfCountries][numberOfCountries + 1];
 		countriesColumn = new String[numberOfCountries + 1];
 
-		int columnCounter = 0,rowCounter = 0;
+		int columnCounter = 0, rowCounter = 0;
 		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -290,7 +290,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
-				String neighbourCountryName = countriesColumn[j],sourceCountryName = vectorData[i][0];
+				String neighbourCountryName = countriesColumn[j], sourceCountryName = vectorData[i][0];
 				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
@@ -323,7 +323,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int row = adjacencyTable.rowAtPoint(e.getPoint());
 		int col = adjacencyTable.columnAtPoint(e.getPoint());
-		String neighbourCountryName = countriesColumn[col],sourceCountryName = vectorData[row][0];
+		String neighbourCountryName = countriesColumn[col], sourceCountryName = vectorData[row][0];
 
 		if (!neighbourCountryName.trim().equalsIgnoreCase(sourceCountryName.trim())) {
 			if (adjacencyTable.getValueAt(row, col) == "1") {
@@ -405,7 +405,6 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 		return userSelTreeNode;
 	}
 
-	
 	/**
 	 * Sets the user select tree node.
 	 *

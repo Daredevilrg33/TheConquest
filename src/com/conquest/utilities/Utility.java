@@ -59,9 +59,9 @@ public class Utility {
 		boolean isContinent = false;
 		boolean isCountry = false;
 		String[] neighbourCountries = null;
-		boolean neighbourFlag=false;
-		String targetCountry=null;
-		
+		boolean neighbourFlag = false;
+		String targetCountry = null;
+
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String currentLine;
 			while ((currentLine = br.readLine()) != null) {
@@ -85,31 +85,27 @@ public class Utility {
 					continue;
 				}
 				if (isContinent) {
-					if(currentLine.indexOf('=')>0)
-					{
-					String[] continentValues = currentLine.split("=");
-					if (continentValues.length > 0) {
-						ContinentModel continentModel = new ContinentModel(continentValues[0]);
-						if (continentValues.length > 1)
-							continentModel.setControlValue(Integer.valueOf(continentValues[1]));
-						continentModels.add(continentModel);
-					}
-					}
-					else
-					{
+					if (currentLine.indexOf('=') > 0) {
+						String[] continentValues = currentLine.split("=");
+						if (continentValues.length > 0) {
+							ContinentModel continentModel = new ContinentModel(continentValues[0]);
+							if (continentValues.length > 1)
+								continentModel.setControlValue(Integer.valueOf(continentValues[1]));
+							continentModels.add(continentModel);
+						}
+					} else {
 						String valErrorMessage = "Map is invalid as there are no territories tag defined";
 						mapHierarchyModel.setValErrorFlag(true);
 						mapHierarchyModel.setErrorMsg(valErrorMessage);
-						break;	
+						break;
 					}
 					continue;
 				}
 
 				if (isCountry) {
 					String[] countryValues = currentLine.split(",");
-					if(countryValues.length<5)
-					{
-						targetCountry=countryValues[0];
+					if (countryValues.length < 5) {
+						targetCountry = countryValues[0];
 					}
 					CountryModel countryModel = new CountryModel();
 					for (int i = 0; i < countryValues.length; i++) {
@@ -121,7 +117,7 @@ public class Utility {
 							ContinentModel continentModel = new ContinentModel(countryValues[i]);
 							countryModel.setBelongsTo(continentModel);
 						} else {
-							
+
 							countryModel.addNeighbour(countryValues[i]);
 						}
 					}
@@ -138,54 +134,43 @@ public class Utility {
 				}
 				System.out.println(currentLine);
 			}
-			
+
 			mapHierarchyModel.setContinentsList(continentModels);
-			if(countryModels.size()==0 && !mapHierarchyModel.isValErrorFlag())
-			{
+			if (countryModels.size() == 0 && !mapHierarchyModel.isValErrorFlag()) {
 				String valErrorMessage = "Map is invalid as there are no countries defined.";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
-			}
-			else if(countryModels.size()<3  && !mapHierarchyModel.isValErrorFlag())
-			{
+			} else if (countryModels.size() < 3 && !mapHierarchyModel.isValErrorFlag()) {
 				String valErrorMessage = "Map is invalid as there should be minimum three countries defined in the map as there are minimum three players which can play.";
 				mapHierarchyModel.setValErrorFlag(true);
 				mapHierarchyModel.setErrorMsg(valErrorMessage);
 				return mapHierarchyModel;
-			}
-			else
-			{
+			} else {
 				mapHierarchyModel.setCountryList(countryModels);
 				mapHierarchyModel.setTotalCountries(countryModels.size());
 			}
-			
+
 			/**
 			 * validating if there is connectivity of country to any other country
 			 */
-			if(targetCountry!=null)
-			{
-			for(CountryModel loopCountry :countryModels)
-			{
-				ArrayList<String> neighbours =loopCountry.getListOfNeighbours();
-				for(String country :neighbours)
-				{
-					if(country.equalsIgnoreCase(targetCountry))
-					{
-						neighbourFlag=true;
+			if (targetCountry != null) {
+				for (CountryModel loopCountry : countryModels) {
+					ArrayList<String> neighbours = loopCountry.getListOfNeighbours();
+					for (String country : neighbours) {
+						if (country.equalsIgnoreCase(targetCountry)) {
+							neighbourFlag = true;
+						}
 					}
 				}
+				if (!neighbourFlag) {
+					String valErrorMessage = "Map is invalid as there is no connectivity from or to country "
+							+ targetCountry;
+					mapHierarchyModel.setValErrorFlag(true);
+					mapHierarchyModel.setErrorMsg(valErrorMessage);
+				}
 			}
-			if(!neighbourFlag)
-			{
-				String valErrorMessage = "Map is invalid as there is no connectivity from or to country "+targetCountry;
-				mapHierarchyModel.setValErrorFlag(true);
-				mapHierarchyModel.setErrorMsg(valErrorMessage);	
-			}
-			}
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -216,9 +201,9 @@ public class Utility {
 				for (CountryModel countryModel : continentModel.getCountriesList()) {
 					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
 					for (String countryName : countryModel.getListOfNeighbours()) {
-						if(!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
+						if (!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
 							countryData = countryData.concat("," + countryName);
-						
+
 					}
 					countryData = countryData.concat(System.lineSeparator());
 					data = data.concat(countryData);
@@ -238,7 +223,7 @@ public class Utility {
 	 */
 	public boolean saveMapFile(MapHierarchyModel mapHierarchyModel, String fileName) {
 		boolean isFileSaved = false;
-		fileName =fileName.equals("")?mapHierarchyModel.getConquestMapName():fileName;
+		fileName = fileName.equals("") ? mapHierarchyModel.getConquestMapName() : fileName;
 		String data = convertMapDataToString(mapHierarchyModel);
 
 		if (!(data == null || data.isEmpty() || data.trim().equalsIgnoreCase(""))) {
@@ -257,8 +242,7 @@ public class Utility {
 		}
 		return isFileSaved;
 	}
-	
-	
+
 	/**
 	 * beforeSaveValidation Method validate map.
 	 *

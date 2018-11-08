@@ -12,7 +12,8 @@ import com.conquest.window.NewGameMenuScreenTest;
  * The Class MainTestSuite.
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ControllerTestSuite.class, GameWindowControllerTest.class,UtilityTest.class,NewGameMenuScreenTest.class})
+@Suite.SuiteClasses({ ControllerTestSuite.class, GameWindowControllerTest.class, UtilityTest.class,
+		NewGameMenuScreenTest.class })
 public class MainTestSuite {
 
 }
