@@ -37,17 +37,20 @@ public class FortificationWindowController {
 
 	/**
 	 * Instantiates a new fortification window controller.
-	 *
-	 * @param players             the players
-	 * @param reinforcementWindow the reinforcement window
-	 * @param noOfPlayers         the no of players
-	 * @param mapModel            the map model
 	 */
 
 	public FortificationWindowController() {
 		//
 	}
 
+	/**
+	 * Instantiates a new fortification window controller.
+	 *
+	 * @param players the players
+	 * @param reinforcementWindow the reinforcement window
+	 * @param noOfPlayers the no of players
+	 * @param mapModel the map model
+	 */
 	public FortificationWindowController(PlayerModel[] players, FortificationWindow reinforcementWindow,
 			int noOfPlayers, MapHierarchyModel mapModel) {
 		this.reinforcementWindow = reinforcementWindow;

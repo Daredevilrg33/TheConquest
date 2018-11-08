@@ -224,6 +224,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Checks if is continent connected.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @return true, if is continent connected
+	 */
 	public boolean isContinentConnected(MapHierarchyModel mapHierarchyModel) {
 		boolean isConnected = true;
 		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
@@ -246,6 +252,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		return isConnected;
 	}
 
+	/**
+	 * Dfs using stack continent.
+	 *
+	 * @param continentModel the continent model
+	 * @param countryModel the country model
+	 */
 	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);

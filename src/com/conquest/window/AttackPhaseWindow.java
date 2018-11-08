@@ -44,6 +44,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The j combo box target countries. */
 	private JComboBox<String> jComboBoxTargetCountries;
 
+	/** The j combo box no of dice. */
 	private JComboBox<String> jComboBoxNoOfDice;
 
 	/** The j button attack. */
@@ -61,15 +62,28 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The player. */
 	private PlayerModel[] player;
 
+	/** The dice image. */
 	private JLabel diceImage;
+	
+	/** The attack dice 1. */
 	public JLabel attackDice1;
+	
+	/** The attack dice 2. */
 	public JLabel attackDice2;
+	
+	/** The attack dice 3. */
 	public JLabel attackDice3;
+	
+	/** The defend dice 1. */
 	public JLabel defendDice1;
+	
+	/** The defend dice 2. */
 	public JLabel defendDice2;
 
+	/** The dice results attacking. */
 	public ArrayList<Integer> diceResultsAttacking = new ArrayList<>();
 
+	/** The dice results defending. */
 	public ArrayList<Integer> diceResultsDefending = new ArrayList<>();
 
 	/**
@@ -77,6 +91,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 *
 	 * @param riskMapModel the risk map model
 	 * @param playerModel  the player model
+	 * @param currentPlayer the current player
 	 */
 	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModel, PlayerModel currentPlayer) {
 		this.riskMapModel = riskMapModel;
@@ -207,6 +222,11 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Update combo box no of dice.
+	 *
+	 * @param noOfDice the no of dice
+	 */
 	public void updateComboBoxNoOfDice(int noOfDice) {
 		jComboBoxNoOfDice.removeAllItems();
 		jComboBoxNoOfDice.addItem("Select Die:");
@@ -283,7 +303,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		} else if (e.getSource() == jButtonAttack) {
 			attackWindowController.attack((String) jComboBoxSourceCountries.getSelectedItem(),
 					(String) jComboBoxTargetCountries.getSelectedItem());
-
+			
 		} else if (e.getSource() == jButtonAllOutAttack) {
 
 		}

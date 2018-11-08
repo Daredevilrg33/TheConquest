@@ -47,8 +47,8 @@ public class AttackWindowController {
 	 *
 	 * @param players           the players
 	 * @param attackPhaseWindow the attack phase window
-	 * @param noOfPlayers       the no of players
 	 * @param riskMapModel      the risk map model
+	 * @param currPlayer the current player
 	 */
 	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel,
 			PlayerModel currPlayer) {
@@ -140,8 +140,6 @@ public class AttackWindowController {
 	 */
 	public void attack(String attackingCountry, String targetCountry) {
 
-		int i = 0;
-
 		CountryModel attackingCountryModel = players[counter].searchCountry(attackingCountry.trim());
 		CountryModel targetCountryModel = null;
 		for (PlayerModel defendingPlayer : players) {
@@ -152,31 +150,38 @@ public class AttackWindowController {
 		}
 
 		if (attackingCountryModel.getNoOfArmiesCountry() > 3) {
-			for (i = 0; i < 3; i++) {
+			for (int i = 0; i < 3; i++) {
 				attackPhaseWindow.diceResultsAttacking.add(rollDice());
 			}
-		} else {
-			for (i = 0; i < attackingCountryModel.getNoOfArmiesCountry(); i++) {
-				attackPhaseWindow.diceResultsAttacking.add(rollDice());
-			}
-		}
+		} 
 
 		if (targetCountryModel.getNoOfArmiesCountry() > 2) {
-			for (i = 0; i < 2; i++) {
+			for (int i = 0; i < 2; i++) {
 				attackPhaseWindow.diceResultsDefending.add(rollDice());
 			}
-		} else {
-			for (i = 0; i <= targetCountryModel.getNoOfArmiesCountry(); i++) {
-				attackPhaseWindow.diceResultsDefending.add(rollDice());
-			}
-		}
+		} 
 
 		int objAttack = Collections.max(attackPhaseWindow.diceResultsAttacking);
 		int objDefend = Collections.max(attackPhaseWindow.diceResultsDefending);
 		System.out.println("largest dice in attacking " + objAttack);
-		System.out.println("largest dice in defending " + objAttack);
+		System.out.println("largest dice in defending " + objDefend);
 
 		updateDiceView();
+		
+//		if(attackPhaseWindow.diceResultsAttacking.size() == 3) {
+//			if(objDefend >= objAttack) {
+//			
+//			}
+//			else {
+//				
+//			}
+//		}
+//		if(attackPhaseWindow.diceResultsAttacking.size() == 2) {
+//			
+//		}
+//		if(attackPhaseWindow.diceResultsAttacking.size() == 1) {
+//			
+//		}
 
 	}
 
@@ -222,6 +227,11 @@ public class AttackWindowController {
 		attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryModels);
 	}
 
+	/**
+	 * Update no of dice UI info.
+	 *
+	 * @param countryModel the country model
+	 */
 	public void updateNoOfDiceUIInfo(CountryModel countryModel) {
 		int diceFlag = 0;
 		PlayerModel playerModel = players[counter];

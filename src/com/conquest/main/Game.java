@@ -8,7 +8,6 @@ import java.awt.Canvas;
 import com.conquest.window.GameWindow;
 import com.conquest.window.MainMenuScreen;
 
-// TODO: Auto-generated Javadoc
 /**
  * Game class Main class of project.
  *

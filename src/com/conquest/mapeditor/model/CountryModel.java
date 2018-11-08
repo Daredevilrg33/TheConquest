@@ -27,9 +27,10 @@ public class CountryModel extends Observable {
 	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
 
-	/** player who owns this country */
+	/**  player who owns this country. */
 	private PlayerModel owner;
 
+	/** The is visited. */
 	private boolean isVisited;
 
 	/**
@@ -221,6 +222,8 @@ public class CountryModel extends Observable {
 	}
 
 	/**
+	 * Sets the visited.
+	 *
 	 * @param isVisited the isVisited to set
 	 */
 	public void setVisited(boolean isVisited) {
@@ -228,6 +231,8 @@ public class CountryModel extends Observable {
 	}
 
 	/**
+	 * Checks if is visited.
+	 *
 	 * @return the isVisited
 	 */
 	public boolean isVisited() {
@@ -245,6 +250,9 @@ public class CountryModel extends Observable {
 				+ noOfArmiesCountry + ", listOfNeighbours=" + listOfNeighbours + "]";
 	}
 
+	/**
+	 * Update changes.
+	 */
 	public void updateChanges() {
 		setChanged();
 		notifyObservers(this);

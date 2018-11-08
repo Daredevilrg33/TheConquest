@@ -18,6 +18,7 @@ import com.conquest.mapeditor.model.CountryModel;
  */
 public class CountryModelTest {
 
+	/** The country neighbour models. */
 	private ArrayList<String> countryNeighbourModels;
 
 	/**

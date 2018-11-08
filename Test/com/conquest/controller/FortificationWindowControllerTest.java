@@ -11,16 +11,32 @@ import org.junit.Test;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 
+/**
+ * The Class FortificationWindowControllerTest.
+ */
 public class FortificationWindowControllerTest {
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 	}
 
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Fortification test.
+	 */
 	@Test
 	public void fortificationTest() {
 
