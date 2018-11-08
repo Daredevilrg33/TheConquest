@@ -85,12 +85,12 @@ public class UtilityTest {
 		for (CountryModel loopCountry : parsedCountryList) {
 			countryNames.add(loopCountry.getCountryName());
 		}
-		countryList.add("Russia");
-		countryList.add("Japan");
-		countryList.add("North Korea");
-		countryList.add("Georgia");
-		countryList.add("Armenia");
-
+		countryList.add("Boston");
+		countryList.add("California");
+		countryList.add("New York");
+		countryList.add("Nepal");
+		countryList.add("India");
+		countryList.add("Bhutan");
 		System.out.println(countryList);
 		assertTrue(countryList.equals(countryNames));
 	}

@@ -106,4 +106,19 @@ public class NewGameMenuScreenTest {
 		assertEquals("true",String.valueOf(mapHierarchyModel.isValErrorFlag()));
 	}
 
+	/**
+	 * test to check whether all the continents are connected or not.
+	 */
+	@Test
+	public void continentsconnectedTest() {
+		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		newgame.isContinentConnected(mapHierarchyModel);
+		System.out.println("hellllllll"+newgame.isContinentConnected(mapHierarchyModel));
+		System.out.println(mapHierarchyModel.isValErrorFlag());
+
+		
+	}
+	
+	
 }
