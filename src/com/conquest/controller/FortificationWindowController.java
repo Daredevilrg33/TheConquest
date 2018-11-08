@@ -43,6 +43,12 @@ public class FortificationWindowController {
 	 * @param noOfPlayers         the no of players
 	 * @param mapModel            the map model
 	 */
+	
+	
+	public FortificationWindowController()
+	{
+		//
+	}
 	public FortificationWindowController(PlayerModel[] players, FortificationWindow reinforcementWindow,
 			int noOfPlayers, MapHierarchyModel mapModel) {
 		this.reinforcementWindow = reinforcementWindow;

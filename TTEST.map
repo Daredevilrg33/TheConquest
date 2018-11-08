@@ -1,0 +1,12 @@
+[Continents]
+
+AKKI=2
+JAKKI=2
+
+[Territories]
+
+AAG,0,0,AKKI,ACCV
+ACCV,0,0,AKKI,JKL
+JKL,0,0,JAKKI,PLK
+PLK,0,0,JAKKI,AAG
+
