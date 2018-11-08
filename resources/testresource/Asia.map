@@ -1,15 +1,14 @@
 [Continents]
-North Asia=3
-Persia=8
 
+North America=4
+Asia=2
 
 [Territories]
 
-
-Russia,363,81,North Asia,Japan,North Korea
-Japan,678,141,North Asia,Russia,North Korea
-North Korea,122,177,Persia,Georgia,Azerbaijan,Iran,Turkey
-
-Georgia,110,152,Persia,Russia,Azerbaijan,Armenia,Turkey
-Armenia,122,177,Persia,Georgia,Azerbaijan,Iran,Turkey
+Boston,0,0,North America,California,New York,India,Bhutan,Nepal
+California,0,0,North America,Boston,New York,India,Bhutan,Nepal
+New York,0,0,North America,Boston,California,India,Bhutan,Nepal
+Nepal,0,0,North America,Boston,California,New York,India,Bhutan
+India,0,0,Asia,Boston,California,New York,Bhutan,Nepal
+Bhutan,0,0,Asia,Boston,California,New York,India,Nepal
 

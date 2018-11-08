@@ -1,8 +1,10 @@
 package com.conquest.model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import com.conquest.controller.GameWindowController;
+import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.GameWindow;
@@ -30,6 +32,8 @@ public class GameModel extends Observable {
 	/** The turn. */
 	private int turn;
 
+	/** The cards. */
+	private ArrayList<CardsModel> totalCards;
 	/**
 	 * Instantiates a new game model.
 	 *
@@ -39,6 +43,27 @@ public class GameModel extends Observable {
 	public GameModel(MapHierarchyModel mapHierarchyModel, GameWindowController gameWindowController) {
 		this.players = gameWindowController.getPlayers();
 		this.riskGameModel = mapHierarchyModel;
+		initializingCardsModel(mapHierarchyModel);
+	}
+	
+	public void initializingCardsModel(MapHierarchyModel mapHierarchyModel)
+	{
+		String[] names = {"Infantry", "Cavalry", "Artillery"};
+		int[] types = {0, 1, 2};
+		int j=0;
+		totalCards = new ArrayList<>();
+		String name= names[j];
+		int type= types[j];
+		for(int i=0 ;i<mapHierarchyModel.totalCountries;i++)
+		{
+			CardsModel card = new CardsModel(name,type,this);
+			totalCards.add(card);
+			name= names[j++];
+			if(j==2)
+			{
+			j=0;	
+			}
+		}
 	}
 
 	/**
@@ -131,4 +156,16 @@ public class GameModel extends Observable {
 		notifyObservers(2);
 	}
 
+	public ArrayList<CardsModel> getTotalCards() {
+		return totalCards;
+	}
+
+	public void setTotalCards(ArrayList<CardsModel> totalCards) {
+		this.totalCards = totalCards;
+	}
+
+	
+
+	
+	
 }

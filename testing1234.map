@@ -1,0 +1,12 @@
+[Continents]
+
+akg=2
+bkg=2
+
+[Territories]
+
+at,0,0,akg,jk
+jk,0,0,akg,tl
+tl,0,0,bkg,pl
+pl,0,0,bkg,jk
+
