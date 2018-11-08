@@ -187,12 +187,18 @@ public class AttackWindowController {
 	 * Update dice UI info.
 	 */
 	public void updateDiceView() {
-		
 			attackPhaseWindow.attackDice1.setText(attackPhaseWindow.diceResultsAttacking.get(0)+"");
+			if(attackPhaseWindow.diceResultsAttacking.size()==2)
 			attackPhaseWindow.attackDice2.setText(attackPhaseWindow.diceResultsAttacking.get(1)+"");
+			if(attackPhaseWindow.diceResultsAttacking.size()==3)
 			attackPhaseWindow.attackDice3.setText(attackPhaseWindow.diceResultsAttacking.get(2)+"");
+			if(attackPhaseWindow.diceResultsDefending.size()==2)
+			{
 			attackPhaseWindow.defendDice1.setText(attackPhaseWindow.diceResultsDefending.get(0)+"");
 			attackPhaseWindow.defendDice2.setText(attackPhaseWindow.diceResultsDefending.get(1)+"");
+			}
+			else
+				attackPhaseWindow.defendDice1.setText(attackPhaseWindow.diceResultsDefending.get(0)+"");	
 		
 	}
 

@@ -120,6 +120,11 @@ public class GameWindow extends JFrame implements ActionListener {
 	/** The game model. */
 	private GameModel gameModel;
 
+	/** The jHandIn button place. */
+	private JButton jHandIn;
+	
+	/** The label labelCardsWithPlayer button place. */
+	private JLabel labelCardsWithPlayer;
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
 	 * 
@@ -175,6 +180,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		jComboBoxCountries = new JComboBox<>();
 		jComboBoxCountries.setBounds(170, 620, 100, 30);
 		add(jComboBoxCountries);
+		
 		jButtonPlace = new JButton("Place Initial Armies");
 		jButtonPlace.setBounds(310, 620, 150, 30);
 		jButtonPlace.addActionListener(this);
@@ -183,6 +189,17 @@ public class GameWindow extends JFrame implements ActionListener {
 		jPlayerArmies = new JLabel();
 		jPlayerArmies.setBounds(480, 620, 200, 30);
 		add(jPlayerArmies);
+		
+		jHandIn = new JButton("HandIn the cards");
+		jHandIn.setBounds(690, 620, 200, 30);
+		jHandIn.setEnabled(false);
+		jHandIn.addActionListener(this);
+		add(jHandIn);
+		
+		labelCardsWithPlayer = new JLabel();
+		labelCardsWithPlayer.setBounds(480, 660, 200, 30);
+		add(labelCardsWithPlayer);
+
 
 		
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
@@ -396,6 +413,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			if (gameModel.getGameState() != 1) {
 				PlayerModel playerModel = players[playerCounter];
 				this.currPlayer = playerModel;
+				labelCardsWithPlayer.setText(this.currPlayer.cardsString());
 				gameModel.setCurrPlayer(playerModel);
 				gameModel.increaseTurn();
 				playerModel.gamePhase(this);
@@ -427,6 +445,10 @@ public class GameWindow extends JFrame implements ActionListener {
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			this.currPlayer.placeReinforcedArmy(selectedCountry);
 			break;
+		case "HandIn the cards":
+			this.currPlayer.handInCards();
+			break;
+			
 		default:
 			break;
 		}

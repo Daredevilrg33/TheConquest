@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 import com.conquest.controller.GameWindowController;
+import com.conquest.model.CardsModel;
 import com.conquest.model.GameModel;
 import com.conquest.window.AttackPhaseWindow;
 import com.conquest.window.GameWindow;
@@ -31,6 +34,8 @@ public class PlayerModel extends Observable {
 
 	/** The risk map model. */
 	private GameModel riskMapModel;
+	
+	private int[] cards;
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
@@ -41,6 +46,7 @@ public class PlayerModel extends Observable {
 	public PlayerModel(String playerName, GameModel riskMapModel) {
 		this.playerName = playerName;
 		this.riskMapModel = riskMapModel;
+		cards = new int[]{0,0,0};
 		this.playerCountryList = new ArrayList<>();
 		updateChanges();
 	}
@@ -156,6 +162,108 @@ public class PlayerModel extends Observable {
 		return playerCountryList;
 	}
 
+	
+	/**
+     * Method to add one type of card.
+     * @param type card type
+     */
+    public void increaseCard(int type){
+        this.cards[type]++;
+    } 
+    
+    /**
+     * Method to get cards.
+     * @return cards
+     */
+    public int[] getCards() {
+        return cards;
+    }
+    
+    /**
+     * Method to get cards.
+     * @return cards
+     */
+    public int getTotalCards() {
+        return cards[0]+cards[1]+cards[1];
+    }
+    
+    /**
+     * The function to judge if player can exchange cards
+     * @return true if can handIn the cards
+     */
+    public boolean canHandIn() {
+    	if(cards[0]>=3 || cards[1]>=3 || cards[2]>=3)
+    		return true;
+    	else return(cards[0]>=1 && cards[1]>=1 && cards[2]>=1);
+    }
+    
+    /**
+     * The function to return cards the current player possesses
+     * @return cardsString
+     */
+    public String cardsString() {
+    	return String.valueOf(cards[0])+" Infantry, "+String.valueOf(cards[1])+" Cavalry and "+String.valueOf(cards[2])+" Artillery";
+    }
+    
+    /**
+     * The function to exchange the cards
+     */
+    
+    public void handInCards()
+    {
+    	if(cards[0]>=3 || cards[1]>=3 || cards[2]>=3)
+    	{
+    	if(cards[0]>=3)
+    	{
+    		cards[0]=0;
+    		for(int i=0;i<3;i++)
+    		{
+    			CardsModel card = new CardsModel("Infantry", 0, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);
+    		}
+    	}
+    	if(cards[1]>=3)
+    	{
+    		cards[1]=0;
+    		for(int i=0;i<3;i++)
+    		{
+    			CardsModel card = new CardsModel("Cavalry", 1, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);
+    		}
+    	}
+    	if(cards[2]>=3)
+    	{
+    		cards[2]=0;
+    		for(int i=0;i<3;i++)
+    		{
+    			CardsModel card = new CardsModel("Artillery", 2, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);
+    		}
+    	}
+    	}
+    	else
+    	{
+    		if(cards[0]>=1)
+    		{
+    			cards[0]--;
+    			CardsModel card = new CardsModel("Infantry", 0, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);	
+    		}
+    		if(cards[1]>=1)
+    		{
+    			cards[1]--;
+    			CardsModel card = new CardsModel("Cavalry", 1, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);	
+    		}
+    		if(cards[2]>=1)
+    		{
+    			cards[2]--;
+    			CardsModel card = new CardsModel("Artillery", 2, riskMapModel);
+    			riskMapModel.getTotalCards().add(card);	
+    		}
+    	}
+    }
+    
 	/**
 	 * Search a country by the country Name.
 	 * 
@@ -222,6 +330,14 @@ public class PlayerModel extends Observable {
 	 */
 	public String AttackPhase() {
 		PlayerModel[] players = gameWindow.getPlayers();
+		if(getTotalCards()>=5)
+		{
+			JOptionPane.showMessageDialog(null,
+					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
+			return "";
+		}
+		else
+		{
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players,this);
 		attackPhaseWindow.setVisible(true);
 
@@ -231,6 +347,7 @@ public class PlayerModel extends Observable {
 			return this.playerName + " has won the game!";
 		}
 		FortificationPhase();
+		}
 		return "success";
 	}
 
@@ -272,6 +389,7 @@ public class PlayerModel extends Observable {
 					updateReinforcedArmiesUI();
 				}
 				if (this.getnoOfArmyInPlayer() == 0) {
+					
 					AttackPhase();
 					break;
 				}
