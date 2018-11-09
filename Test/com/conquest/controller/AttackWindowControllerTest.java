@@ -43,7 +43,7 @@ public class AttackWindowControllerTest {
 	
 	
 	@Test
-	public void test() {
+	public void attackEvaluationTest() {
 		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test",4);
 		ArrayList<ContinentModel> continentsList=new ArrayList<ContinentModel>();
 		ContinentModel continentModel=new ContinentModel("ASIA");
@@ -100,5 +100,37 @@ public class AttackWindowControllerTest {
 		
 		
 	}
+/**
+ * test to validated whether an attacker can attack with 1 army.
+ */
+	@Test
+	public void attackTest() {
+		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test",4);
+		ArrayList<ContinentModel> continentsList=new ArrayList<ContinentModel>();
+		ContinentModel continentModel=new ContinentModel("ASIA");
+	
+		CountryModel countryModel1 = new CountryModel("INDIA");
+		continentModel.addCountry(countryModel1);
+		continentsList.add(continentModel);
+		ArrayList<CountryModel> countryList = new ArrayList<>();
+		countryList.add(countryModel1);
+		mapHierarchyModel.setContinentsList(continentsList);
+		mapHierarchyModel.setCountryList(countryList);
+		ArrayList<CountryModel> countryModelArrayList= new ArrayList<CountryModel>();
+		countryModelArrayList.add(countryModel1);
+		
+		PlayerModel[] playerModels = new PlayerModel[1];
+		playerModels[0] = new PlayerModel("Player1", countryModelArrayList);
+		
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, playerModels, playerModels[0]);
+		
+		countryModel1.setNoOfArmiesCountry(1);
+		System.out.println(countryModel1.getNoOfArmiesCountry());
+		assertEquals("false",String.valueOf(attackPhaseWindow.ifAttackValid()));
 
+		
+		
+	}
+	
 }

@@ -598,6 +598,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		for (CountryModel countryModel : getCurrentPlayer().getPlayerCountryList()) {
 			if (countryModel.getNoOfArmiesCountry() > 1) {
 				isAttackPossible = true;
+				System.out.println("hbguhu");
+
 				break;
 			}
 		}
