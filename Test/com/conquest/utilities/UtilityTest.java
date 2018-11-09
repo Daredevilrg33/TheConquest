@@ -24,10 +24,10 @@ public class UtilityTest {
 	private Utility utility = new Utility();
 
 	/** The asia map file path. */
-	private static String asiaMapFilePath;
+	private static String ASIA_MAP_FILE_PATH;
 
 	/** The asia invalid map file path. */
-	private static String asiaInvalidMapFilePath;
+	private static String ASIA_INVALID_MAP_FILE_PATH;
 
 	/**
 	 * Sets the up before class.
@@ -36,8 +36,8 @@ public class UtilityTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
-		asiaInvalidMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asiainvalid.map";
+		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
+		ASIA_INVALID_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asiainvalid.map";
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class UtilityTest {
 	 */
 	@Test
 	public void parseAndValidateMapTest() {
-		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap(asiaMapFilePath).getCountryList();
+		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH).getCountryList();
 
 		System.out.println(parsedCountryList.size());
 
@@ -101,7 +101,7 @@ public class UtilityTest {
 	 */
 	@Test
 	public void convertMapDataToStringTest() {
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
 		assertNotNull(utility.convertMapDataToString(mapHierarchyModel));
 
 	}
@@ -113,7 +113,7 @@ public class UtilityTest {
 	@Test
 	public void saveMapFileTest() {
 
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
 		String name = "testfile";
 		assertTrue(utility.saveMapFile(mapHierarchyModel, name));
 
@@ -124,7 +124,7 @@ public class UtilityTest {
 	 */
 	@Test
 	public void ValidateMapTest() {
-		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap(asiaInvalidMapFilePath)
+		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap(ASIA_INVALID_MAP_FILE_PATH)
 				.getCountryList();
 		MapHierarchyModel maphierarchy = new MapHierarchyModel();
 		assertFalse(maphierarchy.isValErrorFlag());

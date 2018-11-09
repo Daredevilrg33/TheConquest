@@ -31,7 +31,7 @@ import com.conquest.window.MainMenuScreen;
 public class MapDashboard extends JFrame implements ActionListener {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -6731694007847910246L;
+	private static final long SERIAL_VERSION_UID = -6731694007847910246L;
 
 	/** The button new map. */
 	private JButton btnNewMap;

@@ -16,7 +16,7 @@ import com.conquest.window.MainMenuScreen;
 public class Game {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -4669025547633011027L;
+	private static final long SERIAL_VERSION_UID = -4669025547633011027L;
 
 	/**
 	 * Game class Constructor.

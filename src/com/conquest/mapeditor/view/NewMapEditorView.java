@@ -40,7 +40,7 @@ import com.conquest.utilities.Constants;
 public class NewMapEditorView extends JFrame implements MouseListener {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 4139667352960868764L;
+	private static final long SERIAL_VERSION_UID = 4139667352960868764L;
 
 	/** The tree scroll pane. */
 	private JScrollPane treeScrollPane;

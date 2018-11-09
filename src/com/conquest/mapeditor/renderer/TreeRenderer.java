@@ -17,7 +17,7 @@ import javax.swing.tree.TreePath;
 public class TreeRenderer extends JTree {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1977697232621553087L;
+	private static final long SERIAL_VERSION_UID = 1977697232621553087L;
 
 	/** The tree. */
 	private JTree tree;

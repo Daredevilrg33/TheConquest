@@ -49,7 +49,7 @@ import com.conquest.utilities.Constants;
 public class GameWindow extends JFrame implements ActionListener {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 705136013521611381L;
+	private static final long SERIAL_VERSION_UID = 705136013521611381L;
 
 	/** The game window controller. */
 	private GameWindowController gameWindowController;
