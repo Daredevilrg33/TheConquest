@@ -1,0 +1,20 @@
+[Continents]
+
+asia=3
+australia=2
+japan=2
+north america=3
+
+[Territories]
+
+india,0,0,asia,bhutan,sri lanka,sydney
+bhutan,0,0,asia,sri lanka,melbourne,nagasaki
+sri lanka,0,0,asia,india,sydney,tokyo
+sydney,0,0,australia,melbourne,tokyo,nagasaki
+melbourne,0,0,australia,sri lanka,sydney,tokyo,nagasaki,new york,california
+tokyo,0,0,japan,melbourne,nagasaki,boston,new york
+nagasaki,0,0,japan,sri lanka,melbourne,tokyo,boston,california
+boston,0,0,north america,melbourne,nagasaki,new york,california,bhutan
+new york,0,0,north america,india,bhutan,sri lanka,sydney,melbourne,tokyo,nagasaki,boston,california
+california,0,0,north america,bhutan,sri lanka,melbourne,tokyo,boston,new york
+

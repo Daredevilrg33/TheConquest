@@ -144,7 +144,7 @@ public class AttackWindowController {
 			attackPhaseWindow.getDiceResultsDefending().add(rollDice());
 		}
 		attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
-				attackingCountryModel, defendingCountryModel);
+				attackingCountryModel, defendingCountryModel,true);
 		attackPhaseWindow.setDiceValues(attackArmyCount, defenderArmyCount);
 	}
 
@@ -197,7 +197,7 @@ public class AttackWindowController {
 					attackPhaseWindow.getDiceResultsAttacking().size(),
 					attackPhaseWindow.getDiceResultsDefending().size());
 			attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
-					attackingCountryModel, defendingCountryModel);
+					attackingCountryModel, defendingCountryModel,true);
 			attackPhaseWindow.setDiceValues(attackPhaseWindow.getDiceResultsAttacking().size(),
 					attackPhaseWindow.getDiceResultsDefending().size());
 		}
@@ -264,7 +264,7 @@ public class AttackWindowController {
 	 * @param defenderCountry     the defender country
 	 */
 	public void attackEvaluation(ArrayList<Integer> attackingDiceValues, ArrayList<Integer> defendingDiceValues,
-			CountryModel attackerCountry, CountryModel defenderCountry) {
+			CountryModel attackerCountry, CountryModel defenderCountry, boolean showArmyPopup) {
 		Collections.sort(attackingDiceValues, Collections.reverseOrder());
 		Collections.sort(defendingDiceValues, Collections.reverseOrder());
 		int resultOfDice1 = attackingDiceValues.get(0).compareTo(defendingDiceValues.get(0));
@@ -305,8 +305,9 @@ public class AttackWindowController {
 				sourceCountryValues.add(countryModel.getCountryName());
 			}
 			attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryValues);
-			attackPhaseWindow.showMoveArmyPopup(1, attackerCountry.getNoOfArmiesCountry() - 1, attackerCountry,
-					defenderCountry);
+			if (showArmyPopup)
+				attackPhaseWindow.showMoveArmyPopup(1, attackerCountry.getNoOfArmiesCountry() - 1, attackerCountry,
+						defenderCountry);
 		}
 
 	}
