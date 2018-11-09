@@ -115,8 +115,8 @@ public class NewGameMenuScreenTest {
 		NewGameMenuScreen newgame=new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 		boolean isContinentConnected = newgame.isContinentConnected(mapHierarchyModel);
-		System.out.println("hellllllll"+isContinentConnected);
-		System.out.println(mapHierarchyModel.isValErrorFlag());
+		
+		assertEquals("true",String.valueOf(isContinentConnected));
 
 		
 	}
