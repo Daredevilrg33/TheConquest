@@ -112,6 +112,9 @@ public class GameWindowController {
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].addCountry(countryModelTest);
+						countryModelTest.addNoOfArmiesCountry();
+						players[count1].reduceArmyInPlayer();
+					
 					}
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);

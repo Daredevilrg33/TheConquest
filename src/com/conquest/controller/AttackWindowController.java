@@ -115,7 +115,7 @@ public class AttackWindowController {
 		int pickedNumber;
 		SecureRandom number = new SecureRandom();
 		pickedNumber = number.nextInt(6);
-		System.out.println("Roll Dice Value: " + pickedNumber + 1);
+		System.out.println("Roll Dice Value: " + pickedNumber);
 		return pickedNumber + 1;
 	}
 
@@ -146,6 +146,50 @@ public class AttackWindowController {
 		attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
 				attackingCountryModel, defendingCountryModel);
 		attackPhaseWindow.setDiceValues(attackArmyCount, defenderArmyCount);
+	}
+
+	public void allOutAttack(String attackingCountry, String targetCountry) {
+
+		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
+				.searchCountry(attackingCountry.trim());
+
+		CountryModel defendingCountryModel = null;
+		defendingCountryModel = gameModel.getMapHierarchyModel().searchCountry(targetCountry.trim());
+
+		
+		while (attackingCountryModel.getNoOfArmiesCountry() > 1 && defendingCountryModel.getNoOfArmiesCountry() > 0) {
+			
+			if(attackingCountryModel.getNoOfArmiesCountry() > 3) {
+				for (int i = 0; i < 3; i++) {
+					int diceRollValue = rollDice();
+					attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
+				}
+			}
+			if(attackingCountryModel.getNoOfArmiesCountry() == 3) {
+				for (int i = 0; i < 2; i++) {
+					int diceRollValue = rollDice();
+					attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
+				}
+			}if(attackingCountryModel.getNoOfArmiesCountry() == 2) {
+			for (int i = 0; i < 1; i++) {
+				int diceRollValue = rollDice();
+				attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
+				}
+			}
+			if(defendingCountryModel.getNoOfArmiesCountry() > 2) {
+				for (int i = 0; i < 2; i++) {
+					attackPhaseWindow.getDiceResultsDefending().add(rollDice());
+				}	
+			}
+			if(defendingCountryModel.getNoOfArmiesCountry() > 1) {
+				for (int i = 0; i < 1; i++) {
+					attackPhaseWindow.getDiceResultsDefending().add(rollDice());
+				}	
+			}
+			
+			attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
+					attackingCountryModel, defendingCountryModel);
+		}
 	}
 
 	/**
