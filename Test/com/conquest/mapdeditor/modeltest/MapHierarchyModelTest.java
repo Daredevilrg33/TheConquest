@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MapHierarchyModelTest.
  */
@@ -76,7 +75,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getTotalCountriestest1 Unit test Basic number of total countries test.
-	 *
 	 */
 	@Test
 	public void getTotalCountriestest1() {
@@ -86,7 +84,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * Test to check the total no of countries that has been added.
-	 * 
 	 */
 	@Test
 	public void getTotalCountriestest() {
@@ -96,7 +93,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getConquestMapNametest Unit Test Test to check the map name of the game.
-	 *
 	 */
 	@Test
 	public void getConquestMapNametest() {

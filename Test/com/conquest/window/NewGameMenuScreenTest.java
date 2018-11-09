@@ -21,13 +21,13 @@ public class NewGameMenuScreenTest {
 	/** The Asia map file path. */
 	private static String ASIA_MAP_FILE_PATH;
 
-	/** The threemap filepath. */
+	/** The threemap file path. */
 	private static String THREE_MAP_FILE_PATH;
 
-	/** The countryconnectedmap filepath. */
+	/** The country connected map file path. */
 	private static String COUNTRY_CONNECTED_PATH;
 
-	/** The countrynotconnectedmap filepath. */
+	/** The country not connected map file path. */
 	private static String COUNTRY_NOT_CONNECTED_PATH;
 
 	/** The game window. */

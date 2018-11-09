@@ -28,7 +28,7 @@ public class GameWindowControllerTest {
 	private ContinentModel countryModel = new ContinentModel("AUSTRALIA");
 
 	/** The Asia map file path. */
-	private static String asiaMapFilePath;
+	private static String ASIA_MAP_FILE_PATH;
 
 	/** The game window object. */
 	GameWindow gameWindow;
@@ -46,7 +46,7 @@ public class GameWindowControllerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		asiaMapFilePath = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
+		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyTest() {
 
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
 		gameWindow1 = new GameWindow(mapHierarchyModel, "4");
 		gameWindow2 = new GameWindow(mapHierarchyModel, "5");
@@ -95,7 +95,7 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyAfterTest() {
 
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
@@ -114,7 +114,7 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyCountryTest() {
 
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);

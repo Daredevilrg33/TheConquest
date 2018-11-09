@@ -1,4 +1,4 @@
-package com.MainTestSuiteHolder;
+package com.conquest.maintestsuite;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
