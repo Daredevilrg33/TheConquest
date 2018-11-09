@@ -59,7 +59,6 @@ public class Utility {
 		boolean isContinent = false;
 		boolean isCountry = false;
 		String[] neighbourCountries = null;
-		boolean neighbourFlag = false;
 		String targetCountry = null;
 
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -151,30 +150,37 @@ public class Utility {
 				mapHierarchyModel.setTotalCountries(countryModels.size());
 			}
 
-			/**
-			 * validating if there is connectivity of country to any other country
-			 */
-			if (targetCountry != null) {
-				for (CountryModel loopCountry : countryModels) {
-					ArrayList<String> neighbours = loopCountry.getListOfNeighbours();
-					for (String country : neighbours) {
-						if (country.equalsIgnoreCase(targetCountry)) {
-							neighbourFlag = true;
-						}
-					}
-				}
-				if (!neighbourFlag) {
-					String valErrorMessage = "Map is invalid as there is no connectivity from or to country "
-							+ targetCountry;
-					mapHierarchyModel.setValErrorFlag(true);
-					mapHierarchyModel.setErrorMsg(valErrorMessage);
-				}
-			}
+			validateIfCountryHasNeighbour(targetCountry, countryModels, mapHierarchyModel);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mapHierarchyModel;
+	}
+
+	/**
+	 * validating if there is connectivity of country to any other country
+	 */
+	private void validateIfCountryHasNeighbour(String targetCountry, ArrayList<CountryModel> countryModels,
+			MapHierarchyModel mapHierarchyModel) {
+		// TODO Auto-generated method stub
+		boolean neighbourFlag = false;
+		if (targetCountry != null) {
+			for (CountryModel loopCountry : countryModels) {
+				ArrayList<String> neighbours = loopCountry.getListOfNeighbours();
+				for (String country : neighbours) {
+					if (country.equalsIgnoreCase(targetCountry)) {
+						neighbourFlag = true;
+					}
+				}
+			}
+			if (!neighbourFlag) {
+				String valErrorMessage = "Map is invalid as there is no connectivity from or to country "
+						+ targetCountry;
+				mapHierarchyModel.setValErrorFlag(true);
+				mapHierarchyModel.setErrorMsg(valErrorMessage);
+			}
+		}
 	}
 
 	/**
@@ -212,7 +218,6 @@ public class Utility {
 			for (String countryName : countryModel.getListOfNeighbours()) {
 				if (!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
 					countryData = countryData.concat("," + countryName);
-
 			}
 			countryData = countryData.concat(System.lineSeparator());
 			continentString = continentString.concat(countryData);
