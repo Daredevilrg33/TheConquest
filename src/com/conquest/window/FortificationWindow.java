@@ -243,10 +243,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == jButtonFinish) {
-
-//			reinforcementWindowController.nextPlayer();
-			// Start the Reinforcement Phase for the next player.
-			reinforcementWindowController.updateBackend();
+//			reinforcementWindowController.updateBackend();
+			
 
 		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
@@ -269,9 +267,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				armies = Integer.valueOf(jComboBoxChosenNoOfArmies.getSelectedItem().toString());
 				reinforcementWindowController.sending(armies);
 				reinforcementWindowController.updateUIInfo();
-
-//				reinforcementWindowController.nextPlayer();
-				// Start the Reinforcement Phase for the next player.
 
 				reinforcementWindowController.updateBackend();
 

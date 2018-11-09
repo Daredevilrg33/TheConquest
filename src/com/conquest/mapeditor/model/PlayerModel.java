@@ -10,6 +10,7 @@ import com.conquest.controller.GameWindowController;
 import com.conquest.model.CardsModel;
 import com.conquest.model.GameModel;
 import com.conquest.window.AttackPhaseWindow;
+import com.conquest.window.FortificationWindow;
 import com.conquest.window.GameWindow;
 
 /**
@@ -52,6 +53,7 @@ public class PlayerModel extends Observable {
 		this.riskMapModel = riskMapModel;
 		cards = new int[] { 0, 0, 0 };
 		this.playerCountryList = new ArrayList<>();
+		this.hasWonTerritory = false;
 		updateChanges();
 	}
 
@@ -349,7 +351,7 @@ public class PlayerModel extends Observable {
 				riskMapModel.setGameState(1);
 				return this.playerName + " has won the game!";
 			}
-			FortificationPhase();
+			fortificationPhase();
 		}
 		return "success";
 	}
@@ -357,11 +359,29 @@ public class PlayerModel extends Observable {
 	/**
 	 * Fortification phase.
 	 */
-	public void FortificationPhase() {
+	public void fortificationPhase() {
 		if (this.hasWonTerritory) {
 			CardsModel card = riskMapModel.generateRandomCard();
 			increaseCard(card.getType());
+			FortificationWindow fortificationWindow = new FortificationWindow(riskMapModel.getMapHierarchyModel(),
+					this);
+			fortificationWindow.setVisible(true);
 		}
+
+	}
+
+	/**
+	 * @return the hasWonTerritory
+	 */
+	public boolean isHasWonTerritory() {
+		return hasWonTerritory;
+	}
+
+	/**
+	 * @param hasWonTerritory the hasWonTerritory to set
+	 */
+	public void setHasWonTerritory(boolean hasWonTerritory) {
+		this.hasWonTerritory = hasWonTerritory;
 	}
 
 	/**

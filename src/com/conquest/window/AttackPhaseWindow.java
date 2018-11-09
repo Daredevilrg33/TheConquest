@@ -382,14 +382,14 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
+
 			attackWindowController.allOutAttack(sourceCountryName, defenderCountryName);
 			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
-			
 
 		} else if (e.getSource() == jButtonFinishAttack) {
-			// Move to Fortification Window.
+			dispose();
+			getCurrentPlayer().fortificationPhase();
 		}
 	}
 

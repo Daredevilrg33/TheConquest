@@ -299,7 +299,7 @@ public class AttackWindowController {
 			}
 
 			attackPhaseWindow.getCurrentPlayer().addCountry(defenderCountry);
-
+			attackPhaseWindow.getCurrentPlayer().setHasWonTerritory(true);
 			ArrayList<String> sourceCountryValues = new ArrayList<>();
 			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
 				sourceCountryValues.add(countryModel.getCountryName());

@@ -168,7 +168,7 @@ public class FortificationWindowController {
 	public void updateUIInfo() {
 
 		fortificationWindow
-				.updateArmy(getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
+				.updateArmy(getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry() - 1);
 		fortificationWindow.updateSourceArmyLabel(
 				getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry());
 		fortificationWindow.updateComboBoxDestinationCountries(destinationCountryModels);
