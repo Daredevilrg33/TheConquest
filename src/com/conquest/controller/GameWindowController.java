@@ -84,7 +84,7 @@ public class GameWindowController {
 
 			switch (noOfPlayers) {
 			case (3):
-				players[j].noOfArmyInPlayer(5);
+				players[j].noOfArmyInPlayer(25);
 				break;
 
 			case (4):

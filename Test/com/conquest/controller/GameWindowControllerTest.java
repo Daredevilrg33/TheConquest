@@ -80,10 +80,9 @@ public class GameWindowControllerTest {
 		GameWindowController gameWindowController2 = new GameWindowController(gameWindow2, 5, mapHierarchyModel);
 		gameWindowController2.initializingPlayerModels(5, mapHierarchyModel);
 		PlayerModel[] playerModels2 = gameWindowController2.getPlayers();
-
-		assertEquals(25, playerModels[1].getnoOfArmyInPlayer());
-		assertEquals(20, playerModels1[1].getnoOfArmyInPlayer());
-		assertEquals(15, playerModels2[1].getnoOfArmyInPlayer());
+		assertEquals(23, playerModels[1].getnoOfArmyInPlayer());
+		assertEquals(18, playerModels1[1].getnoOfArmyInPlayer());
+		assertEquals(14, playerModels2[1].getnoOfArmyInPlayer());
 
 	}
 
@@ -103,7 +102,7 @@ public class GameWindowControllerTest {
 
 		playerModels[1].calculateAndAddReinforcementArmy();
 
-		assertEquals(28, playerModels[1].getnoOfArmyInPlayer());
+		assertEquals(26, playerModels[1].getnoOfArmyInPlayer());
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class GameWindowControllerTest {
 		System.out.println("player no of army: " + playerModels[0].getnoOfArmyInPlayer());
 		playerModels[1].calculateAndAddReinforcementArmy();
 		playerModels[0].calculateAndAddReinforcementArmy();
-		assertEquals(28, playerModels[0].getnoOfArmyInPlayer());
-		assertEquals(29, playerModels[1].getnoOfArmyInPlayer());
+		assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
+		assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
 	}
 }

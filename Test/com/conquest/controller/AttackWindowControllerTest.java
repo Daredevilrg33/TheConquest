@@ -140,4 +140,34 @@ public class AttackWindowControllerTest {
 		assertEquals("false", String.valueOf(attackPhaseWindow.ifAttackValid()));
 	}
 
+	/**
+	 * test to to check whether the player won game. 
+	 */
+	@Test
+	public void wonGameTest() {
+	
+	MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test", 4);
+	ArrayList<ContinentModel> continentsList = new ArrayList<ContinentModel>();
+	ContinentModel continentModel = new ContinentModel("ASIA");
+	CountryModel countryModel = new CountryModel("BHUTAN");
+	CountryModel countryModel1 = new CountryModel("INDIA");
+	CountryModel countryModel2 = new CountryModel("NEPAL");
+	CountryModel countryModel3 = new CountryModel("SRILANKA");
+	continentModel.addCountry(countryModel);
+	continentModel.addCountry(countryModel1);
+	continentModel.addCountry(countryModel2);
+	continentModel.addCountry(countryModel3);
+	continentsList.add(continentModel);
+	ArrayList<CountryModel> countryList = new ArrayList<>();
+	countryList.add(countryModel);
+	countryList.add(countryModel1);
+	countryList.add(countryModel2);
+	countryList.add(countryModel3);
+	mapHierarchyModel.setContinentsList(continentsList);
+	mapHierarchyModel.setCountryList(countryList);
+	PlayerModel playerModels = new PlayerModel("Player1", countryList);
+	assertEquals("true",String.valueOf(playerModels.isGameWon(countryList.size())));
+	
+	}
+	
 }
