@@ -181,7 +181,7 @@ public class GameWindowController {
 			currentPlayer.reduceArmyInPlayer();
 		}
 		if (currentPlayer.getnoOfArmyInPlayer() == 0) {
-
+			currentPlayer.setGameWindow(gameWindow);
 			currentPlayer.AttackPhase();
 		}
 

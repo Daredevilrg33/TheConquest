@@ -248,6 +248,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		if (e.getSource() == jButtonFinish) {
 			gameModel.increaseTurn();
 			gameModel.moveToNextPlayer();
+			gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 			dispose();
 
 		} else if (e.getSource() == jButtonSend) {
@@ -275,6 +276,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				fortificationWindowController.updateBackend();
 				gameModel.increaseTurn();
 				gameModel.moveToNextPlayer();
+				gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 				dispose();
 			}
 

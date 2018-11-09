@@ -1,17 +1,15 @@
 package com.conquest.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * The Class CardsModel.
  */
-public class CardsModel {
+public class CardsModel extends Observable {
 
 	/** The card name. */
 	private String cardName;
-
-	/** The game model. */
-	private GameModel gameModel;
 
 	/** The type. */
 	private int type;
@@ -23,10 +21,10 @@ public class CardsModel {
 	 * @param type      the type
 	 * @param gameModel the game model
 	 */
-	public CardsModel(String name, int type, GameModel gameModel) {
+	public CardsModel(String name, int type) {
 		this.cardName = name;
 		this.type = type;
-		this.gameModel = gameModel;
+
 	}
 
 	/**
@@ -65,4 +63,11 @@ public class CardsModel {
 		this.type = type;
 	}
 
+	/**
+	 * Update changes.
+	 */
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
+	}
 }

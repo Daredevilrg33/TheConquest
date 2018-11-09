@@ -181,6 +181,7 @@ public class PlayerModel extends Observable {
 	 */
 	public void increaseCard(int type) {
 		this.cards[type]++;
+		updateChanges();
 	}
 
 	/**
@@ -232,43 +233,44 @@ public class PlayerModel extends Observable {
 			if (cards[0] >= 3) {
 				cards[0] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Infantry", 0, gameModel);
+					CardsModel card = new CardsModel("Infantry", 0);
 					gameModel.getTotalCards().add(card);
 				}
 			}
 			if (cards[1] >= 3) {
 				cards[1] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Cavalry", 1, gameModel);
+					CardsModel card = new CardsModel("Cavalry", 1);
 					gameModel.getTotalCards().add(card);
 				}
 			}
 			if (cards[2] >= 3) {
 				cards[2] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Artillery", 2, gameModel);
+					CardsModel card = new CardsModel("Artillery", 2);
 					gameModel.getTotalCards().add(card);
 				}
 			}
 		} else {
 			if (cards[0] >= 1) {
 				cards[0]--;
-				CardsModel card = new CardsModel("Infantry", 0, gameModel);
+				CardsModel card = new CardsModel("Infantry", 0);
 				gameModel.getTotalCards().add(card);
 			}
 			if (cards[1] >= 1) {
 				cards[1]--;
-				CardsModel card = new CardsModel("Cavalry", 1, gameModel);
+				CardsModel card = new CardsModel("Cavalry", 1);
 				gameModel.getTotalCards().add(card);
 			}
 			if (cards[2] >= 1) {
 				cards[2]--;
-				CardsModel card = new CardsModel("Artillery", 2, gameModel);
+				CardsModel card = new CardsModel("Artillery", 2);
 				gameModel.getTotalCards().add(card);
 			}
 		}
-		gameModel.setHandInCounter(gameModel.getHandInCounter()+1);
-		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter()*5);;
+		gameModel.setHandInCounter(gameModel.getHandInCounter() + 1);
+		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter() * 5);
+		updateChanges();
 	}
 
 	/**
@@ -286,13 +288,15 @@ public class PlayerModel extends Observable {
 		}
 		return null;
 	}
-	
+
 	/**
-     * Method to add armies to player on cards Exchange.
-     * @param armies armies to add
-     */
+	 * Method to add armies to player on cards Exchange.
+	 * 
+	 * @param armies armies to add
+	 */
 	public void addArmies(int armies) {
 		this.noOfArmyInPlayer += armies;
+		updateChanges();
 	}
 
 	/**
@@ -343,7 +347,7 @@ public class PlayerModel extends Observable {
 	 * @return the string
 	 */
 	public String AttackPhase() {
-		//gameWindow.updatePhaseView("Attack Phase");
+		// gameWindow.updatePhaseView("Attack Phase");
 		PlayerModel[] players = gameWindow.getPlayers();
 
 		if (getTotalCards() >= 5) {
@@ -359,7 +363,6 @@ public class PlayerModel extends Observable {
 				gameModel.setGameState(1);
 				return this.playerName + " has won the game!";
 			}
-			fortificationPhase();
 		}
 		return "success";
 	}
@@ -371,9 +374,10 @@ public class PlayerModel extends Observable {
 		if (this.hasWonTerritory) {
 			CardsModel card = gameModel.generateRandomCard();
 			this.increaseCard(card.getType());
-			FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
-			fortificationWindow.setVisible(true);
+
 		}
+		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
+		fortificationWindow.setVisible(true);
 
 	}
 
@@ -405,13 +409,7 @@ public class PlayerModel extends Observable {
 		}
 	}
 
-	/**
-	 * Update changes.
-	 */
-	private void updateChanges() {
-		setChanged();
-		notifyObservers(this);
-	}
+	
 
 	/**
 	 * @return the gameModel
@@ -426,5 +424,19 @@ public class PlayerModel extends Observable {
 	public void setGameModel(GameModel gameModel) {
 		this.gameModel = gameModel;
 	}
+	
+	/**
+	 * @param gameWindow the gameWindow to set
+	 */
+	public void setGameWindow(GameWindow gameWindow) {
+		this.gameWindow = gameWindow;
+	}
 
+	/**
+	 * Update changes.
+	 */
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
+	}
 }

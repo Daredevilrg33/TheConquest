@@ -71,7 +71,7 @@ public class GameModel extends Observable {
 		String name = names[j];
 		int type = types[j];
 		for (int i = 0; i < mapHierarchyModel.totalCountries; i++) {
-			CardsModel card = new CardsModel(name, type, this);
+			CardsModel card = new CardsModel(name, type);
 			totalCards.add(card);
 			name = names[j++];
 			if (j == 2) {
