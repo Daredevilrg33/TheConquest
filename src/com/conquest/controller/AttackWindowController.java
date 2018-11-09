@@ -165,19 +165,19 @@ public class AttackWindowController {
 	 * @param countryModel the country model
 	 */
 	public void updateNoOfDiceUIInfo(CountryModel countryModel) {
-		int diceFlag = 0;
+		int diceValues = 0;
 		if (countryModel != null) {
 			if (countryModel.getNoOfArmiesCountry() > 3) {
-				diceFlag = 3;
+				diceValues = 3;
 			} else if (countryModel.getNoOfArmiesCountry() > 2) {
-				diceFlag = 2;
+				diceValues = 2;
 			} else if (countryModel.getNoOfArmiesCountry() > 1) {
-				diceFlag = 1;
+				diceValues = 1;
 			}
 
 		}
 
-		attackPhaseWindow.updateComboBoxNoOfDice(diceFlag);
+		attackPhaseWindow.updateComboBoxNoOfDice(diceValues);
 
 	}
 
@@ -202,18 +202,18 @@ public class AttackWindowController {
 			CountryModel attackerCountry, CountryModel defenderCountry) {
 		Collections.sort(attackingDiceValues, Collections.reverseOrder());
 		Collections.sort(defendingDiceValues, Collections.reverseOrder());
-		int result1 = attackingDiceValues.get(0).compareTo(defendingDiceValues.get(0));
-		int result2 = -2;
+		int resultOfDice1 = attackingDiceValues.get(0).compareTo(defendingDiceValues.get(0));
+		int resultofDice2 = -2;
 		if (attackingDiceValues.size() > 1 && defendingDiceValues.size() > 1) {
-			result2 = attackingDiceValues.get(1).compareTo(defendingDiceValues.get(1));
+			resultofDice2 = attackingDiceValues.get(1).compareTo(defendingDiceValues.get(1));
 		}
 
-		if (result1 == 1)
+		if (resultOfDice1 == 1)
 			defenderCountry.removeNoOfArmiesCountry();
 		else
 			attackerCountry.removeNoOfArmiesCountry();
-		if (!(result2 == -2)) {
-			if (result2 == 1)
+		if (!(resultofDice2 == -2)) {
+			if (resultofDice2 == 1)
 
 				defenderCountry.removeNoOfArmiesCountry();
 			else
