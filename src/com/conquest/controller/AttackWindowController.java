@@ -234,13 +234,14 @@ public class AttackWindowController {
 			}
 
 			attackPhaseWindow.getCurrentPlayer().addCountry(defenderCountry);
-			
+
 			ArrayList<String> sourceCountryValues = new ArrayList<>();
 			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
 				sourceCountryValues.add(countryModel.getCountryName());
 			}
 			attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryValues);
-
+			attackPhaseWindow.showMoveArmyPopup(1, attackerCountry.getNoOfArmiesCountry() - 1, attackerCountry,
+					defenderCountry);
 		}
 
 	}

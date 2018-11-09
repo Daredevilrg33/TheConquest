@@ -191,6 +191,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		jHandIn = new JButton("HandIn the cards");
 		jHandIn.setBounds(690, 620, 200, 30);
+		jHandIn.setVisible(false);
 		jHandIn.setEnabled(false);
 		jHandIn.setVisible(false);
 		jHandIn.addActionListener(this);
@@ -397,26 +398,39 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * updatePhaseView Method Update phase View.
 	 * 
 	 */
-	public void updatePhaseView() {
-		if (!labelPhase.getText().equalsIgnoreCase("Reinforcement Phase")) {
-			labelPhase.setText("Reinforcement Phase");
-			jButtonPlace.setText("Place Reinforce Armies");
-			PlayerModel[] players = gameWindowController.getPlayers();
-			if (playerCounter > players.length)
-				playerCounter = 0;
-			if (gameModel.getGameState() != 1) {
-				PlayerModel playerModel = players[playerCounter];
-				this.currPlayer = playerModel;
-				labelCardsWithPlayer.setText(this.currPlayer.cardsString());
-				gameModel.setCurrPlayer(playerModel);
-				gameModel.increaseTurn();
-				playerModel.gamePhase(this);
+	public void updatePhaseView(String phase) {
+		PlayerModel[] players = gameWindowController.getPlayers();
+		if (playerCounter > players.length)
+			playerCounter = 0;
+		PlayerModel playerModel = players[playerCounter];
+		this.currPlayer = playerModel;
+		labelPhase.setText(phase);
+			if ("Reinforcement Phase".equalsIgnoreCase(phase)) {
+				jButtonPlace.setText("Place Reinforce Armies");
+				jButtonPlace.setEnabled(true);
+				jHandIn.setVisible(true);
+				if (this.currPlayer.canHandIn())
+					jHandIn.setEnabled(true);
+				
+
+				if (gameModel.getGameState() != 1) {
+					labelCardsWithPlayer.setText(this.currPlayer.cardsString());
+					gameModel.setCurrPlayer(playerModel);
+					gameModel.increaseTurn();
+					playerModel.gamePhase(this);
+				}
+				updateGameInformation();
+			} else if ("Attack Phase".equalsIgnoreCase(phase)) {
+				addProgressBar();
+				jButtonPlace.setEnabled(false);
+				jHandIn.setVisible(false);
+				labelCardsWithPlayer.setVisible(false);
 			}
-			updateGameInformation();
-			jHandIn.setVisible(true);
-		} else {
-			jButtonPlace.setEnabled(false);
-		}
+//			updateGameInformation();
+//			jHandIn.setVisible(true);
+//		} else {
+//			jButtonPlace.setEnabled(false);
+//		}
 
 	}
 
@@ -462,6 +476,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * Adds the progress bar.
 	 */
 	public void addProgressBar() {
+		
+		progressBarPanel.removeAll();
 		Random randomGenerator = new Random();
 
 		PlayerModel[] players = gameWindowController.getPlayers();

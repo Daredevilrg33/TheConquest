@@ -35,6 +35,8 @@ public class PlayerModel extends Observable {
 	/** The risk map model. */
 	private GameModel riskMapModel;
 
+	private boolean hasWonTerritory;
+
 	private int[] cards;
 
 	/**
@@ -322,9 +324,11 @@ public class PlayerModel extends Observable {
 	 * @return the string
 	 */
 	public String AttackPhase() {
+		gameWindow.updatePhaseView("Attack Phase");
 		PlayerModel[] players = gameWindow.getPlayers();
 
 //		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players, this);
+
 		if (getTotalCards() >= 5) {
 			JOptionPane.showMessageDialog(null,
 					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
@@ -347,6 +351,10 @@ public class PlayerModel extends Observable {
 	 * Fortification phase.
 	 */
 	public void FortificationPhase() {
+		if (this.hasWonTerritory) {
+			CardsModel card = riskMapModel.generateRandomCard();
+			increaseCard(card.getType());
+		}
 	}
 
 	/**

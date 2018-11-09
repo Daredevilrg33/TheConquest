@@ -381,7 +381,6 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 				return;
 			}
 
-
 		} else if (e.getSource() == jButtonFinishAttack) {
 			// Move to Fortification Window.
 		}
@@ -516,5 +515,22 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 */
 	public PlayerModel[] getPlayers() {
 		return players;
+	}
+
+	public void showMoveArmyPopup(int minValue, int maxValue, CountryModel sourceCountry,
+			CountryModel destinationCountry) {
+		int size = maxValue - minValue + 1;
+		Integer[] options = new Integer[size];
+		for (int i = minValue; i <= maxValue; i++) {
+			int index = i - minValue;
+			options[index] = i;
+		}
+		int n = (Integer) JOptionPane.showInputDialog(null, "Select no of armies to be moved.", "Move Armies",
+				JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+	
+		for (int j = 0; j < n; j++) {
+			sourceCountry.removeNoOfArmiesCountry();
+			destinationCountry.addNoOfArmiesCountry();
+		}
 	}
 }
