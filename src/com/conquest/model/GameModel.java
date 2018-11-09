@@ -45,8 +45,8 @@ public class GameModel extends Observable {
 	 * @param mapHierarchyModel    the map hierarchy model
 	 * @param gameWindowController the game window controller
 	 */
-	public GameModel(MapHierarchyModel mapHierarchyModel, GameWindowController gameWindowController) {
-		this.players = gameWindowController.getPlayers();
+	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
+		this.players = playerModels;
 
 		this.mapHierarchyModel = mapHierarchyModel;
 		randomGenerator = new Random();
@@ -199,4 +199,10 @@ public class GameModel extends Observable {
 		this.totalCards = totalCards;
 	}
 
+	public void moveToNextPlayer() {
+		if (currPlayer == players[players.length - 1]) {
+			currPlayer = players[0];
+		} else
+			currPlayer = players[turn - 1];
+	}
 }

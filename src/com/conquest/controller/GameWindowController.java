@@ -61,8 +61,10 @@ public class GameWindowController {
 		this.gameWindow = gameWindow;
 		this.noOfPlayers = noOfPlayers;
 		this.mapHierarchyModel = mapModel;
-		this.gameModel = new GameModel(mapHierarchyModel, this);
+
 		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
+		this.gameModel = new GameModel(mapHierarchyModel, players);
+		providingGameModelToPlayer();
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class GameWindowController {
 						players[count1].addCountry(countryModelTest);
 						countryModelTest.addNoOfArmiesCountry();
 						players[count1].reduceArmyInPlayer();
-					
+
 					}
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
@@ -202,6 +204,12 @@ public class GameWindowController {
 
 	}
 
+	public void providingGameModelToPlayer() {
+		for (PlayerModel player : players) {
+			player.setGameModel(gameModel);
+		}
+	}
+
 	/**
 	 * Gets the players.
 	 *
@@ -211,4 +219,10 @@ public class GameWindowController {
 		return players;
 	}
 
+	/**
+	 * @return the gameModel
+	 */
+	public GameModel getGameModel() {
+		return gameModel;
+	}
 }

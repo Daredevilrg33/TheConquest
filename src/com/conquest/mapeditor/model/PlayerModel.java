@@ -34,7 +34,7 @@ public class PlayerModel extends Observable {
 	private GameWindow gameWindow;
 
 	/** The risk map model. */
-	private GameModel riskMapModel;
+	private GameModel gameModel;
 
 	/** The has won territory. */
 	private boolean hasWonTerritory;
@@ -45,12 +45,12 @@ public class PlayerModel extends Observable {
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 *
-	 * @param playerName   the player name
-	 * @param riskMapModel the risk map model
+	 * @param playerName the player name
+	 * @param gameModel  the risk map model
 	 */
-	public PlayerModel(String playerName, GameModel riskMapModel) {
+	public PlayerModel(String playerName, GameModel gameModel) {
 		this.playerName = playerName;
-		this.riskMapModel = riskMapModel;
+		this.gameModel = gameModel;
 		cards = new int[] { 0, 0, 0 };
 		this.playerCountryList = new ArrayList<>();
 		this.hasWonTerritory = false;
@@ -232,39 +232,39 @@ public class PlayerModel extends Observable {
 			if (cards[0] >= 3) {
 				cards[0] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Infantry", 0, riskMapModel);
-					riskMapModel.getTotalCards().add(card);
+					CardsModel card = new CardsModel("Infantry", 0, gameModel);
+					gameModel.getTotalCards().add(card);
 				}
 			}
 			if (cards[1] >= 3) {
 				cards[1] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Cavalry", 1, riskMapModel);
-					riskMapModel.getTotalCards().add(card);
+					CardsModel card = new CardsModel("Cavalry", 1, gameModel);
+					gameModel.getTotalCards().add(card);
 				}
 			}
 			if (cards[2] >= 3) {
 				cards[2] = 0;
 				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Artillery", 2, riskMapModel);
-					riskMapModel.getTotalCards().add(card);
+					CardsModel card = new CardsModel("Artillery", 2, gameModel);
+					gameModel.getTotalCards().add(card);
 				}
 			}
 		} else {
 			if (cards[0] >= 1) {
 				cards[0]--;
-				CardsModel card = new CardsModel("Infantry", 0, riskMapModel);
-				riskMapModel.getTotalCards().add(card);
+				CardsModel card = new CardsModel("Infantry", 0, gameModel);
+				gameModel.getTotalCards().add(card);
 			}
 			if (cards[1] >= 1) {
 				cards[1]--;
-				CardsModel card = new CardsModel("Cavalry", 1, riskMapModel);
-				riskMapModel.getTotalCards().add(card);
+				CardsModel card = new CardsModel("Cavalry", 1, gameModel);
+				gameModel.getTotalCards().add(card);
 			}
 			if (cards[2] >= 1) {
 				cards[2]--;
-				CardsModel card = new CardsModel("Artillery", 2, riskMapModel);
-				riskMapModel.getTotalCards().add(card);
+				CardsModel card = new CardsModel("Artillery", 2, gameModel);
+				gameModel.getTotalCards().add(card);
 			}
 		}
 	}
@@ -343,12 +343,12 @@ public class PlayerModel extends Observable {
 					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
 			return "";
 		} else {
-			AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players, this);
+			AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, players, this);
 			attackPhaseWindow.setVisible(true);
 
-			if (isGameWon(riskMapModel.getMapHierarchyModel().totalCountries)) {
+			if (isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 				gameWindow.labelPhase.setText("Game Over");
-				riskMapModel.setGameState(1);
+				gameModel.setGameState(1);
 				return this.playerName + " has won the game!";
 			}
 			fortificationPhase();
@@ -361,10 +361,9 @@ public class PlayerModel extends Observable {
 	 */
 	public void fortificationPhase() {
 		if (this.hasWonTerritory) {
-			CardsModel card = riskMapModel.generateRandomCard();
+			CardsModel card = gameModel.generateRandomCard();
 			increaseCard(card.getType());
-			FortificationWindow fortificationWindow = new FortificationWindow(riskMapModel.getMapHierarchyModel(),
-					this);
+			FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
 			fortificationWindow.setVisible(true);
 		}
 
@@ -444,6 +443,20 @@ public class PlayerModel extends Observable {
 	private void updateChanges() {
 		setChanged();
 		notifyObservers(this);
+	}
+
+	/**
+	 * @return the gameModel
+	 */
+	public GameModel getGameModel() {
+		return gameModel;
+	}
+
+	/**
+	 * @param gameModel the gameModel to set
+	 */
+	public void setGameModel(GameModel gameModel) {
+		this.gameModel = gameModel;
 	}
 
 }

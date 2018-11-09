@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 
 import com.conquest.controller.FortificationWindowController;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
+import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
 
 /**
@@ -72,14 +72,17 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	/** The players. */
 	private PlayerModel player;
 
+	private GameModel gameModel;
+
 	/**
 	 * Instantiates a new fortification window.
 	 *
 	 * @param mapModel the map model
 	 * @param player   the player
 	 */
-	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel player) {
+	public FortificationWindow(GameModel gameModel, PlayerModel player) {
 		this.player = player;
+		this.gameModel = gameModel;
 
 		setTitle("Fortification Window");
 		setResizable(false);
@@ -244,7 +247,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 		if (e.getSource() == jButtonFinish) {
 //			reinforcementWindowController.updateBackend();
-			
+			gameModel.increaseTurn();
+			gameModel.moveToNextPlayer();
+			dispose();
 
 		} else if (e.getSource() == jButtonSend) {
 			System.out.println("Selected Player Name: " + jPlayerLabel.getText().toString());
@@ -269,7 +274,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				reinforcementWindowController.updateUIInfo();
 
 				reinforcementWindowController.updateBackend();
-
+				gameModel.increaseTurn();
+				gameModel.moveToNextPlayer();
+				dispose();
 			}
 
 		} else if (e.getSource() == jComboBoxSourceCountries) {

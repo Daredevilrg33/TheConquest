@@ -117,9 +117,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	/** The player counter. */
 	private int playerCounter = 0;
 
-	/** The game model. */
-	private GameModel gameModel;
-
 	/** The jHandIn button place. */
 	private JButton jHandIn;
 
@@ -203,7 +200,6 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
 		players = gameWindowController.getPlayers();
-		gameModel = new GameModel(mapHierarchyModel, gameWindowController);
 
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -413,10 +409,10 @@ public class GameWindow extends JFrame implements ActionListener {
 			if (this.currPlayer.canHandIn())
 				jHandIn.setEnabled(true);
 
-			if (gameModel.getGameState() != 1) {
+			if (gameWindowController.getGameModel().getGameState() != 1) {
 				labelCardsWithPlayer.setText(this.currPlayer.cardsString());
-				gameModel.setCurrPlayer(playerModel);
-				gameModel.increaseTurn();
+				gameWindowController.getGameModel().setCurrPlayer(playerModel);
+				gameWindowController.getGameModel().increaseTurn();
 				playerModel.gamePhase(this);
 			}
 			updateGameInformation();
@@ -462,17 +458,6 @@ public class GameWindow extends JFrame implements ActionListener {
 		default:
 			break;
 		}
-	}
-
-	/**
-	 * Redirect to fortification window.
-	 *
-	 * @param playerModel       the player model
-	 * @param mapHierarchyModel the map hierarchy model
-	 */
-	public void redirectToFortificationWindow(PlayerModel playerModel, MapHierarchyModel mapHierarchyModel) {
-		FortificationWindow fortificationWindow = new FortificationWindow(mapHierarchyModel, playerModel);
-		fortificationWindow.setVisible(true);
 	}
 
 	/**
