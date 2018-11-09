@@ -7,7 +7,6 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.FortificationWindow;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FortificationWindowController.
  * 

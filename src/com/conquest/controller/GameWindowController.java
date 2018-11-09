@@ -127,7 +127,7 @@ public class GameWindowController {
 		 * calculateAndAddReinforcementArmy(players);
 		 * isControlValueTobeAdded(this.mapHierarchyModel, players);
 		 */
-//		
+		
 		updateUIInfo();
 	}
 

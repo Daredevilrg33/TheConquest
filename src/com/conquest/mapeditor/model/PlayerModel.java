@@ -336,8 +336,6 @@ public class PlayerModel extends Observable {
 		gameWindow.updatePhaseView("Attack Phase");
 		PlayerModel[] players = gameWindow.getPlayers();
 
-//		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players, this);
-
 		if (getTotalCards() >= 5) {
 			JOptionPane.showMessageDialog(null,
 					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");

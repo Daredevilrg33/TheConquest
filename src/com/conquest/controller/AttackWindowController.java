@@ -27,9 +27,6 @@ public class AttackWindowController {
 	/** The source counter. */
 	private int sourceCounter = 0;
 
-	/** The destination counter. */
-	private int targetCounter = -1;
-
 	/** The players. */
 	private PlayerModel[] players;
 
@@ -144,7 +141,7 @@ public class AttackWindowController {
 			attackPhaseWindow.getDiceResultsDefending().add(rollDice());
 		}
 		attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
-				attackingCountryModel, defendingCountryModel,true);
+				attackingCountryModel, defendingCountryModel, true);
 		attackPhaseWindow.setDiceValues(attackArmyCount, defenderArmyCount);
 	}
 
@@ -197,7 +194,7 @@ public class AttackWindowController {
 					attackPhaseWindow.getDiceResultsAttacking().size(),
 					attackPhaseWindow.getDiceResultsDefending().size());
 			attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
-					attackingCountryModel, defendingCountryModel,true);
+					attackingCountryModel, defendingCountryModel, true);
 			attackPhaseWindow.setDiceValues(attackPhaseWindow.getDiceResultsAttacking().size(),
 					attackPhaseWindow.getDiceResultsDefending().size());
 		}

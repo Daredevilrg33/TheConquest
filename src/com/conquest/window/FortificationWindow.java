@@ -246,7 +246,6 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == jButtonFinish) {
-//			reinforcementWindowController.updateBackend();
 			gameModel.increaseTurn();
 			gameModel.moveToNextPlayer();
 			dispose();
