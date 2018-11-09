@@ -36,9 +36,9 @@ public class GameModel extends Observable {
 	/** The cards. */
 	private ArrayList<CardsModel> totalCards;
 
-	
 	/** The random generator. */
 	private Random randomGenerator;
+
 	/**
 	 * Instantiates a new game model.
 	 *
@@ -49,10 +49,15 @@ public class GameModel extends Observable {
 		this.players = gameWindowController.getPlayers();
 
 		this.mapHierarchyModel = mapHierarchyModel;
-		randomGenerator= new Random();
+		randomGenerator = new Random();
 		initializingCardsModel(mapHierarchyModel);
 	}
 
+	/**
+	 * Initializing cards model.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 */
 	public void initializingCardsModel(MapHierarchyModel mapHierarchyModel) {
 		String[] names = { "Infantry", "Cavalry", "Artillery" };
 		int[] types = { 0, 1, 2 };
@@ -69,20 +74,19 @@ public class GameModel extends Observable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Generate random card.
 	 *
 	 * @return the cards model
 	 */
 
-	public CardsModel generateRandomCard()
-	{
-		
+	public CardsModel generateRandomCard() {
+
 		int index = randomGenerator.nextInt(totalCards.size());
 		ArrayList<CardsModel> cardsList = totalCards;
-        CardsModel newCard =cardsList.get(index);
-        cardsList.remove(index);
+		CardsModel newCard = cardsList.get(index);
+		cardsList.remove(index);
 		return newCard;
 	}
 
@@ -152,7 +156,7 @@ public class GameModel extends Observable {
 	/**
 	 * Sets the risk game model.
 	 *
-	 * @param riskGameModel the new risk game model
+	 * @param mapHierarchyModel the new map hierarchy model
 	 */
 
 	public void setMapHierarchyModel(MapHierarchyModel mapHierarchyModel) {
@@ -177,10 +181,20 @@ public class GameModel extends Observable {
 		notifyObservers(2);
 	}
 
+	/**
+	 * Gets the total cards.
+	 *
+	 * @return the total cards
+	 */
 	public ArrayList<CardsModel> getTotalCards() {
 		return totalCards;
 	}
 
+	/**
+	 * Sets the total cards.
+	 *
+	 * @param totalCards the new total cards
+	 */
 	public void setTotalCards(ArrayList<CardsModel> totalCards) {
 		this.totalCards = totalCards;
 	}

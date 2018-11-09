@@ -39,6 +39,7 @@ public class AttackWindowController {
 	/** The source country models. */
 	private ArrayList<String> sourceCountryModels = new ArrayList<>();
 
+	/** The game model. */
 	private GameModel gameModel;
 
 	/**
@@ -47,7 +48,6 @@ public class AttackWindowController {
 	 * @param players           the players
 	 * @param attackPhaseWindow the attack phase window
 	 * @param riskMapModel      the risk map model
-	 * @param currentPlayer     the current player
 	 */
 	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel) {
 
@@ -115,15 +115,17 @@ public class AttackWindowController {
 		int pickedNumber;
 		SecureRandom number = new SecureRandom();
 		pickedNumber = number.nextInt(6);
-		System.out.println("Roll Dice Value: " + pickedNumber);
+		System.out.println("Roll Dice Value: " + pickedNumber + 1);
 		return pickedNumber + 1;
 	}
 
 	/**
 	 * Attack.
 	 *
-	 * @param attackingCountry the attacking country
-	 * @param targetCountry    the target country
+	 * @param attackingCountry  the attacking country
+	 * @param targetCountry     the target country
+	 * @param attackArmyCount   the attack army count
+	 * @param defenderArmyCount the defender army count
 	 */
 	public void attack(String attackingCountry, String targetCountry, int attackArmyCount, int defenderArmyCount) {
 
@@ -198,6 +200,14 @@ public class AttackWindowController {
 		targetCountryModels.clear();
 	}
 
+	/**
+	 * Attack evaluation.
+	 *
+	 * @param attackingDiceValues the attacking dice values
+	 * @param defendingDiceValues the defending dice values
+	 * @param attackerCountry     the attacker country
+	 * @param defenderCountry     the defender country
+	 */
 	public void attackEvaluation(ArrayList<Integer> attackingDiceValues, ArrayList<Integer> defendingDiceValues,
 			CountryModel attackerCountry, CountryModel defenderCountry) {
 		Collections.sort(attackingDiceValues, Collections.reverseOrder());

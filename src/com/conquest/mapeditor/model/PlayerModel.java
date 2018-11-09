@@ -35,8 +35,10 @@ public class PlayerModel extends Observable {
 	/** The risk map model. */
 	private GameModel riskMapModel;
 
+	/** The has won territory. */
 	private boolean hasWonTerritory;
 
+	/** The cards. */
 	private int[] cards;
 
 	/**
@@ -150,6 +152,11 @@ public class PlayerModel extends Observable {
 		updateChanges();
 	}
 
+	/**
+	 * Removes the country.
+	 *
+	 * @param countryModel the country model
+	 */
 	public void removeCountry(CountryModel countryModel) {
 		if (playerCountryList.contains(countryModel))
 			playerCountryList.remove(countryModel);
@@ -193,8 +200,8 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * The function to judge if player can exchange cards
-	 * 
+	 * The function to judge if player can exchange cards.
+	 *
 	 * @return true if can handIn the cards
 	 */
 	public boolean canHandIn() {
@@ -205,8 +212,8 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * The function to return cards the current player possesses
-	 * 
+	 * The function to return cards the current player possesses.
+	 *
 	 * @return cardsString
 	 */
 	public String cardsString() {
@@ -215,7 +222,7 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * The function to exchange the cards
+	 * The function to exchange the cards.
 	 */
 
 	public void handInCards() {

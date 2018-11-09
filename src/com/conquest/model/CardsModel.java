@@ -19,12 +19,9 @@ public class CardsModel {
 	/**
 	 * Instantiates a new cards model.
 	 *
-	 * @param name
-	 *            the name
-	 * @param type
-	 *            the type
-	 * @param gameModel
-	 *            the game model
+	 * @param name      the name
+	 * @param type      the type
+	 * @param gameModel the game model
 	 */
 	public CardsModel(String name, int type, GameModel gameModel) {
 		this.cardName = name;
@@ -44,8 +41,7 @@ public class CardsModel {
 	/**
 	 * Sets the card name.
 	 *
-	 * @param cardName
-	 *            the new card name
+	 * @param cardName the new card name
 	 */
 	public void setCardName(String cardName) {
 		this.cardName = cardName;
@@ -63,8 +59,7 @@ public class CardsModel {
 	/**
 	 * Sets the type.
 	 *
-	 * @param type
-	 *            the new type
+	 * @param type the new type
 	 */
 	public void setType(int type) {
 		this.type = type;

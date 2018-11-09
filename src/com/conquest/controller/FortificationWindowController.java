@@ -7,6 +7,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.FortificationWindow;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class FortificationWindowController.
  * 
@@ -32,9 +33,8 @@ public class FortificationWindowController {
 	/**
 	 * Instantiates a new fortification window controller.
 	 *
-	 * @param players             the players
-	 * @param reinforcementWindow the reinforcement window
-	 * @param noOfPlayers         the no of players
+	 * @param player              the player
+	 * @param fortificationWindow the fortification window
 	 */
 	public FortificationWindowController(PlayerModel player, FortificationWindow fortificationWindow) {
 		this.fortificationWindow = fortificationWindow;
@@ -46,6 +46,11 @@ public class FortificationWindowController {
 
 	}
 
+	/**
+	 * Gets the current player.
+	 *
+	 * @return the current player
+	 */
 	public PlayerModel getCurrentPlayer() {
 		return player;
 	}

@@ -27,7 +27,7 @@ public class CountryModel extends Observable {
 	/** The list of neighbours. */
 	private ArrayList<String> listOfNeighbours;
 
-	/**  player who owns this country. */
+	/** player who owns this country. */
 	private PlayerModel owner;
 
 	/** The is visited. */
