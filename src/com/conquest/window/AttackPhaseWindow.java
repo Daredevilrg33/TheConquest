@@ -386,7 +386,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			attackWindowController.allOutAttack(sourceCountryName, defenderCountryName);
 			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
-
+			
 
 		} else if (e.getSource() == jButtonFinishAttack) {
 			// Move to Fortification Window.

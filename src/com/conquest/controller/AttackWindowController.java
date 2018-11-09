@@ -153,42 +153,53 @@ public class AttackWindowController {
 		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
 				.searchCountry(attackingCountry.trim());
 
-		CountryModel defendingCountryModel = null;
-		defendingCountryModel = gameModel.getMapHierarchyModel().searchCountry(targetCountry.trim());
+		CountryModel defendingCountryModel = gameModel.getMapHierarchyModel().searchCountry(targetCountry.trim());
 
-		
+		int diceRollValue = 0;
 		while (attackingCountryModel.getNoOfArmiesCountry() > 1 && defendingCountryModel.getNoOfArmiesCountry() > 0) {
-			
-			if(attackingCountryModel.getNoOfArmiesCountry() > 3) {
+			CountryModel checkDefenderInCurrentPlayer = attackPhaseWindow.getCurrentPlayer()
+					.searchCountry(targetCountry.trim());
+			if (checkDefenderInCurrentPlayer != null)
+				return;
+
+			attackPhaseWindow.getDiceResultsAttacking().clear();
+			attackPhaseWindow.getDiceResultsDefending().clear();
+			if (attackingCountryModel.getNoOfArmiesCountry() > 3) {
 				for (int i = 0; i < 3; i++) {
-					int diceRollValue = rollDice();
+					diceRollValue = rollDice();
 					attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
 				}
-			}
-			if(attackingCountryModel.getNoOfArmiesCountry() == 3) {
+			} else if (attackingCountryModel.getNoOfArmiesCountry() == 3) {
 				for (int i = 0; i < 2; i++) {
-					int diceRollValue = rollDice();
+					diceRollValue = rollDice();
 					attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
 				}
-			}if(attackingCountryModel.getNoOfArmiesCountry() == 2) {
-			for (int i = 0; i < 1; i++) {
-				int diceRollValue = rollDice();
+			} else if (attackingCountryModel.getNoOfArmiesCountry() == 2) {
+
+				diceRollValue = rollDice();
 				attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
+			}
+
+			if (defendingCountryModel.getNoOfArmiesCountry() >= 2) {
+
+				for (int i = 0; i < 2; i++) {
+
+					attackPhaseWindow.getDiceResultsDefending().add(rollDice());
 				}
 			}
-			if(defendingCountryModel.getNoOfArmiesCountry() > 2) {
-				for (int i = 0; i < 2; i++) {
-					attackPhaseWindow.getDiceResultsDefending().add(rollDice());
-				}	
-			}
-			if(defendingCountryModel.getNoOfArmiesCountry() > 1) {
+			if (defendingCountryModel.getNoOfArmiesCountry() == 1) {
+
 				for (int i = 0; i < 1; i++) {
 					attackPhaseWindow.getDiceResultsDefending().add(rollDice());
-				}	
+				}
 			}
-			
+			attackPhaseWindow.setDiceVisiblityAccordingToDiceSelected(
+					attackPhaseWindow.getDiceResultsAttacking().size(),
+					attackPhaseWindow.getDiceResultsDefending().size());
 			attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
 					attackingCountryModel, defendingCountryModel);
+			attackPhaseWindow.setDiceValues(attackPhaseWindow.getDiceResultsAttacking().size(),
+					attackPhaseWindow.getDiceResultsDefending().size());
 		}
 	}
 
