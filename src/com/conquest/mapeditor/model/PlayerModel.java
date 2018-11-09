@@ -325,9 +325,9 @@ public class PlayerModel extends Observable {
 	 * @return the string
 	 */
 	public String AttackPhase() {
+		gameWindow.updatePhaseView("Attack Phase");
 		PlayerModel[] players = gameWindow.getPlayers();
 
-//		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(riskMapModel, players, this);
 		if(getTotalCards()>=5)
 		{
 			JOptionPane.showMessageDialog(null,
@@ -355,9 +355,9 @@ public class PlayerModel extends Observable {
 	public void FortificationPhase() {
 		if(this.hasWonTerritory)
 		{
-			
+			CardsModel card =riskMapModel.generateRandomCard();
+			increaseCard(card.getType());
 		}
-		//increaseCard(type);
 	}
 
 	/**
@@ -391,7 +391,6 @@ public class PlayerModel extends Observable {
 					updateReinforcedArmiesUI();
 				}
 				if (this.getnoOfArmyInPlayer() == 0) {
-					
 					AttackPhase();
 					break;
 				}

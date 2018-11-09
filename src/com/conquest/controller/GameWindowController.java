@@ -170,7 +170,7 @@ public class GameWindowController {
 					players[prevCounter].reduceArmyInPlayer();
 				}
 				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
-					gameWindow.updatePhaseView();
+					gameWindow.updatePhaseView("Reinforcement Phase");
 					break;
 				}
 				System.out.println(

@@ -2,6 +2,7 @@ package com.conquest.model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.ContinentModel;
@@ -34,6 +35,9 @@ public class GameModel extends Observable {
 
 	/** The cards. */
 	private ArrayList<CardsModel> totalCards;
+	
+	/** The random generator. */
+	private Random randomGenerator;
 	/**
 	 * Instantiates a new game model.
 	 *
@@ -43,6 +47,7 @@ public class GameModel extends Observable {
 	public GameModel(MapHierarchyModel mapHierarchyModel, GameWindowController gameWindowController) {
 		this.players = gameWindowController.getPlayers();
 		this.riskGameModel = mapHierarchyModel;
+		randomGenerator= new Random();
 		initializingCardsModel(mapHierarchyModel);
 	}
 	
@@ -64,6 +69,22 @@ public class GameModel extends Observable {
 			j=0;	
 			}
 		}
+	}
+	
+	/**
+	 * Generate random card.
+	 *
+	 * @return the cards model
+	 */
+
+	public CardsModel generateRandomCard()
+	{
+		
+		int index = randomGenerator.nextInt(totalCards.size());
+		ArrayList<CardsModel> cardsList = totalCards;
+        CardsModel newCard =cardsList.get(index);
+        cardsList.remove(index);
+		return newCard;
 	}
 
 	/**
