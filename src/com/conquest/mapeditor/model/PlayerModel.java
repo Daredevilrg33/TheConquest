@@ -35,6 +35,8 @@ public class PlayerModel extends Observable {
 	/** The risk map model. */
 	private GameModel riskMapModel;
 	
+	private boolean hasWonTerritory;
+	
 	private int[] cards;
 
 	/**
@@ -351,6 +353,11 @@ public class PlayerModel extends Observable {
 	 * Fortification phase.
 	 */
 	public void FortificationPhase() {
+		if(this.hasWonTerritory)
+		{
+			
+		}
+		//increaseCard(type);
 	}
 
 	/**
