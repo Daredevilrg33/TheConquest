@@ -32,6 +32,9 @@ public class GameModel extends Observable {
 
 	/** The turn. */
 	private int turn;
+	
+	/** The handInCounter. */
+	private int handInCounter=0;
 
 	/** The cards. */
 	private ArrayList<CardsModel> totalCards;
@@ -179,6 +182,22 @@ public class GameModel extends Observable {
 		turn++;
 		setChanged();
 		notifyObservers(2);
+	}
+	
+	
+
+	/**
+	 * @return the handInCounter
+	 */
+	public int getHandInCounter() {
+		return handInCounter;
+	}
+
+	/**
+	 * @param handInCounter the handInCounter to set
+	 */
+	public void setHandInCounter(int handInCounter) {
+		this.handInCounter = handInCounter;
 	}
 
 	/**

@@ -267,6 +267,8 @@ public class PlayerModel extends Observable {
 				gameModel.getTotalCards().add(card);
 			}
 		}
+		gameModel.setHandInCounter(gameModel.getHandInCounter()+1);
+		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter()*5);;
 	}
 
 	/**
@@ -283,6 +285,14 @@ public class PlayerModel extends Observable {
 			}
 		}
 		return null;
+	}
+	
+	/**
+     * Method to add armies to player on cards Exchange.
+     * @param armies armies to add
+     */
+	public void addArmies(int armies) {
+		this.noOfArmyInPlayer += armies;
 	}
 
 	/**
@@ -333,7 +343,7 @@ public class PlayerModel extends Observable {
 	 * @return the string
 	 */
 	public String AttackPhase() {
-		gameWindow.updatePhaseView("Attack Phase");
+		//gameWindow.updatePhaseView("Attack Phase");
 		PlayerModel[] players = gameWindow.getPlayers();
 
 		if (getTotalCards() >= 5) {
@@ -360,7 +370,7 @@ public class PlayerModel extends Observable {
 	public void fortificationPhase() {
 		if (this.hasWonTerritory) {
 			CardsModel card = gameModel.generateRandomCard();
-			increaseCard(card.getType());
+			this.increaseCard(card.getType());
 			FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
 			fortificationWindow.setVisible(true);
 		}

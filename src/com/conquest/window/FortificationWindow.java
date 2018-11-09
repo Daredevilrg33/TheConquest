@@ -25,7 +25,7 @@ import com.conquest.utilities.Constants;
 public class FortificationWindow extends JFrame implements ActionListener {
 
 	/** The reinforcement window controller. */
-	private FortificationWindowController reinforcementWindowController;
+	private FortificationWindowController fortificationWindowController;
 
 	/** The j combo box source countries. */
 	private JComboBox<String> jComboBoxSourceCountries;
@@ -139,7 +139,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		jDestinationArmyLabel.setBounds(337, 78, 200, 30);
 		add(jDestinationArmyLabel);
 
-		reinforcementWindowController = new FortificationWindowController(player, this);
+		fortificationWindowController = new FortificationWindowController(player, this);
 
 		addWindowListener(new WindowAdapter() {
 
@@ -260,7 +260,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Select Source Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
 
-			} else if (reinforcementWindowController.checking()) {
+			} else if (fortificationWindowController.checking()) {
 				JOptionPane.showMessageDialog(this, "Low number of Armies in Source Country\n Unable to send",
 						"Error Message", JOptionPane.ERROR_MESSAGE);
 			} else if (jComboBoxDestinationCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {
@@ -269,10 +269,10 @@ public class FortificationWindow extends JFrame implements ActionListener {
 			} else {
 
 				armies = Integer.valueOf(jComboBoxChosenNoOfArmies.getSelectedItem().toString());
-				reinforcementWindowController.sending(armies);
-				reinforcementWindowController.updateUIInfo();
+				fortificationWindowController.sending(armies);
+				fortificationWindowController.updateUIInfo();
 
-				reinforcementWindowController.updateBackend();
+				fortificationWindowController.updateBackend();
 				gameModel.increaseTurn();
 				gameModel.moveToNextPlayer();
 				dispose();
@@ -286,8 +286,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				System.out.println(" Current Item Selected " + jComboBoxSourceCountries.getSelectedItem()
 						+ jComboBoxSourceCountries.getSelectedIndex());
 				if (jComboBoxSourceCountries.getSelectedIndex() > 0) {
-					reinforcementWindowController.finding(selectedSourceCountry);
-					reinforcementWindowController.updateUIInfo();
+					fortificationWindowController.finding(selectedSourceCountry);
+					fortificationWindowController.updateUIInfo();
 				}
 				updateDestinationArmyLabel(0);
 			}
@@ -300,7 +300,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 			} else {
 				selectedDestinationCountry = "";
 			}
-			reinforcementWindowController.updateDestinationUI(selectedDestinationCountry);
+			fortificationWindowController.updateDestinationUI(selectedDestinationCountry);
 
 		}
 
