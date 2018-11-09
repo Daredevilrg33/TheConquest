@@ -171,6 +171,7 @@ public class GameWindowController {
 				}
 				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 					gameWindow.updatePhaseView();
+					
 					break;
 				}
 				System.out.println(

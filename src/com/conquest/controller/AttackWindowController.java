@@ -30,17 +30,16 @@ public class AttackWindowController {
 	/** The destination counter. */
 	private int targetCounter = -1;
 
-	/** The counter. */
-	private int counter = 0;
-
 	/** The players. */
 	private PlayerModel[] players;
 
 	/** The destination country models. */
-	ArrayList<String> targetCountryModels = new ArrayList<>();
+	private ArrayList<String> targetCountryModels = new ArrayList<>();
 
 	/** The source country models. */
-	ArrayList<String> sourceCountryModels = new ArrayList<>();
+	private ArrayList<String> sourceCountryModels = new ArrayList<>();
+
+	private GameModel gameModel;
 
 	/**
 	 * Instantiates a new attack window controller.
@@ -48,27 +47,16 @@ public class AttackWindowController {
 	 * @param players           the players
 	 * @param attackPhaseWindow the attack phase window
 	 * @param riskMapModel      the risk map model
-	 * @param currPlayer the current player
+	 * @param currentPlayer     the current player
 	 */
-	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel,
-			PlayerModel currPlayer) {
+	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel) {
 
 		this.attackPhaseWindow = attackPhaseWindow;
 		this.noOfPlayers = players.length;
 		this.players = players;
-
+		this.gameModel = riskMapModel;
 		updateSourceUIInfo();
-		attackPhaseWindow.updatePlayerLabel(currPlayer.getPlayerName());
-	}
-
-	/**
-	 * Next player. Switches to next player
-	 */
-	public void nextPlayer() {
-		if (counter < noOfPlayers) {
-			counter++;
-		} else
-			counter = 0;
+		attackPhaseWindow.updatePlayerLabel(this.attackPhaseWindow.getCurrentPlayer().getPlayerName());
 	}
 
 	/**
@@ -77,16 +65,14 @@ public class AttackWindowController {
 	 * @param sourceCountry the source country
 	 */
 	public void finding(String sourceCountry) {
-		PlayerModel playerModel = players[counter];
-		System.out.println("Finding counter value: " + counter);
 
-		System.out.println("Player Model Name" + playerModel.getPlayerName());
+		System.out.println("Player Name" + attackPhaseWindow.getCurrentPlayer().getPlayerName());
 		ArrayList<String> tempCountryModels1 = new ArrayList<>();
 		ArrayList<String> tempCountryModels2 = new ArrayList<>();
 
-		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+		for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
 			if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountry.trim())) {
-				sourceCounter = playerModel.getPlayerCountryList().indexOf(countryModel);
+				sourceCounter = attackPhaseWindow.getCurrentPlayer().getPlayerCountryList().indexOf(countryModel);
 				tempCountryModels2.addAll(countryModel.getListOfNeighbours());
 				tempCountryModels1.addAll(countryModel.getListOfNeighbours());
 				targetCountryModels.addAll(countryModel.getListOfNeighbours());
@@ -97,7 +83,7 @@ public class AttackWindowController {
 
 		System.out.println("Before Removing: " + targetCountryModels.size());
 		for (String neighbor : tempCountryModels1) {
-			for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
 				if (countryModel.getCountryName().trim().equalsIgnoreCase(neighbor)) {
 					tempCountryModels2.remove(neighbor);
 					targetCountryModels.remove(neighbor);
@@ -129,6 +115,7 @@ public class AttackWindowController {
 		int pickedNumber;
 		SecureRandom number = new SecureRandom();
 		pickedNumber = number.nextInt(6);
+		System.out.println("Roll Dice Value: " + pickedNumber);
 		return pickedNumber + 1;
 	}
 
@@ -138,88 +125,33 @@ public class AttackWindowController {
 	 * @param attackingCountry the attacking country
 	 * @param targetCountry    the target country
 	 */
-	public void attack(String attackingCountry, String targetCountry) {
+	public void attack(String attackingCountry, String targetCountry, int attackArmyCount, int defenderArmyCount) {
 
-		CountryModel attackingCountryModel = players[counter].searchCountry(attackingCountry.trim());
-		CountryModel targetCountryModel = null;
-		for (PlayerModel defendingPlayer : players) {
-			targetCountryModel = defendingPlayer.searchCountry(targetCountry.trim());
-			if (targetCountryModel != null) {
-				break;
-			}
+		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
+				.searchCountry(attackingCountry.trim());
+
+		CountryModel defendingCountryModel = null;
+		defendingCountryModel = gameModel.getMapHierarchyModel().searchCountry(targetCountry.trim());
+
+		for (int i = 0; i < attackArmyCount; i++) {
+			int diceRollValue = rollDice();
+			attackPhaseWindow.getDiceResultsAttacking().add(diceRollValue);
 		}
 
-		if (attackingCountryModel.getNoOfArmiesCountry() > 3) {
-			for (int i = 0; i < 3; i++) {
-				attackPhaseWindow.diceResultsAttacking.add(rollDice());
-			}
-		} 
-
-		if (targetCountryModel.getNoOfArmiesCountry() > 2) {
-			for (int i = 0; i < 2; i++) {
-				attackPhaseWindow.diceResultsDefending.add(rollDice());
-			}
-		} 
-
-		int objAttack = Collections.max(attackPhaseWindow.diceResultsAttacking);
-		int objDefend = Collections.max(attackPhaseWindow.diceResultsDefending);
-		System.out.println("largest dice in attacking " + objAttack);
-		System.out.println("largest dice in defending " + objDefend);
-
-		updateDiceView();
-		
-//		if(attackPhaseWindow.diceResultsAttacking.size() == 3) {
-//			if(objDefend >= objAttack) {
-//			
-//			}
-//			else {
-//				
-//			}
-//		}
-//		if(attackPhaseWindow.diceResultsAttacking.size() == 2) {
-//			
-//		}
-//		if(attackPhaseWindow.diceResultsAttacking.size() == 1) {
-//			
-//		}
-
-	}
-
-	/**
-	 * Update dice UI info.
-	 */
-	public void updateDiceView() {
-
-
-//		attackPhaseWindow.attackDice1.setText(attackPhaseWindow.diceResultsAttacking.get(0) + "");
-//		attackPhaseWindow.attackDice2.setText(attackPhaseWindow.diceResultsAttacking.get(1) + "");
-//		attackPhaseWindow.attackDice3.setText(attackPhaseWindow.diceResultsAttacking.get(2) + "");
-//		attackPhaseWindow.defendDice1.setText(attackPhaseWindow.diceResultsDefending.get(0) + "");
-//		attackPhaseWindow.defendDice2.setText(attackPhaseWindow.diceResultsDefending.get(1) + "");
-
-
-			attackPhaseWindow.attackDice1.setText(attackPhaseWindow.diceResultsAttacking.get(0)+"");
-			if(attackPhaseWindow.diceResultsAttacking.size()==2)
-			attackPhaseWindow.attackDice2.setText(attackPhaseWindow.diceResultsAttacking.get(1)+"");
-			if(attackPhaseWindow.diceResultsAttacking.size()==3)
-			attackPhaseWindow.attackDice3.setText(attackPhaseWindow.diceResultsAttacking.get(2)+"");
-			if(attackPhaseWindow.diceResultsDefending.size()==2)
-			{
-			attackPhaseWindow.defendDice1.setText(attackPhaseWindow.diceResultsDefending.get(0)+"");
-			attackPhaseWindow.defendDice2.setText(attackPhaseWindow.diceResultsDefending.get(1)+"");
-			}
-			else
-				attackPhaseWindow.defendDice1.setText(attackPhaseWindow.diceResultsDefending.get(0)+"");	
-		
-
+		for (int i = 0; i < defenderArmyCount; i++) {
+			attackPhaseWindow.getDiceResultsDefending().add(rollDice());
+		}
+		attackEvaluation(attackPhaseWindow.getDiceResultsAttacking(), attackPhaseWindow.getDiceResultsDefending(),
+				attackingCountryModel, defendingCountryModel);
+		attackPhaseWindow.setDiceValues(attackArmyCount, defenderArmyCount);
 	}
 
 	/**
 	 * Update source UI info.
 	 */
 	public void updateSourceUIInfo() {
-		PlayerModel playerModel = players[counter];
-		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+
+		for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
 			if (countryModel.getNoOfArmiesCountry() > 1) {
 				sourceCountryModels.add(countryModel.getCountryName());
 			}
@@ -234,15 +166,17 @@ public class AttackWindowController {
 	 */
 	public void updateNoOfDiceUIInfo(CountryModel countryModel) {
 		int diceFlag = 0;
-		PlayerModel playerModel = players[counter];
+		if (countryModel != null) {
+			if (countryModel.getNoOfArmiesCountry() > 3) {
+				diceFlag = 3;
+			} else if (countryModel.getNoOfArmiesCountry() > 2) {
+				diceFlag = 2;
+			} else if (countryModel.getNoOfArmiesCountry() > 1) {
+				diceFlag = 1;
+			}
 
-		if (countryModel.getNoOfArmiesCountry() > 3) {
-			diceFlag = 3;
-		} else if (countryModel.getNoOfArmiesCountry() > 2) {
-			diceFlag = 2;
-		} else if (countryModel.getNoOfArmiesCountry() > 1) {
-			diceFlag = 1;
 		}
+
 		attackPhaseWindow.updateComboBoxNoOfDice(diceFlag);
 
 	}
@@ -264,4 +198,50 @@ public class AttackWindowController {
 		targetCountryModels.clear();
 	}
 
+	public void attackEvaluation(ArrayList<Integer> attackingDiceValues, ArrayList<Integer> defendingDiceValues,
+			CountryModel attackerCountry, CountryModel defenderCountry) {
+		Collections.sort(attackingDiceValues, Collections.reverseOrder());
+		Collections.sort(defendingDiceValues, Collections.reverseOrder());
+		int result1 = attackingDiceValues.get(0).compareTo(defendingDiceValues.get(0));
+		int result2 = -2;
+		if (attackingDiceValues.size() > 1 && defendingDiceValues.size() > 1) {
+			result2 = attackingDiceValues.get(1).compareTo(defendingDiceValues.get(1));
+		}
+
+		if (result1 == 1)
+			defenderCountry.removeNoOfArmiesCountry();
+		else
+			attackerCountry.removeNoOfArmiesCountry();
+		if (!(result2 == -2)) {
+			if (result2 == 1)
+
+				defenderCountry.removeNoOfArmiesCountry();
+			else
+				attackerCountry.removeNoOfArmiesCountry();
+
+		}
+		attackPhaseWindow.updateSourceArmyLabel(attackerCountry.getNoOfArmiesCountry());
+		attackPhaseWindow.updateTargetArmyLabel(defenderCountry.getNoOfArmiesCountry());
+		if (defenderCountry.getNoOfArmiesCountry() == 0) {
+			for (PlayerModel player : attackPhaseWindow.getPlayers()) {
+				for (CountryModel countryModel : player.getPlayerCountryList()) {
+					if (countryModel.getCountryName().trim()
+							.equalsIgnoreCase(defenderCountry.getCountryName().trim())) {
+						player.removeCountry(defenderCountry);
+						break;
+					}
+				}
+			}
+
+			attackPhaseWindow.getCurrentPlayer().addCountry(defenderCountry);
+			
+			ArrayList<String> sourceCountryValues = new ArrayList<>();
+			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
+				sourceCountryValues.add(countryModel.getCountryName());
+			}
+			attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryValues);
+
+		}
+
+	}
 }

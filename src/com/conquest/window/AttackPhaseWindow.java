@@ -6,6 +6,7 @@ package com.conquest.window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -60,42 +61,47 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	private GameModel riskMapModel;
 
 	/** The player. */
-	private PlayerModel[] player;
+	private PlayerModel[] players;
 
 	/** The dice image. */
 	private JLabel diceImage;
-	
+
 	/** The attack dice 1. */
-	public JLabel attackDice1;
-	
+	private JLabel attackDice1;
+
 	/** The attack dice 2. */
-	public JLabel attackDice2;
-	
+	private JLabel attackDice2;
+
 	/** The attack dice 3. */
-	public JLabel attackDice3;
-	
+	private JLabel attackDice3;
+
 	/** The defend dice 1. */
-	public JLabel defendDice1;
-	
+	private JLabel defendDice1;
+
 	/** The defend dice 2. */
-	public JLabel defendDice2;
+	private JLabel defendDice2;
 
 	/** The dice results attacking. */
-	public ArrayList<Integer> diceResultsAttacking = new ArrayList<>();
+	private ArrayList<Integer> diceResultsAttacking = new ArrayList<>();
 
 	/** The dice results defending. */
-	public ArrayList<Integer> diceResultsDefending = new ArrayList<>();
+	private ArrayList<Integer> diceResultsDefending = new ArrayList<>();
+
+	private PlayerModel currentPlayer;
+
+	private JButton jButtonFinishAttack;
 
 	/**
 	 * Instantiates a new attack phase window.
 	 *
-	 * @param riskMapModel the risk map model
-	 * @param playerModel  the player model
+	 * @param riskMapModel  the risk map model
+	 * @param playerModel   the player model
 	 * @param currentPlayer the current player
 	 */
-	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModel, PlayerModel currentPlayer) {
+	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
 		this.riskMapModel = riskMapModel;
-		this.player = playerModel;
+		this.players = playerModels;
+		this.currentPlayer = currentPlayer;
 		setTitle("Attack Phase");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.HEIGHT);
@@ -140,7 +146,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 
 		JLabel jNoOfDiceLabel = new JLabel();
 		jNoOfDiceLabel.setBounds(430, 20, 200, 30);
-		jNoOfDiceLabel.setText("Select Dice");
+		jNoOfDiceLabel.setText("Select No of Dice");
 		add(jNoOfDiceLabel);
 
 		jSourceArmyLabel = new JLabel();
@@ -176,8 +182,11 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		defendDice2 = new JLabel("");
 		defendDice2.setBounds(940, 70, 100, 30);
 		add(defendDice2);
-
-		attackWindowController = new AttackWindowController(player, this, riskMapModel, currentPlayer);
+		jButtonFinishAttack = new JButton("Finish Attack");
+		jButtonFinishAttack.setBounds(Constants.MAP_EDITOR_WIDTH / 2 - 100, Constants.HEIGHT / 2, 200, 30);
+		jButtonFinishAttack.addActionListener(this);
+		add(jButtonFinishAttack);
+		attackWindowController = new AttackWindowController(players, this, riskMapModel);
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxTargetCountries.addActionListener(this);
 		jComboBoxNoOfDice.addActionListener(this);
@@ -201,11 +210,13 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void updateComboBoxSourceCountries(ArrayList<String> countryModels) {
 		jComboBoxSourceCountries.removeAllItems();
 		jComboBoxSourceCountries.addItem("Select country:");
+		if (countryModels != null) {
+			for (int i = countryModels.size() - 1; i >= 0; i--) {
+				jComboBoxSourceCountries.addItem(countryModels.get(i));
+			}
 
-		for (int i = countryModels.size() - 1; i >= 0; i--) {
-			jComboBoxSourceCountries.addItem(countryModels.get(i));
 		}
-
+		jComboBoxSourceCountries.setSelectedIndex(0);
 	}
 
 	/**
@@ -216,10 +227,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void updateComboBoxTargetCountries(ArrayList<String> countryModels) {
 		jComboBoxTargetCountries.removeAllItems();
 		jComboBoxTargetCountries.addItem("Select country:");
-
-		for (int i = countryModels.size() - 1; i >= 0; i--) {
-			jComboBoxTargetCountries.addItem(countryModels.get(i));
+		if (countryModels != null) {
+			for (int i = countryModels.size() - 1; i >= 0; i--) {
+				jComboBoxTargetCountries.addItem(countryModels.get(i));
+			}
 		}
+
 	}
 
 	/**
@@ -272,8 +285,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jComboBoxSourceCountries) {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
-			if (!sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
-				CountryModel sourceCountry = riskMapModel.getRiskGameModel().searchCountry(sourceCountryName);
+			if (sourceCountryName != null && !sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
+				CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 				updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
 				attackWindowController.finding(sourceCountryName);
 				System.out.println("targetCountryList().size()" + attackWindowController.targetCountryList().size());
@@ -286,26 +299,222 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 				}
 				attackWindowController.updateTargetUIInfo();
 
+			} else {
+				updateComboBoxTargetCountries(null);
+				updateSourceArmyLabel(0);
 			}
 			updateTargetArmyLabel(0);
 		} else if (e.getSource() == jComboBoxTargetCountries) {
 			System.out.println(jComboBoxTargetCountries.getSelectedIndex());
 			if (jComboBoxTargetCountries.getSelectedIndex() > 0) {
 				String targetCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
-				CountryModel targetCountry = riskMapModel.getRiskGameModel().searchCountry(targetCountryName);
+				CountryModel targetCountry = riskMapModel.getMapHierarchyModel().searchCountry(targetCountryName);
 				updateTargetArmyLabel(targetCountry.getNoOfArmiesCountry());
-			}
+			} else
+				updateTargetArmyLabel(0);
 		} else if (e.getSource() == jComboBoxNoOfDice) {
-			System.out.println(jComboBoxNoOfDice.getSelectedIndex());
-//			if (jComboBoxNoOfDice.getSelectedIndex() != 0) {
-//			
-//			}
+
 		} else if (e.getSource() == jButtonAttack) {
-			attackWindowController.attack((String) jComboBoxSourceCountries.getSelectedItem(),
-					(String) jComboBoxTargetCountries.getSelectedItem());
-			
+			diceResultsAttacking.clear();
+			diceResultsDefending.clear();
+
+			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
+			String defenderCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
+			if (sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
+				JOptionPane.showMessageDialog(this, "Select source country !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+
+				return;
+			}
+			if (defenderCountryName.trim().equalsIgnoreCase("Select country:")) {
+				JOptionPane.showMessageDialog(this, "Select target country !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			String diceComboValue = (String) jComboBoxNoOfDice.getSelectedItem();
+			int noOfDiceSelected = 0;
+			int defenderArmyCount = 0;
+			defenderArmyCount = Integer.valueOf(jTargetArmyLabel.getText().toString());
+			if (defenderArmyCount == 0) {
+				JOptionPane.showMessageDialog(this, "Defender has zero army !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (diceComboValue.trim().equalsIgnoreCase("Select Die:")) {
+				JOptionPane.showMessageDialog(this, "Please select no of Dice !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			} else {
+				noOfDiceSelected = Integer.valueOf(diceComboValue);
+				if (defenderArmyCount > 2)
+					defenderArmyCount = 2;
+				if (defenderArmyCount > noOfDiceSelected)
+					defenderArmyCount = 1;
+				setDiceVisiblityAccordingToDiceSelected(noOfDiceSelected, defenderArmyCount);
+			}
+
+			attackWindowController.attack(sourceCountryName, defenderCountryName, noOfDiceSelected, defenderArmyCount);
+			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
+			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
 		} else if (e.getSource() == jButtonAllOutAttack) {
 
+			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
+			String defenderCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
+			if (sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
+				JOptionPane.showMessageDialog(this, "Select source country !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+
+				return;
+			}
+			if (defenderCountryName.trim().equalsIgnoreCase("Select country:")) {
+				JOptionPane.showMessageDialog(this, "Select target country !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			int defenderArmyCount = 0;
+			defenderArmyCount = Integer.valueOf(jTargetArmyLabel.getText().toString());
+			if (defenderArmyCount == 0) {
+				JOptionPane.showMessageDialog(this, "Defender has zero army !!", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+
+		} else if (e.getSource() == jButtonFinishAttack) {
+			// Move to Fortification Window.
 		}
+	}
+
+	/**
+	 * @return the currentPlayer
+	 */
+	public PlayerModel getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void changeDiceVisiblity(JLabel jLabelDice, boolean isVisible) {
+		jLabelDice.setVisible(isVisible);
+
+	}
+
+	public void updateDiceValue(JLabel jLabelDice, int diceValue) {
+		jLabelDice.setText(String.valueOf(diceValue));
+
+	}
+
+	public void setDiceVisiblityAccordingToDiceSelected(int noOfDiceSelected, int defenderArmyCount) {
+		switch (noOfDiceSelected) {
+		case 1:
+			changeDiceVisiblity(attackDice1, true);
+			changeDiceVisiblity(attackDice2, false);
+			changeDiceVisiblity(attackDice3, false);
+			break;
+		case 2:
+			changeDiceVisiblity(attackDice1, true);
+			changeDiceVisiblity(attackDice2, true);
+			changeDiceVisiblity(attackDice3, false);
+			break;
+		case 3:
+			changeDiceVisiblity(attackDice1, true);
+			changeDiceVisiblity(attackDice2, true);
+			changeDiceVisiblity(attackDice3, true);
+			break;
+		default:
+			changeDiceVisiblity(attackDice1, false);
+			changeDiceVisiblity(attackDice2, false);
+			changeDiceVisiblity(attackDice3, false);
+			break;
+		}
+		if (defenderArmyCount > 2)
+			defenderArmyCount = 2;
+		switch (defenderArmyCount) {
+		case 1:
+			changeDiceVisiblity(defendDice1, true);
+			changeDiceVisiblity(defendDice2, false);
+
+			break;
+		case 2:
+			changeDiceVisiblity(defendDice1, true);
+			changeDiceVisiblity(defendDice2, true);
+
+			break;
+		default:
+			changeDiceVisiblity(defendDice1, false);
+			changeDiceVisiblity(defendDice2, false);
+
+			break;
+		}
+	}
+
+	public void setDiceValues(int noOfDiceSelected, int defenderArmyCount) {
+		Collections.sort(diceResultsAttacking, Collections.reverseOrder());
+		Collections.sort(diceResultsDefending, Collections.reverseOrder());
+		int maxAttackValue = diceResultsAttacking.get(0);
+
+		int maxDefenderValue = diceResultsDefending.get(0);
+		int secondMaxAttackValue = 0;
+		int thirdAttackValue = 0;
+		int secondDefendValue = 0;
+		if (diceResultsAttacking.size() > 1) {
+			secondMaxAttackValue = diceResultsAttacking.get(1);
+		}
+		if (diceResultsDefending.size() > 1)
+			secondDefendValue = diceResultsDefending.get(1);
+
+		if (diceResultsAttacking.size() > 2)
+			thirdAttackValue = diceResultsAttacking.get(2);
+		switch (noOfDiceSelected) {
+		case 1:
+			updateDiceValue(attackDice1, maxAttackValue);
+			break;
+		case 2:
+
+			updateDiceValue(attackDice1, maxAttackValue);
+			updateDiceValue(attackDice2, secondMaxAttackValue);
+			break;
+		case 3:
+
+			updateDiceValue(attackDice1, maxAttackValue);
+			updateDiceValue(attackDice2, secondMaxAttackValue);
+			updateDiceValue(attackDice3, thirdAttackValue);
+			break;
+		default:
+			break;
+		}
+
+		switch (defenderArmyCount) {
+		case 1:
+			updateDiceValue(defendDice1, maxDefenderValue);
+			break;
+		case 2:
+			updateDiceValue(defendDice1, maxDefenderValue);
+			updateDiceValue(defendDice2, secondDefendValue);
+			break;
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * @return the diceResultsAttacking
+	 */
+	public ArrayList<Integer> getDiceResultsAttacking() {
+		return diceResultsAttacking;
+	}
+
+	/**
+	 * @return the diceResultsDefending
+	 */
+	public ArrayList<Integer> getDiceResultsDefending() {
+		return diceResultsDefending;
+	}
+
+	/**
+	 * @return the players
+	 */
+	public PlayerModel[] getPlayers() {
+		return players;
 	}
 }

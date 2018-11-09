@@ -192,6 +192,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		jHandIn = new JButton("HandIn the cards");
 		jHandIn.setBounds(690, 620, 200, 30);
 		jHandIn.setEnabled(false);
+		jHandIn.setVisible(false);
 		jHandIn.addActionListener(this);
 		add(jHandIn);
 
@@ -412,6 +413,7 @@ public class GameWindow extends JFrame implements ActionListener {
 				playerModel.gamePhase(this);
 			}
 			updateGameInformation();
+			jHandIn.setVisible(true);
 		} else {
 			jButtonPlace.setEnabled(false);
 		}
@@ -437,6 +439,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			this.currPlayer.placeReinforcedArmy(selectedCountry);
+			updateGameInformation();
 			break;
 		case "HandIn the cards":
 			this.currPlayer.handInCards();

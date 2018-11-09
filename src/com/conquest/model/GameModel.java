@@ -27,13 +27,14 @@ public class GameModel extends Observable {
 	private int gameState = 0; // 0=on 1=won
 
 	/** The risk game model. */
-	private MapHierarchyModel riskGameModel;
+	private MapHierarchyModel mapHierarchyModel;
 
 	/** The turn. */
 	private int turn;
 
 	/** The cards. */
 	private ArrayList<CardsModel> totalCards;
+
 	/**
 	 * Instantiates a new game model.
 	 *
@@ -42,26 +43,23 @@ public class GameModel extends Observable {
 	 */
 	public GameModel(MapHierarchyModel mapHierarchyModel, GameWindowController gameWindowController) {
 		this.players = gameWindowController.getPlayers();
-		this.riskGameModel = mapHierarchyModel;
+		this.mapHierarchyModel = mapHierarchyModel;
 		initializingCardsModel(mapHierarchyModel);
 	}
-	
-	public void initializingCardsModel(MapHierarchyModel mapHierarchyModel)
-	{
-		String[] names = {"Infantry", "Cavalry", "Artillery"};
-		int[] types = {0, 1, 2};
-		int j=0;
+
+	public void initializingCardsModel(MapHierarchyModel mapHierarchyModel) {
+		String[] names = { "Infantry", "Cavalry", "Artillery" };
+		int[] types = { 0, 1, 2 };
+		int j = 0;
 		totalCards = new ArrayList<>();
-		String name= names[j];
-		int type= types[j];
-		for(int i=0 ;i<mapHierarchyModel.totalCountries;i++)
-		{
-			CardsModel card = new CardsModel(name,type,this);
+		String name = names[j];
+		int type = types[j];
+		for (int i = 0; i < mapHierarchyModel.totalCountries; i++) {
+			CardsModel card = new CardsModel(name, type, this);
 			totalCards.add(card);
-			name= names[j++];
-			if(j==2)
-			{
-			j=0;	
+			name = names[j++];
+			if (j == 2) {
+				j = 0;
 			}
 		}
 	}
@@ -125,8 +123,8 @@ public class GameModel extends Observable {
 	 *
 	 * @return the risk game model
 	 */
-	public MapHierarchyModel getRiskGameModel() {
-		return riskGameModel;
+	public MapHierarchyModel getMapHierarchyModel() {
+		return mapHierarchyModel;
 	}
 
 	/**
@@ -134,8 +132,9 @@ public class GameModel extends Observable {
 	 *
 	 * @param riskGameModel the new risk game model
 	 */
-	public void setRiskGameModel(MapHierarchyModel riskGameModel) {
-		this.riskGameModel = riskGameModel;
+
+	public void setMapHierarchyModel(MapHierarchyModel mapHierarchyModel) {
+		this.mapHierarchyModel = mapHierarchyModel;
 	}
 
 	/**
@@ -164,8 +163,4 @@ public class GameModel extends Observable {
 		this.totalCards = totalCards;
 	}
 
-	
-
-	
-	
 }
