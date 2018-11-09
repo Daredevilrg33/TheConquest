@@ -70,7 +70,7 @@ public class FortificationWindowControllerTest {
 		fortificationcontroller.finding("INDIA");
 		fortificationcontroller.updateDestinationUI("BHUTAN");
 		fortificationcontroller.sending(6);
-		
+
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
 

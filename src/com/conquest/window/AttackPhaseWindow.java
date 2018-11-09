@@ -87,15 +87,17 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The dice results defending. */
 	private ArrayList<Integer> diceResultsDefending = new ArrayList<>();
 
+	/** The current player. */
 	private PlayerModel currentPlayer;
 
+	/** The j button finish attack. */
 	private JButton jButtonFinishAttack;
 
 	/**
 	 * Instantiates a new attack phase window.
 	 *
 	 * @param riskMapModel  the risk map model
-	 * @param playerModel   the player model
+	 * @param playerModels  the player models
 	 * @param currentPlayer the current player
 	 */
 	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
@@ -387,22 +389,42 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Gets the current player.
+	 *
 	 * @return the currentPlayer
 	 */
 	public PlayerModel getCurrentPlayer() {
 		return currentPlayer;
 	}
 
+	/**
+	 * Change dice visiblity.
+	 *
+	 * @param jLabelDice the j label dice
+	 * @param isVisible  the is visible
+	 */
 	public void changeDiceVisiblity(JLabel jLabelDice, boolean isVisible) {
 		jLabelDice.setVisible(isVisible);
 
 	}
 
+	/**
+	 * Update dice value.
+	 *
+	 * @param jLabelDice the j label dice
+	 * @param diceValue  the dice value
+	 */
 	public void updateDiceValue(JLabel jLabelDice, int diceValue) {
 		jLabelDice.setText(String.valueOf(diceValue));
 
 	}
 
+	/**
+	 * Sets the dice visiblity according to dice selected.
+	 *
+	 * @param noOfDiceSelected  the no of dice selected
+	 * @param defenderArmyCount the defender army count
+	 */
 	public void setDiceVisiblityAccordingToDiceSelected(int noOfDiceSelected, int defenderArmyCount) {
 		switch (noOfDiceSelected) {
 		case 1:
@@ -447,6 +469,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Sets the dice values.
+	 *
+	 * @param noOfDiceSelected  the no of dice selected
+	 * @param defenderArmyCount the defender army count
+	 */
 	public void setDiceValues(int noOfDiceSelected, int defenderArmyCount) {
 		Collections.sort(diceResultsAttacking, Collections.reverseOrder());
 		Collections.sort(diceResultsDefending, Collections.reverseOrder());
@@ -497,6 +525,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Gets the dice results attacking.
+	 *
 	 * @return the diceResultsAttacking
 	 */
 	public ArrayList<Integer> getDiceResultsAttacking() {
@@ -504,6 +534,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Gets the dice results defending.
+	 *
 	 * @return the diceResultsDefending
 	 */
 	public ArrayList<Integer> getDiceResultsDefending() {
@@ -511,12 +543,22 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Gets the players.
+	 *
 	 * @return the players
 	 */
 	public PlayerModel[] getPlayers() {
 		return players;
 	}
 
+	/**
+	 * Show move army popup.
+	 *
+	 * @param minValue           the min value
+	 * @param maxValue           the max value
+	 * @param sourceCountry      the source country
+	 * @param destinationCountry the destination country
+	 */
 	public void showMoveArmyPopup(int minValue, int maxValue, CountryModel sourceCountry,
 			CountryModel destinationCountry) {
 		int size = maxValue - minValue + 1;
@@ -527,7 +569,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 		int n = (Integer) JOptionPane.showInputDialog(null, "Select no of armies to be moved.", "Move Armies",
 				JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
-	
+
 		for (int j = 0; j < n; j++) {
 			sourceCountry.removeNoOfArmiesCountry();
 			destinationCountry.addNoOfArmiesCountry();

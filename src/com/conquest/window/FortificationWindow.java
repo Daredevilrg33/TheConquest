@@ -76,7 +76,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	 * Instantiates a new fortification window.
 	 *
 	 * @param mapModel the map model
-	 * @param players  the players
+	 * @param player   the player
 	 */
 	public FortificationWindow(MapHierarchyModel mapModel, PlayerModel player) {
 		this.player = player;
@@ -272,7 +272,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 //				reinforcementWindowController.nextPlayer();
 				// Start the Reinforcement Phase for the next player.
-				
+
 				reinforcementWindowController.updateBackend();
 
 			}

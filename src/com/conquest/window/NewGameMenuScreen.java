@@ -22,7 +22,6 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NewGameMenuScreen.
  *

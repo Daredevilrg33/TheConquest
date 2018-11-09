@@ -32,7 +32,11 @@ public class GameWindowControllerTest {
 
 	/** The game window object. */
 	GameWindow gameWindow;
+
+	/** The game window 1. */
 	GameWindow gameWindow1;
+
+	/** The game window 2. */
 	GameWindow gameWindow2;
 
 	/**
@@ -68,22 +72,19 @@ public class GameWindowControllerTest {
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
-		
+
 		GameWindowController gameWindowController1 = new GameWindowController(gameWindow1, 4, mapHierarchyModel);
 		gameWindowController1.initializingPlayerModels(4, mapHierarchyModel);
 		PlayerModel[] playerModels1 = gameWindowController1.getPlayers();
-		
+
 		GameWindowController gameWindowController2 = new GameWindowController(gameWindow2, 5, mapHierarchyModel);
 		gameWindowController2.initializingPlayerModels(5, mapHierarchyModel);
 		PlayerModel[] playerModels2 = gameWindowController2.getPlayers();
-		
-
 
 		assertEquals(25, playerModels[1].getnoOfArmyInPlayer());
 		assertEquals(20, playerModels1[1].getnoOfArmyInPlayer());
 		assertEquals(15, playerModels2[1].getnoOfArmyInPlayer());
 
-		
 	}
 
 	/**
@@ -149,7 +150,5 @@ public class GameWindowControllerTest {
 		playerModels[0].calculateAndAddReinforcementArmy();
 		assertEquals(28, playerModels[0].getnoOfArmyInPlayer());
 		assertEquals(29, playerModels[1].getnoOfArmyInPlayer());
-
 	}
-
 }

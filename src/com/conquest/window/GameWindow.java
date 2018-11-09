@@ -396,7 +396,8 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/**
 	 * updatePhaseView Method Update phase View.
-	 * 
+	 *
+	 * @param phase the phase
 	 */
 	public void updatePhaseView(String phase) {
 		PlayerModel[] players = gameWindowController.getPlayers();
@@ -405,27 +406,26 @@ public class GameWindow extends JFrame implements ActionListener {
 		PlayerModel playerModel = players[playerCounter];
 		this.currPlayer = playerModel;
 		labelPhase.setText(phase);
-			if ("Reinforcement Phase".equalsIgnoreCase(phase)) {
-				jButtonPlace.setText("Place Reinforce Armies");
-				jButtonPlace.setEnabled(true);
-				jHandIn.setVisible(true);
-				if (this.currPlayer.canHandIn())
-					jHandIn.setEnabled(true);
-				
+		if ("Reinforcement Phase".equalsIgnoreCase(phase)) {
+			jButtonPlace.setText("Place Reinforce Armies");
+			jButtonPlace.setEnabled(true);
+			jHandIn.setVisible(true);
+			if (this.currPlayer.canHandIn())
+				jHandIn.setEnabled(true);
 
-				if (gameModel.getGameState() != 1) {
-					labelCardsWithPlayer.setText(this.currPlayer.cardsString());
-					gameModel.setCurrPlayer(playerModel);
-					gameModel.increaseTurn();
-					playerModel.gamePhase(this);
-				}
-				updateGameInformation();
-			} else if ("Attack Phase".equalsIgnoreCase(phase)) {
-				addProgressBar();
-				jButtonPlace.setEnabled(false);
-				jHandIn.setVisible(false);
-				labelCardsWithPlayer.setVisible(false);
+			if (gameModel.getGameState() != 1) {
+				labelCardsWithPlayer.setText(this.currPlayer.cardsString());
+				gameModel.setCurrPlayer(playerModel);
+				gameModel.increaseTurn();
+				playerModel.gamePhase(this);
 			}
+			updateGameInformation();
+		} else if ("Attack Phase".equalsIgnoreCase(phase)) {
+			addProgressBar();
+			jButtonPlace.setEnabled(false);
+			jHandIn.setVisible(false);
+			labelCardsWithPlayer.setVisible(false);
+		}
 //			updateGameInformation();
 //			jHandIn.setVisible(true);
 //		} else {
@@ -466,6 +466,9 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	/**
 	 * Redirect to fortification window.
+	 *
+	 * @param playerModel       the player model
+	 * @param mapHierarchyModel the map hierarchy model
 	 */
 	public void redirectToFortificationWindow(PlayerModel playerModel, MapHierarchyModel mapHierarchyModel) {
 		FortificationWindow fortificationWindow = new FortificationWindow(mapHierarchyModel, playerModel);
@@ -476,7 +479,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * Adds the progress bar.
 	 */
 	public void addProgressBar() {
-		
+
 		progressBarPanel.removeAll();
 		Random randomGenerator = new Random();
 
