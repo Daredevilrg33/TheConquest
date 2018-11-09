@@ -231,9 +231,7 @@ public class AttackWindowController {
 			} else if (countryModel.getNoOfArmiesCountry() > 1) {
 				diceValues = 1;
 			}
-
 		}
-
 		attackPhaseWindow.updateComboBoxNoOfDice(diceValues);
 
 	}
@@ -308,6 +306,5 @@ public class AttackWindowController {
 			attackPhaseWindow.showMoveArmyPopup(1, attackerCountry.getNoOfArmiesCountry() - 1, attackerCountry,
 					defenderCountry);
 		}
-
 	}
 }
