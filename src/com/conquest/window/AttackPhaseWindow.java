@@ -192,6 +192,10 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxTargetCountries.addActionListener(this);
 		jComboBoxNoOfDice.addActionListener(this);
+		if (!ifAttackValid()) {
+			dispose();
+			getCurrentPlayer().fortificationPhase();
+		}
 
 	}
 
@@ -360,6 +364,10 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			attackWindowController.attack(sourceCountryName, defenderCountryName, noOfDiceSelected, defenderArmyCount);
 			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
+			if (!ifAttackValid()) {
+				dispose();
+				getCurrentPlayer().fortificationPhase();
+			}
 		} else if (e.getSource() == jButtonAllOutAttack) {
 
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
@@ -386,8 +394,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			attackWindowController.allOutAttack(sourceCountryName, defenderCountryName);
 			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
-
+			if (!ifAttackValid()) {
+				dispose();
+				getCurrentPlayer().fortificationPhase();
+			}
 		} else if (e.getSource() == jButtonFinishAttack) {
+
 			dispose();
 			getCurrentPlayer().fortificationPhase();
 		}
@@ -579,5 +591,16 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			sourceCountry.removeNoOfArmiesCountry();
 			destinationCountry.addNoOfArmiesCountry();
 		}
+	}
+
+	public boolean ifAttackValid() {
+		boolean isAttackPossible = false;
+		for (CountryModel countryModel : getCurrentPlayer().getPlayerCountryList()) {
+			if (countryModel.getNoOfArmiesCountry() > 1) {
+				isAttackPossible = true;
+				break;
+			}
+		}
+		return isAttackPossible;
 	}
 }
