@@ -406,46 +406,6 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
-	 * Checking method To check the number of armies.
-	 *
-	 * @param selectedCountryName type String {@link String}
-	 */
-	public void placeReinforcedArmy(String selectedCountryName) {
-		int i = 0;
-
-		while (true) {
-			if (this.getPlayerCountryList().get(i).getCountryName().trim()
-					.equalsIgnoreCase(selectedCountryName.trim())) {
-				if (this.getnoOfArmyInPlayer() > 0) {
-					this.getPlayerCountryList().get(i).addNoOfArmiesCountry();
-					this.reduceArmyInPlayer();
-					updateReinforcedArmiesUI();
-				}
-				if (this.getnoOfArmyInPlayer() == 0) {
-
-					AttackPhase();
-					break;
-				}
-				break;
-			}
-			i++;
-		}
-	}
-
-	/**
-	 * updateReinforcedArmiesUI method Void Method to update the window screen after
-	 * any change has been made.
-	 */
-	public void updateReinforcedArmiesUI() {
-		gameWindow.updatePlayerLabel(this.getPlayerName());
-		gameWindow.updatePlayerArmies(this.getnoOfArmyInPlayer());
-		gameWindow.updateComboBoxCountries(this.getPlayerCountryList());
-		gameWindow.invalidate();
-		gameWindow.revalidate();
-
-	}
-
-	/**
 	 * Update changes.
 	 */
 	private void updateChanges() {

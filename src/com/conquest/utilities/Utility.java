@@ -198,20 +198,26 @@ public class Utility {
 			data = data.concat("[Territories]" + System.lineSeparator());
 			data = data.concat(System.lineSeparator());
 			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
-				for (CountryModel countryModel : continentModel.getCountriesList()) {
-					String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
-					for (String countryName : countryModel.getListOfNeighbours()) {
-						if (!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
-							countryData = countryData.concat("," + countryName);
-
-					}
-					countryData = countryData.concat(System.lineSeparator());
-					data = data.concat(countryData);
-				}
+				data = data.concat(getContinentString(continentModel));
 			}
 		}
 
 		return data;
+	}
+
+	public String getContinentString(ContinentModel continentModel) {
+		String continentString = "";
+		for (CountryModel countryModel : continentModel.getCountriesList()) {
+			String countryData = countryModel.getCountryName() + ",0,0," + continentModel.getContinentName();
+			for (String countryName : countryModel.getListOfNeighbours()) {
+				if (!countryModel.getCountryName().trim().equalsIgnoreCase(countryName.trim()))
+					countryData = countryData.concat("," + countryName);
+
+			}
+			countryData = countryData.concat(System.lineSeparator());
+			continentString = continentString.concat(countryData);
+		}
+		return continentString;
 	}
 
 	/**

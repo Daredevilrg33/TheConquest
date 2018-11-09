@@ -36,9 +36,6 @@ public class GameWindowController {
 	/** The players. */
 	private PlayerModel[] players;
 
-	/** The i. */
-	private int i = 0;
-
 	/** The previous counter. */
 	private int prevCounter = 0;
 
@@ -63,6 +60,7 @@ public class GameWindowController {
 		this.mapHierarchyModel = mapModel;
 
 		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
+
 		this.gameModel = new GameModel(mapHierarchyModel, players);
 		providingGameModelToPlayer();
 	}
@@ -83,20 +81,23 @@ public class GameWindowController {
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
 			players[j] = new PlayerModel("Player" + String.valueOf(value), gameModel);
+
 			switch (noOfPlayers) {
-			case (3): {
-				players[j].noOfArmyInPlayer(25);
+			case (3):
+				players[j].noOfArmyInPlayer(5);
 				break;
-			}
-			case (4): {
+
+			case (4):
 				players[j].noOfArmyInPlayer(20);
 				break;
-			}
-			case (5): {
+
+			case (5):
 				players[j].noOfArmyInPlayer(15);
 				break;
+
 			}
-			}
+			players[j].addObserver(gameWindow);
+
 		}
 		/*
 		 * randomly placing army of each player in different country by round robin
@@ -123,12 +124,7 @@ public class GameWindowController {
 				}
 			}
 		}
-		/**
-		 * calculateAndAddReinforcementArmy(players);
-		 * isControlValueTobeAdded(this.mapHierarchyModel, players);
-		 */
-		
-		updateUIInfo();
+
 	}
 
 	/**
@@ -164,43 +160,30 @@ public class GameWindowController {
 	 *
 	 * @param selectedCountryName type String {@link String}
 	 */
-	public void placingInitialArmies(String selectedCountryName) {
-		i = 0;
+	public void placingInitialArmies(String selectedCountryName, PlayerModel currentPlayer) {
 
-		while (true) {
-			if (players[prevCounter].getPlayerCountryList().get(i).getCountryName().trim()
-					.equalsIgnoreCase(selectedCountryName.trim())) {
-				if (players[prevCounter].getnoOfArmyInPlayer() > 0) {
-					players[prevCounter].getPlayerCountryList().get(i).addNoOfArmiesCountry();
-					players[prevCounter].reduceArmyInPlayer();
-				}
-				if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
-
-					gameWindow.updatePhaseView("Reinforcement Phase");
-					break;
-				}
-				System.out.println(
-						"No. of armies" + players[prevCounter].getPlayerCountryList().get(i).getNoOfArmiesCountry());
-				break;
-			}
-			i++;
+		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
+			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
+			currentPlayer.reduceArmyInPlayer();
 		}
+
 	}
 
 	/**
-	 * updateUIInfo method Void Method to update the window screen after any change
-	 * has been made.
+	 * Checking method To check the number of armies.
+	 *
+	 * @param selectedCountryName type String {@link String}
 	 */
-	public void updateUIInfo() {
-		prevCounter = counter;
-		gameWindow.updatePlayerLabel(players[counter].getPlayerName());
-		gameWindow.updatePlayerArmies(players[counter].getnoOfArmyInPlayer());
-		gameWindow.updateComboBoxCountries(players[counter].getPlayerCountryList());
-		gameWindow.invalidate();
-		gameWindow.revalidate();
-		counter++;
-		if (counter == noOfPlayers)
-			counter = 0;
+	public void placeReinforcedArmy(String selectedCountryName, PlayerModel currentPlayer) {
+
+		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
+			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
+			currentPlayer.reduceArmyInPlayer();
+		}
+		if (currentPlayer.getnoOfArmyInPlayer() == 0) {
+
+			currentPlayer.AttackPhase();
+		}
 
 	}
 

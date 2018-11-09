@@ -54,6 +54,8 @@ public class GameModel extends Observable {
 		this.mapHierarchyModel = mapHierarchyModel;
 		randomGenerator = new Random();
 		initializingCardsModel(mapHierarchyModel);
+		this.currPlayer = playerModels[0];
+		updateChanges();
 	}
 
 	/**
@@ -109,6 +111,7 @@ public class GameModel extends Observable {
 	 */
 	public void setPlayers(PlayerModel[] players) {
 		this.players = players;
+		updateChanges();
 	}
 
 	/**
@@ -127,6 +130,7 @@ public class GameModel extends Observable {
 	 */
 	public void setCurrPlayer(PlayerModel currPlayer) {
 		this.currPlayer = currPlayer;
+		updateChanges();
 	}
 
 	/**
@@ -145,6 +149,7 @@ public class GameModel extends Observable {
 	 */
 	public void setGameState(int gameState) {
 		this.gameState = gameState;
+		updateChanges();
 	}
 
 	/**
@@ -164,6 +169,7 @@ public class GameModel extends Observable {
 
 	public void setMapHierarchyModel(MapHierarchyModel mapHierarchyModel) {
 		this.mapHierarchyModel = mapHierarchyModel;
+		updateChanges();
 	}
 
 	/**
@@ -179,9 +185,10 @@ public class GameModel extends Observable {
 	 * Method to increase the count of turn.
 	 */
 	public void increaseTurn() {
+		if (turn == players.length)
+			turn = 0;
 		turn++;
-		setChanged();
-		notifyObservers(2);
+		updateChanges();
 	}
 	
 	
@@ -216,6 +223,7 @@ public class GameModel extends Observable {
 	 */
 	public void setTotalCards(ArrayList<CardsModel> totalCards) {
 		this.totalCards = totalCards;
+		updateChanges();
 	}
 
 	public void moveToNextPlayer() {
@@ -223,5 +231,15 @@ public class GameModel extends Observable {
 			currPlayer = players[0];
 		} else
 			currPlayer = players[turn - 1];
+		updateChanges();
 	}
+
+	/**
+	 * Update changes.
+	 */
+	private void updateChanges() {
+		setChanged();
+		notifyObservers(this);
+	}
+
 }

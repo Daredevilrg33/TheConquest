@@ -2,7 +2,6 @@ package com.conquest.window;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -46,7 +44,7 @@ import com.conquest.utilities.Constants;
  *
  * @author Rohit Gupta
  */
-public class GameWindow extends JFrame implements ActionListener {
+public class GameWindow extends JFrame implements ActionListener, Observer {
 
 	/** The Constant serialVersionUID. */
 	private static final long SERIAL_VERSION_UID = 705136013521611381L;
@@ -108,20 +106,16 @@ public class GameWindow extends JFrame implements ActionListener {
 	/** The map hierarchy model. */
 	private MapHierarchyModel mapHierarchyModel;
 
-	/** The current player. */
-	private PlayerModel currPlayer;
-
 	/** The players. */
 	private PlayerModel[] players;
-
-	/** The player counter. */
-	private int playerCounter = 0;
 
 	/** The jHandIn button place. */
 	private JButton jHandIn;
 
 	/** The label labelCardsWithPlayer button place. */
 	private JLabel labelCardsWithPlayer;
+
+	private JProgressBar progressBar;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
@@ -200,7 +194,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
 		players = gameWindowController.getPlayers();
-
+		gameWindowController.getGameModel().addObserver(this);
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
@@ -233,6 +227,8 @@ public class GameWindow extends JFrame implements ActionListener {
 			updatePaintMatrix();
 			updateGameInformation();
 		}
+		updateUIInfo(players[0]);
+		gameWindowController.getGameModel().increaseTurn();
 	}
 
 	/**
@@ -396,37 +392,20 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * @param phase the phase
 	 */
 	public void updatePhaseView(String phase) {
-		PlayerModel[] players = gameWindowController.getPlayers();
-		if (playerCounter > players.length)
-			playerCounter = 0;
-		PlayerModel playerModel = players[playerCounter];
-		this.currPlayer = playerModel;
 		labelPhase.setText(phase);
 		if ("Reinforcement Phase".equalsIgnoreCase(phase)) {
 			jButtonPlace.setText("Place Reinforce Armies");
 			jButtonPlace.setEnabled(true);
 			jHandIn.setVisible(true);
-			if (this.currPlayer.canHandIn())
+			if (gameWindowController.getGameModel().getCurrPlayer().canHandIn())
 				jHandIn.setEnabled(true);
 
 			if (gameWindowController.getGameModel().getGameState() != 1) {
-				labelCardsWithPlayer.setText(this.currPlayer.cardsString());
-				gameWindowController.getGameModel().setCurrPlayer(playerModel);
-				gameWindowController.getGameModel().increaseTurn();
-				playerModel.gamePhase(this);
+				labelCardsWithPlayer.setText(gameWindowController.getGameModel().getCurrPlayer().cardsString());
+				gameWindowController.getGameModel().getCurrPlayer().gamePhase(this);
 			}
 			updateGameInformation();
-		} else if ("Attack Phase".equalsIgnoreCase(phase)) {
-			addProgressBar();
-			jButtonPlace.setEnabled(false);
-			jHandIn.setVisible(false);
-			labelCardsWithPlayer.setVisible(false);
 		}
-//			updateGameInformation();
-//			jHandIn.setVisible(true);
-//		} else {
-//			jButtonPlace.setEnabled(false);
-//		}
 
 	}
 
@@ -442,17 +421,24 @@ public class GameWindow extends JFrame implements ActionListener {
 		switch (e.getActionCommand()) {
 		case "Place Initial Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
-			gameWindowController.placingInitialArmies(selectedCountry);
+			gameWindowController.placingInitialArmies(selectedCountry,
+					gameWindowController.getGameModel().getCurrPlayer());
 			updateGameInformation();
-			gameWindowController.updateUIInfo();
+			gameWindowController.getGameModel().increaseTurn();
+			gameWindowController.getGameModel().moveToNextPlayer();
+			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
+				updatePhaseView("Reinforcement Phase");
+			}
+
 			break;
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
-			this.currPlayer.placeReinforcedArmy(selectedCountry);
+			gameWindowController.placeReinforcedArmy(selectedCountry,
+					gameWindowController.getGameModel().getCurrPlayer());
 			updateGameInformation();
 			break;
 		case "HandIn the cards":
-			this.currPlayer.handInCards();
+			gameWindowController.getGameModel().getCurrPlayer().handInCards();
 			break;
 
 		default:
@@ -470,8 +456,8 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		PlayerModel[] players = gameWindowController.getPlayers();
 		for (int i = 0; i < players.length; i++) {
-			JProgressBar progressBar = new JProgressBar();
-			progressBar.setValue(calculatePercentage(players[i]));
+			progressBar = new JProgressBar();
+			setProgressBarValues(players[i]);
 			progressBar.setStringPainted(true);
 			int red = randomGenerator.nextInt(256);
 			int green = randomGenerator.nextInt(256);
@@ -484,6 +470,12 @@ public class GameWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	public void setProgressBarValues(PlayerModel currentPlayer) {
+		if (progressBar != null)
+			progressBar.setValue(calculatePercentage(currentPlayer));
+
+	}
+
 	/**
 	 * Calculate percentage.
 	 *
@@ -493,6 +485,43 @@ public class GameWindow extends JFrame implements ActionListener {
 	public int calculatePercentage(PlayerModel player) {
 		double x = ((double) player.getPlayerCountryList().size() / mapHierarchyModel.getTotalCountries()) * 100;
 		return (int) x;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable object, Object arg) {
+		// TODO Auto-generated method stub
+		if (object instanceof GameModel) {
+			GameModel gameModel = (GameModel) object;
+			updateGameInformation();
+
+			setProgressBarValues(gameModel.getCurrPlayer());
+			updateUIInfo(gameModel.getCurrPlayer());
+		} else if (object instanceof PlayerModel) {
+			PlayerModel playerModel = (PlayerModel) object;
+
+//			setProgressBarValues(playerModel);
+//			updateGameInformation();
+			updateUIInfo(playerModel);
+		}
+
+	}
+
+	/**
+	 * updateUIInfo method Void Method to update the window screen after any change
+	 * has been made.
+	 */
+	public void updateUIInfo(PlayerModel currentPlayer) {
+		updatePlayerLabel(currentPlayer.getPlayerName());
+		updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
+		updateComboBoxCountries(currentPlayer.getPlayerCountryList());
+		invalidate();
+		revalidate();
+
 	}
 
 }

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +17,6 @@ import javax.swing.JOptionPane;
 
 import com.conquest.controller.AttackWindowController;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
