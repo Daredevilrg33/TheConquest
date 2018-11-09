@@ -32,6 +32,8 @@ public class GameWindowControllerTest {
 
 	/** The game window object. */
 	GameWindow gameWindow;
+	GameWindow gameWindow1;
+	GameWindow gameWindow2;
 
 	/**
 	 * Sets the up.
@@ -60,13 +62,28 @@ public class GameWindowControllerTest {
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(asiaMapFilePath);
 		gameWindow = new GameWindow(mapHierarchyModel, "3");
+		gameWindow1 = new GameWindow(mapHierarchyModel, "4");
+		gameWindow2 = new GameWindow(mapHierarchyModel, "5");
+
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
-//		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-//		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+		
+		GameWindowController gameWindowController1 = new GameWindowController(gameWindow1, 4, mapHierarchyModel);
+		gameWindowController1.initializingPlayerModels(4, mapHierarchyModel);
+		PlayerModel[] playerModels1 = gameWindowController1.getPlayers();
+		
+		GameWindowController gameWindowController2 = new GameWindowController(gameWindow2, 5, mapHierarchyModel);
+		gameWindowController2.initializingPlayerModels(5, mapHierarchyModel);
+		PlayerModel[] playerModels2 = gameWindowController2.getPlayers();
+		
+
 
 		assertEquals(25, playerModels[1].getnoOfArmyInPlayer());
+		assertEquals(20, playerModels1[1].getnoOfArmyInPlayer());
+		assertEquals(15, playerModels2[1].getnoOfArmyInPlayer());
+
+		
 	}
 
 	/**
@@ -82,8 +99,7 @@ public class GameWindowControllerTest {
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
-//		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-//		System.out.println("player no of army: " + playerModels[1].getnoOfArmyInPlayer());
+
 		playerModels[1].calculateAndAddReinforcementArmy();
 
 		assertEquals(28, playerModels[1].getnoOfArmyInPlayer());

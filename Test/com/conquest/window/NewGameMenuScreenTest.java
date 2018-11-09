@@ -121,5 +121,20 @@ public class NewGameMenuScreenTest {
 		
 	}
 	
+	/**
+	 * test to check whether all the continents are connected or not.
+	 */
+	@Test
+	public void continentsnotconnectedTest() {
+		NewGameMenuScreen newgame=new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(countrynotconnectedpath);
+		boolean isContinentConnected = newgame.isContinentConnected(mapHierarchyModel);
+		
+		assertEquals("false",String.valueOf(isContinentConnected));
+
+		
+	}
+	
+	
 	
 }
