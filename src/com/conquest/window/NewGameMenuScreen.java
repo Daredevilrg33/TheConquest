@@ -135,8 +135,11 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
 				checkValidation(mapModel, Integer.valueOf(noOfPlayers));
 				mapModel.setConquestMapName(fileName);
-				boolean isConnected = isMapConnected(mapModel);
-				System.out.println("Map Is Connected: " + isConnected);
+				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapModel);
+					System.out.println("Map Is Connected: " + isConnected);
+
+				}
 				if (!mapModel.isValErrorFlag()) {
 					dispose();
 					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);
@@ -235,7 +238,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 			List<CountryModel> countryList = continentModel.getCountriesList();
 			dfsUsingStackContinent(continentModel, mapHierarchyModel.getCountryList().get(1));
-			for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+			for (CountryModel countryModel : continentModel.getCountriesList()) {
 				if (countryModel.isVisited())
 					countryModel.setVisited(false);
 				else {
@@ -256,7 +259,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * Dfs using stack continent.
 	 *
 	 * @param continentModel the continent model
-	 * @param countryModel the country model
+	 * @param countryModel   the country model
 	 */
 	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
