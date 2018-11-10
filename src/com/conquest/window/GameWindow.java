@@ -448,6 +448,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 
 	/**
 	 * Adds the progress bar.
+	 * 
+	 * @param gameModel passing of game model to update progress bar
 	 */
 	public void addProgressBar(GameModel gameModel) {
 
@@ -524,6 +526,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	/**
 	 * updateUIInfo method Void Method to update the window screen after any change
 	 * has been made.
+	 * 
+	 * @param currentPlayer model of current player passed
 	 */
 	public void updateUIInfo(PlayerModel currentPlayer) {
 		updatePlayerLabel(currentPlayer.getPlayerName());

@@ -45,8 +45,8 @@ public class GameModel extends Observable {
 	/**
 	 * Instantiates a new game model.
 	 *
-	 * @param mapHierarchyModel    the map hierarchy model
-	 * @param gameWindowController the game window controller
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param playerModels      the player models
 	 */
 	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 		this.players = playerModels;
@@ -195,6 +195,8 @@ public class GameModel extends Observable {
 	}
 
 	/**
+	 * Gets the hand in counter.
+	 *
 	 * @return the handInCounter
 	 */
 	public int getHandInCounter() {
@@ -202,6 +204,8 @@ public class GameModel extends Observable {
 	}
 
 	/**
+	 * Sets the hand in counter.
+	 *
 	 * @param handInCounter the handInCounter to set
 	 */
 	public void setHandInCounter(int handInCounter) {
@@ -227,6 +231,9 @@ public class GameModel extends Observable {
 		updateChanges();
 	}
 
+	/**
+	 * Move to next player.
+	 */
 	public void moveToNextPlayer() {
 		if (currPlayer == players[players.length - 1]) {
 			currPlayer = players[0];

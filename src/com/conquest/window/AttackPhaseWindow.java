@@ -601,6 +601,11 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * If attack valid.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean ifAttackValid() {
 		boolean isAttackPossible = false;
 		for (CountryModel countryModel : getCurrentPlayer().getPlayerCountryList()) {

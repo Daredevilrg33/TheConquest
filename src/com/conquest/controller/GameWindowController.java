@@ -159,6 +159,7 @@ public class GameWindowController {
 	 * Checking method To check the number of armies.
 	 *
 	 * @param selectedCountryName type String {@link String}
+	 * @param currentPlayer       the current player
 	 */
 	public void placingInitialArmies(String selectedCountryName, PlayerModel currentPlayer) {
 
@@ -173,6 +174,7 @@ public class GameWindowController {
 	 * Checking method To check the number of armies.
 	 *
 	 * @param selectedCountryName type String {@link String}
+	 * @param currentPlayer       the current player
 	 */
 	public void placeReinforcedArmy(String selectedCountryName, PlayerModel currentPlayer) {
 
@@ -187,6 +189,9 @@ public class GameWindowController {
 
 	}
 
+	/**
+	 * Providing game model to player.
+	 */
 	public void providingGameModelToPlayer() {
 		for (PlayerModel player : players) {
 			player.setGameModel(gameModel);
@@ -203,6 +208,8 @@ public class GameWindowController {
 	}
 
 	/**
+	 * Gets the game model.
+	 *
 	 * @return the gameModel
 	 */
 	public GameModel getGameModel() {
