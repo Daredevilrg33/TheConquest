@@ -47,17 +47,17 @@ public class PlayerModelTest {
 	 */
 	@Before
 	public void beforeTest() throws Exception {
-		CountryModel countrymodel = new CountryModel("IRAQ");
-		CountryModel countrymodel1 = new CountryModel("IRAN");
-		CountryModel countrymodel2 = new CountryModel("JAPAN");
-		CountryModel countrymodel3 = new CountryModel("CHINA");
-		CountryModel countrymodel4 = new CountryModel("BANGLADESH");
+		CountryModel countryModel = new CountryModel("IRAQ");
+		CountryModel countryModel1 = new CountryModel("IRAN");
+		CountryModel countryModel2 = new CountryModel("JAPAN");
+		CountryModel countryModel3 = new CountryModel("CHINA");
+		CountryModel countryModel4 = new CountryModel("BANGLADESH");
 		countryModelArrayList = new ArrayList<CountryModel>();
-		countryModelArrayList.add(countrymodel);
-		countryModelArrayList.add(countrymodel1);
-		countryModelArrayList.add(countrymodel2);
-		countryModelArrayList.add(countrymodel3);
-		countryModelArrayList.add(countrymodel4);
+		countryModelArrayList.add(countryModel);
+		countryModelArrayList.add(countryModel1);
+		countryModelArrayList.add(countryModel2);
+		countryModelArrayList.add(countryModel3);
+		countryModelArrayList.add(countryModel4);
 
 	}
 
@@ -76,9 +76,9 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void searchCountrytest() {
-		PlayerModel playermodel = new PlayerModel("ROGER", countryModelArrayList);
-		assertEquals("JAPAN", playermodel.searchCountry("JAPAN").getCountryName());
-		assertEquals("IRAN", playermodel.searchCountry("IRAN").getCountryName());
+		PlayerModel playerModel = new PlayerModel("ROGER", countryModelArrayList);
+		assertEquals("JAPAN", playerModel.searchCountry("JAPAN").getCountryName());
+		assertEquals("IRAN", playerModel.searchCountry("IRAN").getCountryName());
 
 	}
 
@@ -88,13 +88,13 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void overallTest() {
-		PlayerModel playermodel = new PlayerModel("FORD", countryModelArrayList);
-		CountryModel countrymodel4 = new CountryModel("BANGLADESH");
-		playermodel.noOfArmyInPlayer(4);
-		assertEquals("FORD", playermodel.getPlayerName());
-		playermodel.addCountry(countrymodel4);
-		assertEquals("BANGLADESH", playermodel.searchCountry("BANGLADESH").getCountryName());
-		assertEquals(4, playermodel.getnoOfArmyInPlayer());
+		PlayerModel playerModel = new PlayerModel("FORD", countryModelArrayList);
+		CountryModel countryModel4 = new CountryModel("BANGLADESH");
+		playerModel.noOfArmyInPlayer(4);
+		assertEquals("FORD", playerModel.getPlayerName());
+		playerModel.addCountry(countryModel4);
+		assertEquals("BANGLADESH", playerModel.searchCountry("BANGLADESH").getCountryName());
+		assertEquals(4, playerModel.getnoOfArmyInPlayer());
 
 	}
 

@@ -61,10 +61,10 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void checkValidationTest() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		System.out.println(newgame.checkValidation(mapHierarchyModel, 5));
-		assertEquals("Passed", String.valueOf(newgame.checkValidation(mapHierarchyModel, 5)));
+		System.out.println(newGame.checkValidation(mapHierarchyModel, 5));
+		assertEquals("Passed", String.valueOf(newGame.checkValidation(mapHierarchyModel, 5)));
 	}
 
 	/**
@@ -72,9 +72,9 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void checkValidation1Test() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(THREE_MAP_FILE_PATH);
-		System.out.println(newgame.checkValidation(mapHierarchyModel, 5));
+		System.out.println(newGame.checkValidation(mapHierarchyModel, 5));
 		System.out.println(mapHierarchyModel.errorMsg);
 		assertEquals("Number of countries cannot be less than number of players", mapHierarchyModel.errorMsg);
 	}
@@ -84,9 +84,9 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void countriesconnectedTest() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(COUNTRY_CONNECTED_PATH);
-		newgame.isMapConnected(mapHierarchyModel);
+		newGame.isMapConnected(mapHierarchyModel);
 		System.out.println(mapHierarchyModel.getErrorMsg());
 		System.out.println(mapHierarchyModel.isValErrorFlag());
 		assertEquals("false", String.valueOf(mapHierarchyModel.isValErrorFlag()));
@@ -98,9 +98,9 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void countriesconnected2Test() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(COUNTRY_NOT_CONNECTED_PATH);
-		newgame.isMapConnected(mapHierarchyModel);
+		newGame.isMapConnected(mapHierarchyModel);
 		System.out.println(mapHierarchyModel.getErrorMsg());
 		System.out.println(mapHierarchyModel.isValErrorFlag());
 		assertEquals("Map is not connected !!", mapHierarchyModel.getErrorMsg());
@@ -112,9 +112,9 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void continentsconnectedTest() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		boolean isContinentConnected = newgame.isContinentConnected(mapHierarchyModel);
+		boolean isContinentConnected = newGame.isContinentConnected(mapHierarchyModel);
 
 		assertEquals("true", String.valueOf(isContinentConnected));
 	}
@@ -124,9 +124,9 @@ public class NewGameMenuScreenTest {
 	 */
 	@Test
 	public void continentsnotconnectedTest() {
-		NewGameMenuScreen newgame = new NewGameMenuScreen();
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(COUNTRY_NOT_CONNECTED_PATH);
-		boolean isContinentConnected = newgame.isContinentConnected(mapHierarchyModel);
+		boolean isContinentConnected = newGame.isContinentConnected(mapHierarchyModel);
 
 		assertEquals("false", String.valueOf(isContinentConnected));
 	}

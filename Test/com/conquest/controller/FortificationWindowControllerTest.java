@@ -64,12 +64,12 @@ public class FortificationWindowControllerTest {
 
 		PlayerModel player = new PlayerModel("Player1", countryModels);
 
-		FortificationWindowController fortificationcontroller = new FortificationWindowController(player, null);
+		FortificationWindowController fortificationController = new FortificationWindowController(player, null);
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
-		fortificationcontroller.finding("INDIA");
-		fortificationcontroller.updateDestinationUI("BHUTAN");
-		fortificationcontroller.sending(6);
+		fortificationController.finding("INDIA");
+		fortificationController.updateDestinationUI("BHUTAN");
+		fortificationController.sending(6);
 
 		System.out.println(country.getNoOfArmiesCountry());
 		System.out.println(country1.getNoOfArmiesCountry());
