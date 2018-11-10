@@ -10,6 +10,7 @@ import java.util.Collections;
 import com.conquest.window.AttackPhaseWindow;
 import java.security.SecureRandom;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AttackWindowController.
  *
@@ -145,6 +146,12 @@ public class AttackWindowController {
 		attackPhaseWindow.setDiceValues(attackArmyCount, defenderArmyCount);
 	}
 
+	/**
+	 * All out attack.
+	 *
+	 * @param attackingCountry the attacking country
+	 * @param targetCountry the target country
+	 */
 	public void allOutAttack(String attackingCountry, String targetCountry) {
 
 		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
@@ -257,6 +264,7 @@ public class AttackWindowController {
 	 * @param defendingDiceValues the defending dice values
 	 * @param attackerCountry     the attacker country
 	 * @param defenderCountry     the defender country
+	 * @param showArmyPopup the show army popup
 	 */
 	public void attackEvaluation(ArrayList<Integer> attackingDiceValues, ArrayList<Integer> defendingDiceValues,
 			CountryModel attackerCountry, CountryModel defenderCountry, boolean showArmyPopup) {

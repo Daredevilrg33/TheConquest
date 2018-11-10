@@ -1,0 +1,14 @@
+[Continents]
+
+continent1=3
+continent2=3
+
+[Territories]
+
+country1,0,0,continent1,country2,country2,country3,country4,country5,country6
+country2,0,0,continent1,country1,country3,country4,country5,country6
+country3,0,0,continent1,country1,country2,country4,country5,country6
+country4,0,0,continent2,country1,country2,country3,country5,country6
+country5,0,0,continent2,country1,country2,country3,country4,country6
+country6,0,0,continent2,country1,country2,country3,country4,country5
+
