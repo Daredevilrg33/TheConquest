@@ -358,11 +358,6 @@ public class PlayerModel extends Observable {
 			AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, players, this);
 			attackPhaseWindow.setVisible(true);
 
-			if (isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
-				gameWindow.labelPhase.setText("Game Over");
-				gameModel.setGameState(1);
-				return this.playerName + " has won the game!";
-			}
 		}
 		return "success";
 	}
@@ -373,7 +368,8 @@ public class PlayerModel extends Observable {
 	public void fortificationPhase() {
 		if (this.hasWonTerritory) {
 			CardsModel card = gameModel.generateRandomCard();
-			this.increaseCard(card.getType());
+			if (card != null)
+				this.increaseCard(card.getType());
 
 		}
 		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);

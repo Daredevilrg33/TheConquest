@@ -56,7 +56,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	private JButton jButtonAllOutAttack;
 
 	/** The risk map model. */
-	private GameModel riskMapModel;
+	private GameModel gameModel;
 
 	/** The player. */
 	private PlayerModel[] players;
@@ -94,12 +94,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/**
 	 * Instantiates a new attack phase window.
 	 *
-	 * @param riskMapModel  the risk map model
+	 * @param gameModel     the risk map model
 	 * @param playerModels  the player models
 	 * @param currentPlayer the current player
 	 */
-	public AttackPhaseWindow(GameModel riskMapModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
-		this.riskMapModel = riskMapModel;
+	public AttackPhaseWindow(GameModel gameModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
+		this.gameModel = gameModel;
 		this.players = playerModels;
 		this.currentPlayer = currentPlayer;
 		setTitle("Attack Phase");
@@ -186,7 +186,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jButtonFinishAttack.setBounds(Constants.MAP_EDITOR_WIDTH / 2 - 100, Constants.HEIGHT / 2, 200, 30);
 		jButtonFinishAttack.addActionListener(this);
 		add(jButtonFinishAttack);
-		attackWindowController = new AttackWindowController(players, this, riskMapModel);
+		attackWindowController = new AttackWindowController(players, this, gameModel);
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxTargetCountries.addActionListener(this);
 		jComboBoxNoOfDice.addActionListener(this);
@@ -290,7 +290,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		if (e.getSource() == jComboBoxSourceCountries) {
 			String sourceCountryName = (String) jComboBoxSourceCountries.getSelectedItem();
 			if (sourceCountryName != null && !sourceCountryName.trim().equalsIgnoreCase("Select country:")) {
-				CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
+				CountryModel sourceCountry = gameModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 				updateSourceArmyLabel(sourceCountry.getNoOfArmiesCountry());
 				attackWindowController.finding(sourceCountryName);
 				System.out.println("targetCountryList().size()" + attackWindowController.targetCountryList().size());
@@ -312,7 +312,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			System.out.println(jComboBoxTargetCountries.getSelectedIndex());
 			if (jComboBoxTargetCountries.getSelectedIndex() > 0) {
 				String targetCountryName = (String) jComboBoxTargetCountries.getSelectedItem();
-				CountryModel targetCountry = riskMapModel.getMapHierarchyModel().searchCountry(targetCountryName);
+				CountryModel targetCountry = gameModel.getMapHierarchyModel().searchCountry(targetCountryName);
 				updateTargetArmyLabel(targetCountry.getNoOfArmiesCountry());
 			} else
 				updateTargetArmyLabel(0);
@@ -360,11 +360,16 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			}
 
 			attackWindowController.attack(sourceCountryName, defenderCountryName, noOfDiceSelected, defenderArmyCount);
-			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
+			CountryModel sourceCountry = gameModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
 			if (!ifAttackValid()) {
 				dispose();
 				getCurrentPlayer().fortificationPhase();
+			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
+				gameModel.setGameState(1);
+				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
+						"Congratulations !!!", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 		} else if (e.getSource() == jButtonAllOutAttack) {
 
@@ -390,11 +395,16 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			}
 
 			attackWindowController.allOutAttack(sourceCountryName, defenderCountryName);
-			CountryModel sourceCountry = riskMapModel.getMapHierarchyModel().searchCountry(sourceCountryName);
+			CountryModel sourceCountry = gameModel.getMapHierarchyModel().searchCountry(sourceCountryName);
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
 			if (!ifAttackValid()) {
 				dispose();
 				getCurrentPlayer().fortificationPhase();
+			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
+				gameModel.setGameState(1);
+				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
+						"Congratulations !!!", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 		} else if (e.getSource() == jButtonFinishAttack) {
 
@@ -583,7 +593,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			options[index] = i;
 		}
 		int n = (Integer) JOptionPane.showInputDialog(null, "Select no of armies to be moved.", "Move Armies",
-				JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
 		for (int j = 0; j < n; j++) {
 			sourceCountry.removeNoOfArmiesCountry();
@@ -603,4 +613,5 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		}
 		return isAttackPossible;
 	}
+
 }

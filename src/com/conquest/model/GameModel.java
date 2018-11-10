@@ -32,9 +32,9 @@ public class GameModel extends Observable {
 
 	/** The turn. */
 	private int turn;
-	
+
 	/** The handInCounter. */
-	private int handInCounter=0;
+	private int handInCounter = 0;
 
 	/** The cards. */
 	private ArrayList<CardsModel> totalCards;
@@ -87,12 +87,15 @@ public class GameModel extends Observable {
 	 */
 
 	public CardsModel generateRandomCard() {
+		if (totalCards.size() > 0) {
+			int index = randomGenerator.nextInt(totalCards.size());
+			ArrayList<CardsModel> cardsList = totalCards;
+			CardsModel newCard = cardsList.get(index);
+			cardsList.remove(index);
+			return newCard;
+		} else
+			return null;
 
-		int index = randomGenerator.nextInt(totalCards.size());
-		ArrayList<CardsModel> cardsList = totalCards;
-		CardsModel newCard = cardsList.get(index);
-		cardsList.remove(index);
-		return newCard;
 	}
 
 	/**
@@ -190,8 +193,6 @@ public class GameModel extends Observable {
 		turn++;
 		updateChanges();
 	}
-	
-	
 
 	/**
 	 * @return the handInCounter
@@ -231,6 +232,10 @@ public class GameModel extends Observable {
 			currPlayer = players[0];
 		} else
 			currPlayer = players[turn - 1];
+		if (!(currPlayer.getPlayerCountryList().size() > 0)) {
+			increaseTurn();
+			moveToNextPlayer();
+		}
 		updateChanges();
 	}
 

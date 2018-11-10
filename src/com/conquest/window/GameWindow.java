@@ -206,7 +206,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 				phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				(int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
-		addProgressBar();
+		addProgressBar(gameWindowController.getGameModel());
 
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -449,21 +449,31 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	/**
 	 * Adds the progress bar.
 	 */
-	public void addProgressBar() {
+	public void addProgressBar(GameModel gameModel) {
 
 		progressBarPanel.removeAll();
-		Random randomGenerator = new Random();
+		Color color1 = new Color(23, 54, 135);
+		Color color2 = new Color(32, 198, 42);
+		Color color3 = new Color(88, 43, 97);
+		Color color4 = new Color(67, 89, 67);
+		Color color5 = new Color(11, 78, 80);
 
-		PlayerModel[] players = gameWindowController.getPlayers();
+		PlayerModel[] players = gameModel.getPlayers();
 		for (int i = 0; i < players.length; i++) {
 			progressBar = new JProgressBar();
 			setProgressBarValues(players[i]);
 			progressBar.setStringPainted(true);
-			int red = randomGenerator.nextInt(256);
-			int green = randomGenerator.nextInt(256);
-			int blue = randomGenerator.nextInt(256);
-			Color randomColour = new Color(red, green, blue);
-			progressBar.setForeground(randomColour);
+			if (i == 0)
+				progressBar.setForeground(color1);
+			if (i == 1)
+				progressBar.setForeground(color2);
+			if (i == 2)
+				progressBar.setForeground(color3);
+			if (i == 3)
+				progressBar.setForeground(color4);
+			if (i == 4)
+				progressBar.setForeground(color5);
+
 			Border border = BorderFactory.createTitledBorder(players[i].getPlayerName());
 			progressBar.setBorder(border);
 			progressBarPanel.add(progressBar, BorderLayout.NORTH);
@@ -498,8 +508,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		if (object instanceof GameModel) {
 			GameModel gameModel = (GameModel) object;
 			updateGameInformation();
-
-			setProgressBarValues(gameModel.getCurrPlayer());
+			addProgressBar(gameModel);
 			updateUIInfo(gameModel.getCurrPlayer());
 		} else if (object instanceof PlayerModel) {
 			PlayerModel playerModel = (PlayerModel) object;
@@ -507,6 +516,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 //			setProgressBarValues(playerModel);
 //			updateGameInformation();
 			updateUIInfo(playerModel);
+
 		}
 
 	}
@@ -519,9 +529,13 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		updatePlayerLabel(currentPlayer.getPlayerName());
 		updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
 		updateComboBoxCountries(currentPlayer.getPlayerCountryList());
+		labelCardsWithPlayer.setText(currentPlayer.cardsString());
 		invalidate();
 		revalidate();
-
+		if (currentPlayer.canHandIn())
+			jHandIn.setEnabled(true);
+		else
+			jHandIn.setEnabled(false);
 	}
 
 }
