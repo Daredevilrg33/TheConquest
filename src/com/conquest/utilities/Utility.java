@@ -159,7 +159,11 @@ public class Utility {
 	}
 
 	/**
-	 * validating if there is connectivity of country to any other country
+	 * validating if there is connectivity of country to any other country.
+	 *
+	 * @param targetCountry     the target country
+	 * @param countryModels     the country models
+	 * @param mapHierarchyModel the map hierarchy model
 	 */
 	private void validateIfCountryHasNeighbour(String targetCountry, ArrayList<CountryModel> countryModels,
 			MapHierarchyModel mapHierarchyModel) {
@@ -211,6 +215,12 @@ public class Utility {
 		return data;
 	}
 
+	/**
+	 * Gets the continent string.
+	 *
+	 * @param continentModel the continent model
+	 * @return the continent string
+	 */
 	public String getContinentString(ContinentModel continentModel) {
 		String continentString = "";
 		for (CountryModel countryModel : continentModel.getCountriesList()) {

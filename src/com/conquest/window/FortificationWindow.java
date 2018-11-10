@@ -72,13 +72,14 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	/** The players. */
 	private PlayerModel player;
 
+	/** The game model. */
 	private GameModel gameModel;
 
 	/**
 	 * Instantiates a new fortification window.
 	 *
-	 * @param mapModel the map model
-	 * @param player   the player
+	 * @param gameModel the game model
+	 * @param player    the player
 	 */
 	public FortificationWindow(GameModel gameModel, PlayerModel player) {
 		this.player = player;

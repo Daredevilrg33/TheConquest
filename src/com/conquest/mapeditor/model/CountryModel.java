@@ -39,6 +39,8 @@ public class CountryModel extends Observable {
 	public CountryModel() {
 		this.listOfNeighbours = new ArrayList<>();
 		isVisited = false;
+		updateChanges();
+
 	}
 
 	/**

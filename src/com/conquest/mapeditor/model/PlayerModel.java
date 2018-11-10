@@ -382,6 +382,8 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
+	 * Checks if is checks for won territory.
+	 *
 	 * @return the hasWonTerritory
 	 */
 	public boolean isHasWonTerritory() {
@@ -389,6 +391,8 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
+	 * Sets the checks for won territory.
+	 *
 	 * @param hasWonTerritory the hasWonTerritory to set
 	 */
 	public void setHasWonTerritory(boolean hasWonTerritory) {
@@ -409,9 +413,9 @@ public class PlayerModel extends Observable {
 		}
 	}
 
-	
-
 	/**
+	 * Gets the game model.
+	 *
 	 * @return the gameModel
 	 */
 	public GameModel getGameModel() {
@@ -419,13 +423,17 @@ public class PlayerModel extends Observable {
 	}
 
 	/**
+	 * Sets the game model.
+	 *
 	 * @param gameModel the gameModel to set
 	 */
 	public void setGameModel(GameModel gameModel) {
 		this.gameModel = gameModel;
 	}
-	
+
 	/**
+	 * Sets the game window.
+	 *
 	 * @param gameWindow the gameWindow to set
 	 */
 	public void setGameWindow(GameWindow gameWindow) {

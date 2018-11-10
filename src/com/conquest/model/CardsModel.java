@@ -17,9 +17,8 @@ public class CardsModel extends Observable {
 	/**
 	 * Instantiates a new cards model.
 	 *
-	 * @param name      the name
-	 * @param type      the type
-	 * @param gameModel the game model
+	 * @param name the name
+	 * @param type the type
 	 */
 	public CardsModel(String name, int type) {
 		this.cardName = name;
