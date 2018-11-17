@@ -19,13 +19,16 @@ import com.conquest.utilities.Constants;
 public class MainMenuScreen extends JFrame implements ActionListener {
 
 	/** The button new game. */
-	private JButton btnNewGame;
+	private JButton btnNewSingleGame;
+	
+	/** The btn load game. */
+	private JButton btnLoadGame;
 
 	/** The button map editor. */
 	private JButton btnMapEditor;
 
 	/** The button help describing rules and javaDoc. */
-	private JButton btnHelp;
+	private JButton btnNewTournament;
 
 	/** The button exit. */
 	private JButton btnExit;
@@ -34,23 +37,28 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	 * Instantiates a new main menu screen.
 	 */
 	public MainMenuScreen() {
-		btnNewGame = new JButton("New Game");
-		btnNewGame.setBounds(Constants.WIDTH / 2 - 50, 50, 100, 30);
-		btnNewGame.addActionListener(this);
-		add(btnNewGame);
+		btnNewSingleGame = new JButton("New Game");
+		btnNewSingleGame.setBounds(Constants.WIDTH / 2 - 50, 50, 100, 30);
+		btnNewSingleGame.addActionListener(this);
+		add(btnNewSingleGame);
+
+		btnNewTournament = new JButton("New Tournament");
+		btnNewTournament.setBounds(Constants.WIDTH / 2 - 50, 120, 100, 30);
+		btnNewTournament.addActionListener(this);
+		add(btnNewTournament);
 
 		btnMapEditor = new JButton("Map Editor");
-		btnMapEditor.setBounds(Constants.WIDTH / 2 - 50, 120, 100, 30);
+		btnMapEditor.setBounds(Constants.WIDTH / 2 - 50, 190, 100, 30);
 		btnMapEditor.addActionListener(this);
 		add(btnMapEditor);
 
-		btnHelp = new JButton("Help");
-		btnHelp.setBounds(Constants.WIDTH / 2 - 50, 190, 100, 30);
-		btnHelp.addActionListener(this);
-		add(btnHelp);
-
+		btnLoadGame = new JButton("Load Game");
+		btnLoadGame.setBounds(Constants.WIDTH / 2 - 50, 260, 100, 30);
+		btnLoadGame.addActionListener(this);
+		add(btnLoadGame);
+		
 		btnExit = new JButton("Exit");
-		btnExit.setBounds(Constants.WIDTH / 2 - 50, 260, 100, 30);
+		btnExit.setBounds(Constants.WIDTH / 2 - 50, 330, 100, 30);
 		btnExit.addActionListener(this);
 		add(btnExit);
 		setTitle("Main Menu");
@@ -81,7 +89,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 
-		if (event.getSource() == btnNewGame) {
+		if (event.getSource() == btnNewSingleGame) {
 			NewGameMenuScreen secondScreen = new NewGameMenuScreen();
 			secondScreen.setVisible(true);
 			dispose();
@@ -89,11 +97,15 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 			MapDashboard mapDashboard = new MapDashboard();
 			mapDashboard.setVisible(true);
 			dispose();
-		} else if (event.getSource() == btnHelp) {
-			GameHelp gameHelp = new GameHelp();
-			gameHelp.setVisible(true);
+		} else if (event.getSource() == btnNewTournament) {
+			NewTournamentMenuScreen newTournamentScreen = new NewTournamentMenuScreen();
+			newTournamentScreen.setVisible(true);
 			dispose();
-		} else {
+		}else if (event.getSource() == btnLoadGame) {
+			LoadGameWindow loadGameWindow = new LoadGameWindow();
+//				loadGameWindow.setVisible(true);
+			dispose();
+		}else {
 			System.exit(0);
 		}
 
