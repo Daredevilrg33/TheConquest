@@ -1,0 +1,11 @@
+[Continents]
+
+Rohit=2
+Nancy=1
+
+[Territories]
+
+A,0,0,Rohit,C
+B,0,0,Rohit,C
+C,0,0,Nancy,A,B
+

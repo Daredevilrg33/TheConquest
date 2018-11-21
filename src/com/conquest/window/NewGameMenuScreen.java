@@ -140,6 +140,11 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 				}
 				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isContinentConnected(mapModel);
+					System.out.println("Continent Is Connected: " + isConnected);
+
+				}
+				if (!mapModel.isValErrorFlag()) {
 					dispose();
 					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);
 					gameWindow.setVisible(true);
@@ -236,7 +241,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		boolean isConnected = true;
 		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 			List<CountryModel> countryList = continentModel.getCountriesList();
-			dfsUsingStackContinent(continentModel, mapHierarchyModel.getCountryList().get(1));
+			dfsUsingStackContinent(continentModel, continentModel.getCountriesList().get(1));
 			for (CountryModel countryModel : continentModel.getCountriesList()) {
 				if (countryModel.isVisited())
 					countryModel.setVisited(false);

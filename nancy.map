@@ -1,0 +1,11 @@
+[Continents]
+
+europe=2
+asia=1
+
+[Territories]
+
+england,0,0,europe,paris,india
+paris,0,0,europe,england,india
+india,0,0,asia,england,paris
+

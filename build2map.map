@@ -1,0 +1,11 @@
+[Continents]
+
+A=1
+B=2
+
+[Territories]
+
+a,0,0,A,b,c
+b,0,0,B,a
+c,0,0,B,a
+
