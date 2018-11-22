@@ -3,11 +3,13 @@
  */
 package com.conquest.model;
 
+import java.io.Serializable;
+
 /**
  * @author Rohit Gupta
  *
  */
-public class CheaterPlayer extends GamePhase{
+public class CheaterPlayer extends GamePhase implements Serializable{
 
 	/* (non-Javadoc)
 	 * @see com.conquest.model.GamePhase#reinforcementPhase()

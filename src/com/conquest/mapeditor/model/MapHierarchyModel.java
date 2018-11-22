@@ -1,5 +1,6 @@
 package com.conquest.mapeditor.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -9,7 +10,7 @@ import java.util.Observable;
  * @author Nancy Goyal
  * @version 1.0.0
  */
-public class MapHierarchyModel extends Observable {
+public class MapHierarchyModel extends Observable implements Serializable {
 
 	/** The conquest map name. */
 	private String conquestMapName = "Default";

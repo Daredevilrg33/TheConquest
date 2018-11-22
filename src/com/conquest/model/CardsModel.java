@@ -1,12 +1,13 @@
 package com.conquest.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
 /**
  * The Class CardsModel.
  */
-public class CardsModel extends Observable {
+public class CardsModel extends Observable implements Serializable{
 
 	/** The card name. */
 	private String cardName;

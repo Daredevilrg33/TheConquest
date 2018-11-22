@@ -1,5 +1,6 @@
 package com.conquest.mapeditor.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -8,7 +9,7 @@ import java.util.Observable;
  *
  * @author Nancy Goyal
  */
-public class ContinentModel extends Observable {
+public class ContinentModel extends Observable implements Serializable{
 
 	/** The continent name. */
 	private String continentName;

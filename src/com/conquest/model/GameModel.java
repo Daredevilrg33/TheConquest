@@ -1,5 +1,6 @@
 package com.conquest.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
@@ -16,7 +17,7 @@ import com.conquest.window.GameWindow;
  * @author Nancy Goyal
  * @version 1.0.0
  */
-public class GameModel extends Observable {
+public class GameModel extends Observable implements Serializable{
 
 	/** The players. */
 	private PlayerModel[] players;

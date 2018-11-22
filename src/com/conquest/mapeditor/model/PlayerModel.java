@@ -1,5 +1,6 @@
 package com.conquest.mapeditor.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -19,7 +20,7 @@ import com.conquest.window.GameWindow;
  * @author ROHIT GUPTA
  * @version 1.0.0
  */
-public class PlayerModel extends Observable {
+public class PlayerModel extends Observable implements Serializable{
 
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
