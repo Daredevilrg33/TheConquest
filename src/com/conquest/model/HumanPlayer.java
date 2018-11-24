@@ -10,6 +10,8 @@ import java.io.Serializable;
  *
  */
 public class HumanPlayer extends GamePhase implements Serializable{
+	
+	private static final long serialVersionUID = 6L;
 
 	/* (non-Javadoc)
 	 * @see com.conquest.model.GamePhase#reinforcementPhase()

@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public class RandomPlayer extends GamePhase implements Serializable{
 
+	private static final long serialVersionUID = 7L;
 	/* (non-Javadoc)
 	 * @see com.conquest.model.GamePhase#reinforcementPhase()
 	 */

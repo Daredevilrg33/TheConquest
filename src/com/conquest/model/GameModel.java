@@ -18,6 +18,8 @@ import com.conquest.window.GameWindow;
  * @version 1.0.0
  */
 public class GameModel extends Observable implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	/** The players. */
 	private PlayerModel[] players;
@@ -30,6 +32,8 @@ public class GameModel extends Observable implements Serializable{
 
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
+	
+	private String gameStatus="";
 
 	/** The turn. */
 	private int turn;
@@ -41,7 +45,7 @@ public class GameModel extends Observable implements Serializable{
 	private ArrayList<CardsModel> totalCards;
 
 	/** The random generator. */
-	private Random randomGenerator;
+	private transient Random randomGenerator;
 
 	/**
 	 * Instantiates a new game model.
@@ -230,6 +234,21 @@ public class GameModel extends Observable implements Serializable{
 	public void setTotalCards(ArrayList<CardsModel> totalCards) {
 		this.totalCards = totalCards;
 		updateChanges();
+	}
+	
+
+	/**
+	 * @return the gameStatus
+	 */
+	public String getGameStatus() {
+		return gameStatus;
+	}
+
+	/**
+	 * @param gameStatus the gameStatus to set
+	 */
+	public void setGameStatus(String gameStatus) {
+		this.gameStatus = gameStatus;
 	}
 
 	/**

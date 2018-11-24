@@ -21,6 +21,8 @@ import com.conquest.window.GameWindow;
  * @version 1.0.0
  */
 public class PlayerModel extends Observable implements Serializable{
+	
+	private static final long serialVersionUID = 5L;
 
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
@@ -32,7 +34,7 @@ public class PlayerModel extends Observable implements Serializable{
 	private int noOfArmyInPlayer;
 
 	/** The game window. */
-	private GameWindow gameWindow;
+	private transient GameWindow gameWindow;
 
 	/** The risk map model. */
 	private GameModel gameModel;
@@ -230,6 +232,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 */
 
 	public void handInCards() {
+		gameModel.setGameStatus("Cards HandIn");
 		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
 			if (cards[0] >= 3) {
 				cards[0] = 0;
@@ -339,6 +342,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * Reinforcement phase.
 	 */
 	public void reinforcementPhase() {
+		gameModel.setGameStatus("Reinforcement Phase starts");
 		calculateAndAddReinforcementArmy();
 	}
 
@@ -348,7 +352,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * @return the string
 	 */
 	public String AttackPhase() {
-		// gameWindow.updatePhaseView("Attack Phase");
+		gameModel.setGameStatus("Attack Phase starts");
 		PlayerModel[] players = gameWindow.getPlayers();
 
 		if (getTotalCards() >= 5) {
@@ -367,10 +371,14 @@ public class PlayerModel extends Observable implements Serializable{
 	 * Fortification phase.
 	 */
 	public void fortificationPhase() {
+		gameModel.setGameStatus("Fortification Phase starts");
 		if (this.hasWonTerritory) {
 			CardsModel card = gameModel.generateRandomCard();
 			if (card != null)
+			{
+				gameModel.setGameStatus("Assigning one card");
 				this.increaseCard(card.getType());
+			}
 
 		}
 		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
@@ -402,6 +410,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * 
 	 */
 	public void calculateAndAddReinforcementArmy() {
+		gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
 		if (reinforcementArmyCount < 3)
 			reinforcementArmyCount = 3;

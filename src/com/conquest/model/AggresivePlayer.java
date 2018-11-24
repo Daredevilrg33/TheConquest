@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public class AggresivePlayer extends GamePhase implements Serializable{
 
+	private static final long serialVersionUID = 10L;
 	/* (non-Javadoc)
 	 * @see com.conquest.model.GamePhase#reinforcementPhase()
 	 */

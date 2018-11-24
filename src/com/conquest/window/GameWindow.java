@@ -111,6 +111,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 
 	/** The jHandIn button place. */
 	private JButton jHandIn;
+	
+	/** The jSaveGame button place. */
+	private JButton jSaveGame;
 
 	/** The label labelCardsWithPlayer button place. */
 	private JLabel labelCardsWithPlayer;
@@ -138,6 +141,12 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		labelConnectivity.setFont(new Font("dialog", 1, 15));
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
 		add(labelConnectivity);
+		
+		jSaveGame = new JButton("Save Game");
+		jSaveGame.setBackground(Color.LIGHT_GRAY);
+		jSaveGame.setBounds(1010, 8, 100, 30);
+		jSaveGame.addActionListener(this);
+		add(jSaveGame);
 
 		mappingScrollPane = new JScrollPane(adjacencyTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -439,6 +448,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			break;
 		case "HandIn the cards":
 			gameWindowController.getGameModel().getCurrPlayer().handInCards();
+			break;
+		case "Save Game":
+			gameWindowController.saveGame();
 			break;
 
 		default:

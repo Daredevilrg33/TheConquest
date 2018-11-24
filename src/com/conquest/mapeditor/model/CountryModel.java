@@ -3,6 +3,7 @@
  */
 package com.conquest.mapeditor.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -13,7 +14,9 @@ import java.util.Observable;
  *
  * @author Nancy Goyal
  */
-public class CountryModel extends Observable {
+public class CountryModel extends Observable implements Serializable{
+	
+	private static final long serialVersionUID = 3L;
 
 	/** The country name. */
 	private String countryName;

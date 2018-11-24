@@ -12,6 +12,8 @@ import java.util.Observable;
  */
 public class MapHierarchyModel extends Observable implements Serializable {
 
+	private static final long serialVersionUID = 2L;
+	
 	/** The conquest map name. */
 	private String conquestMapName = "Default";
 

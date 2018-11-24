@@ -1,8 +1,14 @@
 package com.conquest.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
@@ -162,7 +168,7 @@ public class GameWindowController {
 	 * @param currentPlayer       the current player
 	 */
 	public void placingInitialArmies(String selectedCountryName, PlayerModel currentPlayer) {
-
+		gameModel.setGameStatus("Placing Initial Armies");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
@@ -177,7 +183,7 @@ public class GameWindowController {
 	 * @param currentPlayer       the current player
 	 */
 	public void placeReinforcedArmy(String selectedCountryName, PlayerModel currentPlayer) {
-
+		gameModel.setGameStatus("Placing Reinforced Armies");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
@@ -214,5 +220,31 @@ public class GameWindowController {
 	 */
 	public GameModel getGameModel() {
 		return gameModel;
+	}
+	
+	/**
+	 * Method to save current game to disk
+	 */
+	public void saveGame(){
+		ObjectOutputStream output = null;
+		try {
+			String fileName = null;
+			if (gameModel.getMapHierarchyModel()!=null)
+				fileName = gameModel.getMapHierarchyModel().getConquestMapName()+"-"+gameModel.getGameStatus()+"-"+new Date().getTime()+".bin";
+			else
+				fileName = gameModel.getGameStatus()+new Date().getTime()+".bin";
+			output = new ObjectOutputStream(new FileOutputStream("./save/"+fileName));
+			output.writeObject(gameModel);
+			JOptionPane.showMessageDialog(null,"Game has been saved to file <"+fileName+">. successfully ");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				output.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}	
 	}
 }
