@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 import com.conquest.mapeditor.view.MapDashboard;
 import com.conquest.utilities.Constants;
-//import org.apache.log4j.*;
+import org.apache.log4j.*;
 
 /**
  * The Class MainMenuScreen.
@@ -34,7 +34,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	/** The button exit. */
 	private JButton btnExit;
 	
-//	private static final Logger log = Logger.getLogger(MainMenuScreen.class);
+	private static final Logger log = Logger.getLogger(MainMenuScreen.class);
 
 	/**
 	 * Instantiates a new main menu screen.
@@ -95,24 +95,24 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getSource() == btnNewSingleGame) {
-//			log.info("New Single Game started");
+			log.info("New Single Game started");
 			NewGameMenuScreen secondScreen = new NewGameMenuScreen();
 			secondScreen.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnMapEditor) {
-//			log.info("Map Editor launched");
+			log.info("Map Editor launched");
 			MapDashboard mapDashboard = new MapDashboard();
 			mapDashboard.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnNewTournament) {
-//			log.info("New Tournament started");
+			log.info("New Tournament started");
 			NewTournamentMenuScreen newTournamentScreen = new NewTournamentMenuScreen();
 			newTournamentScreen.setVisible(true);
 			dispose();
 		}else if (event.getSource() == btnLoadGame) {
-//			log.info("Game loaded");
+			log.info("Game loaded");
 			LoadGameWindow loadGameWindow = new LoadGameWindow();
-//				loadGameWindow.setVisible(true);
+			loadGameWindow.setVisible(true);
 			dispose();
 		}else {
 			System.exit(0);

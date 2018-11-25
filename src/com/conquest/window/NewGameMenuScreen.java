@@ -146,7 +146,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 				}
 				if (!mapModel.isValErrorFlag()) {
 					dispose();
-					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers);
+					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers,"new Game",null);
 					gameWindow.setVisible(true);
 				} else {
 					String valErrorMsg = mapModel.getErrorMsg();

@@ -29,6 +29,9 @@ public class GameModel extends Observable implements Serializable{
 
 	/** The game state. */
 	private int gameState = 0; // 0=on 1=won
+	
+	/** The no of players. */
+	private int noOfPlayers = 0; 
 
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
@@ -53,9 +56,9 @@ public class GameModel extends Observable implements Serializable{
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param playerModels      the player models
 	 */
-	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
+	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels,int noOfPlayers) {
 		this.players = playerModels;
-
+		this.noOfPlayers = noOfPlayers;
 		this.mapHierarchyModel = mapHierarchyModel;
 		randomGenerator = new Random();
 		initializingCardsModel(mapHierarchyModel);
@@ -249,6 +252,21 @@ public class GameModel extends Observable implements Serializable{
 	 */
 	public void setGameStatus(String gameStatus) {
 		this.gameStatus = gameStatus;
+	}
+	
+
+	/**
+	 * @return the noOfPlayers
+	 */
+	public int getNoOfPlayers() {
+		return noOfPlayers;
+	}
+
+	/**
+	 * @param noOfPlayers the noOfPlayers to set
+	 */
+	public void setNoOfPlayers(int noOfPlayers) {
+		this.noOfPlayers = noOfPlayers;
 	}
 
 	/**

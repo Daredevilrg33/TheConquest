@@ -126,10 +126,10 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param noOfPlayers       the no of players
 	 */
-	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers) {
+	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers, String from, GameModel gameModel) {
 
 		this.mapHierarchyModel = mapHierarchyModel;
-
+		try{
 		setTitle("Game Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
@@ -200,8 +200,15 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		labelCardsWithPlayer = new JLabel();
 		labelCardsWithPlayer.setBounds(480, 660, 200, 30);
 		add(labelCardsWithPlayer);
+		System.out.println("\n\n\n inside gamewindow 111");
 
-		gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
+		if("loadGame".equalsIgnoreCase(from))
+			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), gameModel);
+		else
+			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
+		
+		System.out.println("\n\n\n inside gamewindow 222 "+gameWindowController);
+		
 		players = gameWindowController.getPlayers();
 		gameWindowController.getGameModel().addObserver(this);
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -238,6 +245,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		}
 		updateUIInfo(players[0]);
 		gameWindowController.getGameModel().increaseTurn();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**

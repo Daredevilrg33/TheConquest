@@ -83,7 +83,7 @@ public class AttackWindowControllerTest {
 		PlayerModel[] playerModels = new PlayerModel[2];
 		playerModels[0] = new PlayerModel("Player1", countryModelArrayList);
 		playerModels[1] = new PlayerModel("Player2", countryModelArrayList1);
-		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels,playerModels.length);
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, playerModels, playerModels[0]);
 
 		AttackWindowController attackwindowcontroller = new AttackWindowController(playerModels, attackPhaseWindow,
@@ -132,7 +132,7 @@ public class AttackWindowControllerTest {
 		PlayerModel[] playerModels = new PlayerModel[1];
 		playerModels[0] = new PlayerModel("Player1", countryModelArrayList);
 
-		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels,playerModels.length);
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, playerModels, playerModels[0]);
 
 		countryModel1.setNoOfArmiesCountry(1);

@@ -67,7 +67,26 @@ public class GameWindowController {
 
 		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
 
-		this.gameModel = new GameModel(mapHierarchyModel, players);
+		this.gameModel = new GameModel(mapHierarchyModel, players,this.noOfPlayers);
+		providingGameModelToPlayer();
+	}
+	
+	/**
+	 * Game Window Controller Constructor Constructor created to assign value of
+	 * objects.
+	 *
+	 * @param gameWindow  Object of class GameWindow {@link GameWindow}
+	 * @param noOfPlayers Number of players in game Range from (3-5)
+	 * @param gameModel    Object of class GameModel
+	 *                    {@link MapHierarchyModel}
+	 */
+	public GameWindowController(GameWindow gameWindow, int noOfPlayers, GameModel gameModel) {
+		this.gameWindow = gameWindow;
+		this.noOfPlayers = noOfPlayers;
+		this.gameModel =gameModel;
+		this.mapHierarchyModel = gameModel.getMapHierarchyModel();
+
+		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
 		providingGameModelToPlayer();
 	}
 

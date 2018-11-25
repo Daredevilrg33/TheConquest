@@ -65,9 +65,9 @@ public class GameWindowControllerTest {
 	public void noOfArmyTest() {
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3");
-		gameWindow1 = new GameWindow(mapHierarchyModel, "4");
-		gameWindow2 = new GameWindow(mapHierarchyModel, "5");
+		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
+		gameWindow1 = new GameWindow(mapHierarchyModel, "4","New Game",null);
+		gameWindow2 = new GameWindow(mapHierarchyModel, "5","New Game",null);
 
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
@@ -95,7 +95,7 @@ public class GameWindowControllerTest {
 	public void noOfArmyAfterTest() {
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3");
+		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
@@ -114,7 +114,7 @@ public class GameWindowControllerTest {
 	public void noOfArmyCountryTest() {
 
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3");
+		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
 		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
 		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
 		PlayerModel[] playerModels = gameWindowController.getPlayers();
