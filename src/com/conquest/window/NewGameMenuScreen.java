@@ -2,6 +2,8 @@ package com.conquest.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -52,7 +54,10 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 	/** The no of players. */
 	private String noOfPlayers;
-
+	
+	private String[] playerTypes = new String[] {"Human","Aggresive","Benevolent","Random","Cheater"};
+	private JLabel labelPlayer5,labelPlayer4;
+	private JComboBox<String> comboBoxPlayerType5,comboBoxPlayerType4; 
 	/**
 	 * NewGameMenuScreen Constructor Instantiates a new new game menu screen.
 	 */
@@ -80,10 +85,56 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 		comboBoxSelectPlayer = new JComboBox<>(playersList);
 		comboBoxSelectPlayer.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxSelectPlayer.addActionListener(this);
 		add(comboBoxSelectPlayer);
 
+		JLabel labelPlayer1 = new JLabel("Player1 : ");
+		labelPlayer1.setBounds(Constants.WIDTH/2-250, 150, 100, 30);
+		add(labelPlayer1);
+		
+		JLabel labelPlayer2 = new JLabel("Player2 : ");
+		labelPlayer2.setBounds(Constants.WIDTH/2-250, 200, 100, 30);
+		add(labelPlayer2);
+		
+		JLabel labelPlayer3 = new JLabel("Player3 : ");
+		labelPlayer3.setBounds(Constants.WIDTH/2-250, 250, 100, 30);
+		add(labelPlayer3);
+		
+		labelPlayer4 = new JLabel("Player4 : ");
+		labelPlayer4.setBounds(Constants.WIDTH/2-250, 300, 100, 30);
+		add(labelPlayer4);
+		labelPlayer4.setVisible(false);
+		
+		labelPlayer5 = new JLabel("Player5 : ");
+		labelPlayer5.setBounds(Constants.WIDTH/2-250, 350, 100, 30);
+		add(labelPlayer5);
+		labelPlayer5.setVisible(false);
+		
+		JComboBox<String> comboBoxPlayerType1 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType1.setBounds(Constants.WIDTH/2-120, 150, 100, 30);
+		add(comboBoxPlayerType1);
+	
+		JComboBox<String> comboBoxPlayerType2 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType2.setBounds(Constants.WIDTH/2-120, 200, 100, 30);
+		add(comboBoxPlayerType2);
+	
+		JComboBox<String> comboBoxPlayerType3 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType3.setBounds(Constants.WIDTH/2-120, 250, 100, 30);
+		add(comboBoxPlayerType3);
+		
+		comboBoxPlayerType4 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType4.setBounds(Constants.WIDTH/2-120, 300, 100, 30);
+		add(comboBoxPlayerType4);
+		comboBoxPlayerType4.setVisible(false);
+		
+		comboBoxPlayerType5 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType5.setBounds(Constants.WIDTH/2-120, 350, 100, 30);
+		add(comboBoxPlayerType5);
+		comboBoxPlayerType5.setVisible(false);
+		
+		
 		buttonStartGame = new JButton("Start Game");
-		buttonStartGame.setBounds(Constants.WIDTH / 2 - 50, Constants.HEIGHT - 200, 100, 30);
+		buttonStartGame.setBounds(Constants.WIDTH / 2 + 150, Constants.HEIGHT - 200, 100, 30);
 		buttonStartGame.addActionListener(this);
 		add(buttonStartGame);
 		setTitle("New Game Menu");
@@ -152,6 +203,25 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 					String valErrorMsg = mapModel.getErrorMsg();
 					JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
 				}
+			}
+		}else if(event.getSource() == comboBoxSelectPlayer)
+		{
+			String item = (String)comboBoxSelectPlayer.getSelectedItem();
+			if(item.trim().equalsIgnoreCase("4"))
+			{
+				comboBoxPlayerType4.setVisible(true);
+				labelPlayer4.setVisible(true);
+			}else if(item.trim().equalsIgnoreCase("5")) {
+				comboBoxPlayerType4.setVisible(true);
+				labelPlayer4.setVisible(true);	
+				comboBoxPlayerType5.setVisible(true);
+				labelPlayer5.setVisible(true);
+			}else if(item.trim().equalsIgnoreCase("3"))
+			{
+				comboBoxPlayerType4.setVisible(false);
+				comboBoxPlayerType5.setVisible(false);
+				labelPlayer4.setVisible(false);
+				labelPlayer5.setVisible(false);
 			}
 		}
 	}
