@@ -114,6 +114,8 @@ public class AttackWindowController {
 		SecureRandom number = new SecureRandom();
 		pickedNumber = number.nextInt(6);
 		System.out.println("Roll Dice Value: " + pickedNumber);
+	      log.info("Roll Dice starts \n Number:"+pickedNumber);
+
 		return pickedNumber + 1;
 	}
 
@@ -127,6 +129,7 @@ public class AttackWindowController {
 	 */
 	public void attack(String attackingCountry, String targetCountry, int attackArmyCount, int defenderArmyCount) {
 		gameModel.setGameStatus("Single Attack starts");
+		log.info("Single Attack starts");
 		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
 				.searchCountry(attackingCountry.trim());
 
@@ -154,7 +157,7 @@ public class AttackWindowController {
 	 */
 	public void allOutAttack(String attackingCountry, String targetCountry) {
 		gameModel.setGameStatus("All out Attack starts");
-
+		log.info("All out Attack starts");
 		CountryModel attackingCountryModel = attackPhaseWindow.getCurrentPlayer()
 				.searchCountry(attackingCountry.trim());
 
