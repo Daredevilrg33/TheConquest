@@ -121,6 +121,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	private JProgressBar progressBar;
 	
 	private GameModel gameModel;
+	private String fromGame;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
@@ -131,6 +132,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers, String from, GameModel gameModel) {
 
 		this.mapHierarchyModel = mapHierarchyModel;
+		this.fromGame= from;
 		
 		try{
 		setTitle("Game Window");
@@ -211,9 +213,12 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		
 		this.gameModel = gameModel==null?gameWindowController.getGameModel():gameModel;
 		
-		
-		players = gameWindowController.getPlayers();
+		// check with this
+		players = this.gameModel.getPlayers();
 		this.gameModel.addObserver(this);
+		//gameWindowController.getGameModel().addObserver(this);
+		
+		
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
@@ -226,6 +231,13 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 				(int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
 		addProgressBar(this.gameModel);
+		
+		// check with this
+		if(this.gameModel.getGameSavePhase()!=0)
+		{
+			updatePhaseView("Reinforcement Phase");
+		}
+		
 
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -306,7 +318,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void updateGameInformation() {
 
 		DefaultMutableTreeNode playerRoot = new DefaultMutableTreeNode("Game Information");
-		for (PlayerModel player : gameWindowController.getPlayers()) {
+		for (PlayerModel player :this.gameModel.getPlayers()) {
 			List<CountryModel> loopCountriesList = player.getPlayerCountryList();
 			DefaultMutableTreeNode playerNode = new DefaultMutableTreeNode(player.getPlayerName());
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -426,6 +438,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 
 			if (this.gameModel.getGameState() != 1) {
 				labelCardsWithPlayer.setText(this.gameModel.getCurrPlayer().cardsString());
+				if(!"loadGame".equalsIgnoreCase(fromGame))
 				this.gameModel.getCurrPlayer().gamePhase(this);
 			}
 			updateGameInformation();
@@ -535,12 +548,14 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void update(Observable object, Object arg) {
 		// TODO Auto-generated method stub
 		if (object instanceof GameModel) {
+			System.out.println("\n\n gamemodel");
 			GameModel gameModel = (GameModel) object;
 			updateGameInformation();
 			addProgressBar(gameModel);
-			System.out.println("\n\n\n gameModel.getCurrPlayer()"+gameModel.getCurrPlayer());
+			
 			updateUIInfo(gameModel.getCurrPlayer());
 		} else if (object instanceof PlayerModel) {
+			System.out.println("\n\n PlayerModel");
 			PlayerModel playerModel = (PlayerModel) object;
 
 //			setProgressBarValues(playerModel);
