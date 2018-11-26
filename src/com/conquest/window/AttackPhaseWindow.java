@@ -100,6 +100,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 */
 	public AttackPhaseWindow(GameModel gameModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
 		gameModel.setGameStatus("Attack Phase starts");
+		log.info("Attack Phase starts");
 		gameModel.setGameSavePhase(2);
 		this.gameModel = gameModel;
 		this.players = playerModels;

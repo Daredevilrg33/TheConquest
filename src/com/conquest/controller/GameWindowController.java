@@ -188,6 +188,7 @@ public class GameWindowController {
 	 */
 	public void placingInitialArmies(String selectedCountryName, PlayerModel currentPlayer) {
 		gameModel.setGameStatus("Placing Initial Armies");
+		log.info("Placing Initial Armies");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
@@ -203,6 +204,8 @@ public class GameWindowController {
 	 */
 	public void placeReinforcedArmy(String selectedCountryName, PlayerModel currentPlayer) {
 		gameModel.setGameStatus("Placing Reinforced Armies");
+		
+		log.info("Placing Reinforced Armie");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();

@@ -1,5 +1,7 @@
 package com.conquest.mapeditor.model;
 
+import static java.awt.Window.log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -233,6 +235,7 @@ public class PlayerModel extends Observable implements Serializable{
 
 	public void handInCards() {
 		gameModel.setGameStatus("Cards HandIn");
+		log.info("Cards HandIn");
 		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
 			if (cards[0] >= 3) {
 				cards[0] = 0;
@@ -343,6 +346,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 */
 	public void reinforcementPhase() {
 		gameModel.setGameStatus("Reinforcement Phase starts");
+		log.info("Reinforcement Phase starts");
 		calculateAndAddReinforcementArmy();
 	}
 
@@ -377,6 +381,7 @@ public class PlayerModel extends Observable implements Serializable{
 			if (card != null)
 			{
 				gameModel.setGameStatus("Assigning one card");
+				log.info("Assigning one card");
 				this.increaseCard(card.getType());
 			}
 
@@ -412,6 +417,7 @@ public class PlayerModel extends Observable implements Serializable{
 	public void calculateAndAddReinforcementArmy() {
 		gameModel.setGameSavePhase(1);
 		gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
+		log.info("Calculating and Adding Reinforcement Armies");
 		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
 		if (reinforcementArmyCount < 3)
 			reinforcementArmyCount = 3;
