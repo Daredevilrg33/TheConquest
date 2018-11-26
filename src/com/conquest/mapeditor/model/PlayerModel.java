@@ -352,7 +352,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * @return the string
 	 */
 	public String AttackPhase() {
-		gameModel.setGameStatus("Attack Phase starts");
+		
 		PlayerModel[] players = gameWindow.getPlayers();
 
 		if (getTotalCards() >= 5) {
@@ -371,7 +371,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * Fortification phase.
 	 */
 	public void fortificationPhase() {
-		gameModel.setGameStatus("Fortification Phase starts");
+		
 		if (this.hasWonTerritory) {
 			CardsModel card = gameModel.generateRandomCard();
 			if (card != null)
@@ -410,6 +410,7 @@ public class PlayerModel extends Observable implements Serializable{
 	 * 
 	 */
 	public void calculateAndAddReinforcementArmy() {
+		gameModel.setGameSavePhase(1);
 		gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
 		if (reinforcementArmyCount < 3)

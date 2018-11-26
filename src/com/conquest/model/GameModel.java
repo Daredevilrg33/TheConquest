@@ -36,7 +36,11 @@ public class GameModel extends Observable implements Serializable{
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
 	
+	/** The gameStatus. */
 	private String gameStatus="";
+	
+	/** The gameSavePhase. */
+	private int gameSavePhase=0;//0=startup 1=Reinforcement 2=Attack 3=Fortification
 
 	/** The turn. */
 	private int turn;
@@ -254,6 +258,20 @@ public class GameModel extends Observable implements Serializable{
 		this.gameStatus = gameStatus;
 	}
 	
+
+	/**
+	 * @return the gameSavePhase
+	 */
+	public int getGameSavePhase() {
+		return gameSavePhase;
+	}
+
+	/**
+	 * @param gameSavePhase the gameSavePhase to set
+	 */
+	public void setGameSavePhase(int gameSavePhase) {
+		this.gameSavePhase = gameSavePhase;
+	}
 
 	/**
 	 * @return the noOfPlayers

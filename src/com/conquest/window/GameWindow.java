@@ -119,6 +119,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	private JLabel labelCardsWithPlayer;
 
 	private JProgressBar progressBar;
+	
+	private GameModel gameModel;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
@@ -129,6 +131,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers, String from, GameModel gameModel) {
 
 		this.mapHierarchyModel = mapHierarchyModel;
+		
 		try{
 		setTitle("Game Window");
 		setResizable(false);
@@ -200,17 +203,17 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		labelCardsWithPlayer = new JLabel();
 		labelCardsWithPlayer.setBounds(480, 660, 200, 30);
 		add(labelCardsWithPlayer);
-		System.out.println("\n\n\n inside gamewindow 111");
 
 		if("loadGame".equalsIgnoreCase(from))
 			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), gameModel);
 		else
 			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
 		
-		System.out.println("\n\n\n inside gamewindow 222 "+gameWindowController);
+		this.gameModel = gameModel==null?gameWindowController.getGameModel():gameModel;
+		
 		
 		players = gameWindowController.getPlayers();
-		gameWindowController.getGameModel().addObserver(this);
+		this.gameModel.addObserver(this);
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
@@ -222,7 +225,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 				phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				(int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
-		addProgressBar(gameWindowController.getGameModel());
+		addProgressBar(this.gameModel);
 
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -244,7 +247,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			updateGameInformation();
 		}
 		updateUIInfo(players[0]);
-		gameWindowController.getGameModel().increaseTurn();
+		this.gameModel.increaseTurn();
 		}
 		catch(Exception e)
 		{
@@ -418,12 +421,12 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			jButtonPlace.setText("Place Reinforce Armies");
 			jButtonPlace.setEnabled(true);
 			jHandIn.setVisible(true);
-			if (gameWindowController.getGameModel().getCurrPlayer().canHandIn())
+			if (this.gameModel.getCurrPlayer().canHandIn())
 				jHandIn.setEnabled(true);
 
-			if (gameWindowController.getGameModel().getGameState() != 1) {
-				labelCardsWithPlayer.setText(gameWindowController.getGameModel().getCurrPlayer().cardsString());
-				gameWindowController.getGameModel().getCurrPlayer().gamePhase(this);
+			if (this.gameModel.getGameState() != 1) {
+				labelCardsWithPlayer.setText(this.gameModel.getCurrPlayer().cardsString());
+				this.gameModel.getCurrPlayer().gamePhase(this);
 			}
 			updateGameInformation();
 		}
@@ -443,10 +446,10 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		case "Place Initial Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.placingInitialArmies(selectedCountry,
-					gameWindowController.getGameModel().getCurrPlayer());
+					this.gameModel.getCurrPlayer());
 			updateGameInformation();
-			gameWindowController.getGameModel().increaseTurn();
-			gameWindowController.getGameModel().moveToNextPlayer();
+			this.gameModel.increaseTurn();
+			this.gameModel.moveToNextPlayer();
 			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 				updatePhaseView("Reinforcement Phase");
 			}
@@ -455,11 +458,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.placeReinforcedArmy(selectedCountry,
-					gameWindowController.getGameModel().getCurrPlayer());
+					this.gameModel.getCurrPlayer());
 			updateGameInformation();
 			break;
 		case "HandIn the cards":
-			gameWindowController.getGameModel().getCurrPlayer().handInCards();
+			this.gameModel.getCurrPlayer().handInCards();
 			break;
 		case "Save Game":
 			gameWindowController.saveGame();
@@ -535,6 +538,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			GameModel gameModel = (GameModel) object;
 			updateGameInformation();
 			addProgressBar(gameModel);
+			System.out.println("\n\n\n gameModel.getCurrPlayer()"+gameModel.getCurrPlayer());
 			updateUIInfo(gameModel.getCurrPlayer());
 		} else if (object instanceof PlayerModel) {
 			PlayerModel playerModel = (PlayerModel) object;

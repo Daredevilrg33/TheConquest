@@ -82,6 +82,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	 * @param player    the player
 	 */
 	public FortificationWindow(GameModel gameModel, PlayerModel player) {
+		gameModel.setGameStatus("Fortification Phase starts");
+		gameModel.setGameSavePhase(3);
 		this.player = player;
 		this.gameModel = gameModel;
 

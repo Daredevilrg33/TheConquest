@@ -119,8 +119,17 @@ public class LoadGameWindow extends JFrame  implements ActionListener  {
 		    GameModel myGameModel = (GameModel)input.readObject();
 		    dispose();
 		    GameWindow gameWindow = new GameWindow(myGameModel.getMapHierarchyModel(), myGameModel.getNoOfPlayers()+"","new Game",myGameModel);
-		    System.out.println("\n\n\n gameWindow"+gameWindow);
 		    gameWindow.setVisible(true);
+		    if(myGameModel.getGameSavePhase()==2)
+		    {
+		    	AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(myGameModel, myGameModel.getPlayers(), myGameModel.getCurrPlayer());
+		    	attackPhaseWindow.setVisible(true);
+		    }
+		    if(myGameModel.getGameSavePhase()==3)
+		    {
+		    	FortificationWindow fortificationWindow = new FortificationWindow(myGameModel, myGameModel.getCurrPlayer());
+				fortificationWindow.setVisible(true);
+		    }
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}finally{
