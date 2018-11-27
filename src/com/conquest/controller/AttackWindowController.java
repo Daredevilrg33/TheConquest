@@ -7,6 +7,9 @@ import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
 
 import java.util.Collections;
+
+import org.apache.log4j.Logger;
+
 import com.conquest.window.AttackPhaseWindow;
 import java.security.SecureRandom;
 
@@ -38,6 +41,7 @@ public class AttackWindowController {
 
 	/** The game model. */
 	private GameModel gameModel;
+	   static Logger log = Logger.getLogger(AttackWindowController.class.getName());
 
 	/**
 	 * Instantiates a new attack window controller.

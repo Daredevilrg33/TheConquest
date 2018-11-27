@@ -10,6 +10,8 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
@@ -50,6 +52,7 @@ public class GameWindowController {
 
 	/** The game model. */
 	private GameModel gameModel;
+	   static Logger log = Logger.getLogger(GameWindowController.class.getName());
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of

@@ -29,6 +29,12 @@ public class GameWindowControllerTest {
 
 	/** The Asia map file path. */
 	private static String ASIA_MAP_FILE_PATH;
+	
+	/** The Asia map file path. */
+	private static String Continent_Value;
+	
+	private static String ACCBB;
+
 
 	/** The game window object. */
 	GameWindow gameWindow;
@@ -47,6 +53,9 @@ public class GameWindowControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
+		Continent_Value = System.getProperty("user.dir") + "\\resources\\testresource\\CONTINENTVALUETEST.map";
+		ACCBB = System.getProperty("user.dir") + "\\resources\\testresource\\ACCBB.map";
+
 	}
 
 	/**
@@ -87,9 +96,9 @@ public class GameWindowControllerTest {
 	}
 
 	/**
-	 * No of armies a player has after first reinforcement phase depending on the
-	 * number of countries he has.
-	 * 
+	 * No of armies a player has after first reinforcement phase ie the minimum reinforcement 
+	 * value gets added .
+	 
 	 */
 	@Test
 	public void noOfArmyAfterTest() {
@@ -142,12 +151,69 @@ public class GameWindowControllerTest {
 		playerModels[1].addCountry(countrymodel8);
 		playerModels[1].addCountry(countrymodel9);
 		playerModels[1].addCountry(countrymodel10);
-		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
-		System.out.println("Country List Size: " + playerModels[0].getPlayerCountryList().size());
-		System.out.println("player no of army: " + playerModels[0].getnoOfArmyInPlayer());
+//		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
+//		System.out.println("Country List Size: " + playerModels[0].getPlayerCountryList().size());
+//		System.out.println("player no of army: " + playerModels[0].getnoOfArmyInPlayer());
 		playerModels[1].calculateAndAddReinforcementArmy();
 		playerModels[0].calculateAndAddReinforcementArmy();
 		assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
 		assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
 	}
+	
+	
+	/**
+	 * No of armies a player has after reinforcement phase if the player controls the whole continent.
+	 * 
+	 */
+	@Test
+	public void noOfArmyCountry2Test() {
+
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Continent_Value);
+		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
+		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
+		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
+		PlayerModel[] playerModels = gameWindowController.getPlayers();
+		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
+		CountryModel countrymodel = new CountryModel("BOSTON");
+		CountryModel countrymodel1 = new CountryModel("CALIFORNIA");
+		CountryModel countrymodel2 = new CountryModel("BRAZIL");
+		
+		ArrayList<CountryModel> countryModelArrayList1 = new ArrayList<CountryModel>();
+
+		CountryModel countrymodel3 = new CountryModel("LONDON");
+		CountryModel countrymodel4 = new CountryModel("PARIS");
+		
+		ArrayList<CountryModel> countryModelArrayList2 = new ArrayList<CountryModel>();
+
+		CountryModel countrymodel6 = new CountryModel("SCOTLAND");
+		
+		playerModels[1].removeAllCountry();
+		playerModels[0].removeAllCountry();
+		playerModels[2].removeAllCountry();
+		playerModels[1].noOfArmyInPlayer(25);
+		playerModels[2].noOfArmyInPlayer(25);
+		playerModels[0].noOfArmyInPlayer(25);
+
+
+		playerModels[1].addCountry(countrymodel);
+
+		playerModels[1].addCountry(countrymodel1);
+		playerModels[1].addCountry(countrymodel2);
+		playerModels[0].addCountry(countrymodel3);
+		playerModels[0].addCountry(countrymodel4);
+		
+		playerModels[2].addCountry(countrymodel6);
+		
+		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
+		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+		System.out.println("player no of army: " + playerModels[2].getnoOfArmyInPlayer());
+		playerModels[1].calculateAndAddReinforcementArmy();
+		playerModels[0].calculateAndAddReinforcementArmy();
+		//assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
+		//assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
+	}
+	
+	
+	
+	
 }

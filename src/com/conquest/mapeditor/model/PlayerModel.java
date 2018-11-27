@@ -1,6 +1,6 @@
 package com.conquest.mapeditor.model;
 
-import static java.awt.Window.log;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
+
+import org.apache.log4j.Logger;
 
 import com.conquest.controller.GameWindowController;
 import com.conquest.model.CardsModel;
@@ -47,6 +49,9 @@ public class PlayerModel extends Observable implements Serializable{
 	/** The cards. */
 	private int[] cards;
 
+	static Logger log = Logger.getLogger(PlayerModel.class.getName());
+
+	
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 *

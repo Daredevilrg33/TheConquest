@@ -94,7 +94,7 @@ public class NewGameMenuScreenTest {
 	}
 
 	/**
-	 * test to check whether all the countries are connected or not.
+	 * test to that all countries are not connected.
 	 */
 	@Test
 	public void countriesconnected2Test() {
@@ -120,7 +120,7 @@ public class NewGameMenuScreenTest {
 	}
 
 	/**
-	 * test to check whether all the continents are connected or not.
+	 * test to to show that all the continents are not connected.
 	 */
 	@Test
 	public void continentsnotconnectedTest() {
