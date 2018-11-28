@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.controller.FortificationWindowController;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.PlayerModel;
@@ -74,7 +76,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	/** The game model. */
 	private GameModel gameModel;
+	static Logger log = Logger.getLogger(FortificationWindow.class.getName());
 
+	
 	/**
 	 * Instantiates a new fortification window.
 	 *

@@ -25,9 +25,9 @@ import com.conquest.utilities.Utility;
  * The Class NewTournamentMenuScreen.
  */
 public class NewTournamentMenuScreen extends JFrame implements ActionListener {
-	
+
 	/** The combo box number of maps. */
-	private JComboBox<String> comboBoxNumberOfMaps;				
+	private JComboBox<String> comboBoxNumberOfMaps;
 
 	/** The combo box select no of player. */
 	private JComboBox<String> comboBoxSelectNoOfPlayer;
@@ -69,37 +69,37 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	private JButton startTournament;
 
 	/** The map list. */
-	private String[] mapList = new String[] { "1", "2", "3", "4", "5"};
+	private String[] mapList = new String[] { "1", "2", "3", "4", "5" };
 
 	/** The players list. */
-	private String[] playersList = new String[] { "2", "3", "4"};
+	private String[] playersList = new String[] { "2", "3", "4" };
 
 	/** The behaviour list. */
-	private String[] behaviourList = new String[] { "Agressive", "Benevolent", "Random", "Cheater"};
+	private String[] behaviourList = new String[] { "Agressive", "Benevolent", "Random", "Cheater" };
 
 	/** The no of game list. */
-	private String[] noOfGameList = new String[] { "1", "2", "3", "4", "5"};
+	private String[] noOfGameList = new String[] { "1", "2", "3", "4", "5" };
 
 	/** The no of turns list. */
 	private String[] noOfTurnsList = new String[] { "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
 			"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
-			"39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"};
-	
+			"39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" };
+
 	/** The file path one. */
 	private String filePathOne;
-	
+
 	/** The file name one. */
 	private String fileNameOne;
-	
+
 	/** The file path two. */
 	private String filePathTwo;
-	
+
 	/** The file name two. */
 	private String fileNameTwo;
 
 	/** The file path three. */
 	private String filePathThree;
-	
+
 	/** The file name three. */
 	private String fileNameThree;
 
@@ -114,7 +114,6 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 	/** The file name five. */
 	private String fileNameFive;
-
 
 	/**
 	 * Instantiates a new new tournament menu screen.
@@ -193,7 +192,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		labelSelectNoOfGames.setText("Select Number of Games");
 		labelSelectNoOfGames.setBounds(Constants.WIDTH / 2 - 150, 100, 100, 30);
 		add(labelSelectNoOfGames);
-		
+
 		comboBoxNumberOfGames = new JComboBox<>(noOfGameList);
 		comboBoxNumberOfGames.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
 		add(comboBoxNumberOfGames);
@@ -211,9 +210,9 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		startTournament.setBounds(Constants.WIDTH / 2 - 115, 100, 30, 30);
 		startTournament.addActionListener(this);
 		add(startTournament);
-		
+
 		addWindowListener(new WindowAdapter() {
-	
+
 			public void windowClosing(WindowEvent e) {
 				MainMenuScreen mainMenuScreen = new MainMenuScreen();
 				mainMenuScreen.setVisible(true);
@@ -246,12 +245,12 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 		return isConnected;
 	}
-	
+
 	/**
 	 * Dfs using stack.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param countryModel the country model
+	 * @param countryModel      the country model
 	 */
 	public void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
@@ -306,12 +305,11 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		return isConnected;
 	}
 
-	
 	/**
 	 * Dfs using stack continent.
 	 *
 	 * @param continentModel the continent model
-	 * @param countryModel the country model
+	 * @param countryModel   the country model
 	 */
 	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
@@ -338,13 +336,14 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		}
 	}
 
-
-	
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent event) {
-		
+
 		if ((event.getSource() == chooseMapOne)) {
 			filePathOne = Utility.pickFile();
 			System.out.println("File Path: " + filePathOne);
@@ -462,6 +461,6 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 //				}
 //
 //		
-		}	
+		}
 	}
 }

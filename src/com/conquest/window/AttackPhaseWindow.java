@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.controller.AttackWindowController;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.PlayerModel;
@@ -90,6 +92,8 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 
 	/** The j button finish attack. */
 	private JButton jButtonFinishAttack;
+
+	static Logger log = Logger.getLogger(AttackPhaseWindow.class.getName());
 
 	/**
 	 * Instantiates a new attack phase window.
