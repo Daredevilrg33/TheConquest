@@ -1,4 +1,4 @@
-package com.conquest.mapeditor.model;
+package com.conquest.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,11 +9,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
-import com.conquest.model.CardsModel;
-import com.conquest.model.GameModel;
-import com.conquest.window.AttackPhaseWindow;
-import com.conquest.window.FortificationWindow;
-import com.conquest.window.GameWindow;
+import com.conquest.mapeditor.model.CountryModel;
 
 /**
  * The Class PlayerModel.
@@ -21,7 +17,7 @@ import com.conquest.window.GameWindow;
  * @author ROHIT GUPTA
  * @version 1.0.0
  */
-public class PlayerModel extends Observable implements Serializable {
+public class PlayerModel extends Observable implements Serializable, GamePhase {
 
 	private static final long serialVersionUID = 5L;
 
@@ -34,11 +30,8 @@ public class PlayerModel extends Observable implements Serializable {
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
 
-	/** The game window. */
-	private transient GameWindow gameWindow;
-
-	/** The risk map model. */
-	private GameModel gameModel;
+//	/** The game window. */
+//	private transient GameWindow gameWindow;
 
 	/** The has won territory. */
 	private boolean hasWonTerritory;
@@ -46,7 +39,8 @@ public class PlayerModel extends Observable implements Serializable {
 	/** The cards. */
 	private int[] cards;
 
-	static Logger log = Logger.getLogger(PlayerModel.class.getName());
+	private PlayerType playerType;
+	private static final Logger log = Logger.getLogger(PlayerModel.class);
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
@@ -54,26 +48,12 @@ public class PlayerModel extends Observable implements Serializable {
 	 * @param playerName the player name
 	 * @param gameModel  the risk map model
 	 */
-	public PlayerModel(String playerName, GameModel gameModel) {
+	public PlayerModel(String playerName, PlayerType playerType) {
 		this.playerName = playerName;
-		this.gameModel = gameModel;
 		cards = new int[] { 0, 0, 0 };
 		this.playerCountryList = new ArrayList<>();
 		this.hasWonTerritory = false;
-		updateChanges();
-	}
-
-	/**
-	 * PlayerModel Constructor Instantiates a new player model.
-	 * 
-	 * @param playerName            the player name
-	 * @param countryModelArrayList array list of countries of the player.
-	 */
-
-	public PlayerModel(String playerName, ArrayList<CountryModel> countryModelArrayList) {
-		this.playerName = playerName;
-		this.playerCountryList = new ArrayList<>();
-		this.playerCountryList.addAll(countryModelArrayList);
+		this.playerType = playerType;
 		updateChanges();
 	}
 
@@ -234,52 +214,52 @@ public class PlayerModel extends Observable implements Serializable {
 	 * The function to exchange the cards.
 	 */
 
-	public void handInCards() {
-		gameModel.setGameStatus("Cards HandIn");
-		log.info("Cards HandIn");
-		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
-			if (cards[0] >= 3) {
-				cards[0] = 0;
-				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Infantry", 0);
-					gameModel.getTotalCards().add(card);
-				}
-			}
-			if (cards[1] >= 3) {
-				cards[1] = 0;
-				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Cavalry", 1);
-					gameModel.getTotalCards().add(card);
-				}
-			}
-			if (cards[2] >= 3) {
-				cards[2] = 0;
-				for (int i = 0; i < 3; i++) {
-					CardsModel card = new CardsModel("Artillery", 2);
-					gameModel.getTotalCards().add(card);
-				}
-			}
-		} else {
-			if (cards[0] >= 1) {
-				cards[0]--;
-				CardsModel card = new CardsModel("Infantry", 0);
-				gameModel.getTotalCards().add(card);
-			}
-			if (cards[1] >= 1) {
-				cards[1]--;
-				CardsModel card = new CardsModel("Cavalry", 1);
-				gameModel.getTotalCards().add(card);
-			}
-			if (cards[2] >= 1) {
-				cards[2]--;
-				CardsModel card = new CardsModel("Artillery", 2);
-				gameModel.getTotalCards().add(card);
-			}
-		}
-		gameModel.setHandInCounter(gameModel.getHandInCounter() + 1);
-		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter() * 5);
-		updateChanges();
-	}
+//	public void handInCards() {
+//		gameModel.setGameStatus("Cards HandIn");
+//		log.info("Cards HandIn");
+//		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
+//			if (cards[0] >= 3) {
+//				cards[0] = 0;
+//				for (int i = 0; i < 3; i++) {
+//					CardsModel card = new CardsModel("Infantry", 0);
+//					gameModel.getTotalCards().add(card);
+//				}
+//			}
+//			if (cards[1] >= 3) {
+//				cards[1] = 0;
+//				for (int i = 0; i < 3; i++) {
+//					CardsModel card = new CardsModel("Cavalry", 1);
+//					gameModel.getTotalCards().add(card);
+//				}
+//			}
+//			if (cards[2] >= 3) {
+//				cards[2] = 0;
+//				for (int i = 0; i < 3; i++) {
+//					CardsModel card = new CardsModel("Artillery", 2);
+//					gameModel.getTotalCards().add(card);
+//				}
+//			}
+//		} else {
+//			if (cards[0] >= 1) {
+//				cards[0]--;
+//				CardsModel card = new CardsModel("Infantry", 0);
+//				gameModel.getTotalCards().add(card);
+//			}
+//			if (cards[1] >= 1) {
+//				cards[1]--;
+//				CardsModel card = new CardsModel("Cavalry", 1);
+//				gameModel.getTotalCards().add(card);
+//			}
+//			if (cards[2] >= 1) {
+//				cards[2]--;
+//				CardsModel card = new CardsModel("Artillery", 2);
+//				gameModel.getTotalCards().add(card);
+//			}
+//		}
+//		gameModel.setHandInCounter(gameModel.getHandInCounter() + 1);
+//		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter() * 5);
+//		updateChanges();
+//	}
 
 	/**
 	 * Search a country by the country Name.
@@ -333,65 +313,6 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * Game phase.
-	 *
-	 * @param gameWindow the game window
-	 */
-	public void gamePhase(GameWindow gameWindow) {
-		this.gameWindow = gameWindow;
-		reinforcementPhase();
-	}
-
-	/**
-	 * Reinforcement phase.
-	 */
-	public void reinforcementPhase() {
-		gameModel.setGameStatus("Reinforcement Phase starts");
-		log.info("Reinforcement Phase starts");
-		calculateAndAddReinforcementArmy();
-	}
-
-	/**
-	 * Attack phase.
-	 *
-	 * @return the string
-	 */
-	public String AttackPhase() {
-
-		PlayerModel[] players = gameWindow.getPlayers();
-
-		if (getTotalCards() >= 5) {
-			JOptionPane.showMessageDialog(null,
-					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
-			return "";
-		} else {
-			AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel, players, this);
-			attackPhaseWindow.setVisible(true);
-
-		}
-		return "success";
-	}
-
-	/**
-	 * Fortification phase.
-	 */
-	public void fortificationPhase() {
-
-		if (this.hasWonTerritory) {
-			CardsModel card = gameModel.generateRandomCard();
-			if (card != null) {
-				gameModel.setGameStatus("Assigning one card");
-				log.info("Assigning one card");
-				this.increaseCard(card.getType());
-			}
-
-		}
-		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
-		fortificationWindow.setVisible(true);
-
-	}
-
-	/**
 	 * Checks if is checks for won territory.
 	 *
 	 * @return the hasWonTerritory
@@ -415,8 +336,6 @@ public class PlayerModel extends Observable implements Serializable {
 	 * 
 	 */
 	public void calculateAndAddReinforcementArmy() {
-		gameModel.setGameSavePhase(1);
-		gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 		log.info("Calculating and Adding Reinforcement Armies");
 		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
 		if (reinforcementArmyCount < 3)
@@ -427,37 +346,89 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * Gets the game model.
-	 *
-	 * @return the gameModel
-	 */
-	public GameModel getGameModel() {
-		return gameModel;
-	}
-
-	/**
-	 * Sets the game model.
-	 *
-	 * @param gameModel the gameModel to set
-	 */
-	public void setGameModel(GameModel gameModel) {
-		this.gameModel = gameModel;
-	}
-
-	/**
-	 * Sets the game window.
-	 *
-	 * @param gameWindow the gameWindow to set
-	 */
-	public void setGameWindow(GameWindow gameWindow) {
-		this.gameWindow = gameWindow;
-	}
-
-	/**
 	 * Update changes.
 	 */
 	private void updateChanges() {
 		setChanged();
 		notifyObservers(this);
+	}
+
+	/**
+	 * @return the playerType
+	 */
+	public PlayerType getPlayerType() {
+		return playerType;
+	}
+
+	/**
+	 * @param playerType the playerType to set
+	 */
+	public void setPlayerType(PlayerType playerType) {
+		this.playerType = playerType;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.conquest.model.GamePhase#fortificationPhase()
+	 */
+	@Override
+	public void fortificationPhase(GameModel gameModel) {
+		// TODO Auto-generated method stub
+		if (this.hasWonTerritory) {
+			CardsModel card = gameModel.generateRandomCard();
+			if (card != null) {
+				gameModel.setGameStatus("Assigning one card");
+				log.info("Assigning one card");
+				this.increaseCard(card.getType());
+			}
+
+		}
+//		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
+//		fortificationWindow.setVisible(true);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.conquest.model.GamePhase#attackPhase()
+	 */
+	@Override
+	public String attackPhase(GameModel gameModel) {
+		// TODO Auto-generated method stub
+		PlayerModel[] players = gameModel.getPlayers();
+
+		if (getTotalCards() >= 5) {
+			JOptionPane.showMessageDialog(null,
+					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
+			return "";
+		} else {
+			return "success";
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.conquest.model.GamePhase#addInitialArmy()
+	 */
+	@Override
+	public void assignInitialArmyToCountry(GameModel gameModel) {
+		// TODO Auto-generated method stub
+		gameModel.increaseTurn();
+		gameModel.moveToNextPlayer();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.conquest.model.GamePhase#reinforcementPhase()
+	 */
+	@Override
+	public void reinforcementPhase() {
+		// TODO Auto-generated method stub
+		log.info("Reinforcement Phase starts");
+		calculateAndAddReinforcementArmy();
 	}
 }

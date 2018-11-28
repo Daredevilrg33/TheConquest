@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.mapeditor.model.PlayerModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.window.FortificationWindow;
 
 /**

@@ -17,8 +17,8 @@ import org.apache.log4j.Logger;
 
 import com.conquest.controller.FortificationWindowController;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.utilities.Constants;
 
 /**
@@ -76,9 +76,9 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	/** The game model. */
 	private GameModel gameModel;
-	static Logger log = Logger.getLogger(FortificationWindow.class.getName());
-
 	
+	private static final Logger log = Logger.getLogger(FortificationWindow.class);
+
 	/**
 	 * Instantiates a new fortification window.
 	 *
@@ -256,6 +256,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		if (e.getSource() == jButtonFinish) {
 			gameModel.increaseTurn();
 			gameModel.moveToNextPlayer();
+			gameModel.setGameSavePhase(1);
+			gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 			gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 			dispose();
 
@@ -284,6 +286,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				fortificationWindowController.updateBackend();
 				gameModel.increaseTurn();
 				gameModel.moveToNextPlayer();
+				gameModel.setGameSavePhase(1);
+				gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 				gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 				dispose();
 			}

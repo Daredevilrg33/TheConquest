@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import com.conquest.model.PlayerModel;
+
 /**
  * CountryModel Class Initializes country name String, a ContinentModel
  * {@link ContinentModel} as belongsTo and a ArrayList {@link ArrayList} as

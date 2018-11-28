@@ -15,9 +15,11 @@ import org.apache.log4j.Logger;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.window.GameWindow;
+import com.conquest.window.MainMenuScreen;
+import com.conquest.window.AttackPhaseWindow;
 import com.conquest.window.FortificationWindow;
 
 /**
@@ -32,27 +34,16 @@ public class GameWindowController {
 	/** The game window. */
 	private GameWindow gameWindow;
 
-	/** The no of players. */
-	private int noOfPlayers = 0;
-
-	/** The map hierarchy model. */
-	private MapHierarchyModel mapHierarchyModel;
-
 	/** The counter. */
 	private int counter = 0;
-
-	/** The players. */
-	private PlayerModel[] players;
 
 	/** The previous counter. */
 	private int prevCounter = 0;
 
-	/** The continents. */
-	private ContinentModel[] continents;
-
 	/** The game model. */
 	private GameModel gameModel;
-	   static Logger log = Logger.getLogger(GameWindowController.class.getName());
+
+	private static final Logger log = Logger.getLogger(GameWindowController.class);
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
@@ -63,95 +54,9 @@ public class GameWindowController {
 	 * @param mapModel    Object of class MapHierarchyModel
 	 *                    {@link MapHierarchyModel}
 	 */
-	public GameWindowController(GameWindow gameWindow, int noOfPlayers, MapHierarchyModel mapModel) {
+	public GameWindowController(GameWindow gameWindow, GameModel gameModel) {
 		this.gameWindow = gameWindow;
-		this.noOfPlayers = noOfPlayers;
-		this.mapHierarchyModel = mapModel;
-
-		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
-
-		this.gameModel = new GameModel(mapHierarchyModel, players,this.noOfPlayers);
-		providingGameModelToPlayer();
-	}
-	
-	/**
-	 * Game Window Controller Constructor Constructor created to assign value of
-	 * objects.
-	 *
-	 * @param gameWindow  Object of class GameWindow {@link GameWindow}
-	 * @param noOfPlayers Number of players in game Range from (3-5)
-	 * @param gameModel    Object of class GameModel
-	 *                    {@link MapHierarchyModel}
-	 */
-	public GameWindowController(GameWindow gameWindow, int noOfPlayers, GameModel gameModel) {
-		this.gameWindow = gameWindow;
-		this.noOfPlayers = noOfPlayers;
-		this.gameModel =gameModel;
-		this.mapHierarchyModel = gameModel.getMapHierarchyModel();
-
-		initializingPlayerModels(this.noOfPlayers, this.mapHierarchyModel);
-		providingGameModelToPlayer();
-	}
-
-	/**
-	 * initializingPlayerModels method Void method to initialize player models as
-	 * per number of players.
-	 *
-	 * @param noOfPlayers       Input the number of players in game type integer
-	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
-	 *                          pass map model
-	 */
-	public void initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel) {
-
-		players = new PlayerModel[noOfPlayers];
-		continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
-
-		for (int j = 0; j < noOfPlayers; j++) {
-			int value = j + 1;
-			players[j] = new PlayerModel("Player" + String.valueOf(value), gameModel);
-
-			switch (noOfPlayers) {
-			case (3):
-				players[j].noOfArmyInPlayer(25);
-				break;
-
-			case (4):
-				players[j].noOfArmyInPlayer(20);
-				break;
-
-			case (5):
-				players[j].noOfArmyInPlayer(15);
-				break;
-
-			}
-			players[j].addObserver(gameWindow);
-
-		}
-		/*
-		 * randomly placing army of each player in different country by round robin
-		 */
-		int pickedNumber = 0;
-		Random rand = new Random();
-		List<CountryModel> countryModelList = new ArrayList<>();
-		List<ContinentModel> continentModelList = new ArrayList<>();
-		continentModelList.addAll(mapHierarchyModel.getContinentsList());
-		countryModelList.addAll(mapHierarchyModel.getCountryList());
-		while (!(countryModelList.isEmpty())) {
-			for (int count1 = 0; count1 < noOfPlayers; count1++) {
-				if (!(countryModelList.isEmpty())) {
-					pickedNumber = rand.nextInt(countryModelList.size());
-					CountryModel countryModelTest = countryModelList.get(pickedNumber);
-					if (countryModelTest != null) {
-						players[count1].addCountry(countryModelTest);
-						countryModelTest.addNoOfArmiesCountry();
-						players[count1].reduceArmyInPlayer();
-
-					}
-					System.out.println(countryModelList.get(pickedNumber).getCountryName());
-					countryModelList.remove(pickedNumber);
-				}
-			}
-		}
+		this.gameModel = gameModel;
 
 	}
 
@@ -205,71 +110,48 @@ public class GameWindowController {
 	 * @param selectedCountryName type String {@link String}
 	 * @param currentPlayer       the current player
 	 */
-	public void placeReinforcedArmy(String selectedCountryName, PlayerModel currentPlayer) {
+	public void placeReinforcedArmy(String selectedCountryName, GameModel gameModel) {
 		gameModel.setGameStatus("Placing Reinforced Armies");
-		
+		PlayerModel currentPlayer = gameModel.getCurrPlayer();
 		log.info("Placing Reinforced Armie");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
 		}
 		if (currentPlayer.getnoOfArmyInPlayer() == 0) {
-			currentPlayer.setGameWindow(gameWindow);
-			currentPlayer.AttackPhase();
+//			Check this code
+			String message = gameModel.attackPhase();
+			if (message.trim().equalsIgnoreCase("success")) {
+				AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
+				attackPhaseWindow.setVisible(true);
+			}
 		}
 
 	}
 
-	/**
-	 * Providing game model to player.
-	 */
-	public void providingGameModelToPlayer() {
-		for (PlayerModel player : players) {
-			player.setGameModel(gameModel);
-		}
-	}
-
-	/**
-	 * Gets the players.
-	 *
-	 * @return the players
-	 */
-	public PlayerModel[] getPlayers() {
-		return players;
-	}
-
-	/**
-	 * Gets the game model.
-	 *
-	 * @return the gameModel
-	 */
-	public GameModel getGameModel() {
-		return gameModel;
-	}
-	
 	/**
 	 * Method to save current game to disk
 	 */
-	public void saveGame(){
+	public void saveGame() {
 		ObjectOutputStream output = null;
 		try {
 			String fileName = null;
-			if (gameModel.getMapHierarchyModel()!=null)
-				fileName = gameModel.getMapHierarchyModel().getConquestMapName()+"-"+gameModel.getGameStatus()+"-"+new Date().getTime()+".bin";
+			if (gameModel.getMapHierarchyModel() != null)
+				fileName = gameModel.getMapHierarchyModel().getConquestMapName() + "-" + gameModel.getGameStatus() + "-"
+						+ new Date().getTime() + ".bin";
 			else
-				fileName = gameModel.getGameStatus()+new Date().getTime()+".bin";
-			output = new ObjectOutputStream(new FileOutputStream("./save/"+fileName));
+				fileName = gameModel.getGameStatus() + new Date().getTime() + ".bin";
+			output = new ObjectOutputStream(new FileOutputStream("./save/" + fileName));
 			output.writeObject(gameModel);
-			JOptionPane.showMessageDialog(null,"Game has been saved to file <"+fileName+">. successfully ");
+			JOptionPane.showMessageDialog(null, "Game has been saved to file <" + fileName + ">. successfully ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				output.close();
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
-			}	
-		}	
+			}
+		}
 	}
 }

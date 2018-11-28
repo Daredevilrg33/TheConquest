@@ -2,12 +2,11 @@ package com.conquest.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
@@ -21,6 +20,14 @@ import javax.swing.JTextField;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
+import com.conquest.model.AggresivePlayer;
+import com.conquest.model.BenevolentPlayer;
+import com.conquest.model.CheaterPlayer;
+import com.conquest.model.GameModel;
+import com.conquest.model.HumanPlayer;
+import com.conquest.model.PlayerModel;
+import com.conquest.model.PlayerType;
+import com.conquest.model.RandomPlayer;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
@@ -54,10 +61,12 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 
 	/** The no of players. */
 	private String noOfPlayers;
-	
-	private String[] playerTypes = new String[] {"Human","Aggresive","Benevolent","Random","Cheater"};
-	private JLabel labelPlayer5,labelPlayer4;
-	private JComboBox<String> comboBoxPlayerType5,comboBoxPlayerType4; 
+
+	private String[] playerTypes = new String[] { "Human", "Aggresive", "Benevolent", "Random", "Cheater" };
+	private JLabel labelPlayer5, labelPlayer4;
+	private JComboBox<String> comboBoxPlayerType1, comboBoxPlayerType2, comboBoxPlayerType3, comboBoxPlayerType4,
+			comboBoxPlayerType5;
+
 	/**
 	 * NewGameMenuScreen Constructor Instantiates a new new game menu screen.
 	 */
@@ -89,50 +98,49 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		add(comboBoxSelectPlayer);
 
 		JLabel labelPlayer1 = new JLabel("Player1 : ");
-		labelPlayer1.setBounds(Constants.WIDTH/2-250, 150, 100, 30);
+		labelPlayer1.setBounds(Constants.WIDTH / 2 - 250, 150, 100, 30);
 		add(labelPlayer1);
-		
+
 		JLabel labelPlayer2 = new JLabel("Player2 : ");
-		labelPlayer2.setBounds(Constants.WIDTH/2-250, 200, 100, 30);
+		labelPlayer2.setBounds(Constants.WIDTH / 2 - 250, 200, 100, 30);
 		add(labelPlayer2);
-		
+
 		JLabel labelPlayer3 = new JLabel("Player3 : ");
-		labelPlayer3.setBounds(Constants.WIDTH/2-250, 250, 100, 30);
+		labelPlayer3.setBounds(Constants.WIDTH / 2 - 250, 250, 100, 30);
 		add(labelPlayer3);
-		
+
 		labelPlayer4 = new JLabel("Player4 : ");
-		labelPlayer4.setBounds(Constants.WIDTH/2-250, 300, 100, 30);
+		labelPlayer4.setBounds(Constants.WIDTH / 2 - 250, 300, 100, 30);
 		add(labelPlayer4);
 		labelPlayer4.setVisible(false);
-		
+
 		labelPlayer5 = new JLabel("Player5 : ");
-		labelPlayer5.setBounds(Constants.WIDTH/2-250, 350, 100, 30);
+		labelPlayer5.setBounds(Constants.WIDTH / 2 - 250, 350, 100, 30);
 		add(labelPlayer5);
 		labelPlayer5.setVisible(false);
-		
-		JComboBox<String> comboBoxPlayerType1 = new JComboBox<>(playerTypes);
-		comboBoxPlayerType1.setBounds(Constants.WIDTH/2-120, 150, 100, 30);
+
+		comboBoxPlayerType1 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType1.setBounds(Constants.WIDTH / 2 - 120, 150, 100, 30);
 		add(comboBoxPlayerType1);
-	
-		JComboBox<String> comboBoxPlayerType2 = new JComboBox<>(playerTypes);
-		comboBoxPlayerType2.setBounds(Constants.WIDTH/2-120, 200, 100, 30);
+
+		comboBoxPlayerType2 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType2.setBounds(Constants.WIDTH / 2 - 120, 200, 100, 30);
 		add(comboBoxPlayerType2);
-	
-		JComboBox<String> comboBoxPlayerType3 = new JComboBox<>(playerTypes);
-		comboBoxPlayerType3.setBounds(Constants.WIDTH/2-120, 250, 100, 30);
+
+		comboBoxPlayerType3 = new JComboBox<>(playerTypes);
+		comboBoxPlayerType3.setBounds(Constants.WIDTH / 2 - 120, 250, 100, 30);
 		add(comboBoxPlayerType3);
-		
+
 		comboBoxPlayerType4 = new JComboBox<>(playerTypes);
-		comboBoxPlayerType4.setBounds(Constants.WIDTH/2-120, 300, 100, 30);
+		comboBoxPlayerType4.setBounds(Constants.WIDTH / 2 - 120, 300, 100, 30);
 		add(comboBoxPlayerType4);
 		comboBoxPlayerType4.setVisible(false);
-		
+
 		comboBoxPlayerType5 = new JComboBox<>(playerTypes);
-		comboBoxPlayerType5.setBounds(Constants.WIDTH/2-120, 350, 100, 30);
+		comboBoxPlayerType5.setBounds(Constants.WIDTH / 2 - 120, 350, 100, 30);
 		add(comboBoxPlayerType5);
 		comboBoxPlayerType5.setVisible(false);
-		
-		
+
 		buttonStartGame = new JButton("Start Game");
 		buttonStartGame.setBounds(Constants.WIDTH / 2 + 150, Constants.HEIGHT - 200, 100, 30);
 		buttonStartGame.addActionListener(this);
@@ -182,48 +190,167 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 			} else {
 
 				Utility utility = new Utility();
-				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePath);
-				checkValidation(mapModel, Integer.valueOf(noOfPlayers));
-				mapModel.setConquestMapName(fileName);
-				if (!mapModel.isValErrorFlag()) {
-					boolean isConnected = isMapConnected(mapModel);
+				MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(filePath);
+				checkValidation(mapHierarchyModel, Integer.valueOf(noOfPlayers));
+				mapHierarchyModel.setConquestMapName(fileName);
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapHierarchyModel);
 					System.out.println("Map Is Connected: " + isConnected);
 
 				}
-				if (!mapModel.isValErrorFlag()) {
-					boolean isConnected = isContinentConnected(mapModel);
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					boolean isConnected = isContinentConnected(mapHierarchyModel);
 					System.out.println("Continent Is Connected: " + isConnected);
 
 				}
-				if (!mapModel.isValErrorFlag()) {
-					dispose();
-					GameWindow gameWindow = new GameWindow(mapModel, noOfPlayers,"new Game",null);
-					gameWindow.setVisible(true);
+				// Initializing player Models and Redirecting to Game Window.
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					PlayerModel[] playerModels = initializingPlayerModels(Integer.parseInt(noOfPlayers),
+							mapHierarchyModel);
+					redirectingToGameWindow(mapHierarchyModel, playerModels);
 				} else {
-					String valErrorMsg = mapModel.getErrorMsg();
+					String valErrorMsg = mapHierarchyModel.getErrorMsg();
 					JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		}else if(event.getSource() == comboBoxSelectPlayer)
-		{
-			String item = (String)comboBoxSelectPlayer.getSelectedItem();
-			if(item.trim().equalsIgnoreCase("4"))
-			{
+		} else if (event.getSource() == comboBoxSelectPlayer) {
+			String item = (String) comboBoxSelectPlayer.getSelectedItem();
+			if (item.trim().equalsIgnoreCase("4")) {
 				comboBoxPlayerType4.setVisible(true);
 				labelPlayer4.setVisible(true);
-			}else if(item.trim().equalsIgnoreCase("5")) {
+			} else if (item.trim().equalsIgnoreCase("5")) {
 				comboBoxPlayerType4.setVisible(true);
-				labelPlayer4.setVisible(true);	
+				labelPlayer4.setVisible(true);
 				comboBoxPlayerType5.setVisible(true);
 				labelPlayer5.setVisible(true);
-			}else if(item.trim().equalsIgnoreCase("3"))
-			{
+			} else if (item.trim().equalsIgnoreCase("3")) {
 				comboBoxPlayerType4.setVisible(false);
 				comboBoxPlayerType5.setVisible(false);
 				labelPlayer4.setVisible(false);
 				labelPlayer5.setVisible(false);
 			}
 		}
+	}
+
+	/**
+	 * initializingPlayerModels method Void method to initialize player models as
+	 * per number of players.
+	 *
+	 * @param noOfPlayers       Input the number of players in game type integer
+	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
+	 *                          pass map model
+	 */
+	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel) {
+
+		PlayerModel[] players = new PlayerModel[noOfPlayers];
+
+		ContinentModel[] continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
+		PlayerType[] playerTypes = getPlayerTypeFromDropDown(noOfPlayers);
+		for (int j = 0; j < noOfPlayers; j++) {
+			int value = j + 1;
+			if (playerTypes[j] == PlayerType.Human)
+				players[j] = new HumanPlayer("Player" + String.valueOf(value), playerTypes[j]);
+			else if (playerTypes[j] == PlayerType.Aggresive)
+				players[j] = new AggresivePlayer("Player" + String.valueOf(value), playerTypes[j]);
+			else if (playerTypes[j] == PlayerType.Benevolent)
+				players[j] = new BenevolentPlayer("Player" + String.valueOf(value), playerTypes[j]);
+			else if (playerTypes[j] == PlayerType.Random)
+				players[j] = new RandomPlayer("Player" + String.valueOf(value), playerTypes[j]);
+			else if (playerTypes[j] == PlayerType.Cheater)
+				players[j] = new CheaterPlayer("Player" + String.valueOf(value), playerTypes[j]);
+
+			switch (noOfPlayers) {
+			case (3):
+				players[j].noOfArmyInPlayer(25);
+				break;
+
+			case (4):
+				players[j].noOfArmyInPlayer(20);
+				break;
+
+			case (5):
+				players[j].noOfArmyInPlayer(15);
+				break;
+
+			}
+
+		}
+		/*
+		 * randomly placing army of each player in different country by round robin
+		 */
+		int pickedNumber = 0;
+		Random rand = new Random();
+		List<CountryModel> countryModelList = new ArrayList<>();
+		List<ContinentModel> continentModelList = new ArrayList<>();
+		continentModelList.addAll(mapHierarchyModel.getContinentsList());
+		countryModelList.addAll(mapHierarchyModel.getCountryList());
+		while (!(countryModelList.isEmpty())) {
+			for (int count1 = 0; count1 < noOfPlayers; count1++) {
+				if (!(countryModelList.isEmpty())) {
+					pickedNumber = rand.nextInt(countryModelList.size());
+					CountryModel countryModelTest = countryModelList.get(pickedNumber);
+					if (countryModelTest != null) {
+						players[count1].addCountry(countryModelTest);
+						countryModelTest.addNoOfArmiesCountry();
+						players[count1].reduceArmyInPlayer();
+
+					}
+					System.out.println(countryModelList.get(pickedNumber).getCountryName());
+					countryModelList.remove(pickedNumber);
+				}
+			}
+		}
+		return players;
+	}
+
+	/**
+	 * @return
+	 */
+	private PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers) {
+		// TODO Auto-generated method stub
+		PlayerType[] playerTypes = new PlayerType[noOfPlayers];
+		if (noOfPlayers >= 3) {
+			playerTypes[0] = getPlayerType((String) comboBoxPlayerType1.getSelectedItem());
+			playerTypes[1] = getPlayerType((String) comboBoxPlayerType2.getSelectedItem());
+			playerTypes[2] = getPlayerType((String) comboBoxPlayerType3.getSelectedItem());
+		}
+		if (noOfPlayers >= 4)
+			playerTypes[4] = getPlayerType((String) comboBoxPlayerType4.getSelectedItem());
+		if (noOfPlayers == 5)
+			playerTypes[5] = getPlayerType((String) comboBoxPlayerType5.getSelectedItem());
+
+		return playerTypes;
+	}
+
+	private PlayerType getPlayerType(String strPlayer) {
+
+		PlayerType playerType = PlayerType.Human;
+		if (strPlayer.trim().equalsIgnoreCase("Human"))
+			playerType = PlayerType.Human;
+		if (strPlayer.trim().equalsIgnoreCase("Aggresive"))
+			playerType = PlayerType.Aggresive;
+		if (strPlayer.trim().equalsIgnoreCase("Benevolent"))
+			playerType = PlayerType.Benevolent;
+		if (strPlayer.trim().equalsIgnoreCase("Random"))
+			playerType = PlayerType.Random;
+		if (strPlayer.trim().equalsIgnoreCase("Cheater"))
+			playerType = PlayerType.Cheater;
+		return playerType;
+	}
+
+	/**
+	 * 
+	 */
+	private void redirectingToGameWindow(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
+		// TODO Auto-generated method stub
+		dispose();
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		GameWindow gameWindow = new GameWindow(gameModel);
+		gameWindow.setVisible(true);
+		gameModel.addObserver(gameWindow);
+		for (PlayerModel playerModel : gameModel.getPlayers())
+			playerModel.addObserver(gameWindow);
+
 	}
 
 	/**
@@ -276,13 +403,13 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param countryModel      the country model
 	 */
-	public void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
+	private void dfsUsingStack(MapHierarchyModel mapHierarchyModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);
 		countryModel.setVisited(true);
 		while (!stack.isEmpty()) {
 			CountryModel element = stack.pop();
-			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
+//			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
 			List<String> neigbourNames = element.getListOfNeighbours();
 			List<CountryModel> neighbours = new ArrayList<>();
 
@@ -335,13 +462,13 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * @param continentModel the continent model
 	 * @param countryModel   the country model
 	 */
-	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
+	private void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);
 		countryModel.setVisited(true);
 		while (!stack.isEmpty()) {
 			CountryModel element = stack.pop();
-			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
+//			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
 			List<String> neigbourNames = element.getListOfNeighbours();
 			List<CountryModel> neighbours = new ArrayList<>();
 

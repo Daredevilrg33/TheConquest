@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -32,11 +31,11 @@ import javax.swing.tree.TreePath;
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.mapeditor.renderer.TableRenderer;
 import com.conquest.mapeditor.renderer.TreeRenderer;
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
+import com.conquest.model.PlayerType;
 import com.conquest.utilities.Constants;
 
 /**
@@ -103,15 +102,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	/** The vector data. */
 	private String[][] vectorData;
 
-	/** The map hierarchy model. */
-	private MapHierarchyModel mapHierarchyModel;
-
-	/** The players. */
-	private PlayerModel[] players;
-
 	/** The jHandIn button place. */
 	private JButton jHandIn;
-	
+
 	/** The jSaveGame button place. */
 	private JButton jSaveGame;
 
@@ -119,9 +112,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	private JLabel labelCardsWithPlayer;
 
 	private JProgressBar progressBar;
-	
+
 	private GameModel gameModel;
-	private String fromGame;
+//	private String fromGame;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
@@ -129,12 +122,12 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param noOfPlayers       the no of players
 	 */
-	public GameWindow(MapHierarchyModel mapHierarchyModel, String noOfPlayers, String from, GameModel gameModel) {
+ 
+	public GameWindow(GameModel gameModel) {
 
-		this.mapHierarchyModel = mapHierarchyModel;
-		this.fromGame= from;
-		
-		try{
+//		this.fromGame= from;
+		this.gameModel = gameModel;
+
 		setTitle("Game Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
@@ -146,7 +139,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		labelConnectivity.setFont(new Font("dialog", 1, 15));
 		labelConnectivity.setBounds(15, 8, size.width + 200, size.height);
 		add(labelConnectivity);
-		
+
 		jSaveGame = new JButton("Save Game");
 		jSaveGame.setBackground(Color.LIGHT_GRAY);
 		jSaveGame.setBounds(1010, 8, 100, 30);
@@ -206,19 +199,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		labelCardsWithPlayer.setBounds(480, 660, 200, 30);
 		add(labelCardsWithPlayer);
 
-		if("loadGame".equalsIgnoreCase(from))
-			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), gameModel);
-		else
-			gameWindowController = new GameWindowController(this, Integer.parseInt(noOfPlayers), mapHierarchyModel);
-		
-		this.gameModel = gameModel==null?gameWindowController.getGameModel():gameModel;
-		
-		// check with this
-		players = this.gameModel.getPlayers();
-		this.gameModel.addObserver(this);
-		//gameWindowController.getGameModel().addObserver(this);
-		
-		
+		gameWindowController = new GameWindowController(this, gameModel);
+
 		phaseScrollPane = new JScrollPane(phaseView, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
@@ -231,13 +213,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 				(int) (treeScrollPane.getBounds().getWidth()), 150);
 		add(progressBarPanel);
 		addProgressBar(this.gameModel);
-		
+
 		// check with this
-		if(this.gameModel.getGameSavePhase()!=0)
-		{
+		if (this.gameModel.getGameSavePhase() != 0) {
 			updatePhaseView("Reinforcement Phase");
 		}
-		
 
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -253,37 +233,15 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			}
 		});
 
-		if (this.mapHierarchyModel.getContinentsList().size() > 0) {
+		if (this.gameModel.getMapHierarchyModel().getContinentsList().size() > 0) {
 			updateHierarchyTree();
 			updatePaintMatrix();
 			updateGameInformation();
 		}
-		updateUIInfo(players[0]);
+		updateUIInfo(this.gameModel.getCurrPlayer());
 		this.gameModel.increaseTurn();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 
-	/**
-	 * Gets the players.
-	 *
-	 * @return the players
-	 */
-	public PlayerModel[] getPlayers() {
-		return players;
-	}
-
-	/**
-	 * Sets the players.
-	 *
-	 * @param players the new players
-	 */
-	public void setPlayers(PlayerModel[] players) {
-		this.players = players;
-	}
 
 	/**
 	 * updateHierarchyTree Method to refresh and update the continent hierarchy tree
@@ -293,8 +251,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void updateHierarchyTree() {
 
 		DefaultMutableTreeNode tRoot = new DefaultMutableTreeNode(
-				"Map - " + mapHierarchyModel.getConquestMapName() + " ");
-		for (ContinentModel continentObj : mapHierarchyModel.getContinentsList()) {
+				"Map - " + gameModel.getMapHierarchyModel().getConquestMapName() + " ");
+		for (ContinentModel continentObj : gameModel.getMapHierarchyModel().getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = continentObj.getCountriesList();
 			DefaultMutableTreeNode continentNode = new DefaultMutableTreeNode(continentObj.getContinentName());
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -318,7 +276,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void updateGameInformation() {
 
 		DefaultMutableTreeNode playerRoot = new DefaultMutableTreeNode("Game Information");
-		for (PlayerModel player :this.gameModel.getPlayers()) {
+		for (PlayerModel player : this.gameModel.getPlayers()) {
 			List<CountryModel> loopCountriesList = player.getPlayerCountryList();
 			DefaultMutableTreeNode playerNode = new DefaultMutableTreeNode(player.getPlayerName());
 			for (CountryModel loopCountry : loopCountriesList) {
@@ -342,7 +300,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 */
 
 	public void updatePaintMatrix() {
-		int numberOfCountries = mapHierarchyModel.getCountryList().size();
+		int numberOfCountries = gameModel.getMapHierarchyModel().getCountryList().size();
 		DefaultTableModel tableMatrix = new DefaultTableModel(numberOfCountries, numberOfCountries) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -353,7 +311,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		countriesColumn = new String[numberOfCountries + 1];
 
 		int columnCounter = 0, rowCounter = 0;
-		for (ContinentModel loopContinent : mapHierarchyModel.getContinentsList()) {
+		for (ContinentModel loopContinent : gameModel.getMapHierarchyModel().getContinentsList()) {
 			ArrayList<CountryModel> loopCountriesList = loopContinent.getCountriesList();
 			for (CountryModel loopCountry : loopCountriesList) {
 				countriesColumn[0] = "C/C";
@@ -373,7 +331,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		for (int i = 0; i < vectorData.length; i++) {
 			for (int j = 1; j < vectorData[i].length; j++) {
 				String neighbourCountryName = countriesColumn[j], sourceCountryName = vectorData[i][0];
-				for (CountryModel countryModel : mapHierarchyModel.getCountryList()) {
+				for (CountryModel countryModel : gameModel.getMapHierarchyModel().getCountryList()) {
 					if (countryModel.getCountryName().trim().equalsIgnoreCase(sourceCountryName.trim())) {
 						for (String countryName : countryModel.getListOfNeighbours()) {
 							if (countryName.trim().equalsIgnoreCase(neighbourCountryName.trim())) {
@@ -438,8 +396,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 
 			if (this.gameModel.getGameState() != 1) {
 				labelCardsWithPlayer.setText(this.gameModel.getCurrPlayer().cardsString());
-				if(!"loadGame".equalsIgnoreCase(fromGame))
-				this.gameModel.getCurrPlayer().gamePhase(this);
+					// Check this Code
+				//				if (!"loadGame".equalsIgnoreCase(fromGame))
+					this.gameModel.reinforcementPhase();
 			}
 			updateGameInformation();
 		}
@@ -458,11 +417,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		switch (e.getActionCommand()) {
 		case "Place Initial Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
-			gameWindowController.placingInitialArmies(selectedCountry,
-					this.gameModel.getCurrPlayer());
+			gameWindowController.placingInitialArmies(selectedCountry, this.gameModel.getCurrPlayer());
 			updateGameInformation();
 			this.gameModel.increaseTurn();
 			this.gameModel.moveToNextPlayer();
+			PlayerModel[] players = gameModel.getPlayers();
 			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 				updatePhaseView("Reinforcement Phase");
 			}
@@ -470,12 +429,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			break;
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
-			gameWindowController.placeReinforcedArmy(selectedCountry,
-					this.gameModel.getCurrPlayer());
+			gameWindowController.placeReinforcedArmy(selectedCountry, this.gameModel);
 			updateGameInformation();
 			break;
 		case "HandIn the cards":
-			this.gameModel.getCurrPlayer().handInCards();
+//			this.gameModel.getCurrPlayer().handInCards();
 			break;
 		case "Save Game":
 			gameWindowController.saveGame();
@@ -535,7 +493,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @return the int
 	 */
 	public int calculatePercentage(PlayerModel player) {
-		double x = ((double) player.getPlayerCountryList().size() / mapHierarchyModel.getTotalCountries()) * 100;
+		double x = ((double) player.getPlayerCountryList().size() / gameModel.getMapHierarchyModel().getTotalCountries()) * 100;
 		return (int) x;
 	}
 
@@ -548,19 +506,17 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void update(Observable object, Object arg) {
 		// TODO Auto-generated method stub
 		if (object instanceof GameModel) {
-			System.out.println("\n\n gamemodel");
 			GameModel gameModel = (GameModel) object;
 			updateGameInformation();
 			addProgressBar(gameModel);
-			
+
 			updateUIInfo(gameModel.getCurrPlayer());
 		} else if (object instanceof PlayerModel) {
-			System.out.println("\n\n PlayerModel");
 			PlayerModel playerModel = (PlayerModel) object;
 
 //			setProgressBarValues(playerModel);
 //			updateGameInformation();
-			updateUIInfo(playerModel);
+//			updateUIInfo(playerModel);
 
 		}
 
@@ -573,16 +529,24 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param currentPlayer model of current player passed
 	 */
 	public void updateUIInfo(PlayerModel currentPlayer) {
-		updatePlayerLabel(currentPlayer.getPlayerName());
-		updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
-		updateComboBoxCountries(currentPlayer.getPlayerCountryList());
-		labelCardsWithPlayer.setText(currentPlayer.cardsString());
-		invalidate();
-		revalidate();
-		if (currentPlayer.canHandIn())
-			jHandIn.setEnabled(true);
-		else
-			jHandIn.setEnabled(false);
+		if(currentPlayer.getPlayerType() == PlayerType.Human)
+		{
+			updatePlayerLabel(currentPlayer.getPlayerName());
+			updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
+			updateComboBoxCountries(currentPlayer.getPlayerCountryList());
+			labelCardsWithPlayer.setText(currentPlayer.cardsString());
+			invalidate();
+			revalidate();
+			if (currentPlayer.canHandIn())
+				jHandIn.setEnabled(true);
+			else
+				jHandIn.setEnabled(false);		
+//			gameSavePhase = 0;// 0=startup 1=Reinforcement 2=Attack 3=Fortification
+		}else if(gameModel.getGameSavePhase() == 0)
+		{
+			currentPlayer.assignInitialArmyToCountry(gameModel);
+		}
+	
 	}
 
 }

@@ -8,7 +8,6 @@ import java.util.Random;
 import com.conquest.controller.GameWindowController;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.window.GameWindow;
 
 /**
@@ -17,8 +16,8 @@ import com.conquest.window.GameWindow;
  * @author Nancy Goyal
  * @version 1.0.0
  */
-public class GameModel extends Observable implements Serializable{
-	
+public class GameModel extends Observable implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	/** The players. */
@@ -29,18 +28,15 @@ public class GameModel extends Observable implements Serializable{
 
 	/** The game state. */
 	private int gameState = 0; // 0=on 1=won
-	
-	/** The no of players. */
-	private int noOfPlayers = 0; 
 
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
-	
+
 	/** The gameStatus. */
-	private String gameStatus="";
-	
+	private String gameStatus = "";
+
 	/** The gameSavePhase. */
-	private int gameSavePhase=0;//0=startup 1=Reinforcement 2=Attack 3=Fortification
+	private int gameSavePhase = 0;// 0=startup 1=Reinforcement 2=Attack 3=Fortification
 
 	/** The turn. */
 	private int turn;
@@ -60,9 +56,8 @@ public class GameModel extends Observable implements Serializable{
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param playerModels      the player models
 	 */
-	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels,int noOfPlayers) {
+	public GameModel(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 		this.players = playerModels;
-		this.noOfPlayers = noOfPlayers;
 		this.mapHierarchyModel = mapHierarchyModel;
 		randomGenerator = new Random();
 		initializingCardsModel(mapHierarchyModel);
@@ -203,7 +198,7 @@ public class GameModel extends Observable implements Serializable{
 		if (turn == players.length)
 			turn = 0;
 		turn++;
-		updateChanges();
+//		updateChanges();
 	}
 
 	/**
@@ -242,7 +237,6 @@ public class GameModel extends Observable implements Serializable{
 		this.totalCards = totalCards;
 		updateChanges();
 	}
-	
 
 	/**
 	 * @return the gameStatus
@@ -257,7 +251,6 @@ public class GameModel extends Observable implements Serializable{
 	public void setGameStatus(String gameStatus) {
 		this.gameStatus = gameStatus;
 	}
-	
 
 	/**
 	 * @return the gameSavePhase
@@ -271,20 +264,6 @@ public class GameModel extends Observable implements Serializable{
 	 */
 	public void setGameSavePhase(int gameSavePhase) {
 		this.gameSavePhase = gameSavePhase;
-	}
-
-	/**
-	 * @return the noOfPlayers
-	 */
-	public int getNoOfPlayers() {
-		return noOfPlayers;
-	}
-
-	/**
-	 * @param noOfPlayers the noOfPlayers to set
-	 */
-	public void setNoOfPlayers(int noOfPlayers) {
-		this.noOfPlayers = noOfPlayers;
 	}
 
 	/**
@@ -310,4 +289,17 @@ public class GameModel extends Observable implements Serializable{
 		notifyObservers(this);
 	}
 
+	public void fortificationPhase() {
+		currPlayer.fortificationPhase(this);
+	}
+
+	public String attackPhase() {
+		return currPlayer.attackPhase(this);
+	
+	}
+
+	public void reinforcementPhase() {
+		this.setGameStatus("Reinforcement Phase starts");
+		currPlayer.reinforcementPhase();
+	}
 }

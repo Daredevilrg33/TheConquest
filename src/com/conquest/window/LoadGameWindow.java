@@ -20,33 +20,33 @@ import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
-public class LoadGameWindow extends JFrame  implements ActionListener  {
+public class LoadGameWindow extends JFrame implements ActionListener {
 
 	/** The Label select game. */
 	JLabel labelSelectGame;
-	
+
 	/** The button Select game file. */
 	private JButton buttonSelectGame;
-	
+
 	public LoadGameWindow() {
 
 		labelSelectGame = new JLabel();
 		labelSelectGame.setText("Select Game");
 		labelSelectGame.setBounds(Constants.WIDTH / 2 - 150, 50, 100, 30);
 		add(labelSelectGame);
-		
+
 		buttonSelectGame = new JButton();
 		buttonSelectGame.setText("Select Game File");
-		buttonSelectGame.setBounds(Constants.WIDTH / 2 +50, 50, 150, 30);
+		buttonSelectGame.setBounds(Constants.WIDTH / 2 + 50, 50, 150, 30);
 		buttonSelectGame.addActionListener(this);
 		add(buttonSelectGame);
-		
+
 		setTitle("Load Game Menu");
 		setResizable(false);
 		setSize(Constants.WIDTH, Constants.HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		
+
 		addWindowListener(new WindowAdapter() {
 			/*
 			 * (non-Javadoc)
@@ -61,7 +61,7 @@ public class LoadGameWindow extends JFrame  implements ActionListener  {
 			}
 		});
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -74,11 +74,11 @@ public class LoadGameWindow extends JFrame  implements ActionListener  {
 			loadGame();
 		}
 	}
-	
+
 	/**
 	 * Handler used to load game.
 	 */
-	private void loadGame() { 
+	private void loadGame() {
 		String inputFileName;
 		JFileChooser chooser;
 		chooser = new JFileChooser();
@@ -86,60 +86,60 @@ public class LoadGameWindow extends JFrame  implements ActionListener  {
 		chooser.setDialogTitle("Choose saved game file");
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
-		chooser.setFileFilter(new FileFilter(){
+		chooser.setFileFilter(new FileFilter() {
 			@Override
-			public boolean accept(File f){
-				if(f.getName().endsWith(".bin")||f.isDirectory())
+			public boolean accept(File f) {
+				if (f.getName().endsWith(".bin") || f.isDirectory())
 					return true;
-				else return false;
+				else
+					return false;
 			}
-			public String getDescription(){
+
+			public String getDescription() {
 				return "Saved game files(*.bin)";
 			}
 		});
 		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			inputFileName = chooser.getSelectedFile().getAbsolutePath();
-			if (inputFileName.trim().isEmpty()){
-				JOptionPane.showMessageDialog(null,"File name invalid");
-			}
-			else{
+			if (inputFileName.trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "File name invalid");
+			} else {
 				loadGame(inputFileName.trim());
 			}
-		}			
-	}
-	
-	/**
-	 * Method to load game from disk
-	 * @param inputFile The file that need to be loaded
-	 */
-	public void loadGame(String inputFile){
-		ObjectInputStream input = null;
-		try {
-		    input = new ObjectInputStream(new FileInputStream(inputFile));
-		    GameModel myGameModel = (GameModel)input.readObject();
-		    dispose();
-		    GameWindow gameWindow = new GameWindow(myGameModel.getMapHierarchyModel(), myGameModel.getNoOfPlayers()+"","new Game",myGameModel);
-		    gameWindow.setVisible(true);
-		    if(myGameModel.getGameSavePhase()==2)
-		    {
-		    	AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(myGameModel, myGameModel.getPlayers(), myGameModel.getCurrPlayer());
-		    	attackPhaseWindow.setVisible(true);
-		    }
-		    if(myGameModel.getGameSavePhase()==3)
-		    {
-		    	FortificationWindow fortificationWindow = new FortificationWindow(myGameModel, myGameModel.getCurrPlayer());
-				fortificationWindow.setVisible(true);
-		    }
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}finally{
-			try{
-				input.close();
-			}catch (Exception e) {
-			    e.printStackTrace();
-			}			
 		}
 	}
-	
-	
+
+	/**
+	 * Method to load game from disk
+	 * 
+	 * @param inputFile The file that need to be loaded
+	 */
+	public void loadGame(String inputFile) {
+		ObjectInputStream input = null;
+		try {
+			input = new ObjectInputStream(new FileInputStream(inputFile));
+			GameModel myGameModel = (GameModel) input.readObject();
+			dispose();
+			GameWindow gameWindow = new GameWindow(myGameModel);
+			gameWindow.setVisible(true);
+			if (myGameModel.getGameSavePhase() == 2) {
+				AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(myGameModel);
+				attackPhaseWindow.setVisible(true);
+			}
+			if (myGameModel.getGameSavePhase() == 3) {
+				FortificationWindow fortificationWindow = new FortificationWindow(myGameModel,
+						myGameModel.getCurrPlayer());
+				fortificationWindow.setVisible(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				input.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

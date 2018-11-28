@@ -19,8 +19,8 @@ import org.apache.log4j.Logger;
 
 import com.conquest.controller.AttackWindowController;
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.utilities.Constants;
 
 /**
@@ -60,9 +60,6 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The risk map model. */
 	private GameModel gameModel;
 
-	/** The player. */
-	private PlayerModel[] players;
-
 	/** The dice image. */
 	private JLabel diceImage;
 
@@ -87,13 +84,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The dice results defending. */
 	private ArrayList<Integer> diceResultsDefending = new ArrayList<>();
 
-	/** The current player. */
-	private PlayerModel currentPlayer;
-
 	/** The j button finish attack. */
 	private JButton jButtonFinishAttack;
+	
+	private PlayerModel currentPlayer;
 
-	static Logger log = Logger.getLogger(AttackPhaseWindow.class.getName());
+	private static final Logger log = Logger.getLogger(AttackPhaseWindow.class);
 
 	/**
 	 * Instantiates a new attack phase window.
@@ -102,13 +98,12 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 * @param playerModels  the player models
 	 * @param currentPlayer the current player
 	 */
-	public AttackPhaseWindow(GameModel gameModel, PlayerModel[] playerModels, PlayerModel currentPlayer) {
+	public AttackPhaseWindow(GameModel gameModel) {
 		gameModel.setGameStatus("Attack Phase starts");
 		log.info("Attack Phase starts");
 		gameModel.setGameSavePhase(2);
 		this.gameModel = gameModel;
-		this.players = playerModels;
-		this.currentPlayer = currentPlayer;
+		this.currentPlayer = gameModel.getCurrPlayer();
 		setTitle("Attack Phase");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.HEIGHT);
@@ -193,13 +188,14 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		jButtonFinishAttack.setBounds(Constants.MAP_EDITOR_WIDTH / 2 - 100, Constants.HEIGHT / 2, 200, 30);
 		jButtonFinishAttack.addActionListener(this);
 		add(jButtonFinishAttack);
-		attackWindowController = new AttackWindowController(players, this, gameModel);
+		attackWindowController = new AttackWindowController(this, gameModel);
 		jComboBoxSourceCountries.addActionListener(this);
 		jComboBoxTargetCountries.addActionListener(this);
 		jComboBoxNoOfDice.addActionListener(this);
 		if (!ifAttackValid()) {
 			dispose();
-			getCurrentPlayer().fortificationPhase();
+//			Check this Code
+//			getCurrentPlayer().fortificationPhase();
 		}
 
 	}
@@ -371,7 +367,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
 			if (!ifAttackValid()) {
 				dispose();
-				getCurrentPlayer().fortificationPhase();
+				gameModel.fortificationPhase();
 			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 				gameModel.setGameState(1);
 				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
@@ -406,7 +402,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 			attackWindowController.updateNoOfDiceUIInfo(sourceCountry);
 			if (!ifAttackValid()) {
 				dispose();
-				getCurrentPlayer().fortificationPhase();
+				gameModel.fortificationPhase();
 			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 				gameModel.setGameState(1);
 				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
@@ -416,7 +412,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		} else if (e.getSource() == jButtonFinishAttack) {
 
 			dispose();
-			getCurrentPlayer().fortificationPhase();
+			gameModel.fortificationPhase();
 		}
 	}
 
@@ -574,15 +570,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		return diceResultsDefending;
 	}
 
-	/**
-	 * Gets the players.
-	 *
-	 * @return the players
-	 */
-	public PlayerModel[] getPlayers() {
-		return players;
-	}
-
+	
 	/**
 	 * Show move army popup.
 	 *

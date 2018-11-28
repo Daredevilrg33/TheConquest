@@ -9,36 +9,20 @@ import java.io.Serializable;
  * @author Rohit Gupta
  *
  */
-public class HumanPlayer extends GamePhase implements Serializable{
-	
-	private static final long serialVersionUID = 6L;
+public class HumanPlayer extends PlayerModel implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see com.conquest.model.GamePhase#reinforcementPhase()
+	/**
+	 * 
 	 */
-	@Override
-	public void reinforcementPhase() {
-		// TODO Auto-generated method stub
-		
-	}
+	private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
-	 * @see com.conquest.model.GamePhase#fortificationPhase()
+	/**
+	 * @param playerName
+	 * @param playerType
 	 */
-	@Override
-	public void fortificationPhase() {
-		// TODO Auto-generated method stub
-		
+	public HumanPlayer(String playerName, PlayerType playerType) {
+		super(playerName, playerType);
+		// TODO Auto-generated constructor stub
 	}
-
-	/* (non-Javadoc)
-	 * @see com.conquest.model.GamePhase#attackPhase()
-	 */
-	@Override
-	public void attackPhase() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

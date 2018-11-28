@@ -3,14 +3,16 @@ package com.conquest.controller;
 import java.util.ArrayList;
 
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.mapeditor.model.PlayerModel;
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 
 import java.util.Collections;
 
 import org.apache.log4j.Logger;
 
 import com.conquest.window.AttackPhaseWindow;
+import com.conquest.window.MainMenuScreen;
+
 import java.security.SecureRandom;
 
 /**
@@ -24,14 +26,8 @@ public class AttackWindowController {
 	/** The attack phase window. */
 	private AttackPhaseWindow attackPhaseWindow;
 
-	/** The no of players. */
-	private int noOfPlayers = 0;
-
 	/** The source counter. */
 	private int sourceCounter = 0;
-
-	/** The players. */
-	private PlayerModel[] players;
 
 	/** The destination country models. */
 	private ArrayList<String> targetCountryModels = new ArrayList<>();
@@ -41,8 +37,9 @@ public class AttackWindowController {
 
 	/** The game model. */
 	private GameModel gameModel;
-	   static Logger log = Logger.getLogger(AttackWindowController.class.getName());
+	 
 
+	private static final Logger log = Logger.getLogger(AttackWindowController.class);
 	/**
 	 * Instantiates a new attack window controller.
 	 *
@@ -50,11 +47,9 @@ public class AttackWindowController {
 	 * @param attackPhaseWindow the attack phase window
 	 * @param riskMapModel      the risk map model
 	 */
-	public AttackWindowController(PlayerModel[] players, AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel) {
+	public AttackWindowController(AttackPhaseWindow attackPhaseWindow, GameModel riskMapModel) {
 
 		this.attackPhaseWindow = attackPhaseWindow;
-		this.noOfPlayers = players.length;
-		this.players = players;
 		this.gameModel = riskMapModel;
 		updateSourceUIInfo();
 		attackPhaseWindow.updatePlayerLabel(this.attackPhaseWindow.getCurrentPlayer().getPlayerName());
@@ -93,7 +88,7 @@ public class AttackWindowController {
 		}
 		System.out.println("After Removing: NEighbours " + targetCountryModels.size());
 
-		for (PlayerModel player : players) {
+		for (PlayerModel player : gameModel.getPlayers()) {
 			for (String s : tempCountryModels2) {
 				CountryModel c = player.searchCountry(s);
 				if (c != null) {
@@ -299,7 +294,7 @@ public class AttackWindowController {
 		attackPhaseWindow.updateSourceArmyLabel(attackerCountry.getNoOfArmiesCountry());
 		attackPhaseWindow.updateTargetArmyLabel(defenderCountry.getNoOfArmiesCountry());
 		if (defenderCountry.getNoOfArmiesCountry() == 0) {
-			for (PlayerModel player : attackPhaseWindow.getPlayers()) {
+			for (PlayerModel player : gameModel.getPlayers()) {
 				for (CountryModel countryModel : player.getPlayerCountryList()) {
 					if (countryModel.getCountryName().trim()
 							.equalsIgnoreCase(defenderCountry.getCountryName().trim())) {
