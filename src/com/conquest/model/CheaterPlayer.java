@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.conquest.mapeditor.model.CountryModel;
 
 /**
@@ -90,10 +92,16 @@ public class CheaterPlayer implements Serializable, Strategy {
 					if (countryModels.getCountryName().trim().equalsIgnoreCase(country.getCountryName().trim())) {
 						player.removeCountry(country);
 						playerModel.addCountry(country);
+						playerModel.setHasWonTerritory(true);
 						break;
 					}
 				}
 			}
+		}
+		if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
+			
+			gameModel.setIsWon(true);
+			return;
 		}
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);

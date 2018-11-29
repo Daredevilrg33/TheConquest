@@ -110,9 +110,8 @@ public class AttackWindowControllerTest {
 		CountryModel country = new CountryModel("INDIA", continentModel, countryNeighbourModels);
 		country.setNoOfArmiesCountry(4);
 		countryModel.setNoOfArmiesCountry(2);
-// Rohit
-		// attackwindowcontroller.attackEvaluation(attackingDiceValues,
-		// defendingDiceValues, country, countryModel, false);
+
+		attackwindowcontroller.attackEvaluation(attackingDiceValues, defendingDiceValues, country, countryModel, false);
 		assertEquals(3, playerModels[0].getPlayerCountryList().size());
 		System.out.println("Player 1 country size after winning:" + playerModels[0].getPlayerCountryList().size());
 

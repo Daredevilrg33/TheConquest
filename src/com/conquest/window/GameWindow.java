@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -210,11 +211,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				700, 150);
 		add(phaseScrollPane);
-
+//		
 		progressBarPanel = new JPanel();
-		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()),
+		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()) + 150,
 				phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
-				(int) (treeScrollPane.getBounds().getWidth()), 150);
+				(int) (treeScrollPane.getBounds().getWidth()), 300);
 		add(progressBarPanel);
 		addProgressBar(this.gameModel);
 
@@ -544,7 +545,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void updateUIInfo(PlayerModel currentPlayer) {
 
 		PlayerModel[] players = gameModel.getPlayers();
-		if (gameModel.getGamePhaseStage() == 0 && players[players.length - 1].getnoOfArmyInPlayer() == 0) {
+		if (gameModel.getIsWon()) {
+			JOptionPane.showMessageDialog(this, gameModel.getCurrPlayer().getPlayerName() + " has Won the Game !!",
+					"Congratulations !!!", JOptionPane.ERROR_MESSAGE);
+			return;
+		} else if (gameModel.getGamePhaseStage() == 0 && players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 			updatePhaseView("Reinforcement Phase");
 		} else if (gameModel.getGamePhaseStage() == 0 && currentPlayer.getPlayerType() != PlayerType.Human) {
 			currentPlayer.assignInitialArmyToCountry(gameModel);

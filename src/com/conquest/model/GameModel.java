@@ -25,7 +25,7 @@ public class GameModel extends Observable implements Serializable {
 	private PlayerModel currPlayer;
 
 	/** The game state. */
-	private int isWon = 0; // 0=on 1=won
+	private boolean isWon = false; // 0=on 1=won
 
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
@@ -146,7 +146,7 @@ public class GameModel extends Observable implements Serializable {
 	 *
 	 * @return the isWon
 	 */
-	public int getIsWon() {
+	public boolean getIsWon() {
 		return isWon;
 	}
 
@@ -155,7 +155,7 @@ public class GameModel extends Observable implements Serializable {
 	 *
 	 * @param isWon the isWon to set
 	 */
-	public void setIsWon(int isWon) {
+	public void setIsWon(boolean isWon) {
 		this.isWon = isWon;
 		updateChanges();
 	}
