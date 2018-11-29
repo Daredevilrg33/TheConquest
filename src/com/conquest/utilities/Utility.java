@@ -332,9 +332,9 @@ public class Utility {
 			playerTypes[2] = getPlayerType(comboSelectedPlayers[2]);
 		}
 		if (noOfPlayers >= 4)
-			playerTypes[4] = getPlayerType(comboSelectedPlayers[3]);
+			playerTypes[3] = getPlayerType(comboSelectedPlayers[3]);
 		if (noOfPlayers == 5)
-			playerTypes[5] = getPlayerType(comboSelectedPlayers[4]);
+			playerTypes[4] = getPlayerType(comboSelectedPlayers[4]);
 
 		return playerTypes;
 	}

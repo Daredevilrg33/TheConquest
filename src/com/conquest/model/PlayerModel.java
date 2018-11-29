@@ -435,6 +435,10 @@ public class PlayerModel extends Observable implements Serializable {
 			return "success";
 		}
 	}
+	
+	public void setPlayerCountryList(List<CountryModel> playerCountryList) {
+		this.playerCountryList = playerCountryList;
+	}
 
 	/**
 	 * Assign initial army to country.

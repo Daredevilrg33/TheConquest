@@ -11,10 +11,10 @@ import org.junit.Test;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.model.GameModel;
 import com.conquest.model.PlayerModel;
 import com.conquest.utilities.Utility;
 import com.conquest.window.GameWindow;
+import com.conquest.window.NewGameMenuScreen;
 
 /**
  * The Class GameWindowControllerTest.
@@ -72,27 +72,31 @@ public class GameWindowControllerTest {
 	 */
 	@Test
 	public void noOfArmyTest() {
-/*   ROHIT
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
-		gameWindow1 = new GameWindow(mapHierarchyModel, "4","New Game",null);
-		gameWindow2 = new GameWindow(mapHierarchyModel, "5","New Game",null);
+		String[] playerTypes = new String[] {"Human","Human","Human","Human","Human"};
+		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+		System.out.println("Player Typesjnkjnskjnsk: " +playerTypes.length);
+		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
+//		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
+//		gameWindow1 = new GameWindow(mapHierarchyModel, "4","New Game",null);
+//		gameWindow2 = new GameWindow(mapHierarchyModel, "5","New Game",null);
+		System.out.println("Player Types " + playerTypes.length);
+		PlayerModel[] playerModels1 = newGameMenuScreen.initializingPlayerModels(4, mapHierarchyModel, playerTypes);
+		PlayerModel[] playerModels2 = newGameMenuScreen.initializingPlayerModels(5, mapHierarchyModel, playerTypes);
+//		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
+//		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
+//		PlayerModel[] playerModels = gameWindowController.getPlayers();
 
-		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
-		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
-		PlayerModel[] playerModels = gameWindowController.getPlayers();
+//		GameWindowController gameWindowController1 = new GameWindowController(gameWindow1, 4, mapHierarchyModel);
+//		gameWindowController1.initializingPlayerModels(4, mapHierarchyModel);
+//		PlayerModel[] playerModels1 = gameWindowController1.getPlayers();
 
-		GameWindowController gameWindowController1 = new GameWindowController(gameWindow1, 4, mapHierarchyModel);
-		gameWindowController1.initializingPlayerModels(4, mapHierarchyModel);
-		PlayerModel[] playerModels1 = gameWindowController1.getPlayers();
-
-		GameWindowController gameWindowController2 = new GameWindowController(gameWindow2, 5, mapHierarchyModel);
-		gameWindowController2.initializingPlayerModels(5, mapHierarchyModel);
-		PlayerModel[] playerModels2 = gameWindowController2.getPlayers();
+//		GameWindowController gameWindowController2 = new GameWindowController(gameWindow2, 5, mapHierarchyModel);
+//		gameWindowController2.initializingPlayerModels(5, mapHierarchyModel);
+//		PlayerModel[] playerModels2 = gameWindowController2.getPlayers();
 		assertEquals(23, playerModels[1].getnoOfArmyInPlayer());
 		assertEquals(18, playerModels1[1].getnoOfArmyInPlayer());
 		assertEquals(14, playerModels2[1].getnoOfArmyInPlayer());
-*/
 	}
 
 	/**
@@ -103,16 +107,14 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyAfterTest() {
 
-	/*	ROHIT
-	 * MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
-		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
-		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
-		PlayerModel[] playerModels = gameWindowController.getPlayers();
-
+	  MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
+		String[] playerTypes = new String[] {"Human","Human","Human"};
+		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
+	
 		playerModels[1].calculateAndAddReinforcementArmy();
 
-		assertEquals(26, playerModels[1].getnoOfArmyInPlayer());*/
+		assertEquals(26, playerModels[1].getnoOfArmyInPlayer());
 	}
 
 	/**
@@ -122,12 +124,11 @@ public class GameWindowControllerTest {
 	 */
 	@Test
 	public void noOfArmyCountryTest() {
-			// ROHIT
-		/*MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
-		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
-		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
-		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
-		PlayerModel[] playerModels = gameWindowController.getPlayers();
+
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
+		String[] playerTypes = new String[] {"Human","Human","Human"};
+		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
 		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
 		CountryModel countrymodel = new CountryModel("RUSSIA12");
 		CountryModel countrymodel1 = new CountryModel("AMERICA31");
@@ -158,7 +159,7 @@ public class GameWindowControllerTest {
 		playerModels[1].calculateAndAddReinforcementArmy();
 		playerModels[0].calculateAndAddReinforcementArmy();
 		assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
-		assertEquals(27, playerModels[1].getnoOfArmyInPlayer());*/
+		assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
 	}
 	
 	
@@ -169,49 +170,48 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyCountry2Test() {
 
-//		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Continent_Value);
-//		gameWindow = new GameWindow(mapHierarchyModel, "3","New Game",null);
-//		GameWindowController gameWindowController = new GameWindowController(gameWindow, 3, mapHierarchyModel);
-//		gameWindowController.initializingPlayerModels(3, mapHierarchyModel);
-//		PlayerModel[] playerModels = gameWindowController.getPlayers();
-//		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
-//		CountryModel countrymodel = new CountryModel("BOSTON");
-//		CountryModel countrymodel1 = new CountryModel("CALIFORNIA");
-//		CountryModel countrymodel2 = new CountryModel("BRAZIL");
-//		
-//		ArrayList<CountryModel> countryModelArrayList1 = new ArrayList<CountryModel>();
-//
-//		CountryModel countrymodel3 = new CountryModel("LONDON");
-//		CountryModel countrymodel4 = new CountryModel("PARIS");
-//		
-//		ArrayList<CountryModel> countryModelArrayList2 = new ArrayList<CountryModel>();
-//
-//		CountryModel countrymodel6 = new CountryModel("SCOTLAND");
-//		
-//		playerModels[1].removeAllCountry();
-//		playerModels[0].removeAllCountry();
-//		playerModels[2].removeAllCountry();
-//		playerModels[1].noOfArmyInPlayer(25);
-//		playerModels[2].noOfArmyInPlayer(25);
-//		playerModels[0].noOfArmyInPlayer(25);
-//
-//
-//		playerModels[1].addCountry(countrymodel);
-//
-//		playerModels[1].addCountry(countrymodel1);
-//		playerModels[1].addCountry(countrymodel2);
-//		playerModels[0].addCountry(countrymodel3);
-//		playerModels[0].addCountry(countrymodel4);
-//		
-//		playerModels[2].addCountry(countrymodel6);
-//		
-//		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
-//		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
-//		System.out.println("player no of army: " + playerModels[2].getnoOfArmyInPlayer());
-//		playerModels[1].calculateAndAddReinforcementArmy();
-//		playerModels[0].calculateAndAddReinforcementArmy();
-//		//assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
-//		//assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Continent_Value);
+		String[] playerTypes = new String[] {"Human","Human","Human"};
+		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
+		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
+		CountryModel countrymodel = new CountryModel("BOSTON");
+		CountryModel countrymodel1 = new CountryModel("CALIFORNIA");
+		CountryModel countrymodel2 = new CountryModel("BRAZIL");
+		
+		ArrayList<CountryModel> countryModelArrayList1 = new ArrayList<CountryModel>();
+
+		CountryModel countrymodel3 = new CountryModel("LONDON");
+		CountryModel countrymodel4 = new CountryModel("PARIS");
+		
+		ArrayList<CountryModel> countryModelArrayList2 = new ArrayList<CountryModel>();
+
+		CountryModel countrymodel6 = new CountryModel("SCOTLAND");
+		
+		playerModels[1].removeAllCountry();
+		playerModels[0].removeAllCountry();
+		playerModels[2].removeAllCountry();
+		playerModels[1].noOfArmyInPlayer(25);
+		playerModels[2].noOfArmyInPlayer(25);
+		playerModels[0].noOfArmyInPlayer(25);
+
+
+		playerModels[1].addCountry(countrymodel);
+
+		playerModels[1].addCountry(countrymodel1);
+		playerModels[1].addCountry(countrymodel2);
+		playerModels[0].addCountry(countrymodel3);
+		playerModels[0].addCountry(countrymodel4);
+		
+		playerModels[2].addCountry(countrymodel6);
+		
+		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
+		System.out.println("Country List Size: " + playerModels[1].getPlayerCountryList().size());
+		System.out.println("player no of army: " + playerModels[2].getnoOfArmyInPlayer());
+		playerModels[1].calculateAndAddReinforcementArmy();
+		playerModels[0].calculateAndAddReinforcementArmy();
+		//assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
+		//assertEquals(27, playerModels[1].getnoOfArmyInPlayer());
 	}
 	
 	

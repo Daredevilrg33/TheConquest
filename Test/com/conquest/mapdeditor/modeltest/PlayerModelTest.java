@@ -12,7 +12,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.model.HumanPlayer;
 import com.conquest.model.PlayerModel;
+import com.conquest.model.PlayerType;
 
 /**
  * The Class PlayerModelTest.
@@ -77,11 +79,11 @@ public class PlayerModelTest {
 	@Test
 	public void searchCountrytest() {
 		
-		//ROHIT
-		/*PlayerModel playerModel = new PlayerModel("ROGER", countryModelArrayList);
+		PlayerModel playerModel = new PlayerModel("ROGER", PlayerType.Human);
+		playerModel.setStrategy(new HumanPlayer());
+		playerModel.setPlayerCountryList(countryModelArrayList);
 		assertEquals("JAPAN", playerModel.searchCountry("JAPAN").getCountryName());
-		assertEquals("IRAN", playerModel.searchCountry("IRAN").getCountryName());*/
-
+		assertEquals("IRAN", playerModel.searchCountry("IRAN").getCountryName());
 	}
 
 	/**
@@ -91,14 +93,15 @@ public class PlayerModelTest {
 	@Test
 	public void overallTest() {
 		
-		// ROHIT
-		/*PlayerModel playerModel = new PlayerModel("FORD", countryModelArrayList);
+		PlayerModel playerModel = new PlayerModel("FORD", PlayerType.Human);
+		playerModel.setStrategy(new HumanPlayer());
+		playerModel.setPlayerCountryList(countryModelArrayList);
 		CountryModel countryModel4 = new CountryModel("BANGLADESH");
 		playerModel.noOfArmyInPlayer(4);
 		assertEquals("FORD", playerModel.getPlayerName());
 		playerModel.addCountry(countryModel4);
 		assertEquals("BANGLADESH", playerModel.searchCountry("BANGLADESH").getCountryName());
-		assertEquals(4, playerModel.getnoOfArmyInPlayer());*/
+		assertEquals(4, playerModel.getnoOfArmyInPlayer());
 
 	}
 
