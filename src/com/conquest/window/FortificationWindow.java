@@ -77,6 +77,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	/** The game model. */
 	private GameModel gameModel;
 
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(FortificationWindow.class);
 
 	/**

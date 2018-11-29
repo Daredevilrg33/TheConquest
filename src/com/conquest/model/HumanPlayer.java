@@ -8,14 +8,13 @@ import java.io.Serializable;
 import com.conquest.window.FortificationWindow;
 
 /**
- * @author Rohit Gupta
+ * The Class HumanPlayer.
  *
+ * @author Rohit Gupta
  */
 public class HumanPlayer implements Serializable, Strategy {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/*

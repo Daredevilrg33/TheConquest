@@ -33,7 +33,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	/** The combo box select no of player. */
 	private JComboBox<String> comboBoxSelectNoOfPlayer;
 
-	/** The combo box player one  */
+	/** The combo box player one. */
 	private JComboBox<String> comboBoxPlayer1;
 
 	/** The combo box player two . */
@@ -116,8 +116,12 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	/** The file name five. */
 	private String fileNameFive;
 
+	/** The new game menu obj. */
 	NewGameMenuScreen newGameMenuObj;
+
+	/** The tournament obj. */
 	TournamentController tournamentObj;
+
 	/**
 	 * Instantiates a new new tournament menu screen.
 	 */
@@ -133,8 +137,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 		comboBoxNumberOfMaps.addActionListener(this);
 		add(comboBoxNumberOfMaps);
-		//comboBoxNumberOfMaps.setSelectedIndex(-1);
-
+		// comboBoxNumberOfMaps.setSelectedIndex(-1);
 
 		chooseMapOne = new JButton("Select");
 		chooseMapOne.setBounds(70, 100, 70, 30);
@@ -171,7 +174,6 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		labelSelectNoOfPlayers.setText("Select Number of Players");
 		labelSelectNoOfPlayers.setBounds(70, 150, 140, 30);
 		add(labelSelectNoOfPlayers);
-		
 
 		comboBoxSelectNoOfPlayer = new JComboBox<>(playersList);
 		comboBoxSelectNoOfPlayer.setBounds(300, 150, 100, 30);
@@ -198,28 +200,27 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 //		comboBoxPlayerFourBehaviour.setBounds(400, 200, 100, 30);
 //		add(comboBoxPlayerFourBehaviour);
 //		comboBoxPlayerFourBehaviour.setSelectedIndex(-1);
-		//comboBoxSelectNoOfPlayer.setSelectedIndex(-1);
+		// comboBoxSelectNoOfPlayer.setSelectedIndex(-1);
 
 		comboBoxPlayer1 = new JComboBox<>(behaviourList);
 		comboBoxPlayer1.setBounds(70, 200, 100, 30);
 		add(comboBoxPlayer1);
-		//comboBoxPlayer1.setSelectedIndex(-1);
+		// comboBoxPlayer1.setSelectedIndex(-1);
 
 		comboBoxPlayer2 = new JComboBox<>(behaviourList);
 		comboBoxPlayer2.setBounds(180, 200, 100, 30);
 		add(comboBoxPlayer2);
-		//comboBoxPlayer1.setSelectedIndex(-1);
+		// comboBoxPlayer1.setSelectedIndex(-1);
 
 		comboBoxPlayer3 = new JComboBox<>(behaviourList);
 		comboBoxPlayer3.setBounds(290, 200, 100, 30);
 		add(comboBoxPlayer3);
-		//comboBoxPlayer3.setSelectedIndex(-1);
+		// comboBoxPlayer3.setSelectedIndex(-1);
 
 		comboBoxPlayer4 = new JComboBox<>(behaviourList);
 		comboBoxPlayer4.setBounds(400, 200, 100, 30);
 		add(comboBoxPlayer4);
-		//comboBoxPlayerFourBehaviour.setSelectedIndex(-1);
-
+		// comboBoxPlayerFourBehaviour.setSelectedIndex(-1);
 
 		JLabel labelSelectNoOfGames = new JLabel();
 		labelSelectNoOfGames.setText("Select Number of Games");
@@ -241,7 +242,6 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		add(comboBoxNumberOfTurns);
 //		comboBoxNumberOfTurns.setSelectedIndex(-1);
 
-
 		startTournament = new JButton("Start Tournament");
 		startTournament.setBounds(250, 400, 150, 30);
 		startTournament.addActionListener(this);
@@ -253,10 +253,8 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		setLayout(null);
 		setLocationRelativeTo(null);
 
-		
 		newGameMenuObj = new NewGameMenuScreen();
-		
-		
+
 		addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
@@ -389,44 +387,44 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent event) {
-		
-		 if (event.getSource() == comboBoxNumberOfMaps) {
-				if (((String)comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("1")) {
-					chooseMapOne.setVisible(true);
-					chooseMapTwo.setVisible(false);
-					chooseMapThree.setVisible(false);
-					chooseMapFour.setVisible(false);
-					chooseMapFive.setVisible(false);
+
+		if (event.getSource() == comboBoxNumberOfMaps) {
+			if (((String) comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("1")) {
+				chooseMapOne.setVisible(true);
+				chooseMapTwo.setVisible(false);
+				chooseMapThree.setVisible(false);
+				chooseMapFour.setVisible(false);
+				chooseMapFive.setVisible(false);
 			}
-				if (((String)comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("2")) {
-					chooseMapOne.setVisible(true);
-					chooseMapTwo.setVisible(true);
-					chooseMapThree.setVisible(false);
-					chooseMapFour.setVisible(false);
-					chooseMapFive.setVisible(false);
-				}
-				if (((String)comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("3")) {
-					chooseMapOne.setVisible(true);
-					chooseMapTwo.setVisible(true);
-					chooseMapThree.setVisible(true);
-					chooseMapFour.setVisible(false);
-					chooseMapFive.setVisible(false);
-				}
-				if (((String)comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("4")) {
-					chooseMapOne.setVisible(true);
-					chooseMapTwo.setVisible(true);
-					chooseMapThree.setVisible(true);
-					chooseMapFour.setVisible(true);
-					chooseMapFive.setVisible(false);
-				}
-				if (((String)comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("5")) {
-					chooseMapOne.setVisible(true);
-					chooseMapTwo.setVisible(true);
-					chooseMapThree.setVisible(true);
-					chooseMapFour.setVisible(true);
-					chooseMapFive.setVisible(true);
-				}
-		 }
+			if (((String) comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("2")) {
+				chooseMapOne.setVisible(true);
+				chooseMapTwo.setVisible(true);
+				chooseMapThree.setVisible(false);
+				chooseMapFour.setVisible(false);
+				chooseMapFive.setVisible(false);
+			}
+			if (((String) comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("3")) {
+				chooseMapOne.setVisible(true);
+				chooseMapTwo.setVisible(true);
+				chooseMapThree.setVisible(true);
+				chooseMapFour.setVisible(false);
+				chooseMapFive.setVisible(false);
+			}
+			if (((String) comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("4")) {
+				chooseMapOne.setVisible(true);
+				chooseMapTwo.setVisible(true);
+				chooseMapThree.setVisible(true);
+				chooseMapFour.setVisible(true);
+				chooseMapFive.setVisible(false);
+			}
+			if (((String) comboBoxNumberOfMaps.getSelectedItem()).equalsIgnoreCase("5")) {
+				chooseMapOne.setVisible(true);
+				chooseMapTwo.setVisible(true);
+				chooseMapThree.setVisible(true);
+				chooseMapFour.setVisible(true);
+				chooseMapFive.setVisible(true);
+			}
+		}
 
 		if ((event.getSource() == chooseMapOne)) {
 			filePathOne = Utility.pickFile();
@@ -473,107 +471,111 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 		}
 		if ((event.getSource() == startTournament)) {
-				if (fileNameOne == null || filePathOne == null || fileNameOne.isEmpty() || filePathOne.isEmpty() && chooseMapOne.isVisible()) {
-					JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
-							JOptionPane.ERROR_MESSAGE);
-				} else {
+			if (fileNameOne == null || filePathOne == null || fileNameOne.isEmpty()
+					|| filePathOne.isEmpty() && chooseMapOne.isVisible()) {
+				JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
 
-					Utility utility = new Utility();
-					MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(filePathOne);
-					mapHierarchyModel.setConquestMapName(fileNameOne);
-					if (!mapHierarchyModel.isValErrorFlag()) {
-						boolean isConnected = isMapConnected(mapHierarchyModel);
-						System.out.println("Map Is Connected: " + isConnected);
+				Utility utility = new Utility();
+				MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(filePathOne);
+				mapHierarchyModel.setConquestMapName(fileNameOne);
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapHierarchyModel);
+					System.out.println("Map Is Connected: " + isConnected);
 
-					}
-					if (!mapHierarchyModel.isValErrorFlag()) {
-						boolean isConnected = isContinentConnected(mapHierarchyModel);
-						System.out.println("Continent Is Connected: " + isConnected);
-
-					}
-					// Initializing player Models and Redirecting to Game Window.
-					if (!mapHierarchyModel.isValErrorFlag()) {
-						int noOfPlayers =Integer.parseInt((String) comboBoxSelectNoOfPlayer.getSelectedItem());
-						int noOfMaps =Integer.parseInt((String) comboBoxNumberOfMaps.getSelectedItem());
-						int noOfGames =Integer.parseInt((String) comboBoxNumberOfGames.getSelectedItem());
-						int noOfTurns =Integer.parseInt((String) comboBoxNumberOfTurns.getSelectedItem());
-						String[] comboSelectedPlayers= new String[noOfPlayers];
-						if (noOfPlayers >= 3) {
-							comboSelectedPlayers[0]=(String) comboBoxPlayer1.getSelectedItem();
-							comboSelectedPlayers[1]=(String) comboBoxPlayer2.getSelectedItem();
-							comboSelectedPlayers[2]=(String) comboBoxPlayer3.getSelectedItem();
-							}
-							if (noOfPlayers >= 4) {
-								comboSelectedPlayers[3]=(String) comboBoxPlayer4.getSelectedItem();	
-							}
-							
-						PlayerModel[] playerModels = newGameMenuObj.initializingPlayerModels(noOfPlayers,
-								mapHierarchyModel,comboSelectedPlayers);
-						tournamentObj= new TournamentController(playerModels,noOfMaps,noOfGames,noOfTurns);
-						tournamentObj.startTournament();
-					} else {
-						String valErrorMsg = mapHierarchyModel.getErrorMsg();
-						JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
-					}
 				}
-				if (fileNameTwo == null || filePathTwo == null || fileNameTwo.isEmpty() || filePathTwo.isEmpty() && chooseMapTwo.isVisible()) {
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					boolean isConnected = isContinentConnected(mapHierarchyModel);
+					System.out.println("Continent Is Connected: " + isConnected);
+
+				}
+				// Initializing player Models and Redirecting to Game Window.
+				if (!mapHierarchyModel.isValErrorFlag()) {
+					int noOfPlayers = Integer.parseInt((String) comboBoxSelectNoOfPlayer.getSelectedItem());
+					int noOfMaps = Integer.parseInt((String) comboBoxNumberOfMaps.getSelectedItem());
+					int noOfGames = Integer.parseInt((String) comboBoxNumberOfGames.getSelectedItem());
+					int noOfTurns = Integer.parseInt((String) comboBoxNumberOfTurns.getSelectedItem());
+					String[] comboSelectedPlayers = new String[noOfPlayers];
+					if (noOfPlayers >= 3) {
+						comboSelectedPlayers[0] = (String) comboBoxPlayer1.getSelectedItem();
+						comboSelectedPlayers[1] = (String) comboBoxPlayer2.getSelectedItem();
+						comboSelectedPlayers[2] = (String) comboBoxPlayer3.getSelectedItem();
+					}
+					if (noOfPlayers >= 4) {
+						comboSelectedPlayers[3] = (String) comboBoxPlayer4.getSelectedItem();
+					}
+
+					PlayerModel[] playerModels = newGameMenuObj.initializingPlayerModels(noOfPlayers, mapHierarchyModel,
+							comboSelectedPlayers);
+					tournamentObj = new TournamentController(playerModels, noOfMaps, noOfGames, noOfTurns);
+					tournamentObj.startTournament();
+				} else {
+					String valErrorMsg = mapHierarchyModel.getErrorMsg();
+					JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			if (fileNameTwo == null || filePathTwo == null || fileNameTwo.isEmpty()
+					|| filePathTwo.isEmpty() && chooseMapTwo.isVisible()) {
 //					JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
 //							JOptionPane.ERROR_MESSAGE);
-				} else {
+			} else {
 
-					Utility utility = new Utility();
-					MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathTwo);
-					mapModel.setConquestMapName(fileNameTwo);
-					if (!mapModel.isValErrorFlag()) {
-						boolean isConnected = isMapConnected(mapModel);
-						System.out.println("Map Is Connected: " + isConnected);
+				Utility utility = new Utility();
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathTwo);
+				mapModel.setConquestMapName(fileNameTwo);
+				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapModel);
+					System.out.println("Map Is Connected: " + isConnected);
 
-					}
 				}
-				if (fileNameThree == null || filePathThree == null || fileNameThree.isEmpty() || filePathThree.isEmpty() && chooseMapThree.isVisible()) {
+			}
+			if (fileNameThree == null || filePathThree == null || fileNameThree.isEmpty()
+					|| filePathThree.isEmpty() && chooseMapThree.isVisible()) {
 //					JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
 //							JOptionPane.ERROR_MESSAGE);
-				} else {
+			} else {
 
-					Utility utility = new Utility();
-					MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathThree);
-					mapModel.setConquestMapName(fileNameThree);
-					if (!mapModel.isValErrorFlag()) {
-						boolean isConnected = isMapConnected(mapModel);
-						System.out.println("Map Is Connected: " + isConnected);
+				Utility utility = new Utility();
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathThree);
+				mapModel.setConquestMapName(fileNameThree);
+				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapModel);
+					System.out.println("Map Is Connected: " + isConnected);
 
-					}
 				}
-				if (fileNameFour == null || filePathFour == null || fileNameFour.isEmpty() || filePathFour.isEmpty() && chooseMapFour.isVisible()) {
+			}
+			if (fileNameFour == null || filePathFour == null || fileNameFour.isEmpty()
+					|| filePathFour.isEmpty() && chooseMapFour.isVisible()) {
 //					JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
 //							JOptionPane.ERROR_MESSAGE);
-				} else {
+			} else {
 
-					Utility utility = new Utility();
-					MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathFour);
-					mapModel.setConquestMapName(fileNameFour);
-					if (!mapModel.isValErrorFlag()) {
-						boolean isConnected = isMapConnected(mapModel);
-						System.out.println("Map Is Connected: " + isConnected);
+				Utility utility = new Utility();
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathFour);
+				mapModel.setConquestMapName(fileNameFour);
+				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapModel);
+					System.out.println("Map Is Connected: " + isConnected);
 
-					}
 				}
-				if (fileNameFive == null || filePathFive == null || fileNameFive.isEmpty() || filePathFive.isEmpty()&& chooseMapFive.isVisible()) {
+			}
+			if (fileNameFive == null || filePathFive == null || fileNameFive.isEmpty()
+					|| filePathFive.isEmpty() && chooseMapFive.isVisible()) {
 //					JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message",
 //							JOptionPane.ERROR_MESSAGE);
-				} else {
+			} else {
 
-					Utility utility = new Utility();
-					MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathFive);
-					mapModel.setConquestMapName(fileNameFive);
-					if (!mapModel.isValErrorFlag()) {
-						boolean isConnected = isMapConnected(mapModel);
-						System.out.println("Map Is Connected: " + isConnected);
+				Utility utility = new Utility();
+				MapHierarchyModel mapModel = utility.parseAndValidateMap(filePathFive);
+				mapModel.setConquestMapName(fileNameFive);
+				if (!mapModel.isValErrorFlag()) {
+					boolean isConnected = isMapConnected(mapModel);
+					System.out.println("Map Is Connected: " + isConnected);
 
-					}
 				}
+			}
 
-		
 		}
 	}
-	}
+}

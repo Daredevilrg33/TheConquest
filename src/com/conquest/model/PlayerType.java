@@ -4,9 +4,20 @@
 package com.conquest.model;
 
 /**
- * @author Rohit Gupta
+ * The Enum PlayerType.
  *
+ * @author Rohit Gupta
  */
 public enum PlayerType {
-	Human,Aggresive,Benevolent,Random,Cheater
+
+	/** The Human. */
+	Human,
+	/** The Aggresive. */
+	Aggresive,
+	/** The Benevolent. */
+	Benevolent,
+	/** The Random. */
+	Random,
+	/** The Cheater. */
+	Cheater
 }

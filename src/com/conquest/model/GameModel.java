@@ -15,6 +15,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
  */
 public class GameModel extends Observable implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The players. */
@@ -141,6 +142,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Gets the checks if is won.
+	 *
 	 * @return the isWon
 	 */
 	public int getIsWon() {
@@ -148,6 +151,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Sets the checks if is won.
+	 *
 	 * @param isWon the isWon to set
 	 */
 	public void setIsWon(int isWon) {
@@ -231,6 +236,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Gets the game status.
+	 *
 	 * @return the gameStatus
 	 */
 	public String getGameStatus() {
@@ -238,6 +245,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Sets the game status.
+	 *
 	 * @param gameStatus the gameStatus to set
 	 */
 	public void setGameStatus(String gameStatus) {
@@ -245,6 +254,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Gets the game phase stage.
+	 *
 	 * @return the gamePhaseStage
 	 */
 	public int getGamePhaseStage() {
@@ -252,6 +263,8 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Sets the game phase stage.
+	 *
 	 * @param gamePhaseStage the gamePhaseStage to set
 	 */
 	public void setGamePhaseStage(int gamePhaseStage) {
@@ -282,15 +295,26 @@ public class GameModel extends Observable implements Serializable {
 		notifyObservers(this);
 	}
 
+	/**
+	 * Fortification phase.
+	 */
 	public void fortificationPhase() {
 		currPlayer.fortificationPhase(this);
 	}
 
+	/**
+	 * Attack phase.
+	 *
+	 * @return the string
+	 */
 	public String attackPhase() {
 		return currPlayer.attackPhase(this);
 
 	}
 
+	/**
+	 * Reinforcement phase.
+	 */
 	public void reinforcementPhase() {
 		this.setGameStatus("Reinforcement Phase starts");
 		this.setGamePhaseStage(1);

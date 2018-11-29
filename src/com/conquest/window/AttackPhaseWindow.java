@@ -87,16 +87,16 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/** The j button finish attack. */
 	private JButton jButtonFinishAttack;
 
+	/** The current player. */
 	private PlayerModel currentPlayer;
 
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(AttackPhaseWindow.class);
 
 	/**
 	 * Instantiates a new attack phase window.
 	 *
-	 * @param gameModel     the risk map model
-	 * @param playerModels  the player models
-	 * @param currentPlayer the current player
+	 * @param gameModel the risk map model
 	 */
 	public AttackPhaseWindow(GameModel gameModel) {
 		gameModel.setGameStatus("Attack Phase starts");

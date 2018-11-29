@@ -7,9 +7,11 @@ import java.util.Observable;
 /**
  * The Class CardsModel.
  */
-public class CardsModel extends Observable implements Serializable{
+public class CardsModel extends Observable implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 11L;
+	
 	/** The card name. */
 	private String cardName;
 
@@ -25,7 +27,6 @@ public class CardsModel extends Observable implements Serializable{
 	public CardsModel(String name, int type) {
 		this.cardName = name;
 		this.type = type;
-
 	}
 
 	/**

@@ -19,8 +19,9 @@ import com.conquest.mapeditor.model.CountryModel;
  */
 public class PlayerModel extends Observable implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5L;
-
+	
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
 
@@ -38,16 +39,21 @@ public class PlayerModel extends Observable implements Serializable {
 
 	/** The cards. */
 	private int[] cards;
+
+	/** The strategy. */
 	private Strategy strategy;
 
+	/** The player type. */
 	private PlayerType playerType;
+
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(PlayerModel.class);
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
 	 *
 	 * @param playerName the player name
-	 * @param gameModel  the risk map model
+	 * @param playerType the player type
 	 */
 	public PlayerModel(String playerName, PlayerType playerType) {
 		this.playerName = playerName;
@@ -114,6 +120,8 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Sets the strategy.
+	 *
 	 * @param strategy the strategy to set
 	 */
 	public void setStrategy(Strategy strategy) {
@@ -121,6 +129,8 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Gets the strategy.
+	 *
 	 * @return the strategy
 	 */
 	public Strategy getStrategy() {
@@ -227,6 +237,9 @@ public class PlayerModel extends Observable implements Serializable {
 
 	/**
 	 * The function to exchange the cards.
+	 *
+	 * @param countryName the country name
+	 * @return the country model
 	 */
 
 //	public void handInCards() {
@@ -369,6 +382,8 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Gets the player type.
+	 *
 	 * @return the playerType
 	 */
 	public PlayerType getPlayerType() {
@@ -376,12 +391,19 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Sets the player type.
+	 *
 	 * @param playerType the playerType to set
 	 */
 	public void setPlayerType(PlayerType playerType) {
 		this.playerType = playerType;
 	}
 
+	/**
+	 * Fortification phase.
+	 *
+	 * @param gameModel the game model
+	 */
 	public void fortificationPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		if (this.hasWonTerritory) {
@@ -396,6 +418,12 @@ public class PlayerModel extends Observable implements Serializable {
 		strategy.fortificationPhase(gameModel, this);
 	}
 
+	/**
+	 * Attack phase.
+	 *
+	 * @param gameModel the game model
+	 * @return the string
+	 */
 	public String attackPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		PlayerModel[] players = gameModel.getPlayers();
@@ -411,6 +439,11 @@ public class PlayerModel extends Observable implements Serializable {
 		}
 	}
 
+	/**
+	 * Assign initial army to country.
+	 *
+	 * @param gameModel the game model
+	 */
 	public void assignInitialArmyToCountry(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		strategy.assignInitialArmyToCountry(gameModel, this);
@@ -418,6 +451,11 @@ public class PlayerModel extends Observable implements Serializable {
 		gameModel.moveToNextPlayer();
 	}
 
+	/**
+	 * Reinforcement phase.
+	 *
+	 * @param gameModel the game model
+	 */
 	public void reinforcementPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 

@@ -10,15 +10,16 @@ import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.utilities.Utility;
 
 /**
- * @author Rohit Gupta
+ * The Class RandomPlayer.
  *
+ * @author Rohit Gupta
  */
 public class RandomPlayer implements Serializable, Strategy {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The random. */
 	private Random random = new Random();
 
 	/*

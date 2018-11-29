@@ -21,7 +21,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 
 	/** The button new game. */
 	private JButton btnNewSingleGame;
-	
+
 	/** The btn load game. */
 	private JButton btnLoadGame;
 
@@ -33,7 +33,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 
 	/** The button exit. */
 	private JButton btnExit;
-	
+
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(MainMenuScreen.class);
 
 	/**
@@ -59,7 +60,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 		btnLoadGame.setBounds(Constants.WIDTH / 2 - 50, 260, 150, 30);
 		btnLoadGame.addActionListener(this);
 		add(btnLoadGame);
-		
+
 		btnExit = new JButton("Exit");
 		btnExit.setBounds(Constants.WIDTH / 2 - 50, 330, 150, 30);
 		btnExit.addActionListener(this);
@@ -69,8 +70,6 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 		setSize(Constants.WIDTH, Constants.HEIGHT);
 		setLayout(null);
 		setLocationRelativeTo(null);
-		
-		
 
 		addWindowListener(new WindowAdapter() {
 			/*
@@ -109,12 +108,12 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 			NewTournamentMenuScreen newTournamentScreen = new NewTournamentMenuScreen();
 			newTournamentScreen.setVisible(true);
 			dispose();
-		}else if (event.getSource() == btnLoadGame) {
+		} else if (event.getSource() == btnLoadGame) {
 			log.info("Game loaded");
 			LoadGameWindow loadGameWindow = new LoadGameWindow();
 			loadGameWindow.setVisible(true);
 			dispose();
-		}else {
+		} else {
 			System.exit(0);
 		}
 

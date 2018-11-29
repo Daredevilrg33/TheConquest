@@ -20,6 +20,9 @@ import com.conquest.model.GameModel;
 import com.conquest.utilities.Constants;
 import com.conquest.utilities.Utility;
 
+/**
+ * The Class LoadGameWindow.
+ */
 public class LoadGameWindow extends JFrame implements ActionListener {
 
 	/** The Label select game. */
@@ -28,6 +31,9 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	/** The button Select game file. */
 	private JButton buttonSelectGame;
 
+	/**
+	 * Instantiates a new load game window.
+	 */
 	public LoadGameWindow() {
 
 		labelSelectGame = new JLabel();
@@ -110,8 +116,8 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Method to load game from disk
-	 * 
+	 * Method to load game from disk.
+	 *
 	 * @param inputFile The file that need to be loaded
 	 */
 	public void loadGame(String inputFile) {

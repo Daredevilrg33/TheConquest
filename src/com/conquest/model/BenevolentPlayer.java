@@ -8,11 +8,13 @@ import java.io.Serializable;
 import com.conquest.mapeditor.model.CountryModel;
 
 /**
- * @author Rohit Gupta
+ * The Class BenevolentPlayer.
  *
+ * @author Rohit Gupta
  */
 public class BenevolentPlayer implements Serializable, Strategy {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 9L;
 
 	/*
@@ -111,6 +113,12 @@ public class BenevolentPlayer implements Serializable, Strategy {
 		}
 	}
 
+	/**
+	 * Gets the country with min armies.
+	 *
+	 * @param playerModel the player model
+	 * @return the country with min armies
+	 */
 	private CountryModel getCountryWithMinArmies(PlayerModel playerModel) {
 		CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
 		int noOfArmies = countryModel.getNoOfArmiesCountry();

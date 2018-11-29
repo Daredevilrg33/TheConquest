@@ -10,14 +10,13 @@ import java.util.List;
 import com.conquest.mapeditor.model.CountryModel;
 
 /**
- * @author Rohit Gupta
+ * The Class CheaterPlayer.
  *
+ * @author Rohit Gupta
  */
 public class CheaterPlayer implements Serializable, Strategy {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/*

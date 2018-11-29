@@ -301,6 +301,11 @@ public class Utility {
 		return true;
 	}
 
+	/**
+	 * Roll dice.
+	 *
+	 * @return the int
+	 */
 	public static int rollDice() {
 		int pickedNumber;
 		SecureRandom number = new SecureRandom();
@@ -310,11 +315,15 @@ public class Utility {
 
 		return pickedNumber + 1;
 	}
-	
+
 	/**
-	 * @return
+	 * Gets the player type from drop down.
+	 *
+	 * @param noOfPlayers          the no of players
+	 * @param comboSelectedPlayers the combo selected players
+	 * @return the player type from drop down
 	 */
-	public static PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers,String []comboSelectedPlayers) {
+	public static PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers, String[] comboSelectedPlayers) {
 		// TODO Auto-generated method stub
 		PlayerType[] playerTypes = new PlayerType[noOfPlayers];
 		if (noOfPlayers >= 3) {
@@ -330,6 +339,12 @@ public class Utility {
 		return playerTypes;
 	}
 
+	/**
+	 * Gets the player type.
+	 *
+	 * @param strPlayer the str player
+	 * @return the player type
+	 */
 	public static PlayerType getPlayerType(String strPlayer) {
 
 		PlayerType playerType = PlayerType.Human;

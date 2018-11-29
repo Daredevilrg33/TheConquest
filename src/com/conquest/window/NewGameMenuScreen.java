@@ -62,8 +62,13 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	/** The no of players. */
 	private String noOfPlayers;
 
+	/** The player types. */
 	private String[] playerTypes = new String[] { "Human", "Aggresive", "Benevolent", "Random", "Cheater" };
+
+	/** The label player 4. */
 	private JLabel labelPlayer5, labelPlayer4;
+
+	/** The combo box player type 5. */
 	private JComboBox<String> comboBoxPlayerType1, comboBoxPlayerType2, comboBoxPlayerType3, comboBoxPlayerType4,
 			comboBoxPlayerType5;
 
@@ -205,20 +210,20 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 				}
 				// Initializing player Models and Redirecting to Game Window.
 				if (!mapHierarchyModel.isValErrorFlag()) {
-					String[] comboSelectedPlayers= new String[Integer.parseInt(noOfPlayers)];
+					String[] comboSelectedPlayers = new String[Integer.parseInt(noOfPlayers)];
 					if (Integer.parseInt(noOfPlayers) >= 3) {
-					comboSelectedPlayers[0]=(String) comboBoxPlayerType1.getSelectedItem();
-					comboSelectedPlayers[1]=(String) comboBoxPlayerType2.getSelectedItem();
-					comboSelectedPlayers[2]=(String) comboBoxPlayerType3.getSelectedItem();
+						comboSelectedPlayers[0] = (String) comboBoxPlayerType1.getSelectedItem();
+						comboSelectedPlayers[1] = (String) comboBoxPlayerType2.getSelectedItem();
+						comboSelectedPlayers[2] = (String) comboBoxPlayerType3.getSelectedItem();
 					}
 					if (Integer.parseInt(noOfPlayers) >= 4) {
-						comboSelectedPlayers[3]=(String) comboBoxPlayerType4.getSelectedItem();	
+						comboSelectedPlayers[3] = (String) comboBoxPlayerType4.getSelectedItem();
 					}
 					if (Integer.parseInt(noOfPlayers) == 5) {
-						comboSelectedPlayers[4]=(String) comboBoxPlayerType5.getSelectedItem();	
+						comboSelectedPlayers[4] = (String) comboBoxPlayerType5.getSelectedItem();
 					}
 					PlayerModel[] playerModels = initializingPlayerModels(Integer.parseInt(noOfPlayers),
-							mapHierarchyModel,comboSelectedPlayers);
+							mapHierarchyModel, comboSelectedPlayers);
 					redirectingToGameWindow(mapHierarchyModel, playerModels);
 				} else {
 					String valErrorMsg = mapHierarchyModel.getErrorMsg();
@@ -248,16 +253,19 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * initializingPlayerModels method Void method to initialize player models as
 	 * per number of players.
 	 *
-	 * @param noOfPlayers       Input the number of players in game type integer
-	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
-	 *                          pass map model
+	 * @param noOfPlayers          Input the number of players in game type integer
+	 * @param mapHierarchyModel    MapHierarchyModel{@link MapHierarchyModel} object
+	 *                             to pass map model
+	 * @param comboSelectedPlayers the combo selected players
+	 * @return the player model[]
 	 */
-	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel, String []comboSelectedPlayers) {
+	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel,
+			String[] comboSelectedPlayers) {
 
 		PlayerModel[] players = new PlayerModel[noOfPlayers];
 
 		ContinentModel[] continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
-		PlayerType[] playerTypes = Utility.getPlayerTypeFromDropDown(noOfPlayers,comboSelectedPlayers);
+		PlayerType[] playerTypes = Utility.getPlayerTypeFromDropDown(noOfPlayers, comboSelectedPlayers);
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
 			players[j] = new PlayerModel("Player" + String.valueOf(value), playerTypes[j]);
@@ -316,10 +324,11 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		return players;
 	}
 
-	
-
 	/**
-	 * 
+	 * Redirecting to game window.
+	 *
+	 * @param mapHierarchyModel the map hierarchy model
+	 * @param playerModels      the player models
 	 */
 	private void redirectingToGameWindow(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 		// TODO Auto-generated method stub

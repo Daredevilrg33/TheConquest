@@ -111,16 +111,17 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	/** The label labelCardsWithPlayer button place. */
 	private JLabel labelCardsWithPlayer;
 
+	/** The progress bar. */
 	private JProgressBar progressBar;
 
+	/** The game model. */
 	private GameModel gameModel;
 //	private String fromGame;
 
 	/**
 	 * GameWindow Parameterized Constructor Instantiates a new game window.
-	 * 
-	 * @param mapHierarchyModel the map hierarchy model
-	 * @param noOfPlayers       the no of players
+	 *
+	 * @param gameModel the game model
 	 */
 
 	public GameWindow(GameModel gameModel) {
@@ -487,6 +488,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		}
 	}
 
+	/**
+	 * Sets the progress bar values.
+	 *
+	 * @param currentPlayer the new progress bar values
+	 */
 	public void setProgressBarValues(PlayerModel currentPlayer) {
 		if (progressBar != null)
 			progressBar.setValue(calculatePercentage(currentPlayer));
