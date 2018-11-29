@@ -7408,6 +7408,7 @@
 2018-11-29 15:48:10,493  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
 2018-11-29 15:48:10,543  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
 2018-11-29 15:48:10,543  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+<<<<<<< Updated upstream
 2018-11-29 16:06:25,650  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
 2018-11-29 16:06:43,228  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
 2018-11-29 16:06:43,525  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
@@ -23801,3 +23802,76 @@
 2018-11-29 18:21:53,283  INFO [AWT-EventQueue-0] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
 2018-11-29 18:21:53,298  INFO [AWT-EventQueue-0] - PlayerModel:463 - Reinforcement Phase starts of PlayerPlayer3
 2018-11-29 18:21:53,298  INFO [AWT-EventQueue-0] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+=======
+>>>>>>> Stashed changes
+2018-11-29 15:56:20,337  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 15:56:20,440  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 15:56:20,474  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:56:20,485  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:56:20,485  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:56:20,507  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:56:20,507  INFO [main] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:57:10,264  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 15:57:10,343  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 15:57:10,373  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:57:10,386  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:57:10,386  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:57:10,413  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 15:57:10,413  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 16:55:21,984  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:55:22,110  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:55:22,127  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:56:03,896  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:56:04,031  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:56:04,055  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:57:33,640  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:57:33,815  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:57:33,830  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:58:44,061  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:58:44,259  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 16:58:44,292  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 17:17:11,154  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:17:11,178  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:17:11,178  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:17:11,218  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:17:11,218  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:14,333  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:14,373  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:14,373  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:14,416  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:14,416  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:40,774  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:40,802  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:40,802  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:40,847  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:24:40,848  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:25:33,022  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:25:33,045  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:25:33,045  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:25:33,082  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:25:33,083  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:29:15,605  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 17:29:15,682  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 17:29:15,691  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 17:29:15,713  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:29:15,726  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:29:15,726  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:29:15,753  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:29:15,754  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:42:34,657  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:42:34,701  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:42:34,702  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:42:34,768  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:42:34,768  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:50:15,736  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:50:15,777  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:50:15,778  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:50:15,827  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:50:15,827  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:58:55,799  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:58:55,844  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:58:55,844  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:58:56,091  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 17:58:56,091  INFO [main] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 18:23:34,345  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+>>>>>>> Stashed changes

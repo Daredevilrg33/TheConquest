@@ -39,12 +39,13 @@ public class FortificationWindowControllerTest {
 	}
 
 	/**
-	 * Fortification test.
+	 * Fortification test checking values of two countries after transferring armies from one country to another.
+	 * INDIA-> Bhutan
 	 */
 	@Test
 	public void fortificationTest() {
 
-		ContinentModel countryModel = new ContinentModel("ASIA");
+		ContinentModel continentModel = new ContinentModel("ASIA");
 		ArrayList<String> countryNeighbourModels = new ArrayList<>();
 		countryNeighbourModels.add("BHUTAN");
 		countryNeighbourModels.add("PAKISTAN");
@@ -55,9 +56,10 @@ public class FortificationWindowControllerTest {
 		countryNeighbourModels1.add("PAKISTAN");
 		countryNeighbourModels1.add("NEPAL");
 		countryNeighbourModels1.add("SRILANKA");
-		CountryModel countryModel1 = new CountryModel("INDIA", countryModel, countryNeighbourModels);
+
+		CountryModel countryModel1 = new CountryModel("INDIA", continentModel, countryNeighbourModels);
 		countryModel1.setNoOfArmiesCountry(10);
-		CountryModel countryModel2 = new CountryModel("BHUTAN", countryModel, countryNeighbourModels1);
+		CountryModel countryModel2 = new CountryModel("BHUTAN", continentModel, countryNeighbourModels1);
 		countryModel2.setNoOfArmiesCountry(20);
 
 		ArrayList<CountryModel> countryModels = new ArrayList<>();
@@ -76,6 +78,8 @@ public class FortificationWindowControllerTest {
 
 		System.out.println(countryModel1.getNoOfArmiesCountry());
 		System.out.println(countryModel2.getNoOfArmiesCountry());
+		assertEquals(4,countryModel1.getNoOfArmiesCountry());
+		assertEquals(26,countryModel2.getNoOfArmiesCountry());
 
 	}
 

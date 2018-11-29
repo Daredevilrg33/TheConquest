@@ -29,6 +29,12 @@ public class NewGameMenuScreenTest {
 
 	/** The country not connected map file path. */
 	private static String COUNTRY_NOT_CONNECTED_PATH;
+	
+	/** The country not connected map file path. */
+	private static String Twin_Volcano_PATH;
+	
+	/** The country not connected map file path. */
+	private static String Cliff_PATH;
 
 	/** The game window. */
 	GameWindow gameWindow;
@@ -43,8 +49,9 @@ public class NewGameMenuScreenTest {
 		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 		THREE_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
 		COUNTRY_CONNECTED_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\countryconnected.map";
-		COUNTRY_NOT_CONNECTED_PATH = System.getProperty("user.dir")
-				+ "\\resources\\testresource\\countrynotconnected.map";
+		COUNTRY_NOT_CONNECTED_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\countrynotconnected.map";
+		Twin_Volcano_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\Twin Volcano.map";
+		Cliff_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\3D Cliff.map";
 	}
 
 	/**
@@ -130,4 +137,35 @@ public class NewGameMenuScreenTest {
 
 		assertEquals("false", String.valueOf(isContinentConnected));
 	}
+	
+	/**
+	 * test to check twin volcano map.
+	 */
+	@Test
+	public void twinVolcanoTest() {
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Twin_Volcano_PATH);
+		newGame.isMapConnected(mapHierarchyModel);
+		
+		assertEquals("Map is invalid", mapHierarchyModel.getErrorMsg());
+
+
+	}
+	
+	/**
+	 * test to check #D CLIFF map.
+	 */
+	@Test
+	public void cliffMapTest() {
+		NewGameMenuScreen newGame = new NewGameMenuScreen();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Cliff_PATH);
+		newGame.isMapConnected(mapHierarchyModel);
+		System.out.println(mapHierarchyModel.getErrorMsg());
+		System.out.println(mapHierarchyModel.isValErrorFlag());
+//		assertEquals("false", String.valueOf(mapHierarchyModel.isValErrorFlag()));
+//		assertEquals("Map is invalid", mapHierarchyModel.getErrorMsg());
+
+
+	}
+	
 }
