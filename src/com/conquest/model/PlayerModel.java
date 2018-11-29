@@ -1,6 +1,7 @@
 package com.conquest.model;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -17,7 +18,7 @@ import com.conquest.mapeditor.model.CountryModel;
  * @author ROHIT GUPTA
  * @version 1.0.0
  */
-public class PlayerModel extends Observable implements Serializable, GamePhase {
+public class PlayerModel extends Observable implements Serializable {
 
 	private static final long serialVersionUID = 5L;
 
@@ -38,6 +39,7 @@ public class PlayerModel extends Observable implements Serializable, GamePhase {
 
 	/** The cards. */
 	private int[] cards;
+	private Strategy strategy;
 
 	private PlayerType playerType;
 	private static final Logger log = Logger.getLogger(PlayerModel.class);
@@ -110,6 +112,20 @@ public class PlayerModel extends Observable implements Serializable, GamePhase {
 	 */
 	public String getPlayerName() {
 		return playerName;
+	}
+
+	/**
+	 * @param strategy the strategy to set
+	 */
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
+
+	/**
+	 * @return the strategy
+	 */
+	public Strategy getStrategy() {
+		return strategy;
 	}
 
 	/**
@@ -367,12 +383,6 @@ public class PlayerModel extends Observable implements Serializable, GamePhase {
 		this.playerType = playerType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.conquest.model.GamePhase#fortificationPhase()
-	 */
-	@Override
 	public void fortificationPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		if (this.hasWonTerritory) {
@@ -389,12 +399,6 @@ public class PlayerModel extends Observable implements Serializable, GamePhase {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.conquest.model.GamePhase#attackPhase()
-	 */
-	@Override
 	public String attackPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		PlayerModel[] players = gameModel.getPlayers();
@@ -404,31 +408,27 @@ public class PlayerModel extends Observable implements Serializable, GamePhase {
 					"You have either 5 or more than 5 cards in possession. Please exchange before proceeding further");
 			return "";
 		} else {
+
+			strategy.attackPhase(gameModel, this);
 			return "success";
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.conquest.model.GamePhase#addInitialArmy()
-	 */
-	@Override
 	public void assignInitialArmyToCountry(GameModel gameModel) {
 		// TODO Auto-generated method stub
+		strategy.assignInitialArmyToCountry(gameModel, this);
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.conquest.model.GamePhase#reinforcementPhase()
-	 */
-	@Override
-	public void reinforcementPhase() {
+	public void reinforcementPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
-		log.info("Reinforcement Phase starts");
+
+		log.info("Reinforcement Phase starts of Player" + getPlayerName());
+		System.out.println("Reinforcement Phase starts of Player" + getPlayerName() + getPlayerType());
+
 		calculateAndAddReinforcementArmy();
+		strategy.reinforcementPhase(gameModel, this);
 	}
+
 }

@@ -76,7 +76,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 
 	/** The game model. */
 	private GameModel gameModel;
-	
+
 	private static final Logger log = Logger.getLogger(FortificationWindow.class);
 
 	/**
@@ -88,7 +88,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	public FortificationWindow(GameModel gameModel, PlayerModel player) {
 		gameModel.setGameStatus("Fortification Phase starts");
 		log.info("Fortification Phase starts");
-		gameModel.setGameSavePhase(3);
+		gameModel.setGamePhaseStage(3);
 		this.player = player;
 		this.gameModel = gameModel;
 
@@ -256,7 +256,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 		if (e.getSource() == jButtonFinish) {
 			gameModel.increaseTurn();
 			gameModel.moveToNextPlayer();
-			gameModel.setGameSavePhase(1);
+			gameModel.setGamePhaseStage(1);
 			gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 			gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 			dispose();
@@ -286,7 +286,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				fortificationWindowController.updateBackend();
 				gameModel.increaseTurn();
 				gameModel.moveToNextPlayer();
-				gameModel.setGameSavePhase(1);
+				gameModel.setGamePhaseStage(1);
 				gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
 				gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 				dispose();

@@ -11,44 +11,85 @@ import com.conquest.mapeditor.model.CountryModel;
  * @author Rohit Gupta
  *
  */
-public class BenevolentPlayer extends PlayerModel implements Serializable {
+public class BenevolentPlayer implements Serializable, Strategy {
 
 	private static final long serialVersionUID = 9L;
 
-	/**
-	 * @param playerName
-	 * @param playerType
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.conquest.model.Strategy#reinforcementPhase(com.conquest.model.GameModel,
+	 * com.conquest.model.PlayerModel)
 	 */
-	public BenevolentPlayer(String playerName, PlayerType playerType) {
-		super(playerName, playerType);
-		// TODO Auto-generated constructor stub
+	@Override
+	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
+		// TODO Auto-generated method stub
+		while (playerModel.getnoOfArmyInPlayer() > 0) {
+			CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
+			int noOfArmies = countryModel.getNoOfArmiesCountry();
+			for (CountryModel country : playerModel.getPlayerCountryList()) {
+				if (country.getNoOfArmiesCountry() < noOfArmies) {
+					countryModel = country;
+					noOfArmies = country.getNoOfArmiesCountry();
+				}
+			}
+
+			countryModel.addNoOfArmiesCountry();
+			playerModel.reduceArmyInPlayer();
+
+		}
+		attackPhase(gameModel, playerModel);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.conquest.model.PlayerModel#assignInitialArmyToCountry(com.conquest.model.
-	 * GameModel)
+	 * com.conquest.model.Strategy#fortificationPhase(com.conquest.model.GameModel,
+	 * com.conquest.model.PlayerModel)
 	 */
 	@Override
-	public void assignInitialArmyToCountry(GameModel gameModel) {
+	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		CountryModel countryModel = getPlayerCountryList().get(0);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.conquest.model.Strategy#attackPhase(com.conquest.model.GameModel,
+	 * com.conquest.model.PlayerModel)
+	 */
+	@Override
+	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.conquest.model.Strategy#assignInitialArmyToCountry(com.conquest.model.
+	 * GameModel, com.conquest.model.PlayerModel)
+	 */
+	@Override
+	public void assignInitialArmyToCountry(GameModel gameModel, PlayerModel playerModel) {
+		// TODO Auto-generated method stub
+		CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
 		int countOfArmies = countryModel.getNoOfArmiesCountry();
-		for (CountryModel country : getPlayerCountryList()) {
+		for (CountryModel country : playerModel.getPlayerCountryList()) {
 			if (countOfArmies >= country.getNoOfArmiesCountry()) {
 				countryModel = country;
 				countOfArmies = country.getNoOfArmiesCountry();
 			}
 
 		}
-		if (getnoOfArmyInPlayer() > 0) {
+		if (playerModel.getnoOfArmyInPlayer() > 0) {
 			countryModel.addNoOfArmiesCountry();
-			reduceArmyInPlayer();
+			playerModel.reduceArmyInPlayer();
 		}
-
-		super.assignInitialArmyToCountry(gameModel);
 	}
 
 }

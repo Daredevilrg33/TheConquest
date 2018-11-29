@@ -86,7 +86,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 
 	/** The j button finish attack. */
 	private JButton jButtonFinishAttack;
-	
+
 	private PlayerModel currentPlayer;
 
 	private static final Logger log = Logger.getLogger(AttackPhaseWindow.class);
@@ -101,7 +101,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	public AttackPhaseWindow(GameModel gameModel) {
 		gameModel.setGameStatus("Attack Phase starts");
 		log.info("Attack Phase starts");
-		gameModel.setGameSavePhase(2);
+		gameModel.setGamePhaseStage(2);
 		this.gameModel = gameModel;
 		this.currentPlayer = gameModel.getCurrPlayer();
 		setTitle("Attack Phase");
@@ -369,7 +369,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 				dispose();
 				gameModel.fortificationPhase();
 			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
-				gameModel.setGameState(1);
+				gameModel.setGamePhaseStage(1);
 				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
 						"Congratulations !!!", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -404,7 +404,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 				dispose();
 				gameModel.fortificationPhase();
 			} else if (getCurrentPlayer().isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
-				gameModel.setGameState(1);
+				gameModel.setGamePhaseStage(1);
 				JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has Won the Game !!",
 						"Congratulations !!!", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -570,7 +570,6 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 		return diceResultsDefending;
 	}
 
-	
 	/**
 	 * Show move army popup.
 	 *

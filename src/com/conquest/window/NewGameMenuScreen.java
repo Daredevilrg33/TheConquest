@@ -248,17 +248,18 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		PlayerType[] playerTypes = getPlayerTypeFromDropDown(noOfPlayers);
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
-			if (playerTypes[j] == PlayerType.Human)
-				players[j] = new HumanPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Aggresive)
-				players[j] = new AggresivePlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Benevolent)
-				players[j] = new BenevolentPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Random)
-				players[j] = new RandomPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Cheater)
-				players[j] = new CheaterPlayer("Player" + String.valueOf(value), playerTypes[j]);
+			players[j] = new PlayerModel("Player" + String.valueOf(value), playerTypes[j]);
 
+			if (playerTypes[j] == PlayerType.Human)
+				players[j].setStrategy(new HumanPlayer());
+			else if (playerTypes[j] == PlayerType.Aggresive)
+				players[j].setStrategy(new AggresivePlayer());
+			else if (playerTypes[j] == PlayerType.Benevolent)
+				players[j].setStrategy(new BenevolentPlayer());
+			else if (playerTypes[j] == PlayerType.Random)
+				players[j].setStrategy(new RandomPlayer());
+			else if (playerTypes[j] == PlayerType.Cheater)
+				players[j].setStrategy(new CheaterPlayer());
 			switch (noOfPlayers) {
 			case (3):
 				players[j].noOfArmyInPlayer(25);
@@ -347,10 +348,6 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		GameWindow gameWindow = new GameWindow(gameModel);
 		gameWindow.setVisible(true);
-		gameModel.addObserver(gameWindow);
-		for (PlayerModel playerModel : gameModel.getPlayers())
-			playerModel.addObserver(gameWindow);
-
 	}
 
 	/**
