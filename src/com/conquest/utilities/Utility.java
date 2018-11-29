@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
@@ -298,5 +299,15 @@ public class Utility {
 			}
 		}
 		return true;
+	}
+
+	public static int rollDice() {
+		int pickedNumber;
+		SecureRandom number = new SecureRandom();
+		pickedNumber = number.nextInt(6);
+		System.out.println("Roll Dice Value: " + pickedNumber);
+//		log.info("Roll Dice starts \n Number:" + pickedNumber);
+
+		return pickedNumber + 1;
 	}
 }

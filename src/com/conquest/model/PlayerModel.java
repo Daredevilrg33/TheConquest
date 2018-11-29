@@ -394,6 +394,7 @@ public class PlayerModel extends Observable implements Serializable {
 			}
 
 		}
+		
 //		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
 //		fortificationWindow.setVisible(true);
 

@@ -402,9 +402,11 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 				labelCardsWithPlayer.setText(this.gameModel.getCurrPlayer().cardsString());
 				// Check this Code
 				// if (!"loadGame".equalsIgnoreCase(fromGame))
+				System.out.println("updatePhaseView" + gameModel.getCurrPlayer().getPlayerName()
+						+ gameModel.getCurrPlayer().getPlayerType());
 				this.gameModel.reinforcementPhase();
 			}
-			gameModel.setGamePhaseStage(1);
+
 			updateGameInformation();
 		}
 
@@ -424,13 +426,13 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.placingInitialArmies(selectedCountry, this.gameModel.getCurrPlayer());
 			updateGameInformation();
-			this.gameModel.increaseTurn();
-			this.gameModel.moveToNextPlayer();
+
 			PlayerModel[] players = gameModel.getPlayers();
 			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 				updatePhaseView("Reinforcement Phase");
 			}
-
+			this.gameModel.increaseTurn();
+			this.gameModel.moveToNextPlayer();
 			break;
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
@@ -540,9 +542,12 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	public void updateUIInfo(PlayerModel currentPlayer) {
 		if (gameModel.getGamePhaseStage() == 0 && currentPlayer.getPlayerType() != PlayerType.Human) {
 			currentPlayer.assignInitialArmyToCountry(gameModel);
-		} else if (gameModel.getGamePhaseStage() == 1 && currentPlayer.getPlayerType() != PlayerType.Human) {
-//			currentPlayer.reinforcementPhase(gameModel);
-		} else if (currentPlayer.getPlayerType() == PlayerType.Human) {
+		} else if (gameModel.getGamePhaseStage() == 1) {
+
+			currentPlayer.reinforcementPhase(gameModel);
+		}
+
+		if (currentPlayer.getPlayerType() == PlayerType.Human) {
 			updatePlayerLabel(currentPlayer.getPlayerName());
 			updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
 			updateComboBoxCountries(currentPlayer.getPlayerCountryList());

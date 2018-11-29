@@ -4,9 +4,9 @@
 package com.conquest.model;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 
 import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.utilities.Utility;
 
 /**
  * @author Rohit Gupta
@@ -49,7 +49,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 			countryModel.addNoOfArmiesCountry();
 			playerModel.reduceArmyInPlayer();
 		}
-
+		gameModel.setGameStatus("Attack Phase starts");
+		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
 	}
 
@@ -69,8 +70,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 				if (playerModel.searchCountry(countryName) == null) {
 					CountryModel targetCountry = gameModel.getMapHierarchyModel().searchCountry(countryName);
 					if (targetCountry.getNoOfArmiesCountry() > 0) {
-						int attackDiceValue = rollDice();
-						int defenderDiceValue = rollDice();
+						int attackDiceValue = Utility.rollDice();
+						int defenderDiceValue = Utility.rollDice();
 						if (attackDiceValue > defenderDiceValue) {
 							targetCountry.removeNoOfArmiesCountry();
 							if (targetCountry.getNoOfArmiesCountry() == 0) {
@@ -93,8 +94,13 @@ public class AggresivePlayer implements Strategy, Serializable {
 						}
 					}
 				}
+
 			}
+			break;
 		}
+		gameModel.setGameStatus("Fortification Phase starts");
+		gameModel.setGamePhaseStage(3);
+		fortificationPhase(gameModel, playerModel);
 
 	}
 
@@ -119,17 +125,21 @@ public class AggresivePlayer implements Strategy, Serializable {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-
-	}
-
-	public int rollDice() {
-		int pickedNumber;
-		SecureRandom number = new SecureRandom();
-		pickedNumber = number.nextInt(6);
-		System.out.println("Roll Dice Value: " + pickedNumber);
-//		log.info("Roll Dice starts \n Number:" + pickedNumber);
-
-		return pickedNumber + 1;
+		CountryModel sourceCountry = getCountryWithMaxArmies(playerModel);
+		for (String countryName : sourceCountry.getListOfNeighbours()) {
+			CountryModel country = playerModel.searchCountry(countryName);
+			if (country != null) {
+				int noOfArmies = country.getNoOfArmiesCountry();
+				while (noOfArmies > 1) {
+					country.removeNoOfArmiesCountry();
+					sourceCountry.addNoOfArmiesCountry();
+				}
+			}
+		}
+		gameModel.increaseTurn();
+		gameModel.moveToNextPlayer();
+		gameModel.setGameStatus("Reinforcement Phase starts");
+		gameModel.setGamePhaseStage(1);
 	}
 
 }

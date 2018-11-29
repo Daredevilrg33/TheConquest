@@ -35,7 +35,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 			armies = armies * 2;
 			countryModel.setNoOfArmiesCountry(armies);
 		}
-
+		gameModel.setGameStatus("Attack Phase starts");
+		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
 	}
 
@@ -49,7 +50,21 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-
+		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
+			for (String neighbourCountryName : countryModel.getListOfNeighbours()) {
+				CountryModel country = playerModel.searchCountry(neighbourCountryName);
+				// if country is null i.e. it doesnot belong to this player
+				if (country == null) {
+					int noOfArmies = countryModel.getNoOfArmiesCountry();
+					noOfArmies = noOfArmies * 2;
+					countryModel.setNoOfArmiesCountry(noOfArmies);
+				}
+			}
+		}
+		gameModel.increaseTurn();
+		gameModel.moveToNextPlayer();
+		gameModel.setGameStatus("Reinforcement Phase starts");
+		gameModel.setGamePhaseStage(1);
 	}
 
 	/*
@@ -68,8 +83,23 @@ public class CheaterPlayer implements Serializable, Strategy {
 				countryList.add(country);
 			}
 		}
-		for (CountryModel country : countryList)
-			playerModel.addCountry(country);
+
+		// CHeck this code
+		for (CountryModel country : countryList) {
+			for (PlayerModel player : gameModel.getPlayers()) {
+				for (CountryModel countryModels : player.getPlayerCountryList()) {
+					if (countryModels.getCountryName().trim().equalsIgnoreCase(country.getCountryName().trim())) {
+						player.removeCountry(country);
+						playerModel.addCountry(country);
+						break;
+					}
+				}
+			}
+		}
+		gameModel.setGameStatus("Fortification Phase starts");
+		gameModel.setGamePhaseStage(3);
+		fortificationPhase(gameModel, playerModel);
+
 	}
 
 	/*

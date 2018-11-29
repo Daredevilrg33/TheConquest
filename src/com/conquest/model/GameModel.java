@@ -261,7 +261,7 @@ public class GameModel extends Observable implements Serializable {
 	 */
 	public void setGamePhaseStage(int gamePhaseStage) {
 		this.gamePhaseStage = gamePhaseStage;
-//		updateChanges();
+		updateChanges();
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class GameModel extends Observable implements Serializable {
 	public void reinforcementPhase() {
 		this.setGameStatus("Reinforcement Phase starts");
 		this.setGamePhaseStage(1);
-		this.currPlayer.reinforcementPhase(this);
+//		this.currPlayer.reinforcementPhase(this);
 
 	}
 }

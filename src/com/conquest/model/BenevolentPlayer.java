@@ -39,6 +39,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 			playerModel.reduceArmyInPlayer();
 
 		}
+		gameModel.setGameStatus("Attack Phase starts");
+		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
 	}
 
@@ -52,7 +54,22 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		CountryModel sourceCountry = getCountryWithMinArmies(playerModel);
+		for (String countryName : sourceCountry.getListOfNeighbours()) {
+			CountryModel country = playerModel.searchCountry(countryName);
+			if (country != null) {
+				if (sourceCountry.getNoOfArmiesCountry() < country.getNoOfArmiesCountry()) {
+					sourceCountry.addNoOfArmiesCountry();
+					country.removeNoOfArmiesCountry();
+					break;
+				}
+			}
+		}
 
+		gameModel.increaseTurn();
+		gameModel.moveToNextPlayer();
+		gameModel.setGameStatus("Reinforcement Phase starts");
+		gameModel.setGamePhaseStage(1);
 	}
 
 	/*
@@ -64,7 +81,9 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-
+		gameModel.setGameStatus("Fortification Phase starts");
+		gameModel.setGamePhaseStage(3);
+		fortificationPhase(gameModel, playerModel);
 	}
 
 	/*
@@ -90,6 +109,18 @@ public class BenevolentPlayer implements Serializable, Strategy {
 			countryModel.addNoOfArmiesCountry();
 			playerModel.reduceArmyInPlayer();
 		}
+	}
+
+	private CountryModel getCountryWithMinArmies(PlayerModel playerModel) {
+		CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
+		int noOfArmies = countryModel.getNoOfArmiesCountry();
+		for (CountryModel country : playerModel.getPlayerCountryList()) {
+			if (country.getNoOfArmiesCountry() < noOfArmies) {
+				countryModel = country;
+				noOfArmies = country.getNoOfArmiesCountry();
+			}
+		}
+		return countryModel;
 	}
 
 }
