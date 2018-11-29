@@ -360,11 +360,17 @@ public class Utility {
 			playerType = PlayerType.Cheater;
 		return playerType;
 	}
-	
+
+	/**
+	 * Defender dice popup.
+	 *
+	 * @param maxNoOfDices the max no of dices
+	 * @return the int
+	 */
 	public static int defenderDicePopup(int maxNoOfDices) {
 		Integer[] options = new Integer[maxNoOfDices];
 		for (int i = 1; i <= maxNoOfDices; i++) {
-			options[i-1] = i;
+			options[i - 1] = i;
 		}
 		int noOfDices = (Integer) JOptionPane.showInputDialog(null, "Select no of dices to be used.", "Dice Selection.",
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);

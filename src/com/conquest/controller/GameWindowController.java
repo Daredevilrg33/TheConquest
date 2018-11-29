@@ -58,7 +58,7 @@ public class GameWindowController {
 	 * Checks if is control value to be added.
 	 *
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @param playerModels      the player models
+	 * @param playerModel       the player model
 	 */
 //	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
 //		int z = 0;
@@ -82,25 +82,24 @@ public class GameWindowController {
 //		}
 //	}
 
-	
 	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel playerModel) {
 		int z = 0;
-			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
-				z = 0;
-				for (CountryModel countryModel : continentModel.getCountriesList()) {
-					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
-					if (value == null) {
-						break;
-					} else {
-						z++;
-						if (z == continentModel.getCountriesList().size()) {
-							playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
-							z = 0;
-						}
+		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
+			z = 0;
+			for (CountryModel countryModel : continentModel.getCountriesList()) {
+				CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
+				if (value == null) {
+					break;
+				} else {
+					z++;
+					if (z == continentModel.getCountriesList().size()) {
+						playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
+						z = 0;
 					}
 				}
 			}
-		
+		}
+
 	}
 
 	/**

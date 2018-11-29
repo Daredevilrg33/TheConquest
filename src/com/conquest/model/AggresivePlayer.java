@@ -65,12 +65,14 @@ public class AggresivePlayer implements Strategy, Serializable {
 		CountryModel sourceCountry = getCountryWithMaxArmies(playerModel);
 
 		while (sourceCountry.getNoOfArmiesCountry() > 1) {
-			System.out.println("Attack Phase initial source army: " + sourceCountry.getCountryName() + sourceCountry.getNoOfArmiesCountry());
+			System.out.println("Attack Phase initial source army: " + sourceCountry.getCountryName()
+					+ sourceCountry.getNoOfArmiesCountry());
 			for (String countryName : sourceCountry.getListOfNeighbours()) {
 				if (playerModel.searchCountry(countryName) == null) {
 					CountryModel targetCountry = gameModel.getMapHierarchyModel().searchCountry(countryName);
 					while (targetCountry.getNoOfArmiesCountry() > 0) {
-						System.out.println("Target Country" + targetCountry.getCountryName() + targetCountry.getNoOfArmiesCountry());
+						System.out.println("Target Country" + targetCountry.getCountryName()
+								+ targetCountry.getNoOfArmiesCountry());
 						int attackDiceValue = Utility.rollDice();
 						int defenderDiceValue = Utility.rollDice();
 						if (attackDiceValue > defenderDiceValue) {
@@ -85,19 +87,21 @@ public class AggresivePlayer implements Strategy, Serializable {
 										}
 									}
 								}
-								System.out.println("If " + sourceCountry.getNoOfArmiesCountry() + " :::::" + targetCountry.getNoOfArmiesCountry());
+								System.out.println("If " + sourceCountry.getNoOfArmiesCountry() + " :::::"
+										+ targetCountry.getNoOfArmiesCountry());
 								sourceCountry.removeNoOfArmiesCountry();
 								targetCountry.addNoOfArmiesCountry();
 								playerModel.addCountry(targetCountry);
 								playerModel.setHasWonTerritory(true);
-								
+
 							}
 						} else {
-							System.out.println("else " + sourceCountry.getNoOfArmiesCountry() + " :::::" + targetCountry.getNoOfArmiesCountry());
+							System.out.println("else " + sourceCountry.getNoOfArmiesCountry() + " :::::"
+									+ targetCountry.getNoOfArmiesCountry());
 							sourceCountry.removeNoOfArmiesCountry();
-							
+
 						}
-						
+
 						if (sourceCountry.getNoOfArmiesCountry() < 2) {
 							gameModel.setGameStatus("Fortification Phase starts");
 							gameModel.setGamePhaseStage(3);

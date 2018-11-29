@@ -21,7 +21,7 @@ public class PlayerModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5L;
-	
+
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
 
@@ -30,7 +30,6 @@ public class PlayerModel extends Observable implements Serializable {
 
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
-
 
 	/** The has won territory. */
 	private boolean hasWonTerritory;
