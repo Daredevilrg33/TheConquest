@@ -121,96 +121,105 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	public NewTournamentMenuScreen() {
 
 		JLabel labelSelectNoOfMap = new JLabel();
-		labelSelectNoOfMap.setText("Select Number of Map");
-		labelSelectNoOfMap.setBounds(Constants.WIDTH / 2 - 150, 50, 100, 30);
+		labelSelectNoOfMap.setText("Select Number of Map:");
+		labelSelectNoOfMap.setBounds(70, 50, 130, 30);
 		add(labelSelectNoOfMap);
 
 		comboBoxNumberOfMaps = new JComboBox<>(mapList);
-		comboBoxNumberOfMaps.setBounds(Constants.WIDTH / 2 - 30, 50, 100, 30);
+		comboBoxNumberOfMaps.setBounds(300, 50, 100, 30);
 		add(comboBoxNumberOfMaps);
+		comboBoxNumberOfMaps.setSelectedIndex(-1);
 
-		chooseMapOne = new JButton("Select Map File");
-		chooseMapOne.setBounds(Constants.WIDTH / 2 - 150, 100, 30, 30);
+
+		chooseMapOne = new JButton("Select");
+		chooseMapOne.setBounds(70, 100, 70, 30);
 		chooseMapOne.addActionListener(this);
 		add(chooseMapOne);
-		setVisible(true);
 
-		chooseMapTwo = new JButton("Select Map File");
-		chooseMapTwo.setBounds(Constants.WIDTH / 2 - 115, 100, 30, 30);
+		chooseMapTwo = new JButton("Select");
+		chooseMapTwo.setBounds(180, 100, 70, 30);
 		chooseMapTwo.addActionListener(this);
 		add(chooseMapTwo);
-		setVisible(true);
 
-		chooseMapThree = new JButton("Select Map File");
-		chooseMapThree.setBounds(Constants.WIDTH / 2 - 80, 100, 30, 30);
+		chooseMapThree = new JButton("Select");
+		chooseMapThree.setBounds(290, 100, 70, 30);
 		chooseMapThree.addActionListener(this);
 		add(chooseMapThree);
-		setVisible(true);
 
-		chooseMapFour = new JButton("Select Map File");
-		chooseMapFour.setBounds(Constants.WIDTH / 2 - 45, 100, 30, 30);
+		chooseMapFour = new JButton("Select");
+		chooseMapFour.setBounds(400, 100, 70, 30);
 		chooseMapFour.addActionListener(this);
 		add(chooseMapFour);
-		setVisible(true);
 
-		chooseMapFive = new JButton("Select Map File");
-		chooseMapFive.setBounds(Constants.WIDTH / 2 - 15, 100, 30, 30);
+		chooseMapFive = new JButton("Select");
+		chooseMapFive.setBounds(510, 100, 70, 30);
 		chooseMapFive.addActionListener(this);
 		add(chooseMapFive);
-		setVisible(true);
 
 		JLabel labelSelectNoOfPlayers = new JLabel();
 		labelSelectNoOfPlayers.setText("Select Number of Players");
-		labelSelectNoOfPlayers.setBounds(Constants.WIDTH / 2 - 150, 100, 100, 30);
+		labelSelectNoOfPlayers.setBounds(70, 150, 140, 30);
 		add(labelSelectNoOfPlayers);
+		
 
 		comboBoxSelectNoOfPlayer = new JComboBox<>(playersList);
-		comboBoxSelectNoOfPlayer.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxSelectNoOfPlayer.setBounds(300, 150, 100, 30);
 		add(comboBoxSelectNoOfPlayer);
+		comboBoxSelectNoOfPlayer.setSelectedIndex(-1);
 
 		comboBoxPlayerOneBehaviour = new JComboBox<>(behaviourList);
-		comboBoxPlayerOneBehaviour.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxPlayerOneBehaviour.setBounds(70, 200, 100, 30);
 		add(comboBoxPlayerOneBehaviour);
-		setVisible(true);
+		comboBoxPlayerOneBehaviour.setSelectedIndex(-1);
 
 		comboBoxPlayerTwoBehaviour = new JComboBox<>(behaviourList);
-		comboBoxPlayerTwoBehaviour.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxPlayerTwoBehaviour.setBounds(180, 200, 100, 30);
 		add(comboBoxPlayerTwoBehaviour);
-		setVisible(true);
+		comboBoxPlayerTwoBehaviour.setSelectedIndex(-1);
 
 		comboBoxPlayerThreeBehaviour = new JComboBox<>(behaviourList);
-		comboBoxPlayerThreeBehaviour.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxPlayerThreeBehaviour.setBounds(290, 200, 100, 30);
 		add(comboBoxPlayerThreeBehaviour);
-		setVisible(true);
+		comboBoxPlayerThreeBehaviour.setSelectedIndex(-1);
 
 		comboBoxPlayerFourBehaviour = new JComboBox<>(behaviourList);
-		comboBoxPlayerFourBehaviour.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxPlayerFourBehaviour.setBounds(400, 200, 100, 30);
 		add(comboBoxPlayerFourBehaviour);
-		setVisible(true);
+		comboBoxPlayerFourBehaviour.setSelectedIndex(-1);
 
 		JLabel labelSelectNoOfGames = new JLabel();
 		labelSelectNoOfGames.setText("Select Number of Games");
-		labelSelectNoOfGames.setBounds(Constants.WIDTH / 2 - 150, 100, 100, 30);
+		labelSelectNoOfGames.setBounds(70, 250, 150, 30);
 		add(labelSelectNoOfGames);
 
 		comboBoxNumberOfGames = new JComboBox<>(noOfGameList);
-		comboBoxNumberOfGames.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxNumberOfGames.setBounds(300, 250, 100, 30);
 		add(comboBoxNumberOfGames);
+		comboBoxNumberOfGames.setSelectedIndex(-1);
 
 		JLabel labelSelectNoOfTurns = new JLabel();
 		labelSelectNoOfTurns.setText("Select Number of Turns");
-		labelSelectNoOfTurns.setBounds(Constants.WIDTH / 2 - 150, 100, 100, 30);
+		labelSelectNoOfTurns.setBounds(70, 300, 150, 30);
 		add(labelSelectNoOfTurns);
 
 		comboBoxNumberOfTurns = new JComboBox<>(noOfTurnsList);
-		comboBoxNumberOfTurns.setBounds(Constants.WIDTH / 2 - 30, 100, 100, 30);
+		comboBoxNumberOfTurns.setBounds(300, 300, 100, 30);
 		add(comboBoxNumberOfTurns);
+		comboBoxNumberOfTurns.setSelectedIndex(-1);
+
 
 		startTournament = new JButton("Start Tournament");
-		startTournament.setBounds(Constants.WIDTH / 2 - 115, 100, 30, 30);
+		startTournament.setBounds(250, 400, 150, 30);
 		startTournament.addActionListener(this);
 		add(startTournament);
 
+		setTitle("New Tournament Menu");
+		setResizable(false);
+		setSize(1300, 700);
+		setLayout(null);
+		setLocationRelativeTo(null);
+
+		
 		addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
