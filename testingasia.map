@@ -1,0 +1,16 @@
+[Continents]
+
+asia=3
+europe=2
+japan=2
+
+[Territories]
+
+india,0,0,asia,sri lanka,malaysia,london,tokyo,paris,kyoto
+sri lanka,0,0,asia,india,malaysia,london,tokyo,paris,kyoto
+malaysia,0,0,asia,india,sri lanka,london,tokyo,paris,kyoto
+london,0,0,europe,india,sri lanka,malaysia,tokyo,paris,kyoto
+paris,0,0,europe,india,sri lanka,malaysia,london,tokyo,kyoto
+tokyo,0,0,japan,india,sri lanka,malaysia,london,paris,kyoto
+kyoto,0,0,japan,india,sri lanka,malaysia,london,tokyo,paris
+

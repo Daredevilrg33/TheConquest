@@ -258,8 +258,8 @@ public class FortificationWindow extends JFrame implements ActionListener {
 			gameModel.increaseTurn();
 			gameModel.moveToNextPlayer();
 			gameModel.setGamePhaseStage(1);
-			gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
-			gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
+//			gameModel.setGameStatus("Calculating and Adding Reinforcement Armies");
+//			gameModel.getCurrPlayer().calculateAndAddReinforcementArmy();
 			dispose();
 
 		} else if (e.getSource() == jButtonSend) {

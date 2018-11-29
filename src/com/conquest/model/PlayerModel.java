@@ -31,8 +31,6 @@ public class PlayerModel extends Observable implements Serializable {
 	/** The no of army for player. */
 	private int noOfArmyInPlayer;
 
-//	/** The game window. */
-//	private transient GameWindow gameWindow;
 
 	/** The has won territory. */
 	private boolean hasWonTerritory;

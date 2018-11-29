@@ -428,10 +428,6 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			gameWindowController.placingInitialArmies(selectedCountry, this.gameModel.getCurrPlayer());
 			updateGameInformation();
 
-			PlayerModel[] players = gameModel.getPlayers();
-			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
-				updatePhaseView("Reinforcement Phase");
-			}
 			this.gameModel.increaseTurn();
 			this.gameModel.moveToNextPlayer();
 			break;
@@ -546,11 +542,15 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param currentPlayer model of current player passed
 	 */
 	public void updateUIInfo(PlayerModel currentPlayer) {
-		if (gameModel.getGamePhaseStage() == 0 && currentPlayer.getPlayerType() != PlayerType.Human) {
+
+		PlayerModel[] players = gameModel.getPlayers();
+		if (gameModel.getGamePhaseStage() == 0 && players[players.length - 1].getnoOfArmyInPlayer() == 0) {
+			updatePhaseView("Reinforcement Phase");
+		} else if (gameModel.getGamePhaseStage() == 0 && currentPlayer.getPlayerType() != PlayerType.Human) {
 			currentPlayer.assignInitialArmyToCountry(gameModel);
 		} else if (gameModel.getGamePhaseStage() == 1) {
-
-			currentPlayer.reinforcementPhase(gameModel);
+			gameWindowController.isControlValueTobeAdded(gameModel.getMapHierarchyModel(), gameModel.getCurrPlayer());
+			currentPlayer.reinforcementPhase(gameModel);	
 		}
 
 		if (currentPlayer.getPlayerType() == PlayerType.Human) {

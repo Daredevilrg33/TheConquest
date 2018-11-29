@@ -1,1 +1,100 @@
 2018-11-29 11:56:49,904  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-29 12:56:47,338  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-29 12:56:58,746  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:56:59,259  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:56:59,432  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:56:59,591  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:56:59,746  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:56:59,894  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,053  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,206  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,345  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,496  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,655  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,806  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:00,958  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,113  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,268  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,418  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,582  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,732  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:01,899  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:02,191  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:02,546  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:02,969  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:03,602  INFO [AWT-EventQueue-0] - GameWindowController:114 - Placing Initial Armies
+2018-11-29 12:57:03,604  INFO [AWT-EventQueue-0] - PlayerModel:460 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-29 12:57:03,605  INFO [AWT-EventQueue-0] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 12:57:03,790  INFO [AWT-EventQueue-0] - PlayerModel:460 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-29 12:57:03,790  INFO [AWT-EventQueue-0] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 12:57:03,798  INFO [AWT-EventQueue-0] - PlayerModel:460 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-29 12:57:03,798  INFO [AWT-EventQueue-0] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
+2018-11-29 12:57:37,039  INFO [AWT-EventQueue-0] - GameWindowController:131 - Placing Reinforced Armie
+2018-11-29 12:57:37,210  INFO [AWT-EventQueue-0] - GameWindowController:131 - Placing Reinforced Armie
+2018-11-29 12:57:37,413  INFO [AWT-EventQueue-0] - GameWindowController:131 - Placing Reinforced Armie
+2018-11-29 12:57:37,590  INFO [AWT-EventQueue-0] - GameWindowController:131 - Placing Reinforced Armie
+2018-11-29 12:57:38,072  INFO [AWT-EventQueue-0] - GameWindowController:131 - Placing Reinforced Armie
+2018-11-29 12:57:38,074  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-29 12:57:43,266  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-29 12:57:43,266  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-29 12:57:43,266  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:57:43,266  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-29 12:57:43,266  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-29 12:57:43,269  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-29 12:57:43,270  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:57:43,270  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-29 12:57:43,270  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-29 12:57:51,819  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-29 12:57:51,819  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-29 12:57:51,819  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-29 12:57:51,819  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-29 12:57:51,820  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-29 12:57:51,820  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-29 12:57:51,820  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:57:51,820  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-29 12:57:51,820  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-29 12:57:56,693  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-29 12:57:56,694  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:57:56,694  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-29 12:57:56,694  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-29 12:57:56,694  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-29 12:58:03,568  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-29 12:58:03,568  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-29 12:58:03,568  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:58:03,568  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-29 12:58:03,568  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-29 12:58:08,018  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-29 12:58:08,018  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-29 12:58:08,018  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-29 12:58:08,018  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-29 12:58:08,018  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-29 12:58:09,327  INFO [AWT-EventQueue-0] - PlayerModel:460 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-29 12:58:09,327  INFO [AWT-EventQueue-0] - PlayerModel:365 - Calculating and Adding Reinforcement Armies
