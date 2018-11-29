@@ -50,7 +50,7 @@ public class GameModel extends Observable implements Serializable {
 	private ArrayList<CardsModel> totalCards;
 
 	/** The random generator. */
-	private transient Random randomGenerator;
+	private Random randomGenerator;
 
 	/**
 	 * Instantiates a new game model.
