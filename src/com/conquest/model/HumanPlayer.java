@@ -5,6 +5,8 @@ package com.conquest.model;
 
 import java.io.Serializable;
 
+import com.conquest.window.FortificationWindow;
+
 /**
  * @author Rohit Gupta
  *
@@ -38,7 +40,8 @@ public class HumanPlayer implements Serializable, Strategy {
 	 */
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
-		// TODO Auto-generated method stub
+		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, playerModel);
+		fortificationWindow.setVisible(true);
 
 	}
 

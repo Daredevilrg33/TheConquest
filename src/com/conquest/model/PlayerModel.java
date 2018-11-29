@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.window.FortificationWindow;
 
 /**
  * The Class PlayerModel.
@@ -394,8 +395,8 @@ public class PlayerModel extends Observable implements Serializable {
 			}
 
 		}
-//		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, this);
-//		fortificationWindow.setVisible(true);
+		strategy.fortificationPhase(gameModel, this);
+		
 
 	}
 
