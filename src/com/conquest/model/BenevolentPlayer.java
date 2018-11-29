@@ -15,7 +15,7 @@ import com.conquest.mapeditor.model.CountryModel;
 public class BenevolentPlayer implements Serializable, Strategy {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 9L;
+	private static final long SERIAL_VERSION_UID = 9L;
 
 	/*
 	 * (non-Javadoc)

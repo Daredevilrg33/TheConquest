@@ -16,7 +16,7 @@ import com.conquest.mapeditor.model.MapHierarchyModel;
 public class GameModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	private static final long SERIAL_VERSION_UID = 1L;
 
 	/** The players. */
 	private PlayerModel[] players;

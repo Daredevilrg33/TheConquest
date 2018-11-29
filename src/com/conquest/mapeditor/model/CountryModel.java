@@ -19,7 +19,7 @@ import com.conquest.model.PlayerModel;
 public class CountryModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 3L;
+	private static final long SERIAL_VERSION_UID = 3L;
 
 	/** The country name. */
 	private String countryName;

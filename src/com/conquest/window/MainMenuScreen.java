@@ -35,7 +35,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	private JButton btnExit;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(MainMenuScreen.class);
+	private static final Logger LOG = Logger.getLogger(MainMenuScreen.class);
 
 	/**
 	 * Instantiates a new main menu screen.
@@ -94,22 +94,22 @@ public class MainMenuScreen extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getSource() == btnNewSingleGame) {
-			log.info("New Single Game started");
+			LOG.info("New Single Game started");
 			NewGameMenuScreen secondScreen = new NewGameMenuScreen();
 			secondScreen.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnMapEditor) {
-			log.info("Map Editor launched");
+			LOG.info("Map Editor launched");
 			MapDashboard mapDashboard = new MapDashboard();
 			mapDashboard.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnNewTournament) {
-			log.info("New Tournament started");
+			LOG.info("New Tournament started");
 			NewTournamentMenuScreen newTournamentScreen = new NewTournamentMenuScreen();
 			newTournamentScreen.setVisible(true);
 			dispose();
 		} else if (event.getSource() == btnLoadGame) {
-			log.info("Game loaded");
+			LOG.info("Game loaded");
 			LoadGameWindow loadGameWindow = new LoadGameWindow();
 			loadGameWindow.setVisible(true);
 			dispose();

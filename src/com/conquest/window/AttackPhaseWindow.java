@@ -91,7 +91,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	private PlayerModel currentPlayer;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(AttackPhaseWindow.class);
+	private static final Logger LOG = Logger.getLogger(AttackPhaseWindow.class);
 
 	/**
 	 * Instantiates a new attack phase window.
@@ -100,7 +100,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	 */
 	public AttackPhaseWindow(GameModel gameModel) {
 		gameModel.setGameStatus("Attack Phase starts");
-		log.info("Attack Phase starts");
+		LOG.info("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		this.gameModel = gameModel;
 		this.currentPlayer = gameModel.getCurrPlayer();

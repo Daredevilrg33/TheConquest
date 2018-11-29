@@ -37,7 +37,7 @@ public class TournamentController {
 	private PlayerModel[] playerModels;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(TournamentController.class);
+	private static final Logger LOG = Logger.getLogger(TournamentController.class);
 
 	/**
 	 * TournamentController Constructor Constructor created to assign value of

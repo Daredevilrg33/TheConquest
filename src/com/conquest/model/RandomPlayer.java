@@ -17,7 +17,7 @@ import com.conquest.utilities.Utility;
 public class RandomPlayer implements Serializable, Strategy {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	private static final long SERIAL_VERSION_UID = 1L;
 
 	/** The random. */
 	private Random random = new Random();

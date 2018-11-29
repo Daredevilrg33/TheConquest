@@ -16,7 +16,7 @@ import com.conquest.utilities.Utility;
 public class AggresivePlayer implements Strategy, Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	private static final long SERIAL_VERSION_UID = 1L;
 
 	/*
 	 * (non-Javadoc)

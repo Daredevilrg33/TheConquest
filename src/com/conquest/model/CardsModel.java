@@ -10,7 +10,7 @@ import java.util.Observable;
 public class CardsModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 11L;
+	private static final long SERIAL_VERSION_UID = 11L;
 	
 	/** The card name. */
 	private String cardName;

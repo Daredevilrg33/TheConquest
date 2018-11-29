@@ -78,7 +78,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	private GameModel gameModel;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(FortificationWindow.class);
+	private static final Logger LOG = Logger.getLogger(FortificationWindow.class);
 
 	/**
 	 * Instantiates a new fortification window.
@@ -88,7 +88,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 	 */
 	public FortificationWindow(GameModel gameModel, PlayerModel player) {
 		gameModel.setGameStatus("Fortification Phase starts");
-		log.info("Fortification Phase starts");
+		LOG.info("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		this.player = player;
 		this.gameModel = gameModel;

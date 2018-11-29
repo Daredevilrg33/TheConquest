@@ -20,7 +20,7 @@ import com.conquest.mapeditor.model.CountryModel;
 public class PlayerModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 5L;
+	private static final long SERIAL_VERSION_UID = 5L;
 
 	/** The player country list. */
 	private List<CountryModel> playerCountryList;
@@ -44,7 +44,7 @@ public class PlayerModel extends Observable implements Serializable {
 	private PlayerType playerType;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(PlayerModel.class);
+	private static final Logger LOG = Logger.getLogger(PlayerModel.class);
 
 	/**
 	 * PlayerModel Constructor Instantiates a new player model.
@@ -361,7 +361,7 @@ public class PlayerModel extends Observable implements Serializable {
 	 * 
 	 */
 	public void calculateAndAddReinforcementArmy() {
-		log.info("Calculating and Adding Reinforcement Armies");
+		LOG.info("Calculating and Adding Reinforcement Armies");
 		int reinforcementArmyCount = this.getPlayerCountryList().size() / 3;
 		if (reinforcementArmyCount < 3)
 			reinforcementArmyCount = 3;
@@ -407,7 +407,7 @@ public class PlayerModel extends Observable implements Serializable {
 			CardsModel card = gameModel.generateRandomCard();
 			if (card != null) {
 				gameModel.setGameStatus("Assigning one card");
-				log.info("Assigning one card");
+				LOG.info("Assigning one card");
 				this.increaseCard(card.getType());
 			}
 
@@ -456,7 +456,7 @@ public class PlayerModel extends Observable implements Serializable {
 	public void reinforcementPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
 
-		log.info("Reinforcement Phase starts of Player" + getPlayerName());
+		LOG.info("Reinforcement Phase starts of Player" + getPlayerName());
 		System.out.println("Reinforcement Phase starts of Player" + getPlayerName() + getPlayerType());
 
 		calculateAndAddReinforcementArmy();

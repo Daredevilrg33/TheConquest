@@ -39,7 +39,7 @@ public class GameWindowController {
 	private GameModel gameModel;
 
 	/** The Constant log. */
-	private static final Logger log = Logger.getLogger(GameWindowController.class);
+	private static final Logger LOG = Logger.getLogger(GameWindowController.class);
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
@@ -110,7 +110,7 @@ public class GameWindowController {
 	 */
 	public void placingInitialArmies(String selectedCountryName, PlayerModel currentPlayer) {
 		gameModel.setGameStatus("Placing Initial Armies");
-		log.info("Placing Initial Armies");
+		LOG.info("Placing Initial Armies");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
@@ -127,7 +127,7 @@ public class GameWindowController {
 	public void placeReinforcedArmy(String selectedCountryName, GameModel gameModel) {
 		gameModel.setGameStatus("Placing Reinforced Armies");
 		PlayerModel currentPlayer = gameModel.getCurrPlayer();
-		log.info("Placing Reinforced Armie");
+		LOG.info("Placing Reinforced Armie");
 		if (currentPlayer.getnoOfArmyInPlayer() > 0) {
 			currentPlayer.searchCountry(selectedCountryName).addNoOfArmiesCountry();
 			currentPlayer.reduceArmyInPlayer();
