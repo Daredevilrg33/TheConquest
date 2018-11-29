@@ -426,6 +426,28 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 			}
 		}
 
+		if (event.getSource() == comboBoxSelectNoOfPlayer) {
+			if (((String) comboBoxSelectNoOfPlayer.getSelectedItem()).equalsIgnoreCase("2")) {
+//				comboBoxPlayerOneBehaviour.setVisible(true);
+//				comboBoxPlayerTwoBehaviour.setVisible(true);
+//				comboBoxPlayerThreeBehaviour.setVisible(false);
+//				comboBoxPlayerFourBehaviour.setVisible(false);
+			}
+			if (((String) comboBoxSelectNoOfPlayer.getSelectedItem()).equalsIgnoreCase("3")) {
+//				comboBoxPlayerOneBehaviour.setVisible(true);
+//				comboBoxPlayerTwoBehaviour.setVisible(true);
+//				comboBoxPlayerThreeBehaviour.setVisible(true);
+//				comboBoxPlayerFourBehaviour.setVisible(false);
+			}
+			if (((String) comboBoxSelectNoOfPlayer.getSelectedItem()).equalsIgnoreCase("4")) {
+//				comboBoxPlayerOneBehaviour.setVisible(true);
+//				comboBoxPlayerTwoBehaviour.setVisible(true);
+//				comboBoxPlayerThreeBehaviour.setVisible(true);
+//				comboBoxPlayerFourBehaviour.setVisible(true);
+			}
+			
+		}
+		
 		if ((event.getSource() == chooseMapOne)) {
 			filePathOne = Utility.pickFile();
 			System.out.println("File Path: " + filePathOne);
