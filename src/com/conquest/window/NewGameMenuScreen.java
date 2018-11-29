@@ -346,15 +346,15 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * @return the string
 	 */
 	public String checkValidation(MapHierarchyModel mapHierarchyModel, int noOfPlayers) {
-		String mes = "";
+		String message = "";
 		if (mapHierarchyModel.getTotalCountries() < noOfPlayers && !mapHierarchyModel.isValErrorFlag()) {
 			mapHierarchyModel.setValErrorFlag(true);
 			mapHierarchyModel.setErrorMsg("Number of countries cannot be less than number of players");
 
 		} else {
-			mes = "Passed";
+			message = "Passed";
 		}
-		return mes;
+		return message;
 	}
 
 	/**
