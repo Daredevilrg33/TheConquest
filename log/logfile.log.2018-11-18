@@ -13682,3 +13682,39 @@
 2018-11-29 16:43:29,085  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
 2018-11-29 16:43:29,913  INFO [AWT-EventQueue-0] - PlayerModel:463 - Reinforcement Phase starts of PlayerPlayer1
 2018-11-29 16:43:29,913  INFO [AWT-EventQueue-0] - PlayerModel:364 - Calculating and Adding Reinforcement Armies
+2018-11-29 16:57:13,150  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-29 16:57:23,081  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,232  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,363  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,509  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,647  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,795  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:23,933  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,085  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,247  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,399  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,541  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,689  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:24,842  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,007  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,171  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,331  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,497  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,661  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:25,829  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,004  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,180  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,359  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,531  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,711  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:26,897  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,062  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,217  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,375  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,524  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,682  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:27,842  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:28,001  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:28,175  INFO [AWT-EventQueue-0] - GameWindowController:113 - Placing Initial Armies
+2018-11-29 16:57:28,180  INFO [AWT-EventQueue-0] - PlayerModel:463 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-29 16:57:28,181  INFO [AWT-EventQueue-0] - PlayerModel:364 - Calculating and Adding Reinforcement Armies

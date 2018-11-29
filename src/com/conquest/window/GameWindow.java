@@ -193,7 +193,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		add(jPlayerArmies);
 
 		jHandIn = new JButton("HandIn the cards");
-		jHandIn.setBounds(690, 620, 200, 30);
+		jHandIn.setBounds(690, 620, 150, 30);
 		jHandIn.setVisible(false);
 		jHandIn.setEnabled(false);
 		jHandIn.setVisible(false);
