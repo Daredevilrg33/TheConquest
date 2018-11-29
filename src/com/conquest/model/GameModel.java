@@ -5,12 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-
-import com.conquest.controller.GameWindowController;
-import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.window.GameWindow;
 
 /**
  * The Class GameModel.

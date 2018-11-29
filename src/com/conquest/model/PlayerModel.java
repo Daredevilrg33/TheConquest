@@ -1,7 +1,6 @@
 package com.conquest.model;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -11,7 +10,6 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.window.FortificationWindow;
 
 /**
  * The Class PlayerModel.

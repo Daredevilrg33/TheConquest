@@ -3,10 +3,7 @@ package com.conquest.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -17,10 +14,8 @@ import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
 import com.conquest.model.GameModel;
 import com.conquest.model.PlayerModel;
-import com.conquest.window.GameWindow;
-import com.conquest.window.MainMenuScreen;
 import com.conquest.window.AttackPhaseWindow;
-import com.conquest.window.FortificationWindow;
+import com.conquest.window.GameWindow;
 
 /**
  * Game Window Controller Class This class initializes Number of players, Player

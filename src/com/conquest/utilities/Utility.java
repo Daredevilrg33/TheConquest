@@ -3,7 +3,6 @@ package com.conquest.utilities;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import javax.swing.filechooser.FileSystemView;
 import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
+import com.conquest.model.PlayerType;
 
 /**
  * The Class Utility.
@@ -309,5 +309,40 @@ public class Utility {
 //		log.info("Roll Dice starts \n Number:" + pickedNumber);
 
 		return pickedNumber + 1;
+	}
+	
+	/**
+	 * @return
+	 */
+	public static PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers,String []comboSelectedPlayers) {
+		// TODO Auto-generated method stub
+		PlayerType[] playerTypes = new PlayerType[noOfPlayers];
+		if (noOfPlayers >= 3) {
+			playerTypes[0] = getPlayerType(comboSelectedPlayers[0]);
+			playerTypes[1] = getPlayerType(comboSelectedPlayers[1]);
+			playerTypes[2] = getPlayerType(comboSelectedPlayers[2]);
+		}
+		if (noOfPlayers >= 4)
+			playerTypes[4] = getPlayerType(comboSelectedPlayers[3]);
+		if (noOfPlayers == 5)
+			playerTypes[5] = getPlayerType(comboSelectedPlayers[4]);
+
+		return playerTypes;
+	}
+
+	public static PlayerType getPlayerType(String strPlayer) {
+
+		PlayerType playerType = PlayerType.Human;
+		if (strPlayer.trim().equalsIgnoreCase("Human"))
+			playerType = PlayerType.Human;
+		if (strPlayer.trim().equalsIgnoreCase("Aggresive"))
+			playerType = PlayerType.Aggresive;
+		if (strPlayer.trim().equalsIgnoreCase("Benevolent"))
+			playerType = PlayerType.Benevolent;
+		if (strPlayer.trim().equalsIgnoreCase("Random"))
+			playerType = PlayerType.Random;
+		if (strPlayer.trim().equalsIgnoreCase("Cheater"))
+			playerType = PlayerType.Cheater;
+		return playerType;
 	}
 }
