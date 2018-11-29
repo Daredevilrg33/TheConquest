@@ -122,12 +122,15 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param noOfPlayers       the no of players
 	 */
- 
+
 	public GameWindow(GameModel gameModel) {
 
 //		this.fromGame= from;
 		this.gameModel = gameModel;
-
+		this.gameModel.addObserver(this);
+		PlayerModel[] playerModels = this.gameModel.getPlayers();
+		for (PlayerModel playerModel : playerModels)
+			playerModel.addObserver(this);
 		setTitle("Game Window");
 		setResizable(false);
 		setSize(Constants.MAP_EDITOR_WIDTH, Constants.MAP_EDITOR_HEIGHT);
@@ -215,7 +218,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		addProgressBar(this.gameModel);
 
 		// check with this
-		if (this.gameModel.getGameSavePhase() != 0) {
+		if (this.gameModel.getGamePhaseStage() != 0) {
 			updatePhaseView("Reinforcement Phase");
 		}
 
@@ -238,10 +241,10 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			updatePaintMatrix();
 			updateGameInformation();
 		}
-		updateUIInfo(this.gameModel.getCurrPlayer());
 		this.gameModel.increaseTurn();
-	}
+		updateUIInfo(this.gameModel.getCurrPlayer());
 
+	}
 
 	/**
 	 * updateHierarchyTree Method to refresh and update the continent hierarchy tree
@@ -364,7 +367,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * 
 	 * @param RemainingArmies the remaining armies
 	 */
-	public void updatePlayerArmies(int RemainingArmies) {
+	private void updatePlayerArmies(int RemainingArmies) {
 		jPlayerArmies.setText("Remaining Armies with player: " + RemainingArmies);
 	}
 
@@ -373,7 +376,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * 
 	 * @param countryModels the country models
 	 */
-	public void updateComboBoxCountries(List<CountryModel> countryModels) {
+	private void updateComboBoxCountries(List<CountryModel> countryModels) {
 		jComboBoxCountries.removeAllItems();
 		for (CountryModel countryModel : countryModels) {
 			jComboBoxCountries.addItem(countryModel.getCountryName());
@@ -385,21 +388,25 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 *
 	 * @param phase the phase
 	 */
-	public void updatePhaseView(String phase) {
+	private void updatePhaseView(String phase) {
 		labelPhase.setText(phase);
 		if ("Reinforcement Phase".equalsIgnoreCase(phase)) {
 			jButtonPlace.setText("Place Reinforce Armies");
 			jButtonPlace.setEnabled(true);
 			jHandIn.setVisible(true);
+
 			if (this.gameModel.getCurrPlayer().canHandIn())
 				jHandIn.setEnabled(true);
 
-			if (this.gameModel.getGameState() != 1) {
+			if (this.gameModel.getGamePhaseStage() != 1) {
 				labelCardsWithPlayer.setText(this.gameModel.getCurrPlayer().cardsString());
-					// Check this Code
-				//				if (!"loadGame".equalsIgnoreCase(fromGame))
-					this.gameModel.reinforcementPhase();
+				// Check this Code
+				// if (!"loadGame".equalsIgnoreCase(fromGame))
+				System.out.println("updatePhaseView" + gameModel.getCurrPlayer().getPlayerName()
+						+ gameModel.getCurrPlayer().getPlayerType());
+				this.gameModel.reinforcementPhase();
 			}
+
 			updateGameInformation();
 		}
 
@@ -419,13 +426,13 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
 			gameWindowController.placingInitialArmies(selectedCountry, this.gameModel.getCurrPlayer());
 			updateGameInformation();
-			this.gameModel.increaseTurn();
-			this.gameModel.moveToNextPlayer();
+
 			PlayerModel[] players = gameModel.getPlayers();
 			if (players[players.length - 1].getnoOfArmyInPlayer() == 0) {
 				updatePhaseView("Reinforcement Phase");
 			}
-
+			this.gameModel.increaseTurn();
+			this.gameModel.moveToNextPlayer();
 			break;
 		case "Place Reinforce Armies":
 			selectedCountry = jComboBoxCountries.getSelectedItem().toString();
@@ -449,7 +456,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * 
 	 * @param gameModel passing of game model to update progress bar
 	 */
-	public void addProgressBar(GameModel gameModel) {
+	private void addProgressBar(GameModel gameModel) {
 
 		progressBarPanel.removeAll();
 		Color color1 = new Color(23, 54, 135);
@@ -492,8 +499,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param player the player
 	 * @return the int
 	 */
-	public int calculatePercentage(PlayerModel player) {
-		double x = ((double) player.getPlayerCountryList().size() / gameModel.getMapHierarchyModel().getTotalCountries()) * 100;
+	private int calculatePercentage(PlayerModel player) {
+		double x = ((double) player.getPlayerCountryList().size()
+				/ gameModel.getMapHierarchyModel().getTotalCountries()) * 100;
 		return (int) x;
 	}
 
@@ -514,6 +522,9 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		} else if (object instanceof PlayerModel) {
 			PlayerModel playerModel = (PlayerModel) object;
 
+			if (gameModel.getGamePhaseStage() == 1) {
+				updatePlayerArmies(gameModel.getCurrPlayer().getnoOfArmyInPlayer());
+			}
 //			setProgressBarValues(playerModel);
 //			updateGameInformation();
 //			updateUIInfo(playerModel);
@@ -529,8 +540,14 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * @param currentPlayer model of current player passed
 	 */
 	public void updateUIInfo(PlayerModel currentPlayer) {
-		if(currentPlayer.getPlayerType() == PlayerType.Human)
-		{
+		if (gameModel.getGamePhaseStage() == 0 && currentPlayer.getPlayerType() != PlayerType.Human) {
+			currentPlayer.assignInitialArmyToCountry(gameModel);
+		} else if (gameModel.getGamePhaseStage() == 1) {
+
+			currentPlayer.reinforcementPhase(gameModel);
+		}
+
+		if (currentPlayer.getPlayerType() == PlayerType.Human) {
 			updatePlayerLabel(currentPlayer.getPlayerName());
 			updatePlayerArmies(currentPlayer.getnoOfArmyInPlayer());
 			updateComboBoxCountries(currentPlayer.getPlayerCountryList());
@@ -540,13 +557,10 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			if (currentPlayer.canHandIn())
 				jHandIn.setEnabled(true);
 			else
-				jHandIn.setEnabled(false);		
+				jHandIn.setEnabled(false);
 //			gameSavePhase = 0;// 0=startup 1=Reinforcement 2=Attack 3=Fortification
-		}else if(gameModel.getGameSavePhase() == 0)
-		{
-			currentPlayer.assignInitialArmyToCountry(gameModel);
 		}
-	
+
 	}
 
 }

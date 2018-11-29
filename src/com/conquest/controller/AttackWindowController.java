@@ -1,19 +1,15 @@
 package com.conquest.controller;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
-
-import com.conquest.mapeditor.model.CountryModel;
-import com.conquest.model.GameModel;
-import com.conquest.model.PlayerModel;
-
 import java.util.Collections;
 
 import org.apache.log4j.Logger;
 
+import com.conquest.mapeditor.model.CountryModel;
+import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.window.AttackPhaseWindow;
-import com.conquest.window.MainMenuScreen;
-
-import java.security.SecureRandom;
 
 /**
  * The Class AttackWindowController.

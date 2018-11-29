@@ -205,8 +205,20 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 				}
 				// Initializing player Models and Redirecting to Game Window.
 				if (!mapHierarchyModel.isValErrorFlag()) {
+					String[] comboSelectedPlayers= new String[Integer.parseInt(noOfPlayers)];
+					if (Integer.parseInt(noOfPlayers) >= 3) {
+					comboSelectedPlayers[0]=(String) comboBoxPlayerType1.getSelectedItem();
+					comboSelectedPlayers[1]=(String) comboBoxPlayerType2.getSelectedItem();
+					comboSelectedPlayers[2]=(String) comboBoxPlayerType3.getSelectedItem();
+					}
+					if (Integer.parseInt(noOfPlayers) >= 4) {
+						comboSelectedPlayers[3]=(String) comboBoxPlayerType4.getSelectedItem();	
+					}
+					if (Integer.parseInt(noOfPlayers) == 5) {
+						comboSelectedPlayers[4]=(String) comboBoxPlayerType5.getSelectedItem();	
+					}
 					PlayerModel[] playerModels = initializingPlayerModels(Integer.parseInt(noOfPlayers),
-							mapHierarchyModel);
+							mapHierarchyModel,comboSelectedPlayers);
 					redirectingToGameWindow(mapHierarchyModel, playerModels);
 				} else {
 					String valErrorMsg = mapHierarchyModel.getErrorMsg();
@@ -240,25 +252,26 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 	 * @param mapHierarchyModel MapHierarchyModel{@link MapHierarchyModel} object to
 	 *                          pass map model
 	 */
-	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel) {
+	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel, String []comboSelectedPlayers) {
 
 		PlayerModel[] players = new PlayerModel[noOfPlayers];
 
 		ContinentModel[] continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
-		PlayerType[] playerTypes = getPlayerTypeFromDropDown(noOfPlayers);
+		PlayerType[] playerTypes = Utility.getPlayerTypeFromDropDown(noOfPlayers,comboSelectedPlayers);
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
-			if (playerTypes[j] == PlayerType.Human)
-				players[j] = new HumanPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Aggresive)
-				players[j] = new AggresivePlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Benevolent)
-				players[j] = new BenevolentPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Random)
-				players[j] = new RandomPlayer("Player" + String.valueOf(value), playerTypes[j]);
-			else if (playerTypes[j] == PlayerType.Cheater)
-				players[j] = new CheaterPlayer("Player" + String.valueOf(value), playerTypes[j]);
+			players[j] = new PlayerModel("Player" + String.valueOf(value), playerTypes[j]);
 
+			if (playerTypes[j] == PlayerType.Human)
+				players[j].setStrategy(new HumanPlayer());
+			else if (playerTypes[j] == PlayerType.Aggresive)
+				players[j].setStrategy(new AggresivePlayer());
+			else if (playerTypes[j] == PlayerType.Benevolent)
+				players[j].setStrategy(new BenevolentPlayer());
+			else if (playerTypes[j] == PlayerType.Random)
+				players[j].setStrategy(new RandomPlayer());
+			else if (playerTypes[j] == PlayerType.Cheater)
+				players[j].setStrategy(new CheaterPlayer());
 			switch (noOfPlayers) {
 			case (3):
 				players[j].noOfArmyInPlayer(25);
@@ -303,40 +316,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		return players;
 	}
 
-	/**
-	 * @return
-	 */
-	private PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers) {
-		// TODO Auto-generated method stub
-		PlayerType[] playerTypes = new PlayerType[noOfPlayers];
-		if (noOfPlayers >= 3) {
-			playerTypes[0] = getPlayerType((String) comboBoxPlayerType1.getSelectedItem());
-			playerTypes[1] = getPlayerType((String) comboBoxPlayerType2.getSelectedItem());
-			playerTypes[2] = getPlayerType((String) comboBoxPlayerType3.getSelectedItem());
-		}
-		if (noOfPlayers >= 4)
-			playerTypes[4] = getPlayerType((String) comboBoxPlayerType4.getSelectedItem());
-		if (noOfPlayers == 5)
-			playerTypes[5] = getPlayerType((String) comboBoxPlayerType5.getSelectedItem());
-
-		return playerTypes;
-	}
-
-	private PlayerType getPlayerType(String strPlayer) {
-
-		PlayerType playerType = PlayerType.Human;
-		if (strPlayer.trim().equalsIgnoreCase("Human"))
-			playerType = PlayerType.Human;
-		if (strPlayer.trim().equalsIgnoreCase("Aggresive"))
-			playerType = PlayerType.Aggresive;
-		if (strPlayer.trim().equalsIgnoreCase("Benevolent"))
-			playerType = PlayerType.Benevolent;
-		if (strPlayer.trim().equalsIgnoreCase("Random"))
-			playerType = PlayerType.Random;
-		if (strPlayer.trim().equalsIgnoreCase("Cheater"))
-			playerType = PlayerType.Cheater;
-		return playerType;
-	}
+	
 
 	/**
 	 * 
@@ -347,10 +327,6 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		GameWindow gameWindow = new GameWindow(gameModel);
 		gameWindow.setVisible(true);
-		gameModel.addObserver(gameWindow);
-		for (PlayerModel playerModel : gameModel.getPlayers())
-			playerModel.addObserver(gameWindow);
-
 	}
 
 	/**

@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
-import com.conquest.controller.GameWindowController;
-import com.conquest.mapeditor.model.ContinentModel;
 import com.conquest.mapeditor.model.MapHierarchyModel;
-import com.conquest.window.GameWindow;
 
 /**
  * The Class GameModel.
@@ -27,7 +24,7 @@ public class GameModel extends Observable implements Serializable {
 	private PlayerModel currPlayer;
 
 	/** The game state. */
-	private int gameState = 0; // 0=on 1=won
+	private int isWon = 0; // 0=on 1=won
 
 	/** The risk game model. */
 	private MapHierarchyModel mapHierarchyModel;
@@ -36,7 +33,7 @@ public class GameModel extends Observable implements Serializable {
 	private String gameStatus = "";
 
 	/** The gameSavePhase. */
-	private int gameSavePhase = 0;// 0=startup 1=Reinforcement 2=Attack 3=Fortification
+	private int gamePhaseStage = 0;// 0=startup 1=Reinforcement 2=Attack 3=Fortification
 
 	/** The turn. */
 	private int turn;
@@ -48,7 +45,7 @@ public class GameModel extends Observable implements Serializable {
 	private ArrayList<CardsModel> totalCards;
 
 	/** The random generator. */
-	private transient Random randomGenerator;
+	private Random randomGenerator;
 
 	/**
 	 * Instantiates a new game model.
@@ -144,21 +141,17 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * Gets the game state.
-	 *
-	 * @return the game state
+	 * @return the isWon
 	 */
-	public int getGameState() {
-		return gameState;
+	public int getIsWon() {
+		return isWon;
 	}
 
 	/**
-	 * Sets the game state.
-	 *
-	 * @param gameState the new game state
+	 * @param isWon the isWon to set
 	 */
-	public void setGameState(int gameState) {
-		this.gameState = gameState;
+	public void setIsWon(int isWon) {
+		this.isWon = isWon;
 		updateChanges();
 	}
 
@@ -198,7 +191,6 @@ public class GameModel extends Observable implements Serializable {
 		if (turn == players.length)
 			turn = 0;
 		turn++;
-//		updateChanges();
 	}
 
 	/**
@@ -253,17 +245,18 @@ public class GameModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * @return the gameSavePhase
+	 * @return the gamePhaseStage
 	 */
-	public int getGameSavePhase() {
-		return gameSavePhase;
+	public int getGamePhaseStage() {
+		return gamePhaseStage;
 	}
 
 	/**
-	 * @param gameSavePhase the gameSavePhase to set
+	 * @param gamePhaseStage the gamePhaseStage to set
 	 */
-	public void setGameSavePhase(int gameSavePhase) {
-		this.gameSavePhase = gameSavePhase;
+	public void setGamePhaseStage(int gamePhaseStage) {
+		this.gamePhaseStage = gamePhaseStage;
+		updateChanges();
 	}
 
 	/**
@@ -295,11 +288,13 @@ public class GameModel extends Observable implements Serializable {
 
 	public String attackPhase() {
 		return currPlayer.attackPhase(this);
-	
+
 	}
 
 	public void reinforcementPhase() {
 		this.setGameStatus("Reinforcement Phase starts");
-		currPlayer.reinforcementPhase();
+		this.setGamePhaseStage(1);
+//		this.currPlayer.reinforcementPhase(this);
+
 	}
 }

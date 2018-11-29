@@ -122,11 +122,11 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 			dispose();
 			GameWindow gameWindow = new GameWindow(myGameModel);
 			gameWindow.setVisible(true);
-			if (myGameModel.getGameSavePhase() == 2) {
+			if (myGameModel.getGamePhaseStage() == 2) {
 				AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(myGameModel);
 				attackPhaseWindow.setVisible(true);
 			}
-			if (myGameModel.getGameSavePhase() == 3) {
+			if (myGameModel.getGamePhaseStage() == 3) {
 				FortificationWindow fortificationWindow = new FortificationWindow(myGameModel,
 						myGameModel.getCurrPlayer());
 				fortificationWindow.setVisible(true);
