@@ -32,6 +32,8 @@ public class RandomPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("rand Player reinfo start player name" + playerModel.getPlayerName());
+
 		while (playerModel.getnoOfArmyInPlayer() > 0) {
 			int index = random.nextInt(playerModel.getPlayerCountryList().size());
 			if (index == playerModel.getPlayerCountryList().size())
@@ -43,6 +45,8 @@ public class RandomPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
+		System.out.println("rand Player reinfo end player name" + playerModel.getPlayerName());
+
 	}
 
 	/*
@@ -55,25 +59,41 @@ public class RandomPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("rand Player forti start player name" + playerModel.getPlayerName());
+
 		boolean isFortificationDone = false;
-		while (!isFortificationDone) {
-			int index = random.nextInt(playerModel.getPlayerCountryList().size() - 1);
-			CountryModel countryModel = playerModel.getPlayerCountryList().get(index);
-			for (String neighbourName : countryModel.getListOfNeighbours()) {
-				CountryModel country = playerModel.searchCountry(neighbourName);
-				if (country != null) {
-					if (country.getNoOfArmiesCountry() > 1) {
-						country.removeNoOfArmiesCountry();
-						countryModel.addNoOfArmiesCountry();
-						isFortificationDone = true;
+		if (playerModel.getPlayerCountryList().size() > 0) {
+			while (!isFortificationDone) {
+				if (playerModel.getPlayerCountryList().size() - 1 == 0)
+					break;
+				int index = random.nextInt(playerModel.getPlayerCountryList().size() - 1);
+				CountryModel countryModel = playerModel.getPlayerCountryList().get(index);
+				if (countryModel.getNoOfArmiesCountry() > 1) {
+					for (String neighbourName : countryModel.getListOfNeighbours()) {
+						CountryModel country = playerModel.searchCountry(neighbourName);
+						if (country != null) {
+							int armiesToBeSent = random.nextInt(countryModel.getNoOfArmiesCountry() - 1);
+							for (int i = 0; i < armiesToBeSent; i++) {
+								countryModel.removeNoOfArmiesCountry();
+								country.addNoOfArmiesCountry();
+							}
+							isFortificationDone = true;
+							break;
+						}
+
 					}
+					isFortificationDone = true;
+				} else {
+					break;
 				}
+
 			}
 		}
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
+		System.out.println("rand Player forti end player name" + playerModel.getPlayerName());
 
 	}
 
@@ -86,7 +106,10 @@ public class RandomPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		int noOfTimeToAttack = random.nextInt(playerModel.getPlayerCountryList().size() / 2);
+
+		System.out.println("rand Player attck start player name" + playerModel.getPlayerName());
+		int noOfTimeToAttack = random.nextInt(playerModel.getPlayerCountryList().size());
+		System.out.println("noOfTimeToAttack" + noOfTimeToAttack);
 		while (noOfTimeToAttack > 0) {
 			int countryIndex = random.nextInt(playerModel.getPlayerCountryList().size() - 1);
 			CountryModel sourceCountry = playerModel.getPlayerCountryList().get(countryIndex);
@@ -113,6 +136,10 @@ public class RandomPlayer implements Serializable, Strategy {
 									targetCountry.addNoOfArmiesCountry();
 									playerModel.addCountry(targetCountry);
 									playerModel.setHasWonTerritory(true);
+									if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
+										gameModel.setIsWon(true);
+										return;
+									}
 								}
 							} else {
 								sourceCountry.removeNoOfArmiesCountry();
@@ -128,6 +155,8 @@ public class RandomPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
+		System.out.println("rand Player attack end player name" + playerModel.getPlayerName());
+
 	}
 
 	/*

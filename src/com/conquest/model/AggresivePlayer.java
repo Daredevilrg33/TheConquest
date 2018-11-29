@@ -4,6 +4,7 @@
 package com.conquest.model;
 
 import java.io.Serializable;
+import java.lang.reflect.GenericArrayType;
 
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.utilities.Utility;
@@ -43,7 +44,7 @@ public class AggresivePlayer implements Strategy, Serializable {
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
 		CountryModel countryModel = getCountryWithMaxArmies(playerModel);
-
+		System.out.println("Aggres Player reinforcement start player name" + playerModel.getPlayerName());
 		while (playerModel.getnoOfArmyInPlayer() > 0) {
 			countryModel.addNoOfArmiesCountry();
 			playerModel.reduceArmyInPlayer();
@@ -51,6 +52,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
+		System.out.println("Aggres Player reinforcement end player name" + playerModel.getPlayerName());
+
 	}
 
 	/*
@@ -63,6 +66,7 @@ public class AggresivePlayer implements Strategy, Serializable {
 		// TODO Auto-generated method stub
 
 		CountryModel sourceCountry = getCountryWithMaxArmies(playerModel);
+		System.out.println("Aggres Player attack start player name" + playerModel.getPlayerName());
 
 		while (sourceCountry.getNoOfArmiesCountry() > 1) {
 			System.out.println("Attack Phase initial source army: " + sourceCountry.getCountryName()
@@ -93,7 +97,11 @@ public class AggresivePlayer implements Strategy, Serializable {
 								targetCountry.addNoOfArmiesCountry();
 								playerModel.addCountry(targetCountry);
 								playerModel.setHasWonTerritory(true);
+								if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 
+									gameModel.setIsWon(true);
+									return;
+								}
 							}
 						} else {
 							System.out.println("else " + sourceCountry.getNoOfArmiesCountry() + " :::::"
@@ -114,6 +122,7 @@ public class AggresivePlayer implements Strategy, Serializable {
 			}
 			break;
 		}
+		System.out.println("Aggres Player attack end player name" + playerModel.getPlayerName());
 
 	}
 
@@ -145,6 +154,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
 		CountryModel sourceCountry = getCountryWithMaxArmies(playerModel);
+		System.out.println("Aggres Player fortif start player name" + playerModel.getPlayerName());
+
 		for (String countryName : sourceCountry.getListOfNeighbours()) {
 			CountryModel country = playerModel.searchCountry(countryName);
 			if (country != null) {
@@ -159,6 +170,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
+		System.out.println("Aggres Player forti end player name" + playerModel.getPlayerName());
+
 	}
 
 }

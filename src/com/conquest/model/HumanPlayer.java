@@ -27,6 +27,8 @@ public class HumanPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("human Player renf player name" + playerModel.getPlayerName());
+
 
 	}
 
@@ -41,6 +43,7 @@ public class HumanPlayer implements Serializable, Strategy {
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		FortificationWindow fortificationWindow = new FortificationWindow(gameModel, playerModel);
 		fortificationWindow.setVisible(true);
+		System.out.println("human Player forti player name" + playerModel.getPlayerName());
 
 	}
 
@@ -53,6 +56,8 @@ public class HumanPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("human Player attck player name" + playerModel.getPlayerName());
+
 
 	}
 

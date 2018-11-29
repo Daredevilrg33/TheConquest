@@ -31,6 +31,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("Cheat Player reinfo start player name" + playerModel.getPlayerName());
+
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			int armies = countryModel.getNoOfArmiesCountry();
 			armies = armies * 2;
@@ -39,6 +41,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
+		System.out.println("Cheat Player reinfo end player name" + playerModel.getPlayerName());
+
 	}
 
 	/*
@@ -51,6 +55,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("Cheat Player forti start player name" + playerModel.getPlayerName());
+
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			for (String neighbourCountryName : countryModel.getListOfNeighbours()) {
 				CountryModel country = playerModel.searchCountry(neighbourCountryName);
@@ -66,6 +72,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
+		System.out.println("Cheat Player forti end player name" + playerModel.getPlayerName());
+
 	}
 
 	/*
@@ -77,6 +85,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+		System.out.println("Cheat Player attack start player name" + playerModel.getPlayerName());
+
 		List<CountryModel> countryList = new ArrayList<CountryModel>();
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			for (String countryName : countryModel.getListOfNeighbours()) {
@@ -106,6 +116,7 @@ public class CheaterPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
+		System.out.println("Cheat Player attack end player name" + playerModel.getPlayerName());
 
 	}
 
