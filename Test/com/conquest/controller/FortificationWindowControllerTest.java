@@ -55,28 +55,27 @@ public class FortificationWindowControllerTest {
 		countryNeighbourModels1.add("PAKISTAN");
 		countryNeighbourModels1.add("NEPAL");
 		countryNeighbourModels1.add("SRILANKA");
-		CountryModel country = new CountryModel("INDIA", countryModel, countryNeighbourModels);
-		country.setNoOfArmiesCountry(10);
-		CountryModel country1 = new CountryModel("BHUTAN", countryModel, countryNeighbourModels1);
-		country1.setNoOfArmiesCountry(20);
+		CountryModel countryModel1 = new CountryModel("INDIA", countryModel, countryNeighbourModels);
+		countryModel1.setNoOfArmiesCountry(10);
+		CountryModel countryModel2 = new CountryModel("BHUTAN", countryModel, countryNeighbourModels1);
+		countryModel2.setNoOfArmiesCountry(20);
 
 		ArrayList<CountryModel> countryModels = new ArrayList<>();
-		countryModels.add(country);
-		countryModels.add(country1);
+		countryModels.add(countryModel1);
+		countryModels.add(countryModel2);
 		PlayerModel playerModel = new PlayerModel("Player1", PlayerType.Human);
 		playerModel.setStrategy(new HumanPlayer());
 		playerModel.setPlayerCountryList(countryModels);
-		
 
 		FortificationWindowController fortificationController = new FortificationWindowController(playerModel, null);
-		System.out.println(country.getNoOfArmiesCountry());
-		System.out.println(country1.getNoOfArmiesCountry());
+		System.out.println(countryModel1.getNoOfArmiesCountry());
+		System.out.println(countryModel2.getNoOfArmiesCountry());
 		fortificationController.finding("INDIA");
 		fortificationController.updateDestinationUI("BHUTAN");
 		fortificationController.sending(6);
 
-		System.out.println(country.getNoOfArmiesCountry());
-		System.out.println(country1.getNoOfArmiesCountry());
+		System.out.println(countryModel1.getNoOfArmiesCountry());
+		System.out.println(countryModel2.getNoOfArmiesCountry());
 
 	}
 

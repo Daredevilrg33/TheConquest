@@ -19,6 +19,7 @@ import com.conquest.utilities.Utility;
 import com.conquest.window.AttackPhaseWindow;
 import com.conquest.window.GameWindow;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AttackWindowControllerTest.
  */
@@ -51,10 +52,10 @@ public class AttackWindowControllerTest {
 	}
 
 	/**
-	 * Attack test to check that if a player attacks from country A to country B,
-	 * then after defeating country B, the country B gets added to its country list.
+	 * Attack evaluation test. Attack test to check that if a player attacks from
+	 * country A to country B, then after defeating country B, the country B gets
+	 * added to its country list.
 	 */
-
 	@Test
 	public void attackEvaluationTest() {
 		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test", 4);
@@ -93,7 +94,7 @@ public class AttackWindowControllerTest {
 		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
 
-		AttackWindowController attackwindowcontroller = new AttackWindowController(attackPhaseWindow, gameModel);
+		AttackWindowController attackWindowController = new AttackWindowController(attackPhaseWindow, gameModel);
 
 		ArrayList<Integer> attackingDiceValues = new ArrayList<Integer>();
 		attackingDiceValues.add(6);
@@ -118,7 +119,7 @@ public class AttackWindowControllerTest {
 	}
 
 	/**
-	 * test to validated whether an attacker can attack with 1 army.
+	 * Attacking Test. Test to validated whether an attacker can attack with 1 army.
 	 */
 	@Test
 	public void attackTest() {
@@ -150,7 +151,7 @@ public class AttackWindowControllerTest {
 	}
 
 	/**
-	 * test to to check whether the player won game.
+	 * Won Game Test. Test to to check whether the player won game.
 	 */
 	@Test
 	public void wonGameTest() {
