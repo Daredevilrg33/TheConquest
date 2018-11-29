@@ -38,16 +38,15 @@ public class GameWindowController {
 	/** The game model. */
 	private GameModel gameModel;
 
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(GameWindowController.class);
 
 	/**
 	 * Game Window Controller Constructor Constructor created to assign value of
 	 * objects.
 	 *
-	 * @param gameWindow  Object of class GameWindow {@link GameWindow}
-	 * @param noOfPlayers Number of players in game Range from (3-5)
-	 * @param mapModel    Object of class MapHierarchyModel
-	 *                    {@link MapHierarchyModel}
+	 * @param gameWindow Object of class GameWindow {@link GameWindow}
+	 * @param gameModel  the game model
 	 */
 	public GameWindowController(GameWindow gameWindow, GameModel gameModel) {
 		this.gameWindow = gameWindow;
@@ -103,7 +102,7 @@ public class GameWindowController {
 	 * Checking method To check the number of armies.
 	 *
 	 * @param selectedCountryName type String {@link String}
-	 * @param currentPlayer       the current player
+	 * @param gameModel           the game model
 	 */
 	public void placeReinforcedArmy(String selectedCountryName, GameModel gameModel) {
 		gameModel.setGameStatus("Placing Reinforced Armies");
@@ -125,7 +124,7 @@ public class GameWindowController {
 	}
 
 	/**
-	 * Method to save current game to disk
+	 * Method to save current game to disk.
 	 */
 	public void saveGame() {
 		ObjectOutputStream output = null;

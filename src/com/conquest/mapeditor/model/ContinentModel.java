@@ -9,8 +9,9 @@ import java.util.Observable;
  *
  * @author Nancy Goyal
  */
-public class ContinentModel extends Observable implements Serializable{
-	
+public class ContinentModel extends Observable implements Serializable {
+
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4L;
 
 	/** The continent name. */

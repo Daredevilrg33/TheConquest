@@ -35,11 +35,12 @@ public class AttackWindowController {
 	private GameModel gameModel;
 	 
 
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(AttackWindowController.class);
+	
 	/**
 	 * Instantiates a new attack window controller.
 	 *
-	 * @param players           the players
 	 * @param attackPhaseWindow the attack phase window
 	 * @param riskMapModel      the risk map model
 	 */

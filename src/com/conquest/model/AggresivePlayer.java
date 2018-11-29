@@ -9,14 +9,13 @@ import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.utilities.Utility;
 
 /**
- * @author Rohit Gupta
+ * The Class AggresivePlayer.
  *
+ * @author Rohit Gupta
  */
 public class AggresivePlayer implements Strategy, Serializable {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/*
@@ -104,6 +103,12 @@ public class AggresivePlayer implements Strategy, Serializable {
 
 	}
 
+	/**
+	 * Gets the country with max armies.
+	 *
+	 * @param playerModel the player model
+	 * @return the country with max armies
+	 */
 	private CountryModel getCountryWithMaxArmies(PlayerModel playerModel) {
 		CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
 		int noOfArmies = countryModel.getNoOfArmiesCountry();

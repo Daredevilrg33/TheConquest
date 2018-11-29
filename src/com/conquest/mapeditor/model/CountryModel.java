@@ -16,8 +16,9 @@ import com.conquest.model.PlayerModel;
  *
  * @author Nancy Goyal
  */
-public class CountryModel extends Observable implements Serializable{
-	
+public class CountryModel extends Observable implements Serializable {
+
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 3L;
 
 	/** The country name. */
