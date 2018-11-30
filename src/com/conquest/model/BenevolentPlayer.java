@@ -5,6 +5,8 @@ package com.conquest.model;
 
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.mapeditor.model.CountryModel;
 
 /**
@@ -17,6 +19,9 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	/** The Constant serialVersionUID. */
 	private static final long SERIAL_VERSION_UID = 9L;
 
+	/** The Constant log. */
+	private static final Logger LOG = Logger.getLogger(BenevolentPlayer.class);
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -27,8 +32,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("Benev Player reinf start player name" + playerModel.getPlayerName());
-
+		System.out.println("Benevolent reinforcement start player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent reinforcement start player name " + playerModel.getPlayerName());
 		while (playerModel.getnoOfArmyInPlayer() > 0) {
 			CountryModel countryModel = playerModel.getPlayerCountryList().get(0);
 			int noOfArmies = countryModel.getNoOfArmiesCountry();
@@ -46,7 +51,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Benev Player reinf end player name" + playerModel.getPlayerName());
+		System.out.println("Benevolent reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent reinforcement end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -61,7 +67,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
 		CountryModel sourceCountry = getCountryWithMinArmies(playerModel);
-		System.out.println("Benev Player fortif start player name" + playerModel.getPlayerName());
+		System.out.println("Benevolent fortification start player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent fortification start player name " + playerModel.getPlayerName());
 
 		for (String countryName : sourceCountry.getListOfNeighbours()) {
 			CountryModel country = playerModel.searchCountry(countryName);
@@ -78,7 +85,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Benev Player forti end player name" + playerModel.getPlayerName());
+		System.out.println("Benevolent fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -91,7 +99,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("Benev Player attack start player name" + playerModel.getPlayerName());
+		System.out.println("Benevolent attack start player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent attack start player name " + playerModel.getPlayerName());
 
 		if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 
@@ -101,7 +110,8 @@ public class BenevolentPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("Benev Player attack end player name" + playerModel.getPlayerName());
+		System.out.println("Benevolent attack end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent attack end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -134,7 +144,7 @@ public class BenevolentPlayer implements Serializable, Strategy {
 	 * Gets the country with min armies.
 	 *
 	 * @param playerModel the player model
-	 * @return the country with min armies
+	 * @return countryModel the country with min armies
 	 */
 	private CountryModel getCountryWithMinArmies(PlayerModel playerModel) {
 		CountryModel countryModel = playerModel.getPlayerCountryList().get(0);

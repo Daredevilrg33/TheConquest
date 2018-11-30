@@ -115,8 +115,10 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * @param loadGameModel
-	 * @return
+	 * redirectGameToGameWindow redirects game back to the game window
+	 * 
+	 * @param gameModel
+	 * @return isGameLoaded boolean
 	 */
 	public boolean redirectGameToGameWindow(GameModel gameModel) {
 		// TODO Auto-generated method stub
@@ -149,6 +151,7 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	 * Method to load game from disk.
 	 *
 	 * @param inputFile The file that need to be loaded
+	 * @return gameModel
 	 */
 	public GameModel loadGameModel(String inputFile) {
 		GameModel gameModel = null;

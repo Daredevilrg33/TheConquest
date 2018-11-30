@@ -11,7 +11,7 @@ public class CardsModel extends Observable implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long SERIAL_VERSION_UID = 11L;
-	
+
 	/** The card name. */
 	private String cardName;
 
@@ -32,7 +32,7 @@ public class CardsModel extends Observable implements Serializable {
 	/**
 	 * Gets the card name.
 	 *
-	 * @return the card name
+	 * @return cardName
 	 */
 	public String getCardName() {
 		return cardName;

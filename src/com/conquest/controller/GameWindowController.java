@@ -124,6 +124,7 @@ public class GameWindowController {
 
 	/**
 	 * Method to save current game to disk.
+	 * @return isGameSaved if the game is saved or not
 	 */
 	public boolean saveGame(GameModel gameModel) {
 		boolean isGameSaved = false;

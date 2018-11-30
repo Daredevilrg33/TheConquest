@@ -69,9 +69,9 @@ public class CountryModelTest {
 	 */
 	@Test
 	public void searchNeighboursCountryTest() {
-		ContinentModel countryModel = new ContinentModel("ASIA");
+		ContinentModel continentModel = new ContinentModel("ASIA");
 
-		CountryModel country = new CountryModel("INDIA", countryModel, countryNeighbourModels);
+		CountryModel country = new CountryModel("INDIA", continentModel, countryNeighbourModels);
 		assertEquals("BHUTAN", country.searchNeighboursCountry("Bhutan"));
 		assertEquals("PAKISTAN", country.searchNeighboursCountry("PAKISTAN"));
 		assertEquals("NEPAL", country.searchNeighboursCountry("NEPAL"));

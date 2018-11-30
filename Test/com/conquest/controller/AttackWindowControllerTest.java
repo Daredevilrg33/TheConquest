@@ -20,7 +20,6 @@ import com.conquest.utilities.Utility;
 import com.conquest.window.AttackPhaseWindow;
 import com.conquest.window.GameWindow;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AttackWindowControllerTest.
  */
@@ -185,7 +184,8 @@ public class AttackWindowControllerTest {
 
 	/**
 	 * Attack test to check that if a player attacks from country A to country B,
-	 * and defender has got large value then the number of armies gets deducted from attacker.
+	 * and defender has got large value then the number of armies gets deducted from
+	 * attacker.
 	 */
 
 	@Test
@@ -242,14 +242,13 @@ public class AttackWindowControllerTest {
 		System.out.println("Player 1 country size:" + playerModels[0].getPlayerCountryList().size());
 		CountryModel country = new CountryModel("INDIA", continentModel, countryNeighbourModels);
 		country.setNoOfArmiesCountry(4);
-		
+
 		countryModel.setNoOfArmiesCountry(2);
-		 attackwindowcontroller.attackEvaluation(attackingDiceValues,
-		 defendingDiceValues, country, countryModel, false);
+		attackwindowcontroller.attackEvaluation(attackingDiceValues, defendingDiceValues, country, countryModel, false);
 		assertEquals(2, country.getNoOfArmiesCountry());
 
 	}
-	
+
 	/**
 	 * Dice value check
 	 * 
@@ -257,7 +256,7 @@ public class AttackWindowControllerTest {
 
 	@Test
 	public void diceTest() {
-		String value=null;
+		String value = null;
 		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test", 4);
 		PlayerModel[] playerModels = new PlayerModel[2];
 		playerModels[0] = new PlayerModel("Player1", PlayerType.Human);
@@ -268,12 +267,11 @@ public class AttackWindowControllerTest {
 		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
 
-		AttackWindowController attackWindowController= new AttackWindowController(attackPhaseWindow, gameModel);
-		if(attackWindowController.rollDice()>0 && attackWindowController.rollDice()<7)
-		{
-			 value="true";
+		AttackWindowController attackWindowController = new AttackWindowController(attackPhaseWindow, gameModel);
+		if (attackWindowController.rollDice() > 0 && attackWindowController.rollDice() < 7) {
+			value = "true";
 		}
-		
+
 		assertTrue(Boolean.valueOf(value));
 	}
-	}
+}

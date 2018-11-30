@@ -28,7 +28,7 @@ public class Utility {
 	 * pickFile Method This method will provide the functionality to pick a map
 	 * file.
 	 * 
-	 * @return : This will return the path of the map.
+	 * @return filePath This will return the path of the map.
 	 */
 	public static String pickFile() {
 		String filePath = "";
@@ -51,7 +51,7 @@ public class Utility {
 	 * parseAndValidateMap Method Parses the and validate map.
 	 * 
 	 * @param filePath the file path
-	 * @return the map hierarchy model
+	 * @return mapHierarchyModel the map hierarchy model
 	 */
 	public MapHierarchyModel parseAndValidateMap(String filePath) {
 		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel();
@@ -192,7 +192,7 @@ public class Utility {
 	 * convertMapDataToString Method Convert map data to string.
 	 * 
 	 * @param mapHierarchyModel the map hierarchy model
-	 * @return the string
+	 * @return string
 	 */
 	public String convertMapDataToString(MapHierarchyModel mapHierarchyModel) {
 		String data = "";
@@ -304,7 +304,7 @@ public class Utility {
 	/**
 	 * Roll dice.
 	 *
-	 * @return the int
+	 * @return the value of dice integer
 	 */
 	public static int rollDice() {
 		int pickedNumber;
@@ -321,7 +321,7 @@ public class Utility {
 	 *
 	 * @param noOfPlayers          the no of players
 	 * @param comboSelectedPlayers the combo selected players
-	 * @return the player type from drop down
+	 * @return playerTypes the player type from drop down
 	 */
 	public static PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers, String[] comboSelectedPlayers) {
 		// TODO Auto-generated method stub
@@ -342,8 +342,8 @@ public class Utility {
 	/**
 	 * Gets the player type.
 	 *
-	 * @param strPlayer the str player
-	 * @return the player type
+	 * @param strPlayer the string player
+	 * @return playerType the player type
 	 */
 	public static PlayerType getPlayerType(String strPlayer) {
 
@@ -365,7 +365,7 @@ public class Utility {
 	 * Defender dice popup.
 	 *
 	 * @param maxNoOfDices the max no of dices
-	 * @return the int
+	 * @return the value of dice integer
 	 */
 	public static int defenderDicePopup(int maxNoOfDices) {
 		Integer[] options = new Integer[maxNoOfDices];

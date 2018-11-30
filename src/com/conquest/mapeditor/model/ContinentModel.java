@@ -38,7 +38,7 @@ public class ContinentModel extends Observable implements Serializable {
 	 * getContinentName method Gets the continent name. Getter function for
 	 * continent name
 	 * 
-	 * @return the continentName
+	 * @return continentName
 	 */
 	public String getContinentName() {
 		return continentName;
@@ -59,7 +59,7 @@ public class ContinentModel extends Observable implements Serializable {
 	 * getCountriesList Method Gets the countries list. Getter function for country
 	 * list
 	 * 
-	 * @return the countriesList
+	 * @return countriesList
 	 */
 	public ArrayList<CountryModel> getCountriesList() {
 		return countriesList;
@@ -100,7 +100,7 @@ public class ContinentModel extends Observable implements Serializable {
 	 * searchCountry Method Function to search a country in this continent.
 	 * 
 	 * @param countryName the name of the country
-	 * @return the country object found in this continent or null if can't find
+	 * @return country object found in this continent or null if can't find
 	 */
 	public CountryModel searchCountry(String countryName) {
 		countryName = countryName.toLowerCase();
@@ -141,7 +141,7 @@ public class ContinentModel extends Observable implements Serializable {
 	/**
 	 * getControlValue Method Gets the control value.
 	 * 
-	 * @return the controlValue
+	 * @return controlValue
 	 */
 	public int getControlValue() {
 		return controlValue;

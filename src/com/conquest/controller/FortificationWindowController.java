@@ -47,7 +47,7 @@ public class FortificationWindowController {
 	/**
 	 * Gets the current player.
 	 *
-	 * @return the current player
+	 * @return player the current player
 	 */
 	public PlayerModel getCurrentPlayer() {
 		return player;
@@ -121,9 +121,9 @@ public class FortificationWindowController {
 	/**
 	 * Checking.
 	 *
-	 * @return true, if successful
+	 * @return true, if successful else False
 	 */
-	public boolean checking() {
+	public boolean checkingFortification() {
 		if (getCurrentPlayer().getPlayerCountryList().get(sourceCounter).getNoOfArmiesCountry() == 1)
 			return true;
 		else

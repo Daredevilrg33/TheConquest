@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.mapeditor.model.CountryModel;
 
 /**
@@ -21,6 +23,9 @@ public class CheaterPlayer implements Serializable, Strategy {
 	/** The Constant serialVersionUID. */
 	private static final long SERIAL_VERSION_UID = 1L;
 
+	/** The Constant log. */
+	private static final Logger LOG = Logger.getLogger(CheaterPlayer.class);
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,7 +36,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("Cheat Player reinfo start player name" + playerModel.getPlayerName());
+		System.out.println("Cheater reinforcement start player name " + playerModel.getPlayerName());
+		LOG.info("Cheater reinforcement start player name " + playerModel.getPlayerName());
 
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			int armies = countryModel.getNoOfArmiesCountry();
@@ -41,7 +47,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Cheat Player reinfo end player name" + playerModel.getPlayerName());
+		System.out.println("Cheater reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater reinforcement end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -55,7 +62,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("Cheat Player forti start player name" + playerModel.getPlayerName());
+		System.out.println("Cheater fortification start player name " + playerModel.getPlayerName());
+		LOG.info("Cheater fortification start player name " + playerModel.getPlayerName());
 
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
 			for (String neighbourCountryName : countryModel.getListOfNeighbours()) {
@@ -72,7 +80,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Cheat Player forti end player name" + playerModel.getPlayerName());
+		System.out.println("Cheater fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -85,7 +94,8 @@ public class CheaterPlayer implements Serializable, Strategy {
 	@Override
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("Cheat Player attack start player name" + playerModel.getPlayerName());
+		System.out.println("Cheater attack start player name " + playerModel.getPlayerName());
+		LOG.info("Cheater attack start player name " + playerModel.getPlayerName());
 
 		List<CountryModel> countryList = new ArrayList<CountryModel>();
 		for (CountryModel countryModel : playerModel.getPlayerCountryList()) {
@@ -109,14 +119,15 @@ public class CheaterPlayer implements Serializable, Strategy {
 			}
 		}
 		if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
-			
+
 			gameModel.setIsWon(true);
 			return;
 		}
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("Cheat Player attack end player name" + playerModel.getPlayerName());
+		System.out.println("Cheater attack end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater attack end player name " + playerModel.getPlayerName());
 
 	}
 

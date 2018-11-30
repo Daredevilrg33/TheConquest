@@ -192,7 +192,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	/**
 	 * Gets the map hierarchy model.
 	 * 
-	 * @return the mapHierarchyModel
+	 * @return mapHierarchyModel
 	 */
 	public MapHierarchyModel getMapHierarchyModel() {
 		return mapHierarchyModel;
@@ -399,7 +399,7 @@ public class NewMapEditorView extends JFrame implements MouseListener {
 	/**
 	 * Gets the user select tree node.
 	 *
-	 * @return the user select tree node
+	 * @return userSelTreeNode the user select tree node
 	 */
 	public String getUserSelTreeNode() {
 		return userSelTreeNode;

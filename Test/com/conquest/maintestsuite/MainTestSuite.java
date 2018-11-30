@@ -14,8 +14,7 @@ import com.conquest.window.WindowTestSuite;
  * The Class MainTestSuite.
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ ModelTestSuite.class, UtilityTest.class,
-		WindowTestSuite.class,ControllerTestSuite.class })
+@Suite.SuiteClasses({ ModelTestSuite.class, UtilityTest.class, NewGameMenuScreenTest.class, ControllerTestSuite.class })
 public class MainTestSuite {
 
 }

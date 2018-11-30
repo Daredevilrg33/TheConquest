@@ -78,7 +78,7 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void searchCountrytest() {
-		
+
 		PlayerModel playerModel = new PlayerModel("ROGER", PlayerType.Human);
 		playerModel.setStrategy(new HumanPlayer());
 		playerModel.setPlayerCountryList(countryModelArrayList);
@@ -92,7 +92,7 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void overallTest() {
-		
+
 		PlayerModel playerModel = new PlayerModel("FORD", PlayerType.Human);
 		playerModel.setStrategy(new HumanPlayer());
 		playerModel.setPlayerCountryList(countryModelArrayList);

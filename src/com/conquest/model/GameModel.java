@@ -108,7 +108,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the players.
 	 *
-	 * @return the players
+	 * @return players
 	 */
 	public PlayerModel[] getPlayers() {
 		return players;
@@ -127,7 +127,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the current player.
 	 *
-	 * @return the current player
+	 * @return currPlayer the current player
 	 */
 	public PlayerModel getCurrPlayer() {
 		return currPlayer;
@@ -146,7 +146,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the checks if is won.
 	 *
-	 * @return the isWon
+	 * @return isWon
 	 */
 	public boolean getIsWon() {
 		return isWon;
@@ -203,7 +203,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the hand in counter.
 	 *
-	 * @return the handInCounter
+	 * @return handInCounter
 	 */
 	public int getHandInCounter() {
 		return handInCounter;
@@ -221,7 +221,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the total cards.
 	 *
-	 * @return the total cards
+	 * @return totalCards the total cards
 	 */
 	public ArrayList<CardsModel> getTotalCards() {
 		return totalCards;
@@ -240,7 +240,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the game status.
 	 *
-	 * @return the gameStatus
+	 * @return gameStatus
 	 */
 	public String getGameStatus() {
 		return gameStatus;
@@ -258,7 +258,7 @@ public class GameModel extends Observable implements Serializable {
 	/**
 	 * Gets the game phase stage.
 	 *
-	 * @return the gamePhaseStage
+	 * @return gamePhaseStage
 	 */
 	public int getGamePhaseStage() {
 		return gamePhaseStage;

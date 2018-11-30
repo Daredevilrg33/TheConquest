@@ -39,8 +39,8 @@ public class FortificationWindowControllerTest {
 	}
 
 	/**
-	 * Fortification test checking values of two countries after transferring armies from one country to another.
-	 * INDIA-> Bhutan
+	 * Fortification test checking values of two countries after transferring armies
+	 * from one country to another. INDIA-> Bhutan
 	 */
 	@Test
 	public void fortificationTest() {
@@ -78,8 +78,8 @@ public class FortificationWindowControllerTest {
 
 		System.out.println(countryModel1.getNoOfArmiesCountry());
 		System.out.println(countryModel2.getNoOfArmiesCountry());
-		assertEquals(4,countryModel1.getNoOfArmiesCountry());
-		assertEquals(26,countryModel2.getNoOfArmiesCountry());
+		assertEquals(4, countryModel1.getNoOfArmiesCountry());
+		assertEquals(26, countryModel2.getNoOfArmiesCountry());
 
 	}
 

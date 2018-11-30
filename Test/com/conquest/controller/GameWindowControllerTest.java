@@ -17,6 +17,7 @@ import com.conquest.utilities.Utility;
 import com.conquest.window.GameWindow;
 import com.conquest.window.NewGameMenuScreen;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class GameWindowControllerTest.
  */
@@ -32,9 +33,10 @@ public class GameWindowControllerTest {
 	private static String ASIA_MAP_FILE_PATH;
 
 	/** The Asia map file path. */
-	private static String Continent_Value;
+	private static String CONTINENT_VALUE;
 
-	private static String ACCBB;
+	/** The accbb map file path. */
+	private static String ACCBB_MAP;
 
 	/** The game window object. */
 	GameWindow gameWindow;
@@ -47,8 +49,8 @@ public class GameWindowControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
-		Continent_Value = System.getProperty("user.dir") + "\\resources\\testresource\\CONTINENTVALUETEST.map";
-		ACCBB = System.getProperty("user.dir") + "\\resources\\testresource\\ACCBB.map";
+		CONTINENT_VALUE = System.getProperty("user.dir") + "\\resources\\testresource\\CONTINENTVALUETEST.map";
+		ACCBB_MAP = System.getProperty("user.dir") + "\\resources\\testresource\\ACCBB.map";
 
 	}
 
@@ -110,32 +112,29 @@ public class GameWindowControllerTest {
 		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
 		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
 		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
-		CountryModel countrymodel = new CountryModel("RUSSIA12");
-		CountryModel countrymodel1 = new CountryModel("AMERICA31");
-		CountryModel countrymodel2 = new CountryModel("JAPAN12");
-		CountryModel countrymodel3 = new CountryModel("FRANCE43");
-		CountryModel countrymodel4 = new CountryModel("Sri Lanka");
-		CountryModel countrymodel5 = new CountryModel("Australia");
-		CountryModel countrymodel6 = new CountryModel("United Kingdom");
-		CountryModel countrymodel7 = new CountryModel("Germany");
-		CountryModel countrymodel8 = new CountryModel("Crotia");
-		CountryModel countrymodel9 = new CountryModel("Netherlands");
-		CountryModel countrymodel10 = new CountryModel("New Zealand");
+		CountryModel countryModel = new CountryModel("RUSSIA12");
+		CountryModel countryModel1 = new CountryModel("AMERICA31");
+		CountryModel countryModel2 = new CountryModel("JAPAN12");
+		CountryModel countryModel3 = new CountryModel("FRANCE43");
+		CountryModel countryModel4 = new CountryModel("Sri Lanka");
+		CountryModel countryModel5 = new CountryModel("Australia");
+		CountryModel countryModel6 = new CountryModel("United Kingdom");
+		CountryModel countryModel7 = new CountryModel("Germany");
+		CountryModel countryModel8 = new CountryModel("Crotia");
+		CountryModel countryModel9 = new CountryModel("Netherlands");
+		CountryModel countryModel10 = new CountryModel("New Zealand");
 
-		playerModels[1].addCountry(countrymodel);
-		playerModels[1].addCountry(countrymodel1);
-		playerModels[1].addCountry(countrymodel2);
-		playerModels[1].addCountry(countrymodel3);
-		playerModels[1].addCountry(countrymodel4);
-		playerModels[1].addCountry(countrymodel5);
-		playerModels[1].addCountry(countrymodel6);
-		playerModels[1].addCountry(countrymodel7);
-		playerModels[1].addCountry(countrymodel8);
-		playerModels[1].addCountry(countrymodel9);
-		playerModels[1].addCountry(countrymodel10);
-//		System.out.println("Country NAME: " + playerModels[1].getPlayerName());
-//		System.out.println("Country List Size: " + playerModels[0].getPlayerCountryList().size());
-//		System.out.println("player no of army: " + playerModels[0].getnoOfArmyInPlayer());
+		playerModels[1].addCountry(countryModel);
+		playerModels[1].addCountry(countryModel1);
+		playerModels[1].addCountry(countryModel2);
+		playerModels[1].addCountry(countryModel3);
+		playerModels[1].addCountry(countryModel4);
+		playerModels[1].addCountry(countryModel5);
+		playerModels[1].addCountry(countryModel6);
+		playerModels[1].addCountry(countryModel7);
+		playerModels[1].addCountry(countryModel8);
+		playerModels[1].addCountry(countryModel9);
+		playerModels[1].addCountry(countryModel10);
 		playerModels[1].calculateAndAddReinforcementArmy();
 		playerModels[0].calculateAndAddReinforcementArmy();
 		assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
@@ -150,19 +149,19 @@ public class GameWindowControllerTest {
 	@Test
 	public void noOfArmyCountry2Test() {
 
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Continent_Value);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(CONTINENT_VALUE);
 		String[] playerTypes = new String[] { "Human", "Human", "Human" };
 		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
 		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
 		ArrayList<CountryModel> countryModelArrayList = new ArrayList<CountryModel>();
-		CountryModel countrymodel = new CountryModel("BOSTON");
-		CountryModel countrymodel1 = new CountryModel("CALIFORNIA");
-		CountryModel countrymodel2 = new CountryModel("BRAZIL");
+		CountryModel countryModel = new CountryModel("BOSTON");
+		CountryModel countryModel1 = new CountryModel("CALIFORNIA");
+		CountryModel countryModel2 = new CountryModel("BRAZIL");
 
 		ArrayList<CountryModel> countryModelArrayList1 = new ArrayList<CountryModel>();
 
-		CountryModel countrymodel3 = new CountryModel("LONDON");
-		CountryModel countrymodel4 = new CountryModel("PARIS");
+		CountryModel countryModel3 = new CountryModel("LONDON");
+		CountryModel countryModel4 = new CountryModel("PARIS");
 
 		ArrayList<CountryModel> countryModelArrayList2 = new ArrayList<CountryModel>();
 
@@ -184,12 +183,12 @@ public class GameWindowControllerTest {
 //		playerModels[2].noOfArmyInPlayer(25);
 //		playerModels[0].noOfArmyInPlayer(25);
 
-		playerModels[1].addCountry(countrymodel);
+		playerModels[1].addCountry(countryModel);
 
-		playerModels[1].addCountry(countrymodel1);
-		playerModels[1].addCountry(countrymodel2);
-		playerModels[0].addCountry(countrymodel3);
-		playerModels[0].addCountry(countrymodel4);
+		playerModels[1].addCountry(countryModel1);
+		playerModels[1].addCountry(countryModel2);
+		playerModels[0].addCountry(countryModel3);
+		playerModels[0].addCountry(countryModel4);
 
 		playerModels[2].addCountry(countrymodel6);
 		for (CountryModel country : playerModels[1].getPlayerCountryList()) {

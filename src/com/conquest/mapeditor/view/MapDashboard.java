@@ -40,7 +40,10 @@ public class MapDashboard extends JFrame implements ActionListener {
 	private JButton btnLoadMap;
 
 	/** The file name. */
-	private String filePath = "", fileName = "";
+	private String filePath = "";
+
+	/** The file name. */
+	private String fileName = "";
 
 	/**
 	 * MapDashboard Constructor Instantiates a new map dashboard.

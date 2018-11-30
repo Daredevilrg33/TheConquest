@@ -211,7 +211,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		phaseScrollPane.setBounds(15, phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
 				700, 150);
 		add(phaseScrollPane);
-//		
+
 		progressBarPanel = new JPanel();
 		progressBarPanel.setBounds(phaseScrollPane.getBounds().x + (int) (phaseScrollPane.getBounds().getWidth()) + 150,
 				phaseViewPanel.getBounds().y + (int) (phaseViewPanel.getBounds().getHeight()),
@@ -219,7 +219,6 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 		add(progressBarPanel);
 		addProgressBar(this.gameModel);
 
-		// check with this
 		if (this.gameModel.getGamePhaseStage() != 0) {
 			updatePhaseView("Reinforcement Phase");
 		}
@@ -500,7 +499,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 	 * Calculate percentage.
 	 *
 	 * @param player the player
-	 * @return the int
+	 * @return percentage of countries
 	 */
 	private int calculatePercentage(PlayerModel player) {
 		double x = ((double) player.getPlayerCountryList().size()

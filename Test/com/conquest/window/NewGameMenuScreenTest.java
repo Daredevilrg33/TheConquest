@@ -31,10 +31,10 @@ public class NewGameMenuScreenTest {
 	private static String COUNTRY_NOT_CONNECTED_PATH;
 	
 	/** The country not connected map file path. */
-	private static String Twin_Volcano_PATH;
+	private static String TWIN_VOLCANO_PATH;
 	
 	/** The country not connected map file path. */
-	private static String Cliff_PATH;
+	private static String CLIFF_PATH;
 
 	/** The game window. */
 	GameWindow gameWindow;
@@ -50,8 +50,8 @@ public class NewGameMenuScreenTest {
 		THREE_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\three.map";
 		COUNTRY_CONNECTED_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\countryconnected.map";
 		COUNTRY_NOT_CONNECTED_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\countrynotconnected.map";
-		Twin_Volcano_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\Twin Volcano.map";
-		Cliff_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\3D Cliff.map";
+		TWIN_VOLCANO_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\Twin Volcano.map";
+		CLIFF_PATH = System.getProperty("user.dir")+ "\\resources\\testresource\\3D Cliff.map";
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class NewGameMenuScreenTest {
 	@Test
 	public void twinVolcanoTest() {
 		NewGameMenuScreen newGame = new NewGameMenuScreen();
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Twin_Volcano_PATH);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(TWIN_VOLCANO_PATH);
 		newGame.isMapConnected(mapHierarchyModel);
 		
 		assertEquals("Map is invalid", mapHierarchyModel.getErrorMsg());
@@ -158,7 +158,7 @@ public class NewGameMenuScreenTest {
 	@Test
 	public void cliffMapTest() {
 		NewGameMenuScreen newGame = new NewGameMenuScreen();
-		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(Cliff_PATH);
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(CLIFF_PATH);
 		newGame.isMapConnected(mapHierarchyModel);
 		System.out.println(mapHierarchyModel.getErrorMsg());
 		System.out.println(mapHierarchyModel.isValErrorFlag());

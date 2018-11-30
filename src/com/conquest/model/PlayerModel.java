@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.conquest.mapeditor.model.CountryModel;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerModel.
  * 
@@ -62,6 +63,8 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * Setter function for number of armies in player.
+	 *
 	 * @param noOfArmyInPlayer the noOfArmyInPlayer to set
 	 */
 	public void setNoOfArmyInPlayer(int noOfArmyInPlayer) {
@@ -108,7 +111,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * Gets the no of army for player.
 	 * 
-	 * @return the no of army for player
+	 * @return noOfArmyInPlayer the no of army for player
 	 */
 	public int getnoOfArmyInPlayer() {
 		return noOfArmyInPlayer;
@@ -135,7 +138,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * Gets the strategy.
 	 *
-	 * @return the strategy
+	 * @return strategy
 	 */
 	public Strategy getStrategy() {
 		return strategy;
@@ -183,7 +186,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * Gets the player country list.
 	 * 
-	 * @return the player country list
+	 * @return playerCountryList the player country list
 	 */
 	public List<CountryModel> getPlayerCountryList() {
 		return playerCountryList;
@@ -242,8 +245,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * The function to exchange the cards.
 	 *
-	 * @param countryName the country name
-	 * @return the country model
+	 * @param gameModel the game model
 	 */
 
 	public void handInCards(GameModel gameModel) {
@@ -297,7 +299,7 @@ public class PlayerModel extends Observable implements Serializable {
 	 * Search a country by the country Name.
 	 * 
 	 * @param countryName : Name of the country to be searched.
-	 * @return Returns the Country Model.
+	 * @return country the Country Model.
 	 */
 
 	public CountryModel searchCountry(String countryName) {
@@ -347,7 +349,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * Checks if is checks for won territory.
 	 *
-	 * @return the hasWonTerritory
+	 * @return hasWonTerritory
 	 */
 	public boolean isHasWonTerritory() {
 		return hasWonTerritory;
@@ -388,7 +390,7 @@ public class PlayerModel extends Observable implements Serializable {
 	/**
 	 * Gets the player type.
 	 *
-	 * @return the playerType
+	 * @return playerType
 	 */
 	public PlayerType getPlayerType() {
 		return playerType;
@@ -427,7 +429,7 @@ public class PlayerModel extends Observable implements Serializable {
 	 * Attack phase.
 	 *
 	 * @param gameModel the game model
-	 * @return the string
+	 * @return string
 	 */
 	public String attackPhase(GameModel gameModel) {
 		// TODO Auto-generated method stub
@@ -444,6 +446,11 @@ public class PlayerModel extends Observable implements Serializable {
 		}
 	}
 
+	/**
+	 * Sets the player country list.
+	 *
+	 * @param playerCountryList the new player country list
+	 */
 	public void setPlayerCountryList(List<CountryModel> playerCountryList) {
 		this.playerCountryList = playerCountryList;
 	}

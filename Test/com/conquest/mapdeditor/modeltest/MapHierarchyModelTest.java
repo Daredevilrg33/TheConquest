@@ -23,7 +23,7 @@ public class MapHierarchyModelTest {
 	private int noOfCountries = 10;
 
 	/** The map hierarchy. */
-	MapHierarchyModel maphierarchy = new MapHierarchyModel(mapName, noOfCountries);
+	MapHierarchyModel mapHierarchy = new MapHierarchyModel(mapName, noOfCountries);
 
 	/** The map hierarchy 1. */
 	MapHierarchyModel maphierarchy1 = new MapHierarchyModel();
@@ -79,15 +79,19 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getTotalCountriestest1 Unit test Basic number of total countries test.
+	 *
+	 * @return the total countriestest 1
 	 */
 	@Test
 	public void getTotalCountriestest1() {
-		assertEquals(noOfCountries, maphierarchy.getTotalCountries());
+		assertEquals(noOfCountries, mapHierarchy.getTotalCountries());
 
 	}
 
 	/**
 	 * Test to check the total no of countries that has been added.
+	 *
+	 * @return the total countriestest
 	 */
 	@Test
 	public void getTotalCountriestest() {
@@ -97,10 +101,12 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getConquestMapNametest Unit Test Test to check the map name of the game.
+	 *
+	 * @return the conquest map nametest
 	 */
 	@Test
 	public void getConquestMapNametest() {
-		assertEquals(mapName, maphierarchy.getConquestMapName());
+		assertEquals(mapName, mapHierarchy.getConquestMapName());
 	}
 
 	/**

@@ -419,7 +419,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/**
 	 * Gets the current player.
 	 *
-	 * @return the currentPlayer
+	 * @return currentPlayer
 	 */
 	public PlayerModel getCurrentPlayer() {
 		return currentPlayer;
@@ -555,7 +555,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/**
 	 * Gets the dice results attacking.
 	 *
-	 * @return the diceResultsAttacking
+	 * @return diceResultsAttacking
 	 */
 	public ArrayList<Integer> getDiceResultsAttacking() {
 		return diceResultsAttacking;
@@ -564,7 +564,7 @@ public class AttackPhaseWindow extends JFrame implements ActionListener {
 	/**
 	 * Gets the dice results defending.
 	 *
-	 * @return the diceResultsDefending
+	 * @return diceResultsDefending
 	 */
 	public ArrayList<Integer> getDiceResultsDefending() {
 		return diceResultsDefending;

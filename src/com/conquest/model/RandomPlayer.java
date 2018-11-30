@@ -6,6 +6,8 @@ package com.conquest.model;
 import java.io.Serializable;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 import com.conquest.mapeditor.model.CountryModel;
 import com.conquest.utilities.Utility;
 
@@ -18,6 +20,9 @@ public class RandomPlayer implements Serializable, Strategy {
 
 	/** The Constant serialVersionUID. */
 	private static final long SERIAL_VERSION_UID = 1L;
+
+	/** The Constant log. */
+	private static final Logger LOG = Logger.getLogger(RandomPlayer.class);
 
 	/** The random. */
 	private Random random = new Random();
@@ -32,7 +37,8 @@ public class RandomPlayer implements Serializable, Strategy {
 	@Override
 	public void reinforcementPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("rand Player reinfo start player name" + playerModel.getPlayerName());
+		System.out.println("Random reinforcement start player name " + playerModel.getPlayerName());
+		LOG.info("Random reinforcement start player name " + playerModel.getPlayerName());
 
 		while (playerModel.getnoOfArmyInPlayer() > 0) {
 			int index = random.nextInt(playerModel.getPlayerCountryList().size());
@@ -45,7 +51,8 @@ public class RandomPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("rand Player reinfo end player name" + playerModel.getPlayerName());
+		System.out.println("Random reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Random reinforcement end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -59,7 +66,8 @@ public class RandomPlayer implements Serializable, Strategy {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
-		System.out.println("rand Player forti start player name" + playerModel.getPlayerName());
+		System.out.println("Random fortification start player name " + playerModel.getPlayerName());
+		LOG.info("Random fortification start player name " + playerModel.getPlayerName());
 
 		boolean isFortificationDone = false;
 		if (playerModel.getPlayerCountryList().size() > 0) {
@@ -93,7 +101,8 @@ public class RandomPlayer implements Serializable, Strategy {
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("rand Player forti end player name" + playerModel.getPlayerName());
+		System.out.println("Random fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Random fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -107,7 +116,8 @@ public class RandomPlayer implements Serializable, Strategy {
 	public void attackPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
 
-		System.out.println("rand Player attck start player name" + playerModel.getPlayerName());
+		System.out.println("Random attack start player name " + playerModel.getPlayerName());
+		LOG.info("Random attack start player name " + playerModel.getPlayerName());
 		int noOfTimeToAttack = random.nextInt(playerModel.getPlayerCountryList().size());
 		System.out.println("noOfTimeToAttack" + noOfTimeToAttack);
 		while (noOfTimeToAttack > 0) {
@@ -155,7 +165,8 @@ public class RandomPlayer implements Serializable, Strategy {
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("rand Player attack end player name" + playerModel.getPlayerName());
+		System.out.println("Random attack end player name " + playerModel.getPlayerName());
+		LOG.info("Random attack end player name " + playerModel.getPlayerName());
 
 	}
 

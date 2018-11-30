@@ -97,7 +97,7 @@ public class CountryModel extends Observable implements Serializable {
 	/**
 	 * getCountryName Method Getter Function to get String name.
 	 *
-	 * @return the countryName Name of country
+	 * @return countryName Name of country
 	 */
 	public String getCountryName() {
 		return countryName;
@@ -114,9 +114,9 @@ public class CountryModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * getBelongsTo Method Method of type ContinentModel.
+	 * getBelongsTo Method of type ContinentModel.
 	 *
-	 * @return the belongsTo
+	 * @return belongsTo the continent the country belong to
 	 */
 	public ContinentModel getBelongsTo() {
 		return belongsTo;
@@ -137,7 +137,7 @@ public class CountryModel extends Observable implements Serializable {
 	 * CountryModel{@link CountryModel} object.
 	 *
 	 * @param countryName adds a neighbour country
-	 * @return boolean
+	 * @return isAdded 
 	 */
 
 	public boolean addNeighbour(String countryName) {
@@ -149,7 +149,7 @@ public class CountryModel extends Observable implements Serializable {
 	/**
 	 * getListOfNeighbours Method.
 	 *
-	 * @return the listOfNeighbours of ArrayList type{@link ArrayList}
+	 * @return listOfNeighbours of ArrayList type{@link ArrayList}
 	 */
 	public ArrayList<String> getListOfNeighbours() {
 		return listOfNeighbours;
@@ -158,7 +158,7 @@ public class CountryModel extends Observable implements Serializable {
 	/**
 	 * getNoOfArmiesCountry Method Getter Function to get noOfArmiesCountry.
 	 *
-	 * @return the noOfArmiesCountry Integer
+	 * @return noOfArmiesCountry Integer
 	 */
 	public int getNoOfArmiesCountry() {
 		return noOfArmiesCountry;
@@ -193,7 +193,7 @@ public class CountryModel extends Observable implements Serializable {
 	/**
 	 * Method to get country's owner.
 	 * 
-	 * @return country's current owner
+	 * @return owner country's current owner
 	 */
 	public PlayerModel getOwner() {
 		return owner;
@@ -215,7 +215,7 @@ public class CountryModel extends Observable implements Serializable {
 	 * country.
 	 *
 	 * @param countryName name of country to search
-	 * @return CountryModel object
+	 * @return country CountryModel object
 	 */
 
 	public String searchNeighboursCountry(String countryName) {

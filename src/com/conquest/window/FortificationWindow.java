@@ -272,7 +272,7 @@ public class FortificationWindow extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Select Source Country to continue.", "Error Message",
 						JOptionPane.ERROR_MESSAGE);
 
-			} else if (fortificationWindowController.checking()) {
+			} else if (fortificationWindowController.checkingFortification()) {
 				JOptionPane.showMessageDialog(this, "Low number of Armies in Source Country\n Unable to send",
 						"Error Message", JOptionPane.ERROR_MESSAGE);
 			} else if (jComboBoxDestinationCountries.getSelectedItem().toString().equalsIgnoreCase("Select Country:")) {

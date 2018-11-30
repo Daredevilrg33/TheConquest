@@ -35,7 +35,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	public String errorMsg = "Map is invalid";
 
 	/**
-	 * MapHierarchyModel Constructor Instantiates a new map hierarchy model.
+	 * MapHierarchyModel Constructor
 	 */
 	public MapHierarchyModel() {
 		this.continentsList = new ArrayList<>();
@@ -43,8 +43,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * MapHierarchyModel Parameterized Constructor Instantiates a new map hierarchy
-	 * model.
+	 * MapHierarchyModel Parameterized Constructor model.
 	 * 
 	 * @param conquestMapName the conquest map name
 	 * @param totalCountries  the total countries
@@ -59,7 +58,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Gets the conquest map name. Getter function to get the map name
 	 * 
-	 * @return the conquestMapName
+	 * @return conquestMapName
 	 */
 	public String getConquestMapName() {
 		return conquestMapName;
@@ -77,7 +76,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Gets the continents list.
 	 * 
-	 * @return the continentsList
+	 * @return continentsList
 	 */
 	public ArrayList<ContinentModel> getContinentsList() {
 		return continentsList;
@@ -95,7 +94,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Gets the total countries.
 	 * 
-	 * @return the totalCountries
+	 * @return totalCountries
 	 */
 	public int getTotalCountries() {
 		return totalCountries;
@@ -132,7 +131,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Checks if is value error flag.
 	 * 
-	 * @return the valErrorFlag
+	 * @return valErrorFlag
 	 */
 	public boolean isValErrorFlag() {
 		return valErrorFlag;
@@ -150,7 +149,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Gets the error message.
 	 * 
-	 * @return the errorMsg
+	 * @return errorMsg
 	 */
 	public String getErrorMsg() {
 		return errorMsg;
@@ -184,7 +183,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	 * Method to add a new continent.
 	 * 
 	 * @param continentName name of the new continent
-	 * @return the string
+	 * @return string
 	 */
 	public String addContinent(String continentName) {
 		if (searchContinent(continentName) != null) {
@@ -237,7 +236,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	 * 
 	 * @param continentName    name of the continent want to rename
 	 * @param newContinentName new name of the continent
-	 * @return succeed or failed error message
+	 * @return string succeed or failed error message
 	 */
 	public String renameContinent(String continentName, String newContinentName) {
 		ContinentModel continent = searchContinent(continentName);
@@ -255,19 +254,19 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	/**
 	 * Method to rename a continent.
 	 * 
-	 * @param countryName     name of the continent want to rename
-	 * @param newCountrytName new name of the continent
+	 * @param countryName    name of the continent want to rename
+	 * @param newCountryName new name of the continent
 	 * @return succeed or failed error message
 	 */
-	public String renameCountry(String countryName, String newCountrytName) {
+	public String renameCountry(String countryName, String newCountryName) {
 		CountryModel country = searchCountry(countryName);
 		if (country == null) {
 			return "Country  '" + countryName + "'  you want to change does not exists";
 		}
-		if (searchCountry(newCountrytName) != null) {
-			return "Country '" + newCountrytName + "' already exits";
+		if (searchCountry(newCountryName) != null) {
+			return "Country '" + newCountryName + "' already exits";
 		} else {
-			country.setCountryName(newCountrytName);
+			country.setCountryName(newCountryName);
 		}
 		return "";
 	}
@@ -303,7 +302,7 @@ public class MapHierarchyModel extends Observable implements Serializable {
 	 *
 	 * @param countryName   name of the country you want to move
 	 * @param continentName name of the continent to which you want to move
-	 * @return succeed or failed error message
+	 * @return message succeed or failed error message
 	 */
 	public String moveCountry(String countryName, String continentName) {
 		ContinentModel toContinent = searchContinent(continentName);
