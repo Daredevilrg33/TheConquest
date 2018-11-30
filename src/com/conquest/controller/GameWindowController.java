@@ -124,6 +124,8 @@ public class GameWindowController {
 
 	/**
 	 * Method to save current game to disk.
+	 * 
+	 * @param gameModel model of game
 	 * @return isGameSaved if the game is saved or not
 	 */
 	public boolean saveGame(GameModel gameModel) {

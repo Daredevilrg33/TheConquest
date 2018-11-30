@@ -65,7 +65,6 @@ public class MapHierarchyModelTest {
 		maphierarchy1.addContinent("AMERICA");
 		maphierarchy1.addCountry("BOSTON", "AMERICA");
 
-
 	}
 
 	/**
@@ -79,8 +78,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getTotalCountriestest1 Unit test Basic number of total countries test.
-	 *
-	 * @return the total countriestest 1
 	 */
 	@Test
 	public void getTotalCountriestest1() {
@@ -90,8 +87,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * Test to check the total no of countries that has been added.
-	 *
-	 * @return the total countriestest
 	 */
 	@Test
 	public void getTotalCountriestest() {
@@ -101,8 +96,6 @@ public class MapHierarchyModelTest {
 
 	/**
 	 * getConquestMapNametest Unit Test Test to check the map name of the game.
-	 *
-	 * @return the conquest map nametest
 	 */
 	@Test
 	public void getConquestMapNametest() {
@@ -139,9 +132,9 @@ public class MapHierarchyModelTest {
 		}
 
 	}
-	
-	/**maphierarchy1
-	 * country is moved to new continent.
+
+	/**
+	 * maphierarchy1 country is moved to new continent.
 	 */
 	@Test
 	public void moveTest() {
@@ -150,9 +143,8 @@ public class MapHierarchyModelTest {
 		System.out.println(toContinent.searchCountry("INDIA"));
 		assertEquals("INDIA", toContinent.searchCountry("INDIA").getCountryName());
 
-		
 	}
-	
+
 	/**
 	 * country is deleted and checked whether it exists.
 	 */
@@ -161,9 +153,9 @@ public class MapHierarchyModelTest {
 		maphierarchy1.deleteCountry("INDIA");
 		ContinentModel toContinent = maphierarchy1.searchContinent("ASIA");
 		assertNull(toContinent.searchCountry("INDIA"));
-		
+
 	}
-	
+
 	/**
 	 * country is renamed and checked whether it exists.
 	 */
@@ -173,8 +165,9 @@ public class MapHierarchyModelTest {
 		ContinentModel toContinent = maphierarchy1.searchContinent("ASIA");
 		assertNull(toContinent.searchCountry("BHUTAN"));
 		assertNotNull(toContinent.searchCountry("MALAYSIA"));
-		
+
 	}
+
 	/**
 	 * continent is renamed and checked whether it exists.
 	 */
@@ -183,17 +176,16 @@ public class MapHierarchyModelTest {
 		maphierarchy1.renameContinent("AMERICA", "NORTHAMERICA");
 		assertNull(maphierarchy1.searchContinent("AMERICA"));
 		assertNotNull(maphierarchy1.searchContinent("NORTHAMERICA"));
-		
+
 	}
-	
+
 	/**
 	 * check to ensure without emptying a continent cannot be deleted.
-	*/
+	 */
 	@Test
 	public void delContinentTest() {
-		assertEquals("Continent 'ASIA' is not empty, Please delete or move all the countries in it.", maphierarchy1.deleteContinent("ASIA"));
+		assertEquals("Continent 'ASIA' is not empty, Please delete or move all the countries in it.",
+				maphierarchy1.deleteContinent("ASIA"));
 	}
-	
-	
 
 }

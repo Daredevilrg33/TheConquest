@@ -451,7 +451,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 	/**
 	 * showPlayerOptionAsPerNoOfPlayers
 	 * 
-	 * @param selectedItem number of selected players
+	 * @param selectedItem number of selected player
 	 */
 	private void showPlayerOptionAsPerNoOfPlayers(String selectedItem) {
 		// TODO Auto-generated method stub
@@ -476,9 +476,9 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 	}
 
 	/**
-	 * showMapOptionAsPerSelection
+	 * showMapOptionAsPerSelection *
 	 * 
-	 * @param selectedItem numberof selected maps
+	 * @param selectedItem number of selected mapss
 	 */
 	private void showMapOptionAsPerSelection(String selectedItem) {
 		// TODO Auto-generated method stub
@@ -519,6 +519,18 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 		}
 	}
 
+	/*
+	 * initializingPlayerModels to initilize players models
+	 * 
+	 * @param noOfPlayers number of players in game
+	 * 
+	 * @param mapHierarchyModel model of maps
+	 * 
+	 * @param number of selected players
+	 * 
+	 * @return PlayerModel model of player
+	 * 
+	 */
 	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel,
 			String[] comboSelectedPlayers) {
 		PlayerModel[] players = new PlayerModel[noOfPlayers];
@@ -578,6 +590,16 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 		return players;
 	}
 
+	/*
+	 * checkMapIsValid map checking function
+	 * 
+	 * @param fileName file name of map
+	 * 
+	 * @param filePath path of map file
+	 * 
+	 * @return mapHierarchyModel model
+	 * 
+	 */
 	private MapHierarchyModel checkMapIsValid(String fileName, String filePath) {
 		MapHierarchyModel mapHierarchyModel = null;
 

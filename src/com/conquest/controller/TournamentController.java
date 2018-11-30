@@ -39,10 +39,9 @@ public class TournamentController {
 	 * TournamentController Constructor Constructor created to assign value of
 	 * objects.
 	 *
-	 * @param playerModels the player models
-	 * @param noOfMaps     the no of maps
-	 * @param noOfGames    the no of games
-	 * @param noOfTurns    the no of turns
+	 * @param noOfMaps  the no of maps
+	 * @param noOfGames the no of games
+	 * @param noOfTurns the no of turns
 	 */
 	public TournamentController(int noOfMaps, int noOfGames, int noOfTurns) {
 
@@ -55,6 +54,8 @@ public class TournamentController {
 
 	/**
 	 * Start tournament.
+	 * 
+	 * @param gameModel model of game
 	 */
 	public void startTournament(GameModel gameModel) {
 		// begin the tournament

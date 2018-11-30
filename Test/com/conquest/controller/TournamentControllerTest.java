@@ -20,8 +20,10 @@ import com.conquest.window.NewTournamentMenuScreen;
 
 public class TournamentControllerTest {
 
+	/** The path to map file. */
 	public static String THREE_PATH;
-	
+
+	/** The object of utility . */
 	private Utility utility = new Utility();
 
 	@BeforeClass
@@ -37,20 +39,22 @@ public class TournamentControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-/**
- * test for checking tournament mode.
- */
+
+	/**
+	 * test for checking tournament mode.
+	 */
 	@Test
 	public void startTournamentTest() {
-		TournamentController tournamentController= new TournamentController(1, 1, 50);
+		TournamentController tournamentController = new TournamentController(1, 1, 50);
 		NewTournamentMenuScreen newTournamentMenuScreen = new NewTournamentMenuScreen();
 		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(THREE_PATH);
-		PlayerModel[] playerModels = newTournamentMenuScreen.initializingPlayerModels(2, mapHierarchyModel, new String[] {"Cheater","Aggresive"});
-		
-		GameModel gameModel= new GameModel(mapHierarchyModel, playerModels);
+		PlayerModel[] playerModels = newTournamentMenuScreen.initializingPlayerModels(2, mapHierarchyModel,
+				new String[] { "Cheater", "Aggresive" });
+
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		tournamentController.startTournament(gameModel);
 		System.out.println("jjjjjjjjj" + newTournamentMenuScreen.getResults().toString());
-		
+
 	}
 
 }

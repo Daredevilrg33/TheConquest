@@ -48,7 +48,10 @@ public class GameModel extends Observable implements Serializable {
 	/** The random generator. */
 	private Random randomGenerator;
 
+	/** The max number of turns allowed */
 	private int maxTurnsAllowed;
+
+	/** The boolean variable to check if turns finished. */
 	private boolean isMaxTurnUsed = false;
 
 	/**

@@ -40,7 +40,7 @@ public class FortificationWindowControllerTest {
 
 	/**
 	 * Fortification test checking values of two countries after transferring armies
-	 * from one country to another. INDIA-> Bhutan
+	 * from one country to another. INDIA to Bhutan
 	 */
 	@Test
 	public void fortificationTest() {

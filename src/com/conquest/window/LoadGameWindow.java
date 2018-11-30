@@ -117,7 +117,7 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	/**
 	 * redirectGameToGameWindow redirects game back to the game window
 	 * 
-	 * @param gameModel
+	 * @param gameModel model of game
 	 * @return isGameLoaded boolean
 	 */
 	public boolean redirectGameToGameWindow(GameModel gameModel) {
