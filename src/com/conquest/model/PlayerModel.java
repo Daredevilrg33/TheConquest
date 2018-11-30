@@ -246,52 +246,52 @@ public class PlayerModel extends Observable implements Serializable {
 	 * @return the country model
 	 */
 
-//	public void handInCards() {
-//		gameModel.setGameStatus("Cards HandIn");
-//		log.info("Cards HandIn");
-//		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
-//			if (cards[0] >= 3) {
-//				cards[0] = 0;
-//				for (int i = 0; i < 3; i++) {
-//					CardsModel card = new CardsModel("Infantry", 0);
-//					gameModel.getTotalCards().add(card);
-//				}
-//			}
-//			if (cards[1] >= 3) {
-//				cards[1] = 0;
-//				for (int i = 0; i < 3; i++) {
-//					CardsModel card = new CardsModel("Cavalry", 1);
-//					gameModel.getTotalCards().add(card);
-//				}
-//			}
-//			if (cards[2] >= 3) {
-//				cards[2] = 0;
-//				for (int i = 0; i < 3; i++) {
-//					CardsModel card = new CardsModel("Artillery", 2);
-//					gameModel.getTotalCards().add(card);
-//				}
-//			}
-//		} else {
-//			if (cards[0] >= 1) {
-//				cards[0]--;
-//				CardsModel card = new CardsModel("Infantry", 0);
-//				gameModel.getTotalCards().add(card);
-//			}
-//			if (cards[1] >= 1) {
-//				cards[1]--;
-//				CardsModel card = new CardsModel("Cavalry", 1);
-//				gameModel.getTotalCards().add(card);
-//			}
-//			if (cards[2] >= 1) {
-//				cards[2]--;
-//				CardsModel card = new CardsModel("Artillery", 2);
-//				gameModel.getTotalCards().add(card);
-//			}
-//		}
-//		gameModel.setHandInCounter(gameModel.getHandInCounter() + 1);
-//		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter() * 5);
-//		updateChanges();
-//	}
+	public void handInCards(GameModel gameModel) {
+		gameModel.setGameStatus("Cards HandIn");
+		LOG.info("Cards HandIn");
+		if (cards[0] >= 3 || cards[1] >= 3 || cards[2] >= 3) {
+			if (cards[0] >= 3) {
+				cards[0] = 0;
+				for (int i = 0; i < 3; i++) {
+					CardsModel card = new CardsModel("Infantry", 0);
+					gameModel.getTotalCards().add(card);
+				}
+			}
+			if (cards[1] >= 3) {
+				cards[1] = 0;
+				for (int i = 0; i < 3; i++) {
+					CardsModel card = new CardsModel("Cavalry", 1);
+					gameModel.getTotalCards().add(card);
+				}
+			}
+			if (cards[2] >= 3) {
+				cards[2] = 0;
+				for (int i = 0; i < 3; i++) {
+					CardsModel card = new CardsModel("Artillery", 2);
+					gameModel.getTotalCards().add(card);
+				}
+			}
+		} else {
+			if (cards[0] >= 1) {
+				cards[0]--;
+				CardsModel card = new CardsModel("Infantry", 0);
+				gameModel.getTotalCards().add(card);
+			}
+			if (cards[1] >= 1) {
+				cards[1]--;
+				CardsModel card = new CardsModel("Cavalry", 1);
+				gameModel.getTotalCards().add(card);
+			}
+			if (cards[2] >= 1) {
+				cards[2]--;
+				CardsModel card = new CardsModel("Artillery", 2);
+				gameModel.getTotalCards().add(card);
+			}
+		}
+		gameModel.setHandInCounter(gameModel.getHandInCounter() + 1);
+		gameModel.getCurrPlayer().addArmies(gameModel.getHandInCounter() * 5);
+		updateChanges();
+	}
 
 	/**
 	 * Search a country by the country Name.
