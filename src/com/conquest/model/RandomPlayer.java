@@ -144,7 +144,14 @@ public class RandomPlayer implements Serializable, Strategy {
 									}
 									sourceCountry.removeNoOfArmiesCountry();
 									targetCountry.addNoOfArmiesCountry();
+									
+									if(targetCountry.getOwner().getPlayerCountryList().size()==0)
+									{
+										playerModel.cardsTransfer(targetCountry.getOwner());
+									}
+									
 									playerModel.addCountry(targetCountry);
+									targetCountry.setOwner(playerModel);
 									playerModel.setHasWonTerritory(true);
 									if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
 										gameModel.setIsWon(true);

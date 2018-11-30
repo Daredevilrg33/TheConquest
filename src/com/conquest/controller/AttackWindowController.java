@@ -300,8 +300,13 @@ public class AttackWindowController {
 					}
 				}
 			}
-
+			if( defenderCountry.getOwner().getPlayerCountryList()!=null && defenderCountry.getOwner().getPlayerCountryList().size()==0)
+			{
+				attackPhaseWindow.getCurrentPlayer().cardsTransfer(defenderCountry.getOwner());
+			}
+			
 			attackPhaseWindow.getCurrentPlayer().addCountry(defenderCountry);
+			defenderCountry.setOwner(attackPhaseWindow.getCurrentPlayer());
 			attackPhaseWindow.getCurrentPlayer().setHasWonTerritory(true);
 			ArrayList<String> sourceCountryValues = new ArrayList<>();
 			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {

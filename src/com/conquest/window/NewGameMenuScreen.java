@@ -312,6 +312,7 @@ public class NewGameMenuScreen extends JFrame implements ActionListener {
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].addCountry(countryModelTest);
+						countryModelTest.setOwner(players[count1]);
 						countryModelTest.addNoOfArmiesCountry();
 						players[count1].reduceArmyInPlayer();
 

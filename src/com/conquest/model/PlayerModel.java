@@ -217,7 +217,7 @@ public class PlayerModel extends Observable implements Serializable {
 	 * @return cards
 	 */
 	public int getTotalCards() {
-		return cards[0] + cards[1] + cards[1];
+		return cards[0] + cards[1] + cards[2];
 	}
 
 	/**
@@ -322,15 +322,17 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
-	 * This method is to move armies from one country to another.
+	 * This method is to transfer cards of looser to attacker.
 	 *
-	 * @param sourceCountry the source country
-	 * @param destCountry   the destination country
-	 * @param armies        armies number
+	 * @param looser the looser player
 	 */
-	public void moveArmies(CountryModel sourceCountry, CountryModel destCountry, int armies) {
-		destCountry.setNoOfArmiesCountry(sourceCountry.getNoOfArmiesCountry() + armies);
-		sourceCountry.setNoOfArmiesCountry(destCountry.getNoOfArmiesCountry() - armies);
+	public void cardsTransfer(PlayerModel looser) {
+		if(looser.getCards()[0]!=0 )
+			this.getCards()[0]=this.getCards()[0]+looser.getCards()[0];
+		if(looser.getCards()[1]!=0 )
+			this.getCards()[1]=this.getCards()[1]+looser.getCards()[1];
+		if(looser.getCards()[2]!=0 )
+			this.getCards()[2]=this.getCards()[2]+looser.getCards()[2];
 	}
 
 	/**
