@@ -60,7 +60,6 @@ public class AggresivePlayer implements Strategy, Serializable {
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-	
 
 	}
 
@@ -133,6 +132,13 @@ public class AggresivePlayer implements Strategy, Serializable {
 							return;
 						}
 					}
+				} else {
+					System.out.println("Aggresive attack end player name " + playerModel.getPlayerName());
+					LOG.info("Aggresive attack end player name " + playerModel.getPlayerName());
+					gameModel.setGameStatus("Fortification Phase starts");
+					gameModel.setGamePhaseStage(3);
+					fortificationPhase(gameModel, playerModel);
+					return;
 				}
 
 			}
@@ -176,8 +182,8 @@ public class AggresivePlayer implements Strategy, Serializable {
 		for (String countryName : sourceCountry.getListOfNeighbours()) {
 			CountryModel country = playerModel.searchCountry(countryName);
 			if (country != null) {
-				int noOfArmies = country.getNoOfArmiesCountry();
-				while (noOfArmies > 1) {
+
+				while (country.getNoOfArmiesCountry() > 1) {
 					country.removeNoOfArmiesCountry();
 					sourceCountry.addNoOfArmiesCountry();
 				}

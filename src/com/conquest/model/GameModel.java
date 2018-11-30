@@ -285,6 +285,7 @@ public class GameModel extends Observable implements Serializable {
 			maxTurnsAllowed = maxTurnsAllowed - 1;
 			if (maxTurnsAllowed == 0) {
 				currPlayer = null;
+				updateChanges();
 				return;
 			}
 		}

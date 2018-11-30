@@ -420,7 +420,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 			for (int j = 0; j < noOfMaps; j++) {
 				MapHierarchyModel mapHierarchyModel = mapHierarchyModels[j];
 				for (int i = 0; i < noOfGames; i++) {
-					
+
 					PlayerModel[] playerModels = initializingPlayerModels(noOfPlayers, mapHierarchyModel,
 							comboSelectedPlayers);
 					System.out.println("Map Name: " + mapHierarchyModel.getConquestMapName());
@@ -602,6 +602,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 		GameModel gameModel = (GameModel) object;
 		System.out.println(
 				gameModel.getCurrPlayer().getPlayerName() + ": : " + gameModel.getCurrPlayer().getPlayerType());
+
 		if (gameModel.getIsWon() || gameModel.getMaxTurnsAllowed() == 0) {
 			System.out.println("Game WOn");
 			ArrayList<String> mapResults = results.get(gameModel.getMapHierarchyModel().getConquestMapName());
@@ -615,12 +616,29 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 			}
 			results.put(gameModel.getMapHierarchyModel().getConquestMapName(), mapResults);
 			gameNumber = gameNumber + 1;
-			int noOfTotalGames = noOfGamesToBePlayed - 1;
-			if (gameNumber >= noOfTotalGames) {
+
+			if (gameNumber >= noOfGamesToBePlayed) {
 				System.out.println("Results: " + results);
 			} else
 				tournamentObj.startTournament(gameModels.get(gameNumber));
+		} else if (gameModel.getGamePhaseStage() == 1) {
+
+			if (gameModel.getCurrPlayer() != null)
+				gameModel.getCurrPlayer().reinforcementPhase(gameModel);
+			else {
+				System.out.println("CurrentPlayer is Null");
+				System.out.println("Game Draw");
+
+			}
+
 		}
 
+	}
+
+	/**
+	 * @return the results
+	 */
+	public HashMap<String, ArrayList<String>> getResults() {
+		return results;
 	}
 }
