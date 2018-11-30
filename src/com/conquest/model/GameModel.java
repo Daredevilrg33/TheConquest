@@ -78,7 +78,9 @@ public class GameModel extends Observable implements Serializable {
 		for (int i = 0; i < mapHierarchyModel.totalCountries; i++) {
 			CardsModel card = new CardsModel(name, type);
 			totalCards.add(card);
-			name = names[j++];
+			j=++j;
+			name = names[j];
+			type = types[j];
 			if (j == 2) {
 				j = 0;
 			}
