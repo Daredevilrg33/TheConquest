@@ -1,6 +1,7 @@
 package com.conquest.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -249,4 +250,30 @@ public class AttackWindowControllerTest {
 
 	}
 	
-}
+	/**
+	 * Dice value check
+	 * 
+	 */
+
+	@Test
+	public void diceTest() {
+		String value=null;
+		MapHierarchyModel mapHierarchyModel = new MapHierarchyModel("Test", 4);
+		PlayerModel[] playerModels = new PlayerModel[2];
+		playerModels[0] = new PlayerModel("Player1", PlayerType.Human);
+		playerModels[0].setStrategy(new HumanPlayer());
+		playerModels[1] = new PlayerModel("Player2", PlayerType.Human);
+		playerModels[1].setStrategy(new HumanPlayer());
+
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
+
+		AttackWindowController attackWindowController= new AttackWindowController(attackPhaseWindow, gameModel);
+		if(attackWindowController.rollDice()>0 && attackWindowController.rollDice()<7)
+		{
+			 value="true";
+		}
+		
+		assertTrue(Boolean.valueOf(value));
+	}
+	}

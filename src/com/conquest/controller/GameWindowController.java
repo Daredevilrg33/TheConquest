@@ -125,7 +125,7 @@ public class GameWindowController {
 	/**
 	 * Method to save current game to disk.
 	 */
-	public boolean saveGame() {
+	public boolean saveGame(GameModel gameModel) {
 		boolean isGameSaved = false;
 		ObjectOutputStream output = null;
 		try {

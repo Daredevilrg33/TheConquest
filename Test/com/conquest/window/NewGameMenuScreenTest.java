@@ -162,8 +162,7 @@ public class NewGameMenuScreenTest {
 		newGame.isMapConnected(mapHierarchyModel);
 		System.out.println(mapHierarchyModel.getErrorMsg());
 		System.out.println(mapHierarchyModel.isValErrorFlag());
-//		assertEquals("false", String.valueOf(mapHierarchyModel.isValErrorFlag()));
-//		assertEquals("Map is invalid", mapHierarchyModel.getErrorMsg());
+		assertEquals("false", String.valueOf(mapHierarchyModel.isValErrorFlag()));
 
 
 	}

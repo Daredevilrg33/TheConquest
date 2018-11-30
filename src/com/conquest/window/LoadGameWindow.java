@@ -118,7 +118,7 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	 * @param loadGameModel
 	 * @return
 	 */
-	private boolean redirectGameToGameWindow(GameModel gameModel) {
+	public boolean redirectGameToGameWindow(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		boolean isGameLoaded = true;
 		if (gameModel == null)

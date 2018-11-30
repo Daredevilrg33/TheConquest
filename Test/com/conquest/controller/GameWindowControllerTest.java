@@ -215,5 +215,24 @@ public class GameWindowControllerTest {
 		assertEquals(26, playerModels[0].getnoOfArmyInPlayer());
 		assertEquals(28, playerModels[1].getnoOfArmyInPlayer());
 	}
+	
+	/**
+	 * save test check.
+	 */
+	@Test
+	public void saveTest() {
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(ASIA_MAP_FILE_PATH);
+		NewGameMenuScreen newGameMenuScreen = new NewGameMenuScreen();
+		String[] playerTypes = new String[] { "Human", "Human", "Human" };
 
+		PlayerModel[] playerModels = newGameMenuScreen.initializingPlayerModels(3, mapHierarchyModel, playerTypes);
+		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+		gameWindow = new GameWindow(gameModel);
+		GameWindowController gameWindowController= new GameWindowController(gameWindow, gameModel);
+		System.out.println(gameWindowController.saveGame(gameModel));
+		assertEquals("true",String.valueOf(gameWindowController.saveGame(gameModel)));
+		
+	}
+	
+	
 }

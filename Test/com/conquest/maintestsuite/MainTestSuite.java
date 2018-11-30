@@ -8,13 +8,14 @@ import com.conquest.controller.GameWindowControllerTest;
 import com.conquest.mapdeditor.modeltest.ModelTestSuite;
 import com.conquest.utilities.UtilityTest;
 import com.conquest.window.NewGameMenuScreenTest;
+import com.conquest.window.WindowTestSuite;
 
 /**
  * The Class MainTestSuite.
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ ModelTestSuite.class, UtilityTest.class,
-		NewGameMenuScreenTest.class,ControllerTestSuite.class })
+		WindowTestSuite.class,ControllerTestSuite.class })
 public class MainTestSuite {
 
 }
