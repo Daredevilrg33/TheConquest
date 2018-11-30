@@ -1,0 +1,762 @@
+2018-11-30 02:55:35,639  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 02:55:38,077  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 02:58:34,496  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 03:17:25,705  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 03:17:35,093  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:35,265  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:35,437  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:35,609  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:35,765  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:35,937  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,093  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,251  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,422  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,594  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,766  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 03:17:36,782  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 03:17:36,782  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 03:17:36,782  INFO [AWT-EventQueue-0] - CheaterPlayer:40 - Cheater reinforcement start player name Player1
+2018-11-30 03:17:36,782  INFO [AWT-EventQueue-0] - CheaterPlayer:98 - Cheater attack start player name Player1
+2018-11-30 03:17:48,037  INFO [AWT-EventQueue-0] - CheaterPlayer:66 - Cheater fortification start player name Player1
+2018-11-30 03:17:48,052  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 03:17:48,052  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 03:17:48,052  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 03:17:48,052  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 03:17:48,069  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 03:17:48,085  INFO [AWT-EventQueue-0] - CheaterPlayer:84 - Cheater fortification end player name Player1
+2018-11-30 03:17:48,085  INFO [AWT-EventQueue-0] - CheaterPlayer:130 - Cheater attack end player name Player1
+2018-11-30 03:17:48,085  INFO [AWT-EventQueue-0] - CheaterPlayer:51 - Cheater reinforcement end player name Player1
+2018-11-30 03:17:52,982  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:17:53,373  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:17:53,732  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:17:53,732  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 03:17:53,732  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 03:17:55,407  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 03:17:55,423  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player3
+2018-11-30 03:17:56,112  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 03:17:56,112  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 03:17:56,127  INFO [AWT-EventQueue-0] - CheaterPlayer:40 - Cheater reinforcement start player name Player1
+2018-11-30 03:17:56,127  INFO [AWT-EventQueue-0] - CheaterPlayer:98 - Cheater attack start player name Player1
+2018-11-30 03:17:58,394  INFO [AWT-EventQueue-0] - CheaterPlayer:51 - Cheater reinforcement end player name Player1
+2018-11-30 03:18:03,632  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:03,851  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:04,054  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:04,242  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:04,429  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:04,851  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:05,023  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:06,850  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:07,006  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:20,008  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:20,431  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:20,665  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 03:18:21,118  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 04:03:45,544  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:04:33,268  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:05:20,117  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:06:58,480  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:09:14,914  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:13:52,196  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:15:53,892  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:17:02,576  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:19:25,767  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:19:47,818  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:28:17,491  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:31:21,183  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:37:45,649  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:37:56,751  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 04:37:56,751  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 04:38:33,583  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:43:23,351  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:54:45,583  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:59:09,060  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 04:59:12,220  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 04:59:38,116  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 04:59:38,116  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 04:59:55,540  INFO [SwingWorker-pool-2-thread-2] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 04:59:55,540  INFO [SwingWorker-pool-2-thread-2] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:00:16,785  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:00:35,617  INFO [SwingWorker-pool-2-thread-3] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:00:35,617  INFO [SwingWorker-pool-2-thread-3] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:03:35,742  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:03:54,638  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:03:54,638  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:06:09,228  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:06:14,967  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:06:21,879  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:06:21,879  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:07:18,465  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:07:27,561  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:07:27,561  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:19:12,802  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:20:47,109  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:21:04,877  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:21:04,877  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:23:10,262  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:29:43,712  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:30:02,040  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 05:30:02,040  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:33:51,873  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:36:38,799  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:38:23,756  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 05:38:23,756  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:38:23,756  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 05:38:23,756  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 05:38:24,062  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:166 - Aggresive fortification start player name Player2
+2018-11-30 05:42:08,961  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:42:24,520  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 05:42:24,520  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:42:24,520  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 05:42:24,520  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 05:42:24,817  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:166 - Aggresive fortification start player name Player2
+2018-11-30 05:42:24,817  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:184 - Aggresive fortification end player name Player2
+2018-11-30 05:42:24,817  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:62 - Aggresive reinforcement end player name Player2
+2018-11-30 05:48:13,795  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 05:48:34,595  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 05:48:34,595  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 05:48:34,595  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 05:48:34,595  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 05:48:34,878  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:166 - Aggresive fortification start player name Player2
+2018-11-30 05:48:34,878  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:184 - Aggresive fortification end player name Player2
+2018-11-30 05:48:34,878  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:62 - Aggresive reinforcement end player name Player2
+2018-11-30 05:58:26,891  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 06:00:13,218  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:00:13,218  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:00:13,218  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 06:00:13,454  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 06:01:09,474  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:66 - Cheater fortification start player name Player2
+2018-11-30 06:01:28,283  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:84 - Cheater fortification end player name Player2
+2018-11-30 06:01:28,283  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:130 - Cheater attack end player name Player2
+2018-11-30 06:01:28,283  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 06:04:19,192  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 06:04:27,465  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:27,668  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:27,824  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:27,982  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,138  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,279  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,419  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,560  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,716  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:28,857  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:29,013  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:04:29,013  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:04:29,013  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:04:29,013  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:04:29,030  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 06:04:29,328  INFO [AWT-EventQueue-0] - CheaterPlayer:66 - Cheater fortification start player name Player2
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - CheaterPlayer:84 - Cheater fortification end player name Player2
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - CheaterPlayer:130 - Cheater attack end player name Player2
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:04:29,344  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:04:29,360  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:04:29,453  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:04:31,479  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:04:31,480  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:04:31,482  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:04:48,123  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:04:48,139  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:04:48,155  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player3
+2018-11-30 06:04:51,063  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:04:51,063  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:04:51,078  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:04:51,078  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:04:51,078  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:04:51,095  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:04:51,095  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:04:51,095  INFO [AWT-EventQueue-0] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 06:04:51,095  INFO [AWT-EventQueue-0] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 06:04:53,627  INFO [AWT-EventQueue-0] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 06:04:53,627  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:04:53,627  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:05:08,363  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:08,520  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:08,676  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:08,817  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:08,989  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,114  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,285  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,473  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,645  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,801  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,956  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:05:09,971  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:05:09,971  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:09,971  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:05:09,971  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:05:09,971  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:05:09,987  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:05:09,988  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:05:09,990  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:05:10,116  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:10,277  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:11,516  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:12,079  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:12,079  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:05:12,079  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:05:20,288  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:0
+2018-11-30 06:05:24,352  INFO [AWT-EventQueue-0] - PlayerModel:419 - Assigning one card
+2018-11-30 06:05:24,352  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:05:24,368  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player3
+2018-11-30 06:05:26,071  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:05:26,071  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:05:26,088  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:05:26,104  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:05:27,840  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:28,006  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:28,162  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:28,335  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:05:28,335  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:05:28,335  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:05:38,649  INFO [AWT-EventQueue-0] - AttackWindowController:156 - All out Attack starts
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:1
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:3
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:5
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:2
+2018-11-30 06:05:38,665  INFO [AWT-EventQueue-0] - AttackWindowController:113 - Roll Dice starts 
+ Number:4
+2018-11-30 06:07:55,998  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 06:08:07,896  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,162  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,334  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,506  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,662  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,818  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:08,990  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:09,162  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:09,335  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:09,523  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:10,023  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:08:10,038  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:08:10,039  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:08:10,042  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:08:10,045  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:08:10,331  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:08:10,346  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:08:10,346  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:08:10,346  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:08:10,346  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:08:10,346  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:08:10,362  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:08:10,659  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:08:11,176  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:08:11,504  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:08:12,239  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:08:12,239  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:08:12,239  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:08:20,905  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:08:33,773  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:08:33,773  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:08:33,773  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:08:33,773  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:08:33,773  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:08:44,838  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:08:44,838  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:08:44,838  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:08:44,838  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:08:44,838  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:08:58,020  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:08:58,020  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:08:58,020  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:08:58,020  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:08:58,020  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:09:08,098  INFO [AWT-EventQueue-0] - PlayerModel:419 - Assigning one card
+2018-11-30 06:09:08,098  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:09:08,114  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player3
+2018-11-30 06:09:08,883  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:09:08,883  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:09:08,883  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:09:08,898  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:09:08,898  INFO [AWT-EventQueue-0] - AggresivePlayer:134 - Aggresive attack end player name Player1
+2018-11-30 06:09:08,898  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:09:10,701  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:10,701  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:09:10,701  INFO [AWT-EventQueue-0] - AggresivePlayer:134 - Aggresive attack end player name Player1
+2018-11-30 06:09:10,701  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:09:10,860  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:10,860  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:09:10,860  INFO [AWT-EventQueue-0] - AggresivePlayer:134 - Aggresive attack end player name Player1
+2018-11-30 06:09:10,860  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:09:17,645  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:17,645  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:09:17,645  INFO [AWT-EventQueue-0] - AggresivePlayer:134 - Aggresive attack end player name Player1
+2018-11-30 06:09:17,645  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:09:23,331  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:23,331  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:09:23,331  INFO [AWT-EventQueue-0] - AggresivePlayer:134 - Aggresive attack end player name Player1
+2018-11-30 06:09:23,331  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - PlayerModel:419 - Assigning one card
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:09:31,142  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:09:31,159  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:09:42,231  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:42,600  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:42,897  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:43,951  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:44,310  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:09:44,310  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:09:44,310  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:09:58,283  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 06:10:07,868  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,055  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,244  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,400  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,556  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,712  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:08,869  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:09,009  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:09,181  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:09,353  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:09,697  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:10:09,697  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:10:09,697  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:10:09,697  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:10:09,697  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - CheaterPlayer:66 - Cheater fortification start player name Player2
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:10:09,714  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - CheaterPlayer:84 - Cheater fortification end player name Player2
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - CheaterPlayer:130 - Cheater attack end player name Player2
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:10:09,729  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:10:13,950  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:10:14,341  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:10:14,747  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:10:14,747  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:10:14,747  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:10:19,279  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:11:01,018  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:01,284  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:01,487  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:01,710  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:01,920  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:02,103  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:02,276  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:02,454  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:02,611  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:03,002  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:03,411  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:11:03,427  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:11:04,867  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:05,258  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:05,572  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:06,041  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:06,041  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:11:06,041  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:11:12,061  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 06:11:18,174  INFO [AWT-EventQueue-0] - AttackWindowController:155 - All out Attack starts
+2018-11-30 06:11:18,174  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 06:11:18,174  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 06:11:18,174  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:11:18,174  INFO [AWT-EventQueue-0] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 06:11:20,018  INFO [AWT-EventQueue-0] - PlayerModel:419 - Assigning one card
+2018-11-30 06:11:20,018  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:11:20,033  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player3
+2018-11-30 06:11:21,650  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:11:21,650  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:21,650  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player1
+2018-11-30 06:11:21,650  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player1
+2018-11-30 06:11:21,650  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player1
+2018-11-30 06:11:21,665  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player3
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player2
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player1
+2018-11-30 06:11:21,666  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player1
+2018-11-30 06:11:45,671  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:45,948  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:46,557  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:47,212  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:47,782  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:11:47,782  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player3
+2018-11-30 06:11:47,782  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:12:03,059  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,246  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,387  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,527  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,668  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,824  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:03,982  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:04,138  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:04,872  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:09,458  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:10,616  INFO [AWT-EventQueue-0] - GameWindowController:92 - Placing Initial Armies
+2018-11-30 06:12:10,616  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:12:10,616  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:10,616  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player1
+2018-11-30 06:12:11,870  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:12,105  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:12,511  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:13,044  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:13,044  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player1
+2018-11-30 06:12:13,044  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:12:14,530  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:12:14,546  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player1
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player2
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:15,361  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player1
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player3
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player2
+2018-11-30 06:12:15,376  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player2
+2018-11-30 06:12:30,590  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:30,778  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:30,982  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:31,154  INFO [AWT-EventQueue-0] - GameWindowController:109 - Placing Reinforced Armie
+2018-11-30 06:12:31,154  INFO [AWT-EventQueue-0] - HumanPlayer:66 - Human attack player name Player1
+2018-11-30 06:12:31,154  INFO [AWT-EventQueue-0] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 06:12:34,982  INFO [AWT-EventQueue-0] - FortificationWindow:91 - Fortification Phase starts
+2018-11-30 06:12:34,998  INFO [AWT-EventQueue-0] - HumanPlayer:52 - Human fortification player name Player1
+2018-11-30 06:12:36,062  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:12:36,062  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:36,062  INFO [AWT-EventQueue-0] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 06:12:36,062  INFO [AWT-EventQueue-0] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 06:12:36,062  INFO [AWT-EventQueue-0] - AggresivePlayer:166 - Aggresive fortification start player name Player2
+2018-11-30 06:12:36,077  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer3
+2018-11-30 06:12:36,077  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:36 - Benevolent reinforcement start player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:103 - Benevolent attack start player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:71 - Benevolent fortification start player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer1
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - HumanPlayer:36 - Human reinforcement player name Player1
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:89 - Benevolent fortification end player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:114 - Benevolent attack end player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - BenevolentPlayer:55 - Benevolent reinforcement end player name Player3
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - AggresivePlayer:183 - Aggresive fortification end player name Player2
+2018-11-30 06:12:36,078  INFO [AWT-EventQueue-0] - AggresivePlayer:62 - Aggresive reinforcement end player name Player2
+2018-11-30 06:13:09,262  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 06:13:29,976  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:478 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 06:13:29,976  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:373 - Calculating and Adding Reinforcement Armies
+2018-11-30 06:13:29,976  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 06:13:29,976  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 06:13:29,976  INFO [SwingWorker-pool-2-thread-1] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 09:10:37,662  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 09:11:14,484  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 09:11:14,484  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:11:14,485  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 09:11:14,485  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 09:11:14,792  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:173 - Aggresive fortification start player name Player2
+2018-11-30 09:13:42,064  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 09:14:06,135  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 09:14:06,135  INFO [SwingWorker-pool-2-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:14:06,135  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 09:14:06,135  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 09:14:06,419  INFO [SwingWorker-pool-2-thread-1] - AggresivePlayer:173 - Aggresive fortification start player name Player2
+2018-11-30 09:14:24,136  INFO [AWT-EventQueue-0] - MainMenuScreen:107 - New Tournament started
+2018-11-30 09:14:42,392  INFO [SwingWorker-pool-2-thread-2] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 09:14:42,392  INFO [SwingWorker-pool-2-thread-2] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:14:42,392  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
+2018-11-30 09:14:42,393  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:98 - Cheater attack start player name Player2
+2018-11-30 09:14:42,394  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:66 - Cheater fortification start player name Player2
+2018-11-30 09:14:42,396  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:84 - Cheater fortification end player name Player2
+2018-11-30 09:14:42,396  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:130 - Cheater attack end player name Player2
+2018-11-30 09:14:42,396  INFO [SwingWorker-pool-2-thread-2] - CheaterPlayer:51 - Cheater reinforcement end player name Player2
+2018-11-30 09:19:24,159  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,274  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,286  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,515  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 09:19:24,516  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:0
+2018-11-30 09:19:24,517  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,853  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,863  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,875  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:19:24,887  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 09:19:24,887  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:19:24,888  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:00,703  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:00,762  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:00,776  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:00,957  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:30:00,957  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:30:00,958  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:01,236  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:01,245  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:01,253  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:01,261  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:30:01,261  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 09:30:01,262  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:04,426  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:04,441  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:04,441  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:04,501  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:04,502  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:04,513  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:04,533  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:04,548  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:04,561  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:30:04,562  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:30:04,563  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:30:06,570  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:06,584  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:06,584  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:06,626  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:06,626  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:07,862  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:07,871  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:07,872  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:07,906  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:30:07,906  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:45,663  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:45,765  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:45,783  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:46,031  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 09:34:46,032  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:2
+2018-11-30 09:34:46,033  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,089  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,166  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,179  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,410  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 09:34:54,410  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:34:54,411  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,701  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,709  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,721  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:54,729  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 09:34:54,729  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 09:34:54,730  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:59,123  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:59,142  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:59,142  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:59,207  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:59,208  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:34:59,214  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:59,224  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:59,237  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:34:59,250  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:1
+2018-11-30 09:34:59,250  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:5
+2018-11-30 09:34:59,251  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:35:01,126  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:01,143  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:01,143  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:01,219  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:01,219  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:02,603  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:02,612  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:02,613  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:02,651  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:35:02,651  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies

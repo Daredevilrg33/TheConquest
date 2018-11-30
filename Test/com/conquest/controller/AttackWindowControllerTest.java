@@ -88,9 +88,15 @@ public class AttackWindowControllerTest {
 		playerModels[0] = new PlayerModel("Player1", PlayerType.Human);
 		playerModels[0].setStrategy(new HumanPlayer());
 		playerModels[0].setPlayerCountryList(countryModelArrayList);
+		for (CountryModel country : countryModelArrayList)
+			country.setOwner(playerModels[0]);
+
 		playerModels[1] = new PlayerModel("Player2", PlayerType.Human);
 		playerModels[1].setStrategy(new HumanPlayer());
 		playerModels[1].setPlayerCountryList(countryModelArrayList1);
+		for (CountryModel country : countryModelArrayList1)
+			country.setOwner(playerModels[1]);
+
 		GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
 		AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
 
