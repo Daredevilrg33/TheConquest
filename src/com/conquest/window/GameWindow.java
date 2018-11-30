@@ -438,7 +438,7 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			updateGameInformation();
 			break;
 		case "HandIn the cards":
-//			this.gameModel.getCurrPlayer().handInCards();
+			this.gameModel.getCurrPlayer().handInCards(this.gameModel);
 			break;
 		case "Save Game":
 			gameWindowController.saveGame();
