@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -24,7 +27,6 @@ import com.conquest.model.AggresivePlayer;
 import com.conquest.model.BenevolentPlayer;
 import com.conquest.model.CheaterPlayer;
 import com.conquest.model.GameModel;
-import com.conquest.model.HumanPlayer;
 import com.conquest.model.PlayerModel;
 import com.conquest.model.PlayerType;
 import com.conquest.model.RandomPlayer;
@@ -33,7 +35,7 @@ import com.conquest.utilities.Utility;
 /**
  * The Class NewTournamentMenuScreen.
  */
-public class NewTournamentMenuScreen extends JFrame implements ActionListener {
+public class NewTournamentMenuScreen extends JFrame implements ActionListener, Observer {
 
 	/** The combo box number of maps. */
 	private JComboBox<String> comboBoxNumberOfMaps;
@@ -84,7 +86,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	private String[] playersList = new String[] { "2", "3", "4" };
 
 	/** The behaviour list. */
-	private String[] behaviourList = new String[] { "Agressive", "Benevolent", "Random", "Cheater" };
+	private String[] behaviourList = new String[] { "Aggresive", "Benevolent", "Random", "Cheater" };
 
 	/** The no of game list. */
 	private String[] noOfGameList = new String[] { "1", "2", "3", "4", "5" };
@@ -103,14 +105,17 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 	private MapHierarchyModel[] mapHierarchyModels = new MapHierarchyModel[5];
 
-	private GameModel[] gameModels= new GameModel[5];
-	private int noOfMaps;
+	private List<GameModel> gameModels;
+	private int noOfMaps = 1;
+	private HashMap<String, ArrayList<String>> results = new HashMap<>();
+	private static int gameNumber = 0;
+	private int noOfGamesToBePlayed = 0;
 
 	/**
 	 * Instantiates a new new tournament menu screen.
 	 */
 	public NewTournamentMenuScreen() {
-
+		gameModels = new ArrayList<>();
 		JLabel labelSelectNoOfMap = new JLabel();
 		labelSelectNoOfMap.setText("Select Number of Map:");
 		labelSelectNoOfMap.setBounds(70, 50, 130, 30);
@@ -285,7 +290,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		boolean isConnected = true;
 		for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
 			List<CountryModel> countryList = continentModel.getCountriesList();
-			dfsUsingStackContinent(continentModel, mapHierarchyModel.getCountryList().get(1));
+			dfsUsingStackContinent(continentModel, continentModel.getCountriesList().get(1));
 			for (CountryModel countryModel : continentModel.getCountriesList()) {
 				if (countryModel.isVisited())
 					countryModel.setVisited(false);
@@ -309,13 +314,12 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 	 * @param continentModel the continent model
 	 * @param countryModel   the country model
 	 */
-	public void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
+	private void dfsUsingStackContinent(ContinentModel continentModel, CountryModel countryModel) {
 		Stack<CountryModel> stack = new Stack<CountryModel>();
 		stack.add(countryModel);
 		countryModel.setVisited(true);
 		while (!stack.isEmpty()) {
 			CountryModel element = stack.pop();
-			System.out.println("DFS CountryName: " + element.getCountryName() + " ");
 			List<String> neigbourNames = element.getListOfNeighbours();
 			List<CountryModel> neighbours = new ArrayList<>();
 
@@ -346,15 +350,11 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 			String mapSelection = (String) comboBoxNumberOfMaps.getSelectedItem();
 			noOfMaps = Integer.valueOf(mapSelection);
 			showMapOptionAsPerSelection(mapSelection);
-
 		}
-
 		if (event.getSource() == comboBoxSelectNoOfPlayer) {
 			System.out.println("Playes : " + (String) comboBoxSelectNoOfPlayer.getSelectedItem());
 			showPlayerOptionAsPerNoOfPlayers((String) comboBoxSelectNoOfPlayer.getSelectedItem());
-
 		}
-
 		if ((event.getSource() == chooseMapOne)) {
 			mapFilePath[0] = Utility.pickFile();
 			String pattern = Pattern.quote(System.getProperty("file.separator"));
@@ -366,21 +366,18 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 			String pattern = Pattern.quote(System.getProperty("file.separator"));
 			String[] splitFilePath = mapFilePath[1].split(pattern);
 			mapFileName[1] = splitFilePath[splitFilePath.length - 1];
-
 		}
 		if ((event.getSource() == chooseMapThree)) {
 			mapFilePath[2] = Utility.pickFile();
 			String pattern = Pattern.quote(System.getProperty("file.separator"));
 			String[] splitFilePath = mapFilePath[2].split(pattern);
 			mapFileName[2] = splitFilePath[splitFilePath.length - 1];
-
 		}
 		if ((event.getSource() == chooseMapFour)) {
 			mapFilePath[3] = Utility.pickFile();
 			String pattern = Pattern.quote(System.getProperty("file.separator"));
 			String[] splitFilePath = mapFilePath[3].split(pattern);
 			mapFileName[3] = splitFilePath[splitFilePath.length - 1];
-
 		}
 		if ((event.getSource() == chooseMapFive)) {
 			mapFilePath[4] = Utility.pickFile();
@@ -390,30 +387,52 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 		}
 		if ((event.getSource() == startTournament)) {
 			for (int i = 0; i < noOfMaps; i++) {
-				mapHierarchyModels[i] = checkMapIsValid(mapFileName[i], mapFilePath[i]);
+				MapHierarchyModel mapHierarchyModel = checkMapIsValid(mapFileName[i], mapFilePath[i]);
+				if (mapHierarchyModel != null)
+					mapHierarchyModels[i] = mapHierarchyModel;
+				else {
+					System.out.println("Unable to create Map Hierarchy Model");
+					return;
+				}
+
 			}
 			int noOfPlayers = Integer.parseInt((String) comboBoxSelectNoOfPlayer.getSelectedItem());
 			int noOfGames = Integer.parseInt((String) comboBoxNumberOfGames.getSelectedItem());
 			int noOfTurns = Integer.parseInt((String) comboBoxNumberOfTurns.getSelectedItem());
 			String[] comboSelectedPlayers = new String[noOfPlayers];
-			if (noOfPlayers >= 3) {
+			if (noOfPlayers >= 2) {
 				comboSelectedPlayers[0] = (String) comboBoxPlayer1.getSelectedItem();
 				comboSelectedPlayers[1] = (String) comboBoxPlayer2.getSelectedItem();
+			}
+			if (noOfPlayers >= 3) {
 				comboSelectedPlayers[2] = (String) comboBoxPlayer3.getSelectedItem();
 			}
-			if (noOfPlayers >= 4) {
+			if (noOfPlayers == 4) {
 				comboSelectedPlayers[3] = (String) comboBoxPlayer4.getSelectedItem();
 			}
-			for(int i=0;i<noOfMaps;i++)
-			{
-				PlayerModel[] playerModels = initializingPlayerModels(noOfPlayers, mapHierarchyModels[i],
-						comboSelectedPlayers);
-				gameModels[i] = new GameModel(mapHierarchyModels[i], playerModels);
+			noOfGamesToBePlayed = noOfMaps * noOfGames;
+			gameNumber = 0;
+			for (int i = 0; i < noOfMaps; i++) {
+				MapHierarchyModel mapHierarchyModel = mapHierarchyModels[i];
+				System.out.println("Map Name for Results : " + mapHierarchyModel.getConquestMapName());
+				results.put(mapHierarchyModel.getConquestMapName(), new ArrayList<String>());
 			}
-			
-			tournamentObj = new TournamentController(gameModels, noOfMaps, noOfGames, noOfTurns);
-			tournamentObj.startTournament();
+			for (int j = 0; j < noOfMaps; j++) {
+				MapHierarchyModel mapHierarchyModel = mapHierarchyModels[j];
+				for (int i = 0; i < noOfGames; i++) {
+					
+					PlayerModel[] playerModels = initializingPlayerModels(noOfPlayers, mapHierarchyModel,
+							comboSelectedPlayers);
+					System.out.println("Map Name: " + mapHierarchyModel.getConquestMapName());
+					GameModel gameModel = new GameModel(mapHierarchyModel, playerModels);
+					gameModel.setMaxTurnsAllowed(noOfTurns);
+					gameModel.addObserver(NewTournamentMenuScreen.this);
+					gameModels.add(gameModel);
+				}
+			}
 
+			tournamentObj = new TournamentController(noOfMaps, noOfGames, noOfTurns);
+			tournamentObj.startTournament(gameModels.get(gameNumber));
 		}
 	}
 
@@ -486,15 +505,12 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 	public PlayerModel[] initializingPlayerModels(int noOfPlayers, MapHierarchyModel mapHierarchyModel,
 			String[] comboSelectedPlayers) {
-
 		PlayerModel[] players = new PlayerModel[noOfPlayers];
-
 		ContinentModel[] continents = new ContinentModel[mapHierarchyModel.getContinentsList().size()];
 		PlayerType[] playerTypes = Utility.getPlayerTypeFromDropDown(noOfPlayers, comboSelectedPlayers);
 		for (int j = 0; j < noOfPlayers; j++) {
 			int value = j + 1;
 			players[j] = new PlayerModel("Player" + String.valueOf(value), playerTypes[j]);
-
 			if (playerTypes[j] == PlayerType.Aggresive)
 				players[j].setStrategy(new AggresivePlayer());
 			else if (playerTypes[j] == PlayerType.Benevolent)
@@ -534,9 +550,9 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 					CountryModel countryModelTest = countryModelList.get(pickedNumber);
 					if (countryModelTest != null) {
 						players[count1].addCountry(countryModelTest);
+						countryModelTest.setOwner(players[count1]);
 						countryModelTest.addNoOfArmiesCountry();
 						players[count1].reduceArmyInPlayer();
-
 					}
 					System.out.println(countryModelList.get(pickedNumber).getCountryName());
 					countryModelList.remove(pickedNumber);
@@ -551,20 +567,18 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 
 		if (fileName == null || fileName.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Select Map to continue.", "Error Message", JOptionPane.ERROR_MESSAGE);
+			return mapHierarchyModel;
 		} else {
-
 			Utility utility = new Utility();
 			mapHierarchyModel = utility.parseAndValidateMap(filePath);
 			mapHierarchyModel.setConquestMapName(fileName);
 			if (!mapHierarchyModel.isValErrorFlag()) {
 				boolean isConnected = isMapConnected(mapHierarchyModel);
 				System.out.println("Map Is Connected: " + isConnected);
-
 			}
 			if (!mapHierarchyModel.isValErrorFlag()) {
 				boolean isConnected = isContinentConnected(mapHierarchyModel);
 				System.out.println("Continent Is Connected: " + isConnected);
-
 			}
 			// Initializing player Models and Redirecting to Game Window.
 			if (!mapHierarchyModel.isValErrorFlag()) {
@@ -574,8 +588,39 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, valErrorMsg, "Error Message", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-
 		return mapHierarchyModel;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable object, Object arg) {
+		// TODO Auto-generated method stub
+		GameModel gameModel = (GameModel) object;
+		System.out.println(
+				gameModel.getCurrPlayer().getPlayerName() + ": : " + gameModel.getCurrPlayer().getPlayerType());
+		if (gameModel.getIsWon() || gameModel.getMaxTurnsAllowed() == 0) {
+			System.out.println("Game WOn");
+			ArrayList<String> mapResults = results.get(gameModel.getMapHierarchyModel().getConquestMapName());
+			if (gameModel.getIsWon()) {
+				System.out.println("Game WOn" + gameModel.getCurrPlayer().getPlayerType().toString());
+				mapResults.add(gameModel.getCurrPlayer().getPlayerType().toString());
+			} else {
+				System.out.println("Game Draw");
+
+				mapResults.add("Draw");
+			}
+			results.put(gameModel.getMapHierarchyModel().getConquestMapName(), mapResults);
+			gameNumber = gameNumber + 1;
+			int noOfTotalGames = noOfGamesToBePlayed - 1;
+			if (gameNumber >= noOfTotalGames) {
+				System.out.println("Results: " + results);
+			} else
+				tournamentObj.startTournament(gameModels.get(gameNumber));
+		}
 
 	}
 }

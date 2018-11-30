@@ -48,11 +48,11 @@ public class RandomPlayer implements Serializable, Strategy {
 			countryModel.addNoOfArmiesCountry();
 			playerModel.reduceArmyInPlayer();
 		}
+		System.out.println("Random reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Random reinforcement end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Random reinforcement end player name " + playerModel.getPlayerName());
-		LOG.info("Random reinforcement end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -97,12 +97,13 @@ public class RandomPlayer implements Serializable, Strategy {
 
 			}
 		}
+		System.out.println("Random fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Random fortification end player name " + playerModel.getPlayerName());
+
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Random fortification end player name " + playerModel.getPlayerName());
-		LOG.info("Random fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -144,12 +145,11 @@ public class RandomPlayer implements Serializable, Strategy {
 									}
 									sourceCountry.removeNoOfArmiesCountry();
 									targetCountry.addNoOfArmiesCountry();
-									
-									if(targetCountry.getOwner().getPlayerCountryList().size()==0)
-									{
+
+									if (targetCountry.getOwner().getPlayerCountryList().size() == 0) {
 										playerModel.cardsTransfer(targetCountry.getOwner());
 									}
-									
+
 									playerModel.addCountry(targetCountry);
 									targetCountry.setOwner(playerModel);
 									playerModel.setHasWonTerritory(true);
@@ -168,12 +168,11 @@ public class RandomPlayer implements Serializable, Strategy {
 			} else
 				break;
 		}
-
+		System.out.println("Random attack end player name " + playerModel.getPlayerName());
+		LOG.info("Random attack end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("Random attack end player name " + playerModel.getPlayerName());
-		LOG.info("Random attack end player name " + playerModel.getPlayerName());
 
 	}
 

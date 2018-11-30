@@ -33,11 +33,10 @@ public class AttackWindowController {
 
 	/** The game model. */
 	private GameModel gameModel;
-	 
 
 	/** The Constant log. */
 	private static final Logger LOG = Logger.getLogger(AttackWindowController.class);
-	
+
 	/**
 	 * Instantiates a new attack window controller.
 	 *
@@ -110,7 +109,7 @@ public class AttackWindowController {
 		SecureRandom number = new SecureRandom();
 		pickedNumber = number.nextInt(6);
 		System.out.println("Roll Dice Value: " + pickedNumber);
-	      LOG.info("Roll Dice starts \n Number:"+pickedNumber);
+		LOG.info("Roll Dice starts \n Number:" + pickedNumber);
 
 		return pickedNumber + 1;
 	}
@@ -310,8 +309,10 @@ public class AttackWindowController {
 			attackPhaseWindow.getCurrentPlayer().setHasWonTerritory(true);
 			ArrayList<String> sourceCountryValues = new ArrayList<>();
 			for (CountryModel countryModel : attackPhaseWindow.getCurrentPlayer().getPlayerCountryList()) {
-				sourceCountryValues.add(countryModel.getCountryName());
+				if (countryModel.getNoOfArmiesCountry() > 1)
+					sourceCountryValues.add(countryModel.getCountryName());
 			}
+
 			attackPhaseWindow.updateComboBoxSourceCountries(sourceCountryValues);
 			if (showArmyPopup)
 				attackPhaseWindow.showMoveArmyPopup(1, attackerCountry.getNoOfArmiesCountry() - 1, attackerCountry,

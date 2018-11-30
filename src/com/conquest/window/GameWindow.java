@@ -557,7 +557,8 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			currentPlayer.assignInitialArmyToCountry(gameModel);
 		} else if (gameModel.getGamePhaseStage() == 1) {
 			gameWindowController.isControlValueTobeAdded(gameModel.getMapHierarchyModel(), gameModel.getCurrPlayer());
-			currentPlayer.reinforcementPhase(gameModel);
+			if (currentPlayer != null)
+				currentPlayer.reinforcementPhase(gameModel);
 		}
 
 		if (currentPlayer.getPlayerType() == PlayerType.Human) {

@@ -48,11 +48,11 @@ public class BenevolentPlayer implements Serializable, Strategy {
 			playerModel.reduceArmyInPlayer();
 
 		}
+		System.out.println("Benevolent reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent reinforcement end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Benevolent reinforcement end player name " + playerModel.getPlayerName());
-		LOG.info("Benevolent reinforcement end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -81,12 +81,12 @@ public class BenevolentPlayer implements Serializable, Strategy {
 			}
 		}
 
+		System.out.println("Benevolent fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent fortification end player name " + playerModel.getPlayerName());
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Benevolent fortification end player name " + playerModel.getPlayerName());
-		LOG.info("Benevolent fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -107,11 +107,11 @@ public class BenevolentPlayer implements Serializable, Strategy {
 			gameModel.setIsWon(true);
 			return;
 		}
+		System.out.println("Benevolent attack end player name " + playerModel.getPlayerName());
+		LOG.info("Benevolent attack end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("Benevolent attack end player name " + playerModel.getPlayerName());
-		LOG.info("Benevolent attack end player name " + playerModel.getPlayerName());
 
 	}
 

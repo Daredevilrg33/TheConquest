@@ -326,9 +326,11 @@ public class Utility {
 	public static PlayerType[] getPlayerTypeFromDropDown(int noOfPlayers, String[] comboSelectedPlayers) {
 		// TODO Auto-generated method stub
 		PlayerType[] playerTypes = new PlayerType[noOfPlayers];
-		if (noOfPlayers >= 3) {
+		if (noOfPlayers >= 2) {
 			playerTypes[0] = getPlayerType(comboSelectedPlayers[0]);
 			playerTypes[1] = getPlayerType(comboSelectedPlayers[1]);
+		}
+		if (noOfPlayers >= 3) {
 			playerTypes[2] = getPlayerType(comboSelectedPlayers[2]);
 		}
 		if (noOfPlayers >= 4)

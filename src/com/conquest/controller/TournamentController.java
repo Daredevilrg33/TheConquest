@@ -1,5 +1,6 @@
 package com.conquest.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture.AsynchronousCompletionTask;
 
@@ -31,9 +32,6 @@ public class TournamentController {
 	/** The noOfTurns. */
 	private int noOfTurns = 0;
 
-	/** The game model. */
-	private GameModel[] gameModels;
-
 	/** The Constant log. */
 	private static final Logger LOG = Logger.getLogger(TournamentController.class);
 
@@ -46,8 +44,8 @@ public class TournamentController {
 	 * @param noOfGames    the no of games
 	 * @param noOfTurns    the no of turns
 	 */
-	public TournamentController(GameModel[] gameModels, int noOfMaps, int noOfGames, int noOfTurns) {
-		this.gameModels = gameModels;
+	public TournamentController(int noOfMaps, int noOfGames, int noOfTurns) {
+
 		this.noOfMaps = noOfMaps;
 		this.noOfGames = noOfGames;
 		this.noOfTurns = noOfTurns;
@@ -58,16 +56,24 @@ public class TournamentController {
 	/**
 	 * Start tournament.
 	 */
-	public void startTournament() {
+	public void startTournament(GameModel gameModel) {
 		// begin the tournament
 		SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
 			@Override
 			protected Void doInBackground() {
-				for (int i = 0; i < noOfMaps; i++) {
-					for (int j = 0; j < noOfGames; j++) {
-
-						//
+				gameModel.setMaxTurnsAllowed(noOfTurns);
+				for (PlayerModel player : gameModel.getPlayers()) {
+					for (int i = 0; i < player.getnoOfArmyInPlayer(); i++) {
+						player.assignInitialArmyToCountry(gameModel);
+						System.out.println("Start Tournament" + player.getPlayerName() + player.getStrategy());
 					}
+				}
+				gameModel.getCurrPlayer().reinforcementPhase(gameModel);
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				return null;
 			}
@@ -82,4 +88,5 @@ public class TournamentController {
 		};
 		worker.execute();
 	}
+
 }

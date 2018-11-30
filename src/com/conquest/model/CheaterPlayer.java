@@ -44,12 +44,11 @@ public class CheaterPlayer implements Serializable, Strategy {
 			armies = armies * 2;
 			countryModel.setNoOfArmiesCountry(armies);
 		}
+		System.out.println("Cheater reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater reinforcement end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Cheater reinforcement end player name " + playerModel.getPlayerName());
-		LOG.info("Cheater reinforcement end player name " + playerModel.getPlayerName());
-
 	}
 
 	/*
@@ -76,12 +75,12 @@ public class CheaterPlayer implements Serializable, Strategy {
 				}
 			}
 		}
+		System.out.println("Cheater fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater fortification end player name " + playerModel.getPlayerName());
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Cheater fortification end player name " + playerModel.getPlayerName());
-		LOG.info("Cheater fortification end player name " + playerModel.getPlayerName());
 
 	}
 
@@ -118,16 +117,17 @@ public class CheaterPlayer implements Serializable, Strategy {
 				}
 			}
 		}
-		if (playerModel.isGameWon(gameModel.getMapHierarchyModel().totalCountries)) {
+		if (playerModel.isGameWon(gameModel.getMapHierarchyModel().getCountryList().size())) {
 
 			gameModel.setIsWon(true);
 			return;
 		}
+		System.out.println("Cheater attack end player name " + playerModel.getPlayerName());
+		LOG.info("Cheater attack end player name " + playerModel.getPlayerName());
+
 		gameModel.setGameStatus("Fortification Phase starts");
 		gameModel.setGamePhaseStage(3);
 		fortificationPhase(gameModel, playerModel);
-		System.out.println("Cheater attack end player name " + playerModel.getPlayerName());
-		LOG.info("Cheater attack end player name " + playerModel.getPlayerName());
 
 	}
 

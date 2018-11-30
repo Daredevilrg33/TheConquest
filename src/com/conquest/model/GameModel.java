@@ -48,6 +48,9 @@ public class GameModel extends Observable implements Serializable {
 	/** The random generator. */
 	private Random randomGenerator;
 
+	private int maxTurnsAllowed;
+	private boolean isMaxTurnUsed = false;
+
 	/**
 	 * Instantiates a new game model.
 	 *
@@ -78,7 +81,7 @@ public class GameModel extends Observable implements Serializable {
 		for (int i = 0; i < mapHierarchyModel.totalCountries; i++) {
 			CardsModel card = new CardsModel(name, type);
 			totalCards.add(card);
-			j=++j;
+			j = ++j;
 			name = names[j];
 			type = types[j];
 			if (j == 2) {
@@ -278,6 +281,14 @@ public class GameModel extends Observable implements Serializable {
 	 * Move to next player.
 	 */
 	public void moveToNextPlayer() {
+		if (isMaxTurnUsed) {
+			maxTurnsAllowed = maxTurnsAllowed - 1;
+			if (maxTurnsAllowed == 0) {
+				currPlayer = null;
+				return;
+			}
+		}
+
 		if (currPlayer == players[players.length - 1]) {
 			currPlayer = players[0];
 		} else
@@ -320,7 +331,21 @@ public class GameModel extends Observable implements Serializable {
 	public void reinforcementPhase() {
 		this.setGameStatus("Reinforcement Phase starts");
 		this.setGamePhaseStage(1);
-//		this.currPlayer.reinforcementPhase(this);
-
 	}
+
+	/**
+	 * @param maxTurnsAllowed the maxTurnsAllowed to set
+	 */
+	public void setMaxTurnsAllowed(int maxTurnsAllowed) {
+		this.maxTurnsAllowed = maxTurnsAllowed;
+		isMaxTurnUsed = true;
+	}
+
+	/**
+	 * @return the maxTurnsAllowed
+	 */
+	public int getMaxTurnsAllowed() {
+		return maxTurnsAllowed;
+	}
+
 }

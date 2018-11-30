@@ -55,11 +55,12 @@ public class AggresivePlayer implements Strategy, Serializable {
 			countryModel.addNoOfArmiesCountry();
 			playerModel.reduceArmyInPlayer();
 		}
+		System.out.println("Aggresive reinforcement end player name " + playerModel.getPlayerName());
+		LOG.info("Aggresive reinforcement end player name " + playerModel.getPlayerName());
 		gameModel.setGameStatus("Attack Phase starts");
 		gameModel.setGamePhaseStage(2);
 		attackPhase(gameModel, playerModel);
-		System.out.println("Aggresive reinforcement end player name " + playerModel.getPlayerName());
-		LOG.info("Aggresive reinforcement end player name " + playerModel.getPlayerName());
+	
 
 	}
 
@@ -103,12 +104,11 @@ public class AggresivePlayer implements Strategy, Serializable {
 										+ targetCountry.getNoOfArmiesCountry());
 								sourceCountry.removeNoOfArmiesCountry();
 								targetCountry.addNoOfArmiesCountry();
-								
-								if(targetCountry.getOwner().getPlayerCountryList().size()==0)
-								{
+
+								if (targetCountry.getOwner().getPlayerCountryList().size() == 0) {
 									playerModel.cardsTransfer(targetCountry.getOwner());
 								}
-								
+
 								playerModel.addCountry(targetCountry);
 								targetCountry.setOwner(playerModel);
 								playerModel.setHasWonTerritory(true);
@@ -122,10 +122,11 @@ public class AggresivePlayer implements Strategy, Serializable {
 							System.out.println("else " + sourceCountry.getNoOfArmiesCountry() + " :::::"
 									+ targetCountry.getNoOfArmiesCountry());
 							sourceCountry.removeNoOfArmiesCountry();
-
 						}
 
 						if (sourceCountry.getNoOfArmiesCountry() < 2) {
+							System.out.println("Aggresive attack end player name " + playerModel.getPlayerName());
+							LOG.info("Aggresive attack end player name " + playerModel.getPlayerName());
 							gameModel.setGameStatus("Fortification Phase starts");
 							gameModel.setGamePhaseStage(3);
 							fortificationPhase(gameModel, playerModel);
@@ -137,8 +138,7 @@ public class AggresivePlayer implements Strategy, Serializable {
 			}
 			break;
 		}
-		System.out.println("Aggresive attack end player name " + playerModel.getPlayerName());
-		LOG.info("Aggresive attack end player name " + playerModel.getPlayerName());
+
 	}
 
 	/**
@@ -168,6 +168,7 @@ public class AggresivePlayer implements Strategy, Serializable {
 	@Override
 	public void fortificationPhase(GameModel gameModel, PlayerModel playerModel) {
 		// TODO Auto-generated method stub
+
 		CountryModel sourceCountry = getCountryWithMaxArmies(playerModel);
 		System.out.println("Aggresive fortification start player name " + playerModel.getPlayerName());
 		LOG.info("Aggresive fortification start player name " + playerModel.getPlayerName());
@@ -182,12 +183,12 @@ public class AggresivePlayer implements Strategy, Serializable {
 				}
 			}
 		}
+		System.out.println("Aggresive fortification end player name " + playerModel.getPlayerName());
+		LOG.info("Aggresive fortification end player name " + playerModel.getPlayerName());
 		gameModel.increaseTurn();
 		gameModel.moveToNextPlayer();
 		gameModel.setGameStatus("Reinforcement Phase starts");
 		gameModel.setGamePhaseStage(1);
-		System.out.println("Aggresive fortification end player name " + playerModel.getPlayerName());
-		LOG.info("Aggresive fortification end player name " + playerModel.getPlayerName());
 
 	}
 
