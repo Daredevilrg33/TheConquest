@@ -14,7 +14,7 @@ public class LoadGameWindoweTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\save\\Default--1543537585464.bin";
+		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\three.map--1543590146329.bin";
 
 	}
 

@@ -760,3 +760,32 @@
 2018-11-30 09:35:02,613  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
 2018-11-30 09:35:02,651  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
 2018-11-30 09:35:02,651  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:50:17,622  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:50:17,722  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:50:17,745  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:50:18,183  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 09:50:18,183  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 09:50:18,185  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 09:50:21,894  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:50:21,910  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:50:21,910  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:50:21,952  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 09:50:21,953  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:01:29,265  INFO [AWT-EventQueue-0] - MainMenuScreen:97 - New Single Game started
+2018-11-30 10:34:00,241  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 10:34:00,246  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:34:00,247  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 10:34:00,247  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:59 - Aggresive reinforcement end player name Player2
+2018-11-30 10:34:00,248  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 10:34:47,538  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 10:34:47,543  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:34:47,544  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 10:34:47,544  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:59 - Aggresive reinforcement end player name Player2
+2018-11-30 10:34:47,545  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 10:36:57,434  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 10:36:57,436  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:36:57,436  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 10:36:57,437  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:59 - Aggresive reinforcement end player name Player2
+2018-11-30 10:36:57,437  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2

@@ -1,0 +1,12 @@
+[Continents]
+
+abc=2
+bcd=2
+
+[Territories]
+
+a11,0,0,abc,a22,b11
+a22,0,0,abc,a11,b11
+b11,0,0,bcd,a11,a22
+b22,0,0,bcd
+

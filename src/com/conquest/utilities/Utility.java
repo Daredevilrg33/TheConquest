@@ -166,7 +166,7 @@ public class Utility {
 	 * @param countryModels     the country models
 	 * @param mapHierarchyModel the map hierarchy model
 	 */
-	private void validateIfCountryHasNeighbour(String targetCountry, ArrayList<CountryModel> countryModels,
+	public void validateIfCountryHasNeighbour(String targetCountry, ArrayList<CountryModel> countryModels,
 			MapHierarchyModel mapHierarchyModel) {
 		// TODO Auto-generated method stub
 		boolean neighbourFlag = false;

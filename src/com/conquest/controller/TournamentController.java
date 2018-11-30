@@ -65,7 +65,6 @@ public class TournamentController {
 				for (PlayerModel player : gameModel.getPlayers()) {
 					for (int i = 0; i < player.getnoOfArmyInPlayer(); i++) {
 						player.assignInitialArmyToCountry(gameModel);
-						System.out.println("Start Tournament" + player.getPlayerName() + player.getStrategy());
 					}
 				}
 				gameModel.getCurrPlayer().reinforcementPhase(gameModel);
