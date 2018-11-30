@@ -62,6 +62,13 @@ public class PlayerModel extends Observable implements Serializable {
 	}
 
 	/**
+	 * @param noOfArmyInPlayer the noOfArmyInPlayer to set
+	 */
+	public void setNoOfArmyInPlayer(int noOfArmyInPlayer) {
+		this.noOfArmyInPlayer = noOfArmyInPlayer;
+	}
+
+	/**
 	 * noOfArmyinPlayer Method No of army for player.
 	 * 
 	 * @param number the number
@@ -435,7 +442,7 @@ public class PlayerModel extends Observable implements Serializable {
 			return "success";
 		}
 	}
-	
+
 	public void setPlayerCountryList(List<CountryModel> playerCountryList) {
 		this.playerCountryList = playerCountryList;
 	}

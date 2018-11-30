@@ -60,27 +60,6 @@ public class GameWindowController {
 	 * @param mapHierarchyModel the map hierarchy model
 	 * @param playerModel       the player model
 	 */
-//	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel[] playerModels) {
-//		int z = 0;
-//		for (int i = 0; i < playerModels.length; i++) {
-//			PlayerModel playerModel = playerModels[i];
-//			for (ContinentModel continentModel : mapHierarchyModel.getContinentsList()) {
-//				z = 0;
-//				for (CountryModel countryModel : continentModel.getCountriesList()) {
-//					CountryModel value = playerModel.searchCountry(countryModel.getCountryName());
-//					if (value == null) {
-//						break;
-//					} else {
-//						z++;
-//						if (z == continentModel.getCountriesList().size()) {
-//							playerModel.addControlValueToNoOfArmy(continentModel.getControlValue());
-//							z = 0;
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
 
 	public void isControlValueTobeAdded(MapHierarchyModel mapHierarchyModel, PlayerModel playerModel) {
 		int z = 0;
@@ -146,7 +125,8 @@ public class GameWindowController {
 	/**
 	 * Method to save current game to disk.
 	 */
-	public void saveGame() {
+	public boolean saveGame() {
+		boolean isGameSaved = false;
 		ObjectOutputStream output = null;
 		try {
 			String fileName = null;
@@ -157,8 +137,10 @@ public class GameWindowController {
 				fileName = gameModel.getGameStatus() + new Date().getTime() + ".bin";
 			output = new ObjectOutputStream(new FileOutputStream("./save/" + fileName));
 			output.writeObject(gameModel);
+			isGameSaved = true;
 			JOptionPane.showMessageDialog(null, "Game has been saved to file <" + fileName + ">. successfully ");
 		} catch (IOException e) {
+			isGameSaved = false;
 			e.printStackTrace();
 		} finally {
 			try {
@@ -167,5 +149,6 @@ public class GameWindowController {
 				e.printStackTrace();
 			}
 		}
+		return isGameSaved;
 	}
 }

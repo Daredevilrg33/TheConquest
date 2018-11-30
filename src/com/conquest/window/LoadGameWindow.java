@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -17,8 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 import com.conquest.model.GameModel;
+import com.conquest.model.PlayerModel;
 import com.conquest.utilities.Constants;
-import com.conquest.utilities.Utility;
 
 /**
  * The Class LoadGameWindow.
@@ -110,9 +109,40 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 			if (inputFileName.trim().isEmpty()) {
 				JOptionPane.showMessageDialog(null, "File name invalid");
 			} else {
-				loadGame(inputFileName.trim());
+				boolean isLoaded = redirectGameToGameWindow(loadGameModel(inputFileName.trim()));
 			}
 		}
+	}
+
+	/**
+	 * @param loadGameModel
+	 * @return
+	 */
+	private boolean redirectGameToGameWindow(GameModel gameModel) {
+		// TODO Auto-generated method stub
+		boolean isGameLoaded = true;
+		if (gameModel == null)
+			return false;
+		dispose();
+		if (gameModel.getGamePhaseStage() == 1) {
+			for (PlayerModel playerModel : gameModel.getPlayers()) {
+				playerModel.setNoOfArmyInPlayer(0);
+			}
+		}
+		if (gameModel.getGamePhaseStage() == 2) {
+			AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(gameModel);
+			attackPhaseWindow.setVisible(true);
+			isGameLoaded = true;
+		}
+		if (gameModel.getGamePhaseStage() == 3) {
+			FortificationWindow fortificationWindow = new FortificationWindow(gameModel, gameModel.getCurrPlayer());
+			fortificationWindow.setVisible(true);
+			isGameLoaded = true;
+		}
+		GameWindow gameWindow = new GameWindow(gameModel);
+		gameWindow.setVisible(true);
+
+		return true;
 	}
 
 	/**
@@ -120,23 +150,12 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 	 *
 	 * @param inputFile The file that need to be loaded
 	 */
-	public void loadGame(String inputFile) {
+	public GameModel loadGameModel(String inputFile) {
+		GameModel gameModel = null;
 		ObjectInputStream input = null;
 		try {
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			GameModel myGameModel = (GameModel) input.readObject();
-			dispose();
-			GameWindow gameWindow = new GameWindow(myGameModel);
-			gameWindow.setVisible(true);
-			if (myGameModel.getGamePhaseStage() == 2) {
-				AttackPhaseWindow attackPhaseWindow = new AttackPhaseWindow(myGameModel);
-				attackPhaseWindow.setVisible(true);
-			}
-			if (myGameModel.getGamePhaseStage() == 3) {
-				FortificationWindow fortificationWindow = new FortificationWindow(myGameModel,
-						myGameModel.getCurrPlayer());
-				fortificationWindow.setVisible(true);
-			}
+			gameModel = (GameModel) input.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -146,6 +165,7 @@ public class LoadGameWindow extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		return gameModel;
 	}
 
 }
