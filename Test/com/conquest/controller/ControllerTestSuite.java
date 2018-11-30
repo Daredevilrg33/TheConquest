@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ AttackWindowControllerTest.class, FortificationWindowControllerTest.class,
-		GameWindowControllerTest.class })
+		GameWindowControllerTest.class ,TournamentControllerTest.class})
 
 public class ControllerTestSuite {
 

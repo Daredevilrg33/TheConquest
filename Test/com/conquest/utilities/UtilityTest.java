@@ -1,5 +1,6 @@
 package com.conquest.utilities;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -28,6 +29,8 @@ public class UtilityTest {
 
 	/** The asia invalid map file path. */
 	private static String ASIA_INVALID_MAP_FILE_PATH;
+	/** The asia invalid map file path. */
+	private static String NO_PATH;
 
 	/**
 	 * Sets the up before class.
@@ -38,6 +41,8 @@ public class UtilityTest {
 	public static void setUpBeforeClass() throws Exception {
 		ASIA_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asia.map";
 		ASIA_INVALID_MAP_FILE_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\Asiainvalid.map";
+		NO_PATH = System.getProperty("user.dir") + "\\resources\\testresource\\noneighbours.map";
+
 	}
 
 	/**
@@ -130,4 +135,18 @@ public class UtilityTest {
 		assertFalse(maphierarchy.isValErrorFlag());
 
 	}
+	
+	/**
+	 * Function to check that invalid map is not treated as a valid map.
+	 */
+	@Test
+	public void validateIfCountryHasNeighbourTest() {
+		ArrayList<CountryModel> parsedCountryList = utility.parseAndValidateMap(NO_PATH)
+				.getCountryList();
+		MapHierarchyModel mapHierarchyModel = utility.parseAndValidateMap(NO_PATH);		
+		utility.validateIfCountryHasNeighbour("b22", parsedCountryList, mapHierarchyModel);
+		System.out.println(mapHierarchyModel.getErrorMsg());
+		assertEquals("Map is invalid as there is no connectivity from or to country b22",mapHierarchyModel.getErrorMsg());
+	}
+	
 }

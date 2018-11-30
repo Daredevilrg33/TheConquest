@@ -2681,3 +2681,24 @@
 2018-11-30 10:26:14,850  INFO [SwingWorker-pool-2-thread-4] - CheaterPlayer:40 - Cheater reinforcement start player name Player2
 2018-11-30 10:26:14,850  INFO [SwingWorker-pool-2-thread-4] - CheaterPlayer:48 - Cheater reinforcement end player name Player2
 2018-11-30 10:26:14,850  INFO [SwingWorker-pool-2-thread-4] - CheaterPlayer:97 - Cheater attack start player name Player2
+2018-11-30 10:44:35,273  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 10:44:35,336  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 10:44:35,351  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 10:44:35,586  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:4
+2018-11-30 10:44:35,586  INFO [main] - AttackWindowController:112 - Roll Dice starts 
+ Number:3
+2018-11-30 10:44:35,601  INFO [main] - AttackPhaseWindow:103 - Attack Phase starts
+2018-11-30 10:44:38,396  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,412  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,412  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,459  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,459  INFO [main] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,490  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:480 - Reinforcement Phase starts of PlayerPlayer2
+2018-11-30 10:44:38,490  INFO [SwingWorker-pool-1-thread-1] - PlayerModel:375 - Calculating and Adding Reinforcement Armies
+2018-11-30 10:44:38,490  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:53 - Aggresive reinforcement start player name Player2
+2018-11-30 10:44:38,490  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:59 - Aggresive reinforcement end player name Player2
+2018-11-30 10:44:38,490  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:77 - Aggresive attack start player name Player2
+2018-11-30 10:44:38,506  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:128 - Aggresive attack end player name Player2
+2018-11-30 10:44:38,521  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:180 - Aggresive fortification start player name Player2
+2018-11-30 10:44:38,521  INFO [SwingWorker-pool-1-thread-1] - AggresivePlayer:193 - Aggresive fortification end player name Player2

@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({NewGameMenuScreenTest.class,LoadGameWindoweTest.class  })
+@Suite.SuiteClasses({NewGameMenuScreenTest.class,LoadGameWindowTest.class  })
 
 
 

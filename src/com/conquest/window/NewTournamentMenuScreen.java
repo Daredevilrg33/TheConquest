@@ -99,16 +99,28 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 	/** The tournament obj. */
 	private TournamentController tournamentObj;
 
+	/** The mapfilepath */
 	private String[] mapFilePath = new String[5];
 
+	/** The map file name */
 	private String[] mapFileName = new String[5];
 
+	/** The mapHierarchyModels */
 	private MapHierarchyModel[] mapHierarchyModels = new MapHierarchyModel[5];
 
+	/** The gameModels list. */
 	private List<GameModel> gameModels;
+
+	/** The noOfMaps integer */
 	private int noOfMaps = 1;
+
+	/** The Hashstring of results */
 	private HashMap<String, ArrayList<String>> results = new HashMap<>();
-	private static int gameNumber = 0;
+
+	/** The number of game. */
+	private static int GAME_NUMBER = 0;
+
+	/** The number of games to be played. */
 	private int noOfGamesToBePlayed = 0;
 
 	/**
@@ -411,7 +423,7 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 				comboSelectedPlayers[3] = (String) comboBoxPlayer4.getSelectedItem();
 			}
 			noOfGamesToBePlayed = noOfMaps * noOfGames;
-			gameNumber = 0;
+			GAME_NUMBER = 0;
 			for (int i = 0; i < noOfMaps; i++) {
 				MapHierarchyModel mapHierarchyModel = mapHierarchyModels[i];
 				System.out.println("Map Name for Results : " + mapHierarchyModel.getConquestMapName());
@@ -432,12 +444,14 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 			}
 
 			tournamentObj = new TournamentController(noOfMaps, noOfGames, noOfTurns);
-			tournamentObj.startTournament(gameModels.get(gameNumber));
+			tournamentObj.startTournament(gameModels.get(GAME_NUMBER));
 		}
 	}
 
 	/**
-	 * @param selectedItem
+	 * showPlayerOptionAsPerNoOfPlayers
+	 * 
+	 * @param selectedItem number of selected players
 	 */
 	private void showPlayerOptionAsPerNoOfPlayers(String selectedItem) {
 		// TODO Auto-generated method stub
@@ -462,7 +476,9 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 	}
 
 	/**
-	 * @param selectedItem
+	 * showMapOptionAsPerSelection
+	 * 
+	 * @param selectedItem numberof selected maps
 	 */
 	private void showMapOptionAsPerSelection(String selectedItem) {
 		// TODO Auto-generated method stub
@@ -615,12 +631,12 @@ public class NewTournamentMenuScreen extends JFrame implements ActionListener, O
 				mapResults.add("Draw");
 			}
 			results.put(gameModel.getMapHierarchyModel().getConquestMapName(), mapResults);
-			gameNumber = gameNumber + 1;
+			GAME_NUMBER = GAME_NUMBER + 1;
 
-			if (gameNumber >= noOfGamesToBePlayed) {
+			if (GAME_NUMBER >= noOfGamesToBePlayed) {
 				System.out.println("Results: " + results);
 			} else
-				tournamentObj.startTournament(gameModels.get(gameNumber));
+				tournamentObj.startTournament(gameModels.get(GAME_NUMBER));
 		} else if (gameModel.getGamePhaseStage() == 1) {
 
 			if (gameModel.getCurrPlayer() != null)
