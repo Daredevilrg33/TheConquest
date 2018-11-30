@@ -1,6 +1,7 @@
 package com.conquest.controller;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture.AsynchronousCompletionTask;
 
 import javax.swing.SwingWorker;
 
@@ -31,10 +32,7 @@ public class TournamentController {
 	private int noOfTurns = 0;
 
 	/** The game model. */
-	private GameModel gameModel;
-
-	/** The player models. */
-	private PlayerModel[] playerModels;
+	private GameModel[] gameModels;
 
 	/** The Constant log. */
 	private static final Logger LOG = Logger.getLogger(TournamentController.class);
@@ -48,8 +46,8 @@ public class TournamentController {
 	 * @param noOfGames    the no of games
 	 * @param noOfTurns    the no of turns
 	 */
-	public TournamentController(PlayerModel[] playerModels, int noOfMaps, int noOfGames, int noOfTurns) {
-		this.playerModels = playerModels;
+	public TournamentController(GameModel[] gameModels, int noOfMaps, int noOfGames, int noOfTurns) {
+		this.gameModels = gameModels;
 		this.noOfMaps = noOfMaps;
 		this.noOfGames = noOfGames;
 		this.noOfTurns = noOfTurns;

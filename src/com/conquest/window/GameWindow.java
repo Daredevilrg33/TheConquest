@@ -524,13 +524,16 @@ public class GameWindow extends JFrame implements ActionListener, Observer {
 			updateUIInfo(gameModel.getCurrPlayer());
 		} else if (object instanceof PlayerModel) {
 			PlayerModel playerModel = (PlayerModel) object;
-
 			if (gameModel.getGamePhaseStage() == 1) {
 				updatePlayerArmies(gameModel.getCurrPlayer().getnoOfArmyInPlayer());
+				labelCardsWithPlayer.setText(gameModel.getCurrPlayer().cardsString());
+				invalidate();
+				revalidate();
+				if (gameModel.getCurrPlayer().canHandIn())
+					jHandIn.setEnabled(true);
+				else
+					jHandIn.setEnabled(false);
 			}
-//			setProgressBarValues(playerModel);
-//			updateGameInformation();
-//			updateUIInfo(playerModel);
 
 		}
 
